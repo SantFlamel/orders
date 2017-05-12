@@ -1,0 +1,276 @@
+2017-05-04 09:24:51 - 
+2017-05-04 09:24:51 - *********************************
+2017-05-04 09:24:51 - *********************************
+2017-05-04 09:24:51 - _______NEW_START_OF_SERVER_______
+2017-05-04 09:24:51 - Postgresql running!
+2017-05-04 09:24:51 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-04 09:24:51 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-04 09:24:51 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-04 09:24:51 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-04 09:24:51 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-04 09:24:51 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-04 09:24:51 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-04 09:24:51 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-04 09:24:51 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-04 09:24:51 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-04 09:24:51 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 09:24:51 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 09:24:51 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-04 09:29:35 - ERROR get message 192.168.0.132:500 : [48 48 58 67 114 101 97 116 101 32 67 108 105 101 110 116 73 110 102 111 58 115 113 108 58 32 110 111 32 114 111 119 115 32 105 110 32 114 101 115 117 108 116 32 115 101 116]
+2017-05-04 09:35:23 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-04 09:35:24 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-04 09:35:29 - client:  dial tcp 0.0.0.0:7730: connectex: No connection could be made because the target machine actively refused it.
+2017-05-04 09:35:59 - 00:x917116510{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-05-04 09:37:41 - client:  dial tcp 0.0.0.0:7730: connectex: No connection could be made because the target machine actively refused it.
+2017-05-04 09:41:56 - client:  dial tcp 0.0.0.0:7730: connectex: No connection could be made because the target machine actively refused it.
+2017-05-04 09:50:24 - 00:x270564631{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-05-04 10:09:33 - client:  dial tcp 0.0.0.0:7730: connectex: No connection could be made because the target machine actively refused it.
+2017-05-04 10:43:38 - client:  dial tcp 0.0.0.0:7730: connectex: No connection could be made because the target machine actively refused it.
+2017-05-04 10:47:48 - client:  dial tcp 192.168.0.132:500: connectex: No connection could be made because the target machine actively refused it.
+2017-05-04 10:47:48 - client:  dial tcp 192.168.0.132:500: connectex: No connection could be made because the target machine actively refused it.
+2017-05-04 10:51:58 - 
+2017-05-04 10:51:58 - *********************************
+2017-05-04 10:51:58 - *********************************
+2017-05-04 10:51:58 - _______NEW_START_OF_SERVER_______
+2017-05-04 10:51:58 - Postgresql running!
+2017-05-04 10:51:58 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-04 10:51:58 - [GIN-debug] Loaded HTML Templates (4): 
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+	- cassir.html
+
+2017-05-04 10:51:58 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-04 10:51:58 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-04 10:51:58 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-04 10:51:58 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-04 10:51:58 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-04 10:51:58 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-04 10:51:58 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-04 10:51:58 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-04 10:51:58 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 10:51:58 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 10:51:58 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-04 11:07:11 - client:  dial tcp 0.0.0.0:7730: connectex: No connection could be made because the target machine actively refused it.
+2017-05-04 11:08:05 - client:  dial tcp 0.0.0.0:7730: connectex: No connection could be made because the target machine actively refused it.
+2017-05-04 11:48:55 - 
+2017-05-04 11:48:55 - *********************************
+2017-05-04 11:48:55 - *********************************
+2017-05-04 11:48:55 - _______NEW_START_OF_SERVER_______
+2017-05-04 11:48:55 - Postgresql running!
+2017-05-04 11:48:55 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-04 11:48:55 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-04 11:48:55 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-04 11:48:55 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-04 11:48:55 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-04 11:48:55 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-04 11:48:55 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-04 11:48:55 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-04 11:48:55 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-04 11:48:55 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-04 11:48:55 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 11:48:55 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 11:48:55 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-04 11:51:09 - 00:ordphone{Order ERROR Read, TYPE PARAMETERS "RangeByPhoneCustomer" VALUES: [7.9195813888e+10 2017-05-04T00:00:00Z 2017-05-04T11:51:09Z 10 0]: sql: statement expects 3 inputs; got 5
+2017-05-04 11:52:19 - 00:ordphone{Order ERROR Read, TYPE PARAMETERS "RangeByPhoneCustomer" VALUES: [7.9195813888e+10 2017-05-04T00:00:00Z 2017-05-04T11:51:55Z 10 0]: sql: statement expects 3 inputs; got 5
+2017-05-04 11:52:32 - 00:ordphone{Order ERROR Read, TYPE PARAMETERS "RangeByPhoneCustomer" VALUES: [7.9195813888e+10 2017-05-04T00:00:00Z 2017-05-04T11:52:32Z 10 0]: sql: statement expects 3 inputs; got 5
+2017-05-04 11:53:33 - 
+2017-05-04 11:53:33 - *********************************
+2017-05-04 11:53:33 - *********************************
+2017-05-04 11:53:33 - _______NEW_START_OF_SERVER_______
+2017-05-04 11:53:33 - Postgresql running!
+2017-05-04 11:53:33 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-04 11:53:33 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-04 11:53:33 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-04 11:53:33 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-04 11:53:33 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-04 11:53:33 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-04 11:53:33 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-04 11:53:33 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-04 11:53:33 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-04 11:53:33 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-04 11:53:33 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 11:53:33 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 11:53:33 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-04 11:54:56 - client:  dial tcp 192.168.0.132:449: connectex: No connection could be made because the target machine actively refused it.
+2017-05-04 11:55:17 - client:  dial tcp 192.168.0.132:449: connectex: No connection could be made because the target machine actively refused it.
+2017-05-04 11:59:03 - 
+2017-05-04 11:59:03 - *********************************
+2017-05-04 11:59:03 - *********************************
+2017-05-04 11:59:03 - _______NEW_START_OF_SERVER_______
+2017-05-04 11:59:03 - Postgresql running!
+2017-05-04 11:59:03 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-04 11:59:03 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-04 11:59:03 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-04 11:59:03 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-04 11:59:03 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-04 11:59:03 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-04 11:59:03 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-04 11:59:03 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-04 11:59:03 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-04 11:59:03 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-04 11:59:03 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 11:59:03 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 11:59:03 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-04 12:26:36 - ERROR get message 192.168.0.132:449 : [48 48 58 82 101 97 100 32 80 114 111 109 111 116 105 111 110 115 58 112 113 58 32 208 178 32 208 186 208 181 209 136 208 184 209 128 208 190 208 178 208 176 208 189 208 189 208 190 208 188 32 208 191 208 187 208 176 208 189 208 181 32 208 189 208 181 32 208 180 208 190 208 187 208 182 208 181 208 189 32 208 184 208 183 208 188 208 181 208 189 209 143 209 130 209 140 209 129 209 143 32 209 130 208 184 208 191 32 209 128 208 181 208 183 209 131 208 187 209 140 209 130 208 176 209 130 208 176]
+2017-05-04 12:32:24 - ERROR get message 192.168.0.132:449 : [48 48 58 82 101 97 100 32 80 114 111 109 111 116 105 111 110 115 58 112 113 58 32 208 178 32 208 186 208 181 209 136 208 184 209 128 208 190 208 178 208 176 208 189 208 189 208 190 208 188 32 208 191 208 187 208 176 208 189 208 181 32 208 189 208 181 32 208 180 208 190 208 187 208 182 208 181 208 189 32 208 184 208 183 208 188 208 181 208 189 209 143 209 130 209 140 209 129 209 143 32 209 130 208 184 208 191 32 209 128 208 181 208 183 209 131 208 187 209 140 209 130 208 176 209 130 208 176]
+2017-05-04 12:32:31 - ERROR get message 192.168.0.132:449 : [48 48 58 82 101 97 100 32 80 114 111 109 111 116 105 111 110 115 58 112 113 58 32 208 178 32 208 186 208 181 209 136 208 184 209 128 208 190 208 178 208 176 208 189 208 189 208 190 208 188 32 208 191 208 187 208 176 208 189 208 181 32 208 189 208 181 32 208 180 208 190 208 187 208 182 208 181 208 189 32 208 184 208 183 208 188 208 181 208 189 209 143 209 130 209 140 209 129 209 143 32 209 130 208 184 208 191 32 209 128 208 181 208 183 209 131 208 187 209 140 209 130 208 176 209 130 208 176]
+2017-05-04 16:34:04 - 
+2017-05-04 16:34:04 - *********************************
+2017-05-04 16:34:04 - *********************************
+2017-05-04 16:34:04 - _______NEW_START_OF_SERVER_______
+2017-05-04 16:34:04 - Postgresql running!
+2017-05-04 16:34:04 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-04 16:34:04 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-04 16:34:04 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-04 16:34:04 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-04 16:34:04 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-04 16:34:04 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-04 16:34:04 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-04 16:34:04 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-04 16:34:04 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-04 16:34:04 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-04 16:34:04 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 16:34:04 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 16:34:04 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-04 16:36:20 - websocket: close 1001 (going away)
+2017-05-04 16:40:27 - websocket: close 1001 (going away)
+2017-05-04 16:41:45 - websocket: close 1001 (going away)
+2017-05-04 16:45:37 - websocket: close 1001 (going away)
+2017-05-04 17:19:35 - 00:makefinished{OrderList ERROR Update, TYPE PARAMETERS "Finished" VALUES: [2 4 true]: pq: duplicate key value violates unique constraint "order_status_id_order_id_key"
+2017-05-04 17:28:29 - 
+2017-05-04 17:28:29 - *********************************
+2017-05-04 17:28:29 - *********************************
+2017-05-04 17:28:29 - _______NEW_START_OF_SERVER_______
+2017-05-04 17:28:29 - Postgresql running!
+2017-05-04 17:28:29 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-04 17:28:29 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-04 17:28:29 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-04 17:28:29 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-04 17:28:29 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-04 17:28:29 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-04 17:28:29 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-04 17:28:29 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-04 17:28:29 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-04 17:28:29 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-04 17:28:29 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 17:28:29 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 17:28:29 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-04 17:30:47 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-05-04 17:30:49 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-05-04 17:30:51 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-05-04 17:30:52 - 00:makefinished{OrderList ERROR Update, TYPE PARAMETERS "Finished" VALUES: [2 4 true]: pq: duplicate key value violates unique constraint "order_status_id_order_id_key"
+2017-05-04 17:33:10 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-05-04 17:33:11 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-05-04 17:33:13 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-05-04 17:33:14 - 00:makefinished{OrderList ERROR Update, TYPE PARAMETERS "Finished" VALUES: [2 4 true]: pq: duplicate key value violates unique constraint "order_status_id_order_id_key"
+2017-05-04 17:35:51 - 
+2017-05-04 17:35:51 - *********************************
+2017-05-04 17:35:51 - *********************************
+2017-05-04 17:35:51 - _______NEW_START_OF_SERVER_______
+2017-05-04 17:35:51 - Postgresql running!
+2017-05-04 17:35:51 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-04 17:35:51 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-04 17:35:51 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-04 17:35:51 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-04 17:35:51 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-04 17:35:51 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-04 17:35:51 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-04 17:35:51 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-04 17:35:51 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-04 17:35:51 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-04 17:35:51 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 17:35:51 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 17:35:51 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-04 17:36:10 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-05-04 17:36:11 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-05-04 17:36:13 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-05-04 17:36:14 - 00:makefinished{OrderList ERROR Update, TYPE PARAMETERS "Finished" VALUES: [2 4 true]: pq: duplicate key value violates unique constraint "order_status_id_order_id_key"
+2017-05-04 17:45:33 - 
+2017-05-04 17:45:33 - *********************************
+2017-05-04 17:45:33 - *********************************
+2017-05-04 17:45:33 - _______NEW_START_OF_SERVER_______
+2017-05-04 17:45:33 - Postgresql running!
+2017-05-04 17:45:33 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-04 17:45:33 - [GIN-debug] Loaded HTML Templates (4): 
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+
+2017-05-04 17:45:33 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-04 17:45:33 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-04 17:45:33 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-04 17:45:33 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-04 17:45:33 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-04 17:45:33 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-04 17:45:33 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-04 17:45:33 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-04 17:45:33 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 17:45:33 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-04 17:45:33 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-04 17:46:07 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-05-04 17:46:09 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-05-04 17:46:11 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"

@@ -1,0 +1,1444 @@
+2017-05-11 09:30:49 - 
+2017-05-11 09:30:49 - *********************************
+2017-05-11 09:30:49 - *********************************
+2017-05-11 09:30:49 - _______NEW_START_OF_SERVER_______
+2017-05-11 09:30:49 - Postgresql running!
+2017-05-11 09:30:49 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 09:30:49 - [GIN-debug] Loaded HTML Templates (4): 
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+
+2017-05-11 09:30:49 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 09:30:49 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 09:30:49 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 09:30:49 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 09:30:49 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 09:30:49 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 09:30:49 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 09:30:49 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 09:30:49 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 09:30:49 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 09:30:49 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-11 09:50:09 - 00:x10050{Cashbox ERROR Read, TYPE PARAMETERS "ValueNumberCountPriceWithDiscount" VALUES: [8b842df17566eb7b9b19c13922c8ea79d791cfaec898d9a583d9d15f5400c274 eb2ffc0c4632ba9f3026f8ae35520f1fb1a708b7e213bdbfb643bc16a0900190 1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0 2017-05-11T00:00:00.0Z 2017-05-11T09:50:10.796Z]: pq: invalid input syntax for integer: "1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"
+2017-05-11 09:50:09 - 00:x10052{Cashbox ERROR Read, TYPE PARAMETERS "ValueNumberCountPriceWithDiscount" VALUES: [8b842df17566eb7b9b19c13922c8ea79d791cfaec898d9a583d9d15f5400c274 eb2ffc0c4632ba9f3026f8ae35520f1fb1a708b7e213bdbfb643bc16a0900190 1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0 2017-05-11T00:00:00.0Z 2017-05-11T09:50:10.796Z]: pq: invalid input syntax for integer: "1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"
+2017-05-11 09:51:25 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-05-11 09:51:52 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-05-11 09:52:48 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-05-11 09:55:03 - 00:x10050{Cashbox ERROR Read, TYPE PARAMETERS "ValueNumberCountPriceWithDiscount" VALUES: [8b842df17566eb7b9b19c13922c8ea79d791cfaec898d9a583d9d15f5400c274 eb2ffc0c4632ba9f3026f8ae35520f1fb1a708b7e213bdbfb643bc16a0900190 1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0 2017-05-11T00:00:00.0Z 2017-05-11T09:55:04.516Z]: pq: invalid input syntax for integer: "1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"
+2017-05-11 09:55:03 - 00:x10052{Cashbox ERROR Read, TYPE PARAMETERS "ValueNumberCountPriceWithDiscount" VALUES: [8b842df17566eb7b9b19c13922c8ea79d791cfaec898d9a583d9d15f5400c274 eb2ffc0c4632ba9f3026f8ae35520f1fb1a708b7e213bdbfb643bc16a0900190 1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0 2017-05-11T00:00:00.0Z 2017-05-11T09:55:04.516Z]: pq: invalid input syntax for integer: "1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"
+2017-05-11 09:56:34 - 
+2017-05-11 09:56:34 - *********************************
+2017-05-11 09:56:34 - *********************************
+2017-05-11 09:56:34 - _______NEW_START_OF_SERVER_______
+2017-05-11 09:56:34 - Postgresql running!
+2017-05-11 09:56:34 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 09:56:34 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 09:56:34 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 09:56:34 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 09:56:34 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 09:56:34 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 09:56:34 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 09:56:34 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 09:56:34 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 09:56:34 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 09:56:34 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 09:56:34 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 09:56:34 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-11 09:58:28 - 00:x10050{Cashbox ERROR Read, TYPE PARAMETERS "ValueNumberCountPriceWithDiscount" VALUES: [8b842df17566eb7b9b19c13922c8ea79d791cfaec898d9a583d9d15f5400c274 eb2ffc0c4632ba9f3026f8ae35520f1fb1a708b7e213bdbfb643bc16a0900190 1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0 2017-05-11T00:00:00.0Z 2017-05-11T09:58:30.114Z]: pq: invalid input syntax for integer: "1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"
+2017-05-11 09:58:28 - 00:x10052{Cashbox ERROR Read, TYPE PARAMETERS "ValueNumberCountPriceWithDiscount" VALUES: [8b842df17566eb7b9b19c13922c8ea79d791cfaec898d9a583d9d15f5400c274 eb2ffc0c4632ba9f3026f8ae35520f1fb1a708b7e213bdbfb643bc16a0900190 1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0 2017-05-11T00:00:00.0Z 2017-05-11T09:58:30.114Z]: pq: invalid input syntax for integer: "1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"
+2017-05-11 10:07:19 - 00:x10045{Cashbox ERROR Read, TYPE PARAMETERS "ValueNumberCountPriceWithDiscount" VALUES: [8b842df17566eb7b9b19c13922c8ea79d791cfaec898d9a583d9d15f5400c274 eb2ffc0c4632ba9f3026f8ae35520f1fb1a708b7e213bdbfb643bc16a0900190 1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0 2017-05-11T00:00:00.0Z 2017-05-11T10:07:20.793Z]: pq: invalid input syntax for integer: "1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"
+2017-05-11 10:07:19 - 00:x10046{Cashbox ERROR Read, TYPE PARAMETERS "ValueNumberCountPriceWithDiscount" VALUES: [8b842df17566eb7b9b19c13922c8ea79d791cfaec898d9a583d9d15f5400c274 eb2ffc0c4632ba9f3026f8ae35520f1fb1a708b7e213bdbfb643bc16a0900190 1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0 2017-05-11T00:00:00.0Z 2017-05-11T10:07:20.793Z]: pq: invalid input syntax for integer: "1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"
+2017-05-11 10:09:46 - 00:x10045{Cashbox ERROR Read, TYPE PARAMETERS "ValueNumberCountPriceWithDiscount" VALUES: [1 8b842df17566eb7b9b19c13922c8ea79d791cfaec898d9a583d9d15f5400c274 1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0 2017-05-11T00:00:00.0Z 2017-05-11T10:09:47.411Z]: pq: invalid input syntax for integer: "1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"
+2017-05-11 10:09:46 - 00:x10046{Cashbox ERROR Read, TYPE PARAMETERS "ValueNumberCountPriceWithDiscount" VALUES: [2 8b842df17566eb7b9b19c13922c8ea79d791cfaec898d9a583d9d15f5400c274 1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0 2017-05-11T00:00:00.0Z 2017-05-11T10:09:47.411Z]: pq: invalid input syntax for integer: "1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"
+2017-05-11 10:09:55 - 00:x10045{Cashbox ERROR Read, TYPE PARAMETERS "ValueNumberCountPriceWithDiscount" VALUES: [1 8b842df17566eb7b9b19c13922c8ea79d791cfaec898d9a583d9d15f5400c274 1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0 2017-05-11T00:00:00.0Z 2017-05-11T10:09:56.636Z]: pq: invalid input syntax for integer: "1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"
+2017-05-11 10:09:55 - 00:x10046{Cashbox ERROR Read, TYPE PARAMETERS "ValueNumberCountPriceWithDiscount" VALUES: [2 8b842df17566eb7b9b19c13922c8ea79d791cfaec898d9a583d9d15f5400c274 1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0 2017-05-11T00:00:00.0Z 2017-05-11T10:09:56.636Z]: pq: invalid input syntax for integer: "1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"
+2017-05-11 10:10:33 - 00:x10045{Cashbox ERROR Read, TYPE PARAMETERS "ValueNumberCountPriceWithDiscount" VALUES: [1 8b842df17566eb7b9b19c13922c8ea79d791cfaec898d9a583d9d15f5400c274 1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0 2017-05-11T00:00:00.0Z 2017-05-11T10:10:34.857Z]: pq: invalid input syntax for integer: "1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"
+2017-05-11 10:10:33 - 00:x10046{Cashbox ERROR Read, TYPE PARAMETERS "ValueNumberCountPriceWithDiscount" VALUES: [2 8b842df17566eb7b9b19c13922c8ea79d791cfaec898d9a583d9d15f5400c274 1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0 2017-05-11T00:00:00.0Z 2017-05-11T10:10:34.857Z]: pq: invalid input syntax for integer: "1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"
+2017-05-11 10:11:31 - 00:x10045{Cashbox ERROR Read, TYPE PARAMETERS "ValueNumberCountPriceWithDiscount" VALUES: [1 8b842df17566eb7b9b19c13922c8ea79d791cfaec898d9a583d9d15f5400c274 1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0 2017-05-11T00:00:00.0Z 2017-05-11T10:11:33.234Z]: pq: invalid input syntax for integer: "1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"
+2017-05-11 10:11:31 - 00:x10046{Cashbox ERROR Read, TYPE PARAMETERS "ValueNumberCountPriceWithDiscount" VALUES: [2 8b842df17566eb7b9b19c13922c8ea79d791cfaec898d9a583d9d15f5400c274 1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0 2017-05-11T00:00:00.0Z 2017-05-11T10:11:33.234Z]: pq: invalid input syntax for integer: "1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"
+2017-05-11 11:31:58 - 00:usercr{OrderCustomer ERROR Create, TYPE PARAMETERS "" VALUES: []: invalid character 'Ð' after object key:value pair
+2017-05-11 11:31:58 - ERROR get message 192.168.0.132:483 : [48 48 58 77 65 82 83 72 65 76 95 83 84 82 85 67 84 95 68 73 83 67 79 85 78 84 32 105 110 118 97 108 105 100 32 99 104 97 114 97 99 116 101 114 32 39 195 144 39 32 97 102 116 101 114 32 111 98 106 101 99 116 32 107 101 121 58 118 97 108 117 101 32 112 97 105 114]
+2017-05-11 11:36:09 - 00:usercr{OrderCustomer ERROR Create, TYPE PARAMETERS "" VALUES: []: invalid character 'Ð' after object key:value pair
+2017-05-11 11:39:19 - 00:usercr{OrderCustomer ERROR Create, TYPE PARAMETERS "" VALUES: []: invalid character 'Ð' after object key:value pair
+2017-05-11 11:44:43 - client:  dial tcp 192.168.0.132:449: connectex: No connection could be made because the target machine actively refused it.
+2017-05-11 11:44:50 - client:  dial tcp 192.168.0.132:449: connectex: No connection could be made because the target machine actively refused it.
+2017-05-11 11:44:50 - client:  dial tcp 192.168.0.132:449: connectex: No connection could be made because the target machine actively refused it.
+2017-05-11 11:44:50 - client:  dial tcp 192.168.0.132:449: connectex: No connection could be made because the target machine actively refused it.
+2017-05-11 11:44:50 - client:  dial tcp 192.168.0.132:449: connectex: No connection could be made because the target machine actively refused it.
+2017-05-11 11:45:39 - client:  dial tcp 192.168.0.132:449: connectex: No connection could be made because the target machine actively refused it.
+2017-05-11 11:45:39 - client:  dial tcp 192.168.0.132:449: connectex: No connection could be made because the target machine actively refused it.
+2017-05-11 11:45:39 - client:  dial tcp 192.168.0.132:449: connectex: No connection could be made because the target machine actively refused it.
+2017-05-11 11:45:39 - client:  dial tcp 192.168.0.132:449: connectex: No connection could be made because the target machine actively refused it.
+2017-05-11 11:45:40 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-05-11 11:46:34 - 00:usercr{OrderCustomer ERROR Create, TYPE PARAMETERS "" VALUES: []: invalid character 'Ð' after object key:value pair
+2017-05-11 11:56:41 - 00:usercr{OrderCustomer ERROR Create, TYPE PARAMETERS "" VALUES: []: invalid character 'Ð' after object key:value pair
+2017-05-11 12:04:59 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-11 12:04:59 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-11 14:46:54 - 
+2017-05-11 14:46:54 - *********************************
+2017-05-11 14:46:54 - *********************************
+2017-05-11 14:46:54 - _______NEW_START_OF_SERVER_______
+2017-05-11 14:46:54 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 14:46:54 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 14:46:54 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 14:46:54 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 14:46:54 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 14:46:54 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 14:46:54 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 14:46:54 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 14:46:54 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 14:46:54 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 14:46:54 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 14:46:54 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-11 14:47:00 - websocket: close 1006 (abnormal closure): unexpected EOF
+2017-05-11 15:13:32 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-05-11 15:18:41 - client:  dial tcp 0.0.0.0:7730: connectex: No connection could be made because the target machine actively refused it.
+2017-05-11 15:18:41 - CASHBOX CHECK: dial tcp 0.0.0.0:7730: connectex: No connection could be made because the target machine actively refused it.
+2017-05-11 15:37:45 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-05-11 15:37:45 - 00:sendstat1{OrderStatus ERROR Create, TYPE PARAMETERS "GetError" VALUES: []: This status is already set by the user
+2017-05-11 16:25:25 - 
+2017-05-11 16:25:25 - *********************************
+2017-05-11 16:25:25 - *********************************
+2017-05-11 16:25:25 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:25:25 - Postgresql running!
+2017-05-11 16:25:25 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:25:25 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 16:25:25 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:25:25 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:25:25 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:25:25 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:25:25 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:25:25 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:25:25 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:25:25 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:25:25 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:25:25 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:25:25 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:25:25 - [GIN-debug] [ERROR] open /cert/cr/yapoki_net.csr: The system cannot find the path specified.
+2017-05-11 16:25:25 - ERROR: RUN_WEB_SERVER open /cert/cr/yapoki_net.csr: The system cannot find the path specified.
+2017-05-11 16:25:44 - 
+2017-05-11 16:25:44 - *********************************
+2017-05-11 16:25:44 - *********************************
+2017-05-11 16:25:44 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:25:44 - Postgresql running!
+2017-05-11 16:25:44 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:25:44 - [GIN-debug] Loaded HTML Templates (4): 
+	- index.html
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+
+2017-05-11 16:25:44 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:25:44 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:25:44 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:25:44 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:25:44 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:25:44 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:25:44 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:25:44 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:25:44 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:25:44 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:25:44 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:25:44 - [GIN-debug] [ERROR] open cert/cr/yapoki_net.csr: The system cannot find the file specified.
+2017-05-11 16:25:44 - ERROR: RUN_WEB_SERVER open cert/cr/yapoki_net.csr: The system cannot find the file specified.
+2017-05-11 16:26:37 - 
+2017-05-11 16:26:37 - *********************************
+2017-05-11 16:26:37 - *********************************
+2017-05-11 16:26:37 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:26:37 - Postgresql running!
+2017-05-11 16:26:37 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:26:37 - [GIN-debug] Loaded HTML Templates (4): 
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+	- cassir.html
+
+2017-05-11 16:26:37 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:26:37 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:26:37 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:26:37 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:26:37 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:26:37 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:26:37 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:26:37 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:26:37 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:26:37 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:26:37 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:26:37 - [GIN-debug] [ERROR] open cert/cr/yapoki_net.key: The system cannot find the file specified.
+2017-05-11 16:26:37 - ERROR: RUN_WEB_SERVER open cert/cr/yapoki_net.key: The system cannot find the file specified.
+2017-05-11 16:27:17 - 
+2017-05-11 16:27:17 - *********************************
+2017-05-11 16:27:17 - *********************************
+2017-05-11 16:27:17 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:27:17 - Postgresql running!
+2017-05-11 16:27:17 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:27:17 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 16:27:17 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:27:17 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:27:17 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:27:17 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:27:17 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:27:17 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:27:17 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:27:17 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:27:17 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:27:17 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:27:17 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:27:17 - [GIN-debug] [ERROR] open cert/cr/ca.key: The system cannot find the file specified.
+2017-05-11 16:27:17 - ERROR: RUN_WEB_SERVER open cert/cr/ca.key: The system cannot find the file specified.
+2017-05-11 16:27:53 - 
+2017-05-11 16:27:53 - *********************************
+2017-05-11 16:27:53 - *********************************
+2017-05-11 16:27:53 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:27:53 - Postgresql running!
+2017-05-11 16:27:53 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:27:53 - [GIN-debug] Loaded HTML Templates (4): 
+	- index.html
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+
+2017-05-11 16:27:53 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:27:53 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:27:53 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:27:53 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:27:53 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:27:53 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:27:53 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:27:53 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:27:53 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:27:53 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:27:53 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:27:53 - [GIN-debug] [ERROR] open cert/cr/ya.csr: The system cannot find the file specified.
+2017-05-11 16:27:53 - ERROR: RUN_WEB_SERVER open cert/cr/ya.csr: The system cannot find the file specified.
+2017-05-11 16:29:20 - 
+2017-05-11 16:29:20 - *********************************
+2017-05-11 16:29:20 - *********************************
+2017-05-11 16:29:20 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:29:20 - Postgresql running!
+2017-05-11 16:29:20 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:29:20 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 16:29:20 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:29:20 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:29:20 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:29:20 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:29:20 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:29:20 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:29:20 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:29:20 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:29:20 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:29:20 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:29:20 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:29:20 - [GIN-debug] [ERROR] tls: failed to find any PEM data in certificate input
+2017-05-11 16:29:20 - ERROR: RUN_WEB_SERVER tls: failed to find any PEM data in certificate input
+2017-05-11 16:30:01 - 
+2017-05-11 16:30:01 - *********************************
+2017-05-11 16:30:01 - *********************************
+2017-05-11 16:30:01 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:30:01 - Postgresql running!
+2017-05-11 16:30:01 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:30:01 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 16:30:01 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:30:01 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:30:01 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:30:01 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:30:01 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:30:01 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:30:01 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:30:01 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:30:01 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:30:01 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:30:01 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:30:01 - [GIN-debug] [ERROR] tls: failed to find "CERTIFICATE" PEM block in certificate input after skipping PEM blocks of the following types: [CERTIFICATE REQUEST]
+2017-05-11 16:30:01 - ERROR: RUN_WEB_SERVER tls: failed to find "CERTIFICATE" PEM block in certificate input after skipping PEM blocks of the following types: [CERTIFICATE REQUEST]
+2017-05-11 16:30:54 - 
+2017-05-11 16:30:54 - *********************************
+2017-05-11 16:30:54 - *********************************
+2017-05-11 16:30:54 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:30:54 - Postgresql running!
+2017-05-11 16:30:54 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:30:54 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 16:30:54 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:30:54 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:30:54 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:30:54 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:30:54 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:30:54 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:30:54 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:30:54 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:30:54 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:30:54 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:30:54 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:30:54 - [GIN-debug] [ERROR] tls: failed to find "CERTIFICATE" PEM block in certificate input after skipping PEM blocks of the following types: [CERTIFICATE REQUEST]
+2017-05-11 16:30:54 - ERROR: RUN_WEB_SERVER tls: failed to find "CERTIFICATE" PEM block in certificate input after skipping PEM blocks of the following types: [CERTIFICATE REQUEST]
+2017-05-11 16:31:15 - 
+2017-05-11 16:31:15 - *********************************
+2017-05-11 16:31:15 - *********************************
+2017-05-11 16:31:15 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:31:15 - Postgresql running!
+2017-05-11 16:31:15 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:31:15 - [GIN-debug] Loaded HTML Templates (4): 
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+
+2017-05-11 16:31:15 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:31:15 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:31:15 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:31:15 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:31:15 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:31:15 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:31:15 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:31:15 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:31:15 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:31:15 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:31:15 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:31:15 - [GIN-debug] [ERROR] tls: failed to find "CERTIFICATE" PEM block in certificate input after skipping PEM blocks of the following types: [CERTIFICATE REQUEST]
+2017-05-11 16:31:15 - ERROR: RUN_WEB_SERVER tls: failed to find "CERTIFICATE" PEM block in certificate input after skipping PEM blocks of the following types: [CERTIFICATE REQUEST]
+2017-05-11 16:32:08 - 
+2017-05-11 16:32:08 - *********************************
+2017-05-11 16:32:08 - *********************************
+2017-05-11 16:32:08 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:32:08 - Postgresql running!
+2017-05-11 16:32:08 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:32:08 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 16:32:08 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:32:08 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:32:08 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:32:08 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:32:08 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:32:08 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:32:08 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:32:08 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:32:08 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:32:08 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:32:08 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:32:08 - [GIN-debug] [ERROR] tls: failed to find any PEM data in certificate input
+2017-05-11 16:32:08 - ERROR: RUN_WEB_SERVER tls: failed to find any PEM data in certificate input
+2017-05-11 16:32:46 - 
+2017-05-11 16:32:46 - *********************************
+2017-05-11 16:32:46 - *********************************
+2017-05-11 16:32:46 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:32:46 - Postgresql running!
+2017-05-11 16:32:46 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:32:46 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 16:32:46 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:32:46 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:32:46 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:32:46 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:32:46 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:32:46 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:32:46 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:32:46 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:32:46 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:32:46 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:32:46 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:32:46 - [GIN-debug] [ERROR] tls: failed to find any PEM data in certificate input
+2017-05-11 16:32:46 - ERROR: RUN_WEB_SERVER tls: failed to find any PEM data in certificate input
+2017-05-11 16:33:18 - 
+2017-05-11 16:33:18 - *********************************
+2017-05-11 16:33:18 - *********************************
+2017-05-11 16:33:18 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:33:18 - Postgresql running!
+2017-05-11 16:33:18 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:33:18 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 16:33:18 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:33:18 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:33:18 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:33:18 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:33:18 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:33:18 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:33:18 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:33:18 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:33:18 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:33:18 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:33:18 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:33:18 - [GIN-debug] [ERROR] open Root-R1.crt: The system cannot find the file specified.
+2017-05-11 16:33:18 - ERROR: RUN_WEB_SERVER open Root-R1.crt: The system cannot find the file specified.
+2017-05-11 16:33:55 - 
+2017-05-11 16:33:55 - *********************************
+2017-05-11 16:33:55 - *********************************
+2017-05-11 16:33:55 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:33:55 - Postgresql running!
+2017-05-11 16:33:55 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:33:55 - [GIN-debug] Loaded HTML Templates (4): 
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+	- cassir.html
+
+2017-05-11 16:33:55 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:33:55 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:33:55 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:33:55 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:33:55 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:33:55 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:33:55 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:33:55 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:33:55 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:33:55 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:33:55 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:33:55 - [GIN-debug] [ERROR] tls: failed to find any PEM data in certificate input
+2017-05-11 16:33:55 - ERROR: RUN_WEB_SERVER tls: failed to find any PEM data in certificate input
+2017-05-11 16:34:21 - 
+2017-05-11 16:34:21 - *********************************
+2017-05-11 16:34:21 - *********************************
+2017-05-11 16:34:21 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:34:21 - Postgresql running!
+2017-05-11 16:34:21 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:34:21 - [GIN-debug] Loaded HTML Templates (4): 
+	- index.html
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+
+2017-05-11 16:34:21 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:34:21 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:34:21 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:34:21 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:34:21 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:34:21 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:34:21 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:34:21 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:34:21 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:34:21 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:34:21 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:34:21 - [GIN-debug] [ERROR] tls: failed to find any PEM data in certificate input
+2017-05-11 16:34:21 - ERROR: RUN_WEB_SERVER tls: failed to find any PEM data in certificate input
+2017-05-11 16:35:21 - 
+2017-05-11 16:35:21 - *********************************
+2017-05-11 16:35:21 - *********************************
+2017-05-11 16:35:21 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:35:21 - Postgresql running!
+2017-05-11 16:35:21 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:35:21 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 16:35:21 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:35:21 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:35:21 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:35:21 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:35:21 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:35:21 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:35:21 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:35:21 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:35:21 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:35:21 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:35:21 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:35:21 - [GIN-debug] [ERROR] tls: failed to find any PEM data in certificate input
+2017-05-11 16:35:21 - ERROR: RUN_WEB_SERVER tls: failed to find any PEM data in certificate input
+2017-05-11 16:35:47 - 
+2017-05-11 16:35:47 - *********************************
+2017-05-11 16:35:47 - *********************************
+2017-05-11 16:35:47 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:35:47 - Postgresql running!
+2017-05-11 16:35:47 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:35:47 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 16:35:47 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:35:47 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:35:47 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:35:47 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:35:47 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:35:47 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:35:47 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:35:47 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:35:47 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:35:47 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:35:47 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:35:47 - [GIN-debug] [ERROR] tls: failed to find any PEM data in certificate input
+2017-05-11 16:35:47 - ERROR: RUN_WEB_SERVER tls: failed to find any PEM data in certificate input
+2017-05-11 16:36:12 - 
+2017-05-11 16:36:12 - *********************************
+2017-05-11 16:36:12 - *********************************
+2017-05-11 16:36:12 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:36:12 - Postgresql running!
+2017-05-11 16:36:12 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:36:12 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 16:36:12 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:36:12 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:36:12 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:36:12 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:36:12 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:36:12 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:36:12 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:36:12 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:36:12 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:36:12 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:36:12 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:36:12 - [GIN-debug] [ERROR] tls: failed to find any PEM data in certificate input
+2017-05-11 16:36:12 - ERROR: RUN_WEB_SERVER tls: failed to find any PEM data in certificate input
+2017-05-11 16:38:28 - 
+2017-05-11 16:38:28 - *********************************
+2017-05-11 16:38:28 - *********************************
+2017-05-11 16:38:28 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:38:28 - Postgresql running!
+2017-05-11 16:38:28 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:38:28 - [GIN-debug] Loaded HTML Templates (4): 
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+
+2017-05-11 16:38:28 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:38:28 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:38:28 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:38:28 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:38:28 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:38:28 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:38:28 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:38:28 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:38:28 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:38:28 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:38:28 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:38:28 - [GIN-debug] [ERROR] tls: failed to find any PEM data in certificate input
+2017-05-11 16:38:28 - ERROR: RUN_WEB_SERVER tls: failed to find any PEM data in certificate input
+2017-05-11 16:38:52 - 
+2017-05-11 16:38:52 - *********************************
+2017-05-11 16:38:52 - *********************************
+2017-05-11 16:38:52 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:38:52 - Postgresql running!
+2017-05-11 16:38:52 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:38:52 - [GIN-debug] Loaded HTML Templates (4): 
+	- index.html
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+
+2017-05-11 16:38:52 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:38:52 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:38:52 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:38:52 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:38:52 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:38:52 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:38:52 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:38:52 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:38:52 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:38:52 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:38:52 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:38:52 - [GIN-debug] [ERROR] tls: failed to find any PEM data in certificate input
+2017-05-11 16:38:52 - ERROR: RUN_WEB_SERVER tls: failed to find any PEM data in certificate input
+2017-05-11 16:39:12 - 
+2017-05-11 16:39:12 - *********************************
+2017-05-11 16:39:12 - *********************************
+2017-05-11 16:39:12 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:39:12 - Postgresql running!
+2017-05-11 16:39:12 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:39:12 - [GIN-debug] Loaded HTML Templates (4): 
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+
+2017-05-11 16:39:12 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:39:12 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:39:12 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:39:12 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:39:12 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:39:12 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:39:12 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:39:12 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:39:12 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:39:12 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:39:12 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:39:12 - [GIN-debug] [ERROR] tls: failed to find any PEM data in certificate input
+2017-05-11 16:39:12 - ERROR: RUN_WEB_SERVER tls: failed to find any PEM data in certificate input
+2017-05-11 16:39:49 - 
+2017-05-11 16:39:49 - *********************************
+2017-05-11 16:39:49 - *********************************
+2017-05-11 16:39:49 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:39:49 - Postgresql running!
+2017-05-11 16:39:49 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:39:49 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 16:39:49 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:39:49 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:39:49 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:39:49 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:39:49 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:39:49 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:39:49 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:39:49 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:39:49 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:39:49 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:39:49 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:39:49 - [GIN-debug] [ERROR] tls: failed to find any PEM data in certificate input
+2017-05-11 16:39:49 - ERROR: RUN_WEB_SERVER tls: failed to find any PEM data in certificate input
+2017-05-11 16:40:10 - 
+2017-05-11 16:40:10 - *********************************
+2017-05-11 16:40:10 - *********************************
+2017-05-11 16:40:10 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:40:10 - Postgresql running!
+2017-05-11 16:40:10 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:40:10 - [GIN-debug] Loaded HTML Templates (4): 
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+
+2017-05-11 16:40:10 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:40:10 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:40:10 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:40:10 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:40:10 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:40:10 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:40:10 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:40:10 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:40:10 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:40:10 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:40:10 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:40:10 - [GIN-debug] [ERROR] tls: failed to find "CERTIFICATE" PEM block in certificate input after skipping PEM blocks of the following types: [CERTIFICATE REQUEST]
+2017-05-11 16:40:10 - ERROR: RUN_WEB_SERVER tls: failed to find "CERTIFICATE" PEM block in certificate input after skipping PEM blocks of the following types: [CERTIFICATE REQUEST]
+2017-05-11 16:49:48 - 
+2017-05-11 16:49:48 - *********************************
+2017-05-11 16:49:48 - *********************************
+2017-05-11 16:49:48 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:49:48 - Postgresql running!
+2017-05-11 16:49:48 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:49:48 - [GIN-debug] Loaded HTML Templates (4): 
+	- index.html
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+
+2017-05-11 16:49:48 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:49:48 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:49:48 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:49:48 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:49:48 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:49:48 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:49:48 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:49:48 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:49:48 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:49:48 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:49:48 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:49:48 - [GIN-debug] [ERROR] read cert/: The handle is invalid.
+2017-05-11 16:49:48 - ERROR: RUN_WEB_SERVER read cert/: The handle is invalid.
+2017-05-11 16:53:50 - 
+2017-05-11 16:53:50 - *********************************
+2017-05-11 16:53:50 - *********************************
+2017-05-11 16:53:50 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:53:50 - Postgresql running!
+2017-05-11 16:53:50 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:53:50 - [GIN-debug] Loaded HTML Templates (4): 
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+	- cassir.html
+
+2017-05-11 16:53:50 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:53:50 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:53:50 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:53:50 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:53:50 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:53:50 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:53:50 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:53:50 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:53:50 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:53:50 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:53:50 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:53:50 - [GIN-debug] [ERROR] tls: failed to find "CERTIFICATE" PEM block in certificate input after skipping PEM blocks of the following types: [CERTIFICATE REQUEST]
+2017-05-11 16:53:50 - ERROR: RUN_WEB_SERVER tls: failed to find "CERTIFICATE" PEM block in certificate input after skipping PEM blocks of the following types: [CERTIFICATE REQUEST]
+2017-05-11 16:56:21 - 
+2017-05-11 16:56:21 - *********************************
+2017-05-11 16:56:21 - *********************************
+2017-05-11 16:56:21 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:56:21 - Postgresql running!
+2017-05-11 16:56:21 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:56:21 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 16:56:21 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:56:21 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:56:21 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:56:21 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:56:21 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:56:21 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:56:21 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:56:21 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:56:21 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:56:21 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:56:21 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 16:56:21 - [GIN-debug] [ERROR] tls: failed to find "CERTIFICATE" PEM block in certificate input after skipping PEM blocks of the following types: [CERTIFICATE REQUEST]
+2017-05-11 16:56:21 - ERROR: RUN_WEB_SERVER tls: failed to find "CERTIFICATE" PEM block in certificate input after skipping PEM blocks of the following types: [CERTIFICATE REQUEST]
+2017-05-11 16:56:37 - 
+2017-05-11 16:56:37 - *********************************
+2017-05-11 16:56:37 - *********************************
+2017-05-11 16:56:37 - _______NEW_START_OF_SERVER_______
+2017-05-11 16:56:37 - Postgresql running!
+2017-05-11 16:56:37 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 16:56:37 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 16:56:37 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 16:56:37 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 16:56:37 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 16:56:37 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 16:56:37 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 16:56:37 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 16:56:37 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 16:56:37 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 16:56:37 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:56:37 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 16:56:37 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-11 17:00:13 - websocket: close 1006 (abnormal closure): unexpected EOF
+2017-05-11 17:04:17 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-05-11 17:04:17 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: invalid character '(' after object key:value pair
+2017-05-11 17:04:17 - 00:sendstat1{OrderStatus ERROR Create, TYPE PARAMETERS "GetError" VALUES: []: invalid character '(' after object key:value pair
+2017-05-11 17:04:40 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-05-11 17:04:40 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: invalid character '(' after object key:value pair
+2017-05-11 17:04:40 - 00:sendstat1{OrderStatus ERROR Create, TYPE PARAMETERS "GetError" VALUES: []: invalid character '(' after object key:value pair
+2017-05-11 17:05:37 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-05-11 17:05:37 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: invalid character '(' after object key:value pair
+2017-05-11 17:05:37 - 00:sendstat1{OrderStatus ERROR Create, TYPE PARAMETERS "GetError" VALUES: []: invalid character '(' after object key:value pair
+2017-05-11 17:08:32 - 
+2017-05-11 17:08:32 - *********************************
+2017-05-11 17:08:32 - *********************************
+2017-05-11 17:08:32 - _______NEW_START_OF_SERVER_______
+2017-05-11 17:08:32 - Postgresql running!
+2017-05-11 17:08:32 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 17:08:32 - [GIN-debug] Loaded HTML Templates (4): 
+	- index.html
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+
+2017-05-11 17:08:32 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 17:08:32 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 17:08:32 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 17:08:32 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 17:08:32 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 17:08:32 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 17:08:32 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 17:08:32 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 17:08:32 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:08:32 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:08:32 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 17:08:32 - [GIN-debug] [ERROR] tls: failed to find "CERTIFICATE" PEM block in certificate input after skipping PEM blocks of the following types: [CERTIFICATE REQUEST]
+2017-05-11 17:08:32 - ERROR: RUN_WEB_SERVER tls: failed to find "CERTIFICATE" PEM block in certificate input after skipping PEM blocks of the following types: [CERTIFICATE REQUEST]
+2017-05-11 17:08:44 - 
+2017-05-11 17:08:44 - *********************************
+2017-05-11 17:08:44 - *********************************
+2017-05-11 17:08:44 - _______NEW_START_OF_SERVER_______
+2017-05-11 17:08:44 - Postgresql running!
+2017-05-11 17:08:44 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 17:08:44 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 17:08:44 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 17:08:44 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 17:08:44 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 17:08:44 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 17:08:44 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 17:08:44 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 17:08:44 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 17:08:44 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 17:08:44 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:08:44 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:08:44 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-11 17:08:56 - websocket: close 1006 (abnormal closure): unexpected EOF
+2017-05-11 17:09:55 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-05-11 17:09:55 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: invalid character ',' looking for beginning of value
+2017-05-11 17:09:55 - 00:sendstat1{OrderStatus ERROR Create, TYPE PARAMETERS "GetError" VALUES: []: invalid character ',' looking for beginning of value
+2017-05-11 17:10:35 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-05-11 17:10:35 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: invalid character ',' looking for beginning of value
+2017-05-11 17:10:35 - 00:sendstat1{OrderStatus ERROR Create, TYPE PARAMETERS "GetError" VALUES: []: invalid character ',' looking for beginning of value
+2017-05-11 17:11:22 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-05-11 17:11:22 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: invalid character ',' looking for beginning of value
+2017-05-11 17:11:22 - 00:sendstat1{OrderStatus ERROR Create, TYPE PARAMETERS "GetError" VALUES: []: invalid character ',' looking for beginning of value
+2017-05-11 17:11:44 - 00:perscr{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-05-11 17:11:44 - 00:sendstat1{OrderStatus ERROR Create, TYPE PARAMETERS "GetError" VALUES: []: This status is already set by the user
+2017-05-11 17:20:28 - 
+2017-05-11 17:20:28 - *********************************
+2017-05-11 17:20:28 - *********************************
+2017-05-11 17:20:28 - _______NEW_START_OF_SERVER_______
+2017-05-11 17:20:28 - Postgresql running!
+2017-05-11 17:20:28 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 17:20:28 - [GIN-debug] Loaded HTML Templates (4): 
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+	- cassir.html
+
+2017-05-11 17:20:28 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 17:20:28 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 17:20:28 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 17:20:28 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 17:20:28 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 17:20:28 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 17:20:28 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 17:20:28 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 17:20:28 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:20:28 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:20:28 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 17:20:28 - [GIN-debug] [ERROR] tls: failed to parse private key
+2017-05-11 17:20:28 - ERROR: RUN_WEB_SERVER tls: failed to parse private key
+2017-05-11 17:21:26 - 
+2017-05-11 17:21:26 - *********************************
+2017-05-11 17:21:26 - *********************************
+2017-05-11 17:21:26 - _______NEW_START_OF_SERVER_______
+2017-05-11 17:21:26 - Postgresql running!
+2017-05-11 17:21:26 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 17:21:26 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 17:21:26 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 17:21:26 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 17:21:26 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 17:21:26 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 17:21:26 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 17:21:26 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 17:21:26 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 17:21:26 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 17:21:26 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:21:26 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:21:26 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-11 17:21:30 - websocket: close 1006 (abnormal closure): unexpected EOF
+2017-05-11 17:32:07 - 
+2017-05-11 17:32:07 - *********************************
+2017-05-11 17:32:07 - *********************************
+2017-05-11 17:32:07 - _______NEW_START_OF_SERVER_______
+2017-05-11 17:32:07 - Postgresql running!
+2017-05-11 17:32:07 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 17:32:07 - [GIN-debug] Loaded HTML Templates (4): 
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+	- cassir.html
+
+2017-05-11 17:32:07 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 17:32:07 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 17:32:07 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 17:32:07 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 17:32:07 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 17:32:07 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 17:32:07 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 17:32:07 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 17:32:07 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:32:07 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:32:07 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 17:32:07 - [GIN-debug] [ERROR] open cert/certificate/ca.csr: The system cannot find the file specified.
+2017-05-11 17:32:07 - ERROR: RUN_WEB_SERVER open cert/certificate/ca.csr: The system cannot find the file specified.
+2017-05-11 17:32:33 - 
+2017-05-11 17:32:33 - *********************************
+2017-05-11 17:32:33 - *********************************
+2017-05-11 17:32:33 - _______NEW_START_OF_SERVER_______
+2017-05-11 17:32:33 - Postgresql running!
+2017-05-11 17:32:33 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 17:32:33 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 17:32:33 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 17:32:33 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 17:32:33 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 17:32:33 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 17:32:33 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 17:32:33 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 17:32:33 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 17:32:33 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 17:32:33 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:32:33 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:32:33 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 17:32:33 - [GIN-debug] [ERROR] tls: failed to parse private key
+2017-05-11 17:32:33 - ERROR: RUN_WEB_SERVER tls: failed to parse private key
+2017-05-11 17:33:22 - 
+2017-05-11 17:33:22 - *********************************
+2017-05-11 17:33:22 - *********************************
+2017-05-11 17:33:22 - _______NEW_START_OF_SERVER_______
+2017-05-11 17:33:22 - Postgresql running!
+2017-05-11 17:33:22 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 17:33:22 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 17:33:22 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 17:33:22 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 17:33:22 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 17:33:22 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 17:33:22 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 17:33:22 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 17:33:22 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 17:33:22 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 17:33:22 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:33:22 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:33:22 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-11 17:33:34 - websocket: close 1006 (abnormal closure): unexpected EOF
+2017-05-11 17:35:35 - 
+2017-05-11 17:35:35 - *********************************
+2017-05-11 17:35:35 - *********************************
+2017-05-11 17:35:35 - _______NEW_START_OF_SERVER_______
+2017-05-11 17:35:35 - Postgresql running!
+2017-05-11 17:35:35 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 17:35:35 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 17:35:35 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 17:35:35 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 17:35:35 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 17:35:35 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 17:35:35 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 17:35:35 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 17:35:35 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 17:35:35 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 17:35:35 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:35:35 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:35:35 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 17:35:35 - [GIN-debug] [ERROR] tls: failed to parse private key
+2017-05-11 17:35:35 - ERROR: RUN_WEB_SERVER tls: failed to parse private key
+2017-05-11 17:35:53 - 
+2017-05-11 17:35:53 - *********************************
+2017-05-11 17:35:53 - *********************************
+2017-05-11 17:35:53 - _______NEW_START_OF_SERVER_______
+2017-05-11 17:35:53 - Postgresql running!
+2017-05-11 17:35:53 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 17:35:53 - [GIN-debug] Loaded HTML Templates (4): 
+	- index.html
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+
+2017-05-11 17:35:53 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 17:35:53 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 17:35:53 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 17:35:53 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 17:35:53 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 17:35:53 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 17:35:53 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 17:35:53 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 17:35:53 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:35:53 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:35:53 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-11 17:36:04 - websocket: close 1006 (abnormal closure): unexpected EOF
+2017-05-11 17:40:10 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-11 17:40:33 - 
+2017-05-11 17:40:33 - *********************************
+2017-05-11 17:40:33 - *********************************
+2017-05-11 17:40:33 - _______NEW_START_OF_SERVER_______
+2017-05-11 17:40:33 - Postgresql running!
+2017-05-11 17:40:33 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 17:40:33 - [GIN-debug] Loaded HTML Templates (4): 
+	- index.html
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+
+2017-05-11 17:40:33 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 17:40:33 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 17:40:33 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 17:40:33 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 17:40:33 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 17:40:33 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 17:40:33 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 17:40:33 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 17:40:33 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:40:33 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:40:33 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 17:40:33 - [GIN-debug] [ERROR] tls: failed to parse private key
+2017-05-11 17:40:33 - ERROR: RUN_WEB_SERVER tls: failed to parse private key
+2017-05-11 17:40:52 - 
+2017-05-11 17:40:52 - *********************************
+2017-05-11 17:40:52 - *********************************
+2017-05-11 17:40:52 - _______NEW_START_OF_SERVER_______
+2017-05-11 17:40:52 - Postgresql running!
+2017-05-11 17:40:52 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 17:40:52 - [GIN-debug] Loaded HTML Templates (4): 
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+	- cassir.html
+
+2017-05-11 17:40:52 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 17:40:52 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 17:40:52 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 17:40:52 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 17:40:52 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 17:40:52 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 17:40:52 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 17:40:52 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 17:40:52 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:40:52 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:40:52 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-11 17:40:56 - websocket: close 1006 (abnormal closure): unexpected EOF
+2017-05-11 17:41:53 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-11 17:41:53 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-11 17:41:53 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-11 17:41:53 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-11 17:41:53 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-11 17:41:53 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-11 17:41:53 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-11 17:41:53 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-11 17:41:53 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-11 17:41:59 - ERROR get message 192.168.0.132:483 : [48 48 58 77 65 82 83 72 65 76 95 83 84 82 85 67 84 95 68 73 83 67 79 85 78 84 32 105 110 118 97 108 105 100 32 99 104 97 114 97 99 116 101 114 32 39 117 39 32 108 111 111 107 105 110 103 32 102 111 114 32 98 101 103 105 110 110 105 110 103 32 111 102 32 118 97 108 117 101]
+2017-05-11 17:42:07 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-11 17:45:07 - 
+2017-05-11 17:45:07 - *********************************
+2017-05-11 17:45:07 - *********************************
+2017-05-11 17:45:07 - _______NEW_START_OF_SERVER_______
+2017-05-11 17:45:07 - Postgresql running!
+2017-05-11 17:45:07 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 17:45:07 - [GIN-debug] Loaded HTML Templates (4): 
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+	- cassir.html
+
+2017-05-11 17:45:07 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 17:45:07 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 17:45:07 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 17:45:07 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 17:45:07 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 17:45:07 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 17:45:07 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 17:45:07 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 17:45:07 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:45:07 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:45:07 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 17:45:07 - [GIN-debug] [ERROR] tls: failed to find "CERTIFICATE" PEM block in certificate input after skipping PEM blocks of the following types: [CERTIFICATE REQUEST]
+2017-05-11 17:45:07 - ERROR: RUN_WEB_SERVER tls: failed to find "CERTIFICATE" PEM block in certificate input after skipping PEM blocks of the following types: [CERTIFICATE REQUEST]
+2017-05-11 17:46:21 - 
+2017-05-11 17:46:21 - *********************************
+2017-05-11 17:46:21 - *********************************
+2017-05-11 17:46:21 - _______NEW_START_OF_SERVER_______
+2017-05-11 17:46:21 - Postgresql running!
+2017-05-11 17:46:21 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 17:46:21 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 17:46:21 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 17:46:21 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 17:46:21 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 17:46:21 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 17:46:21 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 17:46:21 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 17:46:21 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 17:46:21 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 17:46:21 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:46:21 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:46:21 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-11 17:46:35 - websocket: close 1006 (abnormal closure): unexpected EOF
+2017-05-11 17:46:54 - ERROR get message 192.168.0.132:483 : [48 48 58 82 101 97 100 32 67 108 105 101 110 116 79 114 100 101 114 115 65 100 100 114 101 115 115 58 115 113 108 58 32 115 116 97 116 101 109 101 110 116 32 101 120 112 101 99 116 115 32 51 32 105 110 112 117 116 115 59 32 103 111 116 32 50]
+2017-05-11 17:48:09 - ERROR get message 192.168.0.132:483 : [48 48 58 82 101 97 100 32 67 108 105 101 110 116 79 114 100 101 114 115 65 100 100 114 101 115 115 58 115 113 108 58 32 115 116 97 116 101 109 101 110 116 32 101 120 112 101 99 116 115 32 51 32 105 110 112 117 116 115 59 32 103 111 116 32 50]
+2017-05-11 17:49:30 - 
+2017-05-11 17:49:30 - *********************************
+2017-05-11 17:49:30 - *********************************
+2017-05-11 17:49:30 - _______NEW_START_OF_SERVER_______
+2017-05-11 17:49:30 - Postgresql running!
+2017-05-11 17:49:30 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 17:49:30 - [GIN-debug] Loaded HTML Templates (4): 
+	- index.html
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+
+2017-05-11 17:49:30 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 17:49:30 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 17:49:30 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 17:49:30 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 17:49:30 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 17:49:30 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 17:49:30 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 17:49:30 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 17:49:30 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:49:30 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:49:30 - [GIN-debug] Listening and serving HTTPS on :80
+2017-05-11 17:49:35 - http: TLS handshake error from 192.168.0.88:60716: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:36 - http: TLS handshake error from 192.168.0.88:60718: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:38 - http: TLS handshake error from 192.168.0.40:61193: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:38 - http: TLS handshake error from 192.168.0.88:60719: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:39 - http: TLS handshake error from 192.168.0.40:61206: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:40 - http: TLS handshake error from 192.168.0.40:61209: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:41 - http: TLS handshake error from 192.168.0.88:60717: EOF
+2017-05-11 17:49:41 - http: TLS handshake error from 192.168.0.40:61212: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:41 - http: TLS handshake error from 192.168.0.88:60720: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:42 - http: TLS handshake error from 192.168.0.40:61213: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:43 - http: TLS handshake error from 192.168.0.40:61216: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:44 - http: TLS handshake error from 192.168.0.40:61219: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:45 - http: TLS handshake error from 192.168.0.40:61220: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:45 - http: TLS handshake error from 192.168.0.88:60721: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:46 - http: TLS handshake error from 192.168.0.40:61223: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:47 - http: TLS handshake error from 192.168.0.40:61226: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:48 - http: TLS handshake error from 192.168.0.40:61227: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:49 - http: TLS handshake error from 192.168.0.40:61231: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:50 - http: TLS handshake error from 192.168.0.40:61234: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:51 - http: TLS handshake error from 192.168.0.88:60722: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:51 - http: TLS handshake error from 192.168.0.40:61235: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:53 - http: TLS handshake error from 192.168.0.40:61240: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:55 - http: TLS handshake error from 192.168.0.40:61243: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:57 - http: TLS handshake error from 192.168.0.40:61246: tls: first record does not look like a TLS handshake
+2017-05-11 17:49:59 - http: TLS handshake error from 192.168.0.88:60723: tls: first record does not look like a TLS handshake
+2017-05-11 17:50:01 - http: TLS handshake error from 192.168.0.40:61253: tls: first record does not look like a TLS handshake
+2017-05-11 17:50:07 - http: TLS handshake error from 192.168.0.40:61265: tls: first record does not look like a TLS handshake
+2017-05-11 17:50:11 - http: TLS handshake error from 192.168.0.40:61270: tls: first record does not look like a TLS handshake
+2017-05-11 17:50:13 - http: TLS handshake error from 192.168.0.88:60724: tls: first record does not look like a TLS handshake
+2017-05-11 17:50:15 - http: TLS handshake error from 192.168.0.40:61275: tls: first record does not look like a TLS handshake
+2017-05-11 17:50:19 - http: TLS handshake error from 192.168.0.40:61284: tls: first record does not look like a TLS handshake
+2017-05-11 17:50:23 - http: TLS handshake error from 192.168.0.40:61289: tls: first record does not look like a TLS handshake
+2017-05-11 17:50:26 - http: TLS handshake error from 192.168.0.40:61294: tls: first record does not look like a TLS handshake
+2017-05-11 17:50:31 - http: TLS handshake error from 192.168.0.40:61301: tls: first record does not look like a TLS handshake
+2017-05-11 17:50:32 - http: TLS handshake error from 192.168.0.88:60727: tls: first record does not look like a TLS handshake
+2017-05-11 17:50:34 - http: TLS handshake error from 192.168.0.40:61309: tls: first record does not look like a TLS handshake
+2017-05-11 17:50:37 - http: TLS handshake error from 192.168.0.40:61314: tls: first record does not look like a TLS handshake
+2017-05-11 17:50:41 - http: TLS handshake error from 192.168.0.40:61319: tls: first record does not look like a TLS handshake
+2017-05-11 17:50:44 - http: TLS handshake error from 192.168.0.40:61324: tls: first record does not look like a TLS handshake
+2017-05-11 17:50:49 - http: TLS handshake error from 192.168.0.40:61331: tls: first record does not look like a TLS handshake
+2017-05-11 17:50:55 - http: TLS handshake error from 192.168.0.40:61340: tls: first record does not look like a TLS handshake
+2017-05-11 17:51:00 - http: TLS handshake error from 192.168.0.40:61347: tls: first record does not look like a TLS handshake
+2017-05-11 17:51:02 - http: TLS handshake error from 192.168.0.40:61352: tls: first record does not look like a TLS handshake
+2017-05-11 17:51:02 - http: TLS handshake error from 192.168.0.88:60728: tls: first record does not look like a TLS handshake
+2017-05-11 17:51:07 - http: TLS handshake error from 192.168.0.40:61359: tls: first record does not look like a TLS handshake
+2017-05-11 17:51:12 - http: TLS handshake error from 192.168.0.40:61366: tls: first record does not look like a TLS handshake
+2017-05-11 17:51:18 - http: TLS handshake error from 192.168.0.40:61376: tls: first record does not look like a TLS handshake
+2017-05-11 17:51:23 - http: TLS handshake error from 192.168.0.40:61385: tls: first record does not look like a TLS handshake
+2017-05-11 17:51:28 - http: TLS handshake error from 192.168.0.40:61394: tls: first record does not look like a TLS handshake
+2017-05-11 17:51:32 - http: TLS handshake error from 192.168.0.40:61399: tls: first record does not look like a TLS handshake
+2017-05-11 17:51:38 - http: TLS handshake error from 192.168.0.40:61408: tls: first record does not look like a TLS handshake
+2017-05-11 17:51:43 - http: TLS handshake error from 192.168.0.40:61415: tls: first record does not look like a TLS handshake
+2017-05-11 17:51:46 - http: TLS handshake error from 192.168.0.88:60730: tls: first record does not look like a TLS handshake
+2017-05-11 17:51:47 - http: TLS handshake error from 192.168.0.40:61423: tls: first record does not look like a TLS handshake
+2017-05-11 17:51:50 - http: TLS handshake error from 192.168.0.40:61428: tls: first record does not look like a TLS handshake
+2017-05-11 17:51:53 - http: TLS handshake error from 192.168.0.40:61433: tls: first record does not look like a TLS handshake
+2017-05-11 17:51:56 - http: TLS handshake error from 192.168.0.40:61438: tls: first record does not look like a TLS handshake
+2017-05-11 17:52:01 - http: TLS handshake error from 192.168.0.40:61447: tls: first record does not look like a TLS handshake
+2017-05-11 17:52:06 - http: TLS handshake error from 192.168.0.40:61452: tls: first record does not look like a TLS handshake
+2017-05-11 17:52:09 - http: TLS handshake error from 192.168.0.40:61458: tls: first record does not look like a TLS handshake
+2017-05-11 17:52:12 - http: TLS handshake error from 192.168.0.40:61463: tls: first record does not look like a TLS handshake
+2017-05-11 17:52:15 - http: TLS handshake error from 192.168.0.40:61468: tls: first record does not look like a TLS handshake
+2017-05-11 17:52:19 - http: TLS handshake error from 192.168.0.40:61475: tls: first record does not look like a TLS handshake
+2017-05-11 17:52:25 - http: TLS handshake error from 192.168.0.40:61484: tls: first record does not look like a TLS handshake
+2017-05-11 17:52:28 - http: TLS handshake error from 192.168.0.40:61489: tls: first record does not look like a TLS handshake
+2017-05-11 17:52:31 - http: TLS handshake error from 192.168.0.40:61494: tls: first record does not look like a TLS handshake
+2017-05-11 17:52:36 - http: TLS handshake error from 192.168.0.40:61502: tls: first record does not look like a TLS handshake
+2017-05-11 17:52:41 - http: TLS handshake error from 192.168.0.40:61511: tls: first record does not look like a TLS handshake
+2017-05-11 17:52:47 - http: TLS handshake error from 192.168.0.40:61520: tls: first record does not look like a TLS handshake
+2017-05-11 17:52:49 - http: TLS handshake error from 192.168.0.40:61524: tls: first record does not look like a TLS handshake
+2017-05-11 17:52:52 - http: TLS handshake error from 192.168.0.40:61529: tls: first record does not look like a TLS handshake
+2017-05-11 17:52:55 - http: TLS handshake error from 192.168.0.40:61534: tls: first record does not look like a TLS handshake
+2017-05-11 17:53:01 - http: TLS handshake error from 192.168.0.40:61543: tls: first record does not look like a TLS handshake
+2017-05-11 17:53:05 - http: TLS handshake error from 192.168.0.40:61550: tls: first record does not look like a TLS handshake
+2017-05-11 17:53:07 - http: TLS handshake error from 192.168.0.40:61553: tls: first record does not look like a TLS handshake
+2017-05-11 17:53:10 - http: TLS handshake error from 192.168.0.40:61558: tls: first record does not look like a TLS handshake
+2017-05-11 17:53:16 - http: TLS handshake error from 192.168.0.40:61567: tls: first record does not look like a TLS handshake
+2017-05-11 17:53:22 - http: TLS handshake error from 192.168.0.40:61576: tls: first record does not look like a TLS handshake
+2017-05-11 17:53:27 - http: TLS handshake error from 192.168.0.40:61584: tls: first record does not look like a TLS handshake
+2017-05-11 17:53:30 - http: TLS handshake error from 192.168.0.40:61589: tls: first record does not look like a TLS handshake
+2017-05-11 17:53:35 - http: TLS handshake error from 192.168.0.40:61598: tls: first record does not look like a TLS handshake
+2017-05-11 17:53:41 - http: TLS handshake error from 192.168.0.40:61607: tls: first record does not look like a TLS handshake
+2017-05-11 17:53:43 - http: TLS handshake error from 192.168.0.40:61610: tls: first record does not look like a TLS handshake
+2017-05-11 17:53:46 - http: TLS handshake error from 192.168.0.40:61615: tls: first record does not look like a TLS handshake
+2017-05-11 17:53:46 - http: TLS handshake error from 192.168.0.88:60736: tls: first record does not look like a TLS handshake
+2017-05-11 17:53:52 - http: TLS handshake error from 192.168.0.40:61624: tls: first record does not look like a TLS handshake
+2017-05-11 17:53:57 - http: TLS handshake error from 192.168.0.40:61631: tls: first record does not look like a TLS handshake
+2017-05-11 17:54:02 - http: TLS handshake error from 192.168.0.40:61640: tls: first record does not look like a TLS handshake
+2017-05-11 17:54:06 - http: TLS handshake error from 192.168.0.40:61645: tls: first record does not look like a TLS handshake
+2017-05-11 17:54:11 - http: TLS handshake error from 192.168.0.40:61655: tls: first record does not look like a TLS handshake
+2017-05-11 17:54:14 - http: TLS handshake error from 192.168.0.40:61660: tls: first record does not look like a TLS handshake
+2017-05-11 17:54:17 - http: TLS handshake error from 192.168.0.40:61665: tls: first record does not look like a TLS handshake
+2017-05-11 17:54:22 - http: TLS handshake error from 192.168.0.40:61672: tls: first record does not look like a TLS handshake
+2017-05-11 17:54:26 - http: TLS handshake error from 192.168.0.40:61679: tls: first record does not look like a TLS handshake
+2017-05-11 17:54:32 - http: TLS handshake error from 192.168.0.40:61688: tls: first record does not look like a TLS handshake
+2017-05-11 17:54:38 - http: TLS handshake error from 192.168.0.40:61698: tls: first record does not look like a TLS handshake
+2017-05-11 17:54:44 - http: TLS handshake error from 192.168.0.40:61707: tls: first record does not look like a TLS handshake
+2017-05-11 17:54:47 - http: TLS handshake error from 192.168.0.88:60738: tls: first record does not look like a TLS handshake
+2017-05-11 17:54:51 - http: TLS handshake error from 192.168.0.40:61716: tls: first record does not look like a TLS handshake
+2017-05-11 17:54:56 - http: TLS handshake error from 192.168.0.40:61725: tls: first record does not look like a TLS handshake
+2017-05-11 17:55:00 - http: TLS handshake error from 192.168.0.40:61731: tls: first record does not look like a TLS handshake
+2017-05-11 17:55:04 - http: TLS handshake error from 192.168.0.40:61738: tls: first record does not look like a TLS handshake
+2017-05-11 17:55:08 - http: TLS handshake error from 192.168.0.40:61743: tls: first record does not look like a TLS handshake
+2017-05-11 17:55:11 - http: TLS handshake error from 192.168.0.40:61750: tls: first record does not look like a TLS handshake
+2017-05-11 17:55:14 - http: TLS handshake error from 192.168.0.40:61755: tls: first record does not look like a TLS handshake
+2017-05-11 17:55:19 - http: TLS handshake error from 192.168.0.40:61762: tls: first record does not look like a TLS handshake
+2017-05-11 17:55:24 - http: TLS handshake error from 192.168.0.40:61769: tls: first record does not look like a TLS handshake
+2017-05-11 17:55:27 - http: TLS handshake error from 192.168.0.40:61775: tls: first record does not look like a TLS handshake
+2017-05-11 17:55:29 - http: TLS handshake error from 192.168.0.40:61778: tls: first record does not look like a TLS handshake
+2017-05-11 17:55:33 - http: TLS handshake error from 192.168.0.40:61786: tls: first record does not look like a TLS handshake
+2017-05-11 17:55:37 - http: TLS handshake error from 192.168.0.40:61793: tls: first record does not look like a TLS handshake
+2017-05-11 17:55:40 - http: TLS handshake error from 192.168.0.40:61798: tls: first record does not look like a TLS handshake
+2017-05-11 17:55:43 - http: TLS handshake error from 192.168.0.40:61803: tls: first record does not look like a TLS handshake
+2017-05-11 17:55:49 - http: TLS handshake error from 192.168.0.40:61810: tls: first record does not look like a TLS handshake
+2017-05-11 17:55:51 - http: TLS handshake error from 192.168.0.40:61815: tls: first record does not look like a TLS handshake
+2017-05-11 17:55:56 - http: TLS handshake error from 192.168.0.40:61822: tls: first record does not look like a TLS handshake
+2017-05-11 17:55:59 - http: TLS handshake error from 192.168.0.40:61828: tls: first record does not look like a TLS handshake
+2017-05-11 17:56:01 - http: TLS handshake error from 192.168.0.40:61833: tls: first record does not look like a TLS handshake
+2017-05-11 17:56:06 - http: TLS handshake error from 192.168.0.40:61840: tls: first record does not look like a TLS handshake
+2017-05-11 17:56:11 - http: TLS handshake error from 192.168.0.40:61847: tls: first record does not look like a TLS handshake
+2017-05-11 17:56:14 - http: TLS handshake error from 192.168.0.40:61854: tls: first record does not look like a TLS handshake
+2017-05-11 17:56:20 - http: TLS handshake error from 192.168.0.40:61863: tls: first record does not look like a TLS handshake
+2017-05-11 17:56:25 - http: TLS handshake error from 192.168.0.40:61869: tls: first record does not look like a TLS handshake
+2017-05-11 17:56:29 - http: TLS handshake error from 192.168.0.40:61878: tls: first record does not look like a TLS handshake
+2017-05-11 17:56:33 - http: TLS handshake error from 192.168.0.40:61883: tls: first record does not look like a TLS handshake
+2017-05-11 17:56:36 - http: TLS handshake error from 192.168.0.40:61888: tls: first record does not look like a TLS handshake
+2017-05-11 17:56:40 - http: TLS handshake error from 192.168.0.40:61895: tls: first record does not look like a TLS handshake
+2017-05-11 17:56:46 - http: TLS handshake error from 192.168.0.40:61904: tls: first record does not look like a TLS handshake
+2017-05-11 17:56:47 - http: TLS handshake error from 192.168.0.88:60943: tls: first record does not look like a TLS handshake
+2017-05-11 17:56:51 - http: TLS handshake error from 192.168.0.40:61915: tls: first record does not look like a TLS handshake
+2017-05-11 17:56:55 - http: TLS handshake error from 192.168.0.40:61920: tls: first record does not look like a TLS handshake
+2017-05-11 17:56:57 - http: TLS handshake error from 192.168.0.40:61925: tls: first record does not look like a TLS handshake
+2017-05-11 17:56:59 - http: TLS handshake error from 192.168.0.40:61930: tls: first record does not look like a TLS handshake
+2017-05-11 17:57:02 - http: TLS handshake error from 192.168.0.40:61935: tls: first record does not look like a TLS handshake
+2017-05-11 17:57:08 - http: TLS handshake error from 192.168.0.40:61945: tls: first record does not look like a TLS handshake
+2017-05-11 17:57:14 - http: TLS handshake error from 192.168.0.40:61954: tls: first record does not look like a TLS handshake
+2017-05-11 17:57:18 - http: TLS handshake error from 192.168.0.40:61959: tls: first record does not look like a TLS handshake
+2017-05-11 17:57:20 - http: TLS handshake error from 192.168.0.40:61962: tls: first record does not look like a TLS handshake
+2017-05-11 17:57:22 - http: TLS handshake error from 192.168.0.40:61967: tls: first record does not look like a TLS handshake
+2017-05-11 17:57:25 - http: TLS handshake error from 192.168.0.40:61970: tls: first record does not look like a TLS handshake
+2017-05-11 17:57:27 - http: TLS handshake error from 192.168.0.40:61975: tls: first record does not look like a TLS handshake
+2017-05-11 17:57:31 - http: TLS handshake error from 192.168.0.40:61982: tls: first record does not look like a TLS handshake
+2017-05-11 17:57:37 - http: TLS handshake error from 192.168.0.40:61989: tls: first record does not look like a TLS handshake
+2017-05-11 17:57:41 - http: TLS handshake error from 192.168.0.40:61996: tls: first record does not look like a TLS handshake
+2017-05-11 17:57:45 - http: TLS handshake error from 192.168.0.40:62004: tls: first record does not look like a TLS handshake
+2017-05-11 17:57:47 - http: TLS handshake error from 192.168.0.88:61033: tls: first record does not look like a TLS handshake
+2017-05-11 17:57:49 - http: TLS handshake error from 192.168.0.40:62009: tls: first record does not look like a TLS handshake
+2017-05-11 17:57:55 - http: TLS handshake error from 192.168.0.40:62018: tls: first record does not look like a TLS handshake
+2017-05-11 17:57:58 - http: TLS handshake error from 192.168.0.40:62025: tls: first record does not look like a TLS handshake
+2017-05-11 17:58:01 - http: TLS handshake error from 192.168.0.40:62028: tls: first record does not look like a TLS handshake
+2017-05-11 17:58:04 - http: TLS handshake error from 192.168.0.40:62035: tls: first record does not look like a TLS handshake
+2017-05-11 17:58:07 - http: TLS handshake error from 192.168.0.40:62041: tls: first record does not look like a TLS handshake
+2017-05-11 17:58:10 - http: TLS handshake error from 192.168.0.40:62046: tls: first record does not look like a TLS handshake
+2017-05-11 17:58:17 - http: TLS handshake error from 192.168.0.40:62055: tls: first record does not look like a TLS handshake
+2017-05-11 17:58:22 - http: TLS handshake error from 192.168.0.40:62062: tls: first record does not look like a TLS handshake
+2017-05-11 17:58:46 - 
+2017-05-11 17:58:46 - *********************************
+2017-05-11 17:58:46 - *********************************
+2017-05-11 17:58:46 - _______NEW_START_OF_SERVER_______
+2017-05-11 17:58:46 - Postgresql running!
+2017-05-11 17:58:46 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-11 17:58:46 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-11 17:58:46 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-11 17:58:46 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-11 17:58:46 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-11 17:58:46 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-11 17:58:46 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-11 17:58:46 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-11 17:58:46 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-11 17:58:46 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-11 17:58:46 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:58:46 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-11 17:58:46 - [GIN-debug] Listening and serving HTTPS on :443
+2017-05-12 09:20:25 - http: TLS handshake error from [::1]:63454: tls: first record does not look like a TLS handshake
+2017-05-12 09:20:25 - http: TLS handshake error from [::1]:63455: tls: first record does not look like a TLS handshake

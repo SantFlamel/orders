@@ -1,0 +1,140 @@
+2017-05-05 10:03:16 - 
+2017-05-05 10:03:16 - *********************************
+2017-05-05 10:03:16 - *********************************
+2017-05-05 10:03:16 - _______NEW_START_OF_SERVER_______
+2017-05-05 10:03:16 - Postgresql running!
+2017-05-05 10:03:16 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-05 10:03:16 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-05 10:03:16 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-05 10:03:16 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-05 10:03:16 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-05 10:03:16 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-05 10:03:16 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-05 10:03:16 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-05 10:03:16 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-05 10:03:16 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-05 10:03:16 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-05 10:03:16 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-05 10:03:16 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-05 10:03:31 - websocket: close 1006 (abnormal closure): unexpected EOF
+2017-05-05 10:35:24 - 
+2017-05-05 10:35:24 - *********************************
+2017-05-05 10:35:24 - *********************************
+2017-05-05 10:35:24 - _______NEW_START_OF_SERVER_______
+2017-05-05 10:35:24 - Postgresql running!
+2017-05-05 10:35:24 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-05 10:35:24 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-05 10:35:24 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-05 10:35:24 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-05 10:35:24 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-05 10:35:24 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-05 10:35:24 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-05 10:35:24 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-05 10:35:24 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-05 10:35:24 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-05 10:35:24 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-05 10:35:24 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-05 10:35:24 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-05 10:37:18 - 
+2017-05-05 10:37:18 - *********************************
+2017-05-05 10:37:18 - *********************************
+2017-05-05 10:37:18 - _______NEW_START_OF_SERVER_______
+2017-05-05 10:37:18 - Postgresql running!
+2017-05-05 10:37:18 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-05 10:37:18 - [GIN-debug] Loaded HTML Templates (4): 
+	- index.html
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+
+2017-05-05 10:37:18 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-05 10:37:18 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-05 10:37:18 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-05 10:37:18 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-05 10:37:18 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-05 10:37:18 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-05 10:37:18 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-05 10:37:18 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-05 10:37:18 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-05 10:37:18 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-05 10:37:18 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-05 12:24:48 - 00:ordphone{Order ERROR Read, TYPE PARAMETERS "RangeByPhoneCustomer" VALUES: [79195813888 Wed Apr 05 2017 12:24:49 GMT+0500 2017-05-05T12:24:49Z 50 0]: pq: time zone "gmt+0500" not recognized
+2017-05-05 16:09:34 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-05 16:09:57 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-05 17:23:05 - 
+2017-05-05 17:23:05 - *********************************
+2017-05-05 17:23:05 - *********************************
+2017-05-05 17:23:05 - _______NEW_START_OF_SERVER_______
+2017-05-05 17:23:05 - Postgresql running!
+2017-05-05 17:23:05 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-05 17:23:05 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-05 17:23:05 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-05 17:23:05 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-05 17:23:05 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-05 17:23:05 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-05 17:23:05 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-05 17:23:05 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-05 17:23:05 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-05 17:23:05 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-05 17:23:05 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-05 17:23:05 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-05 17:23:05 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-05 17:31:39 - 
+2017-05-05 17:31:39 - *********************************
+2017-05-05 17:31:39 - *********************************
+2017-05-05 17:31:39 - _______NEW_START_OF_SERVER_______
+2017-05-05 17:31:39 - Postgresql running!
+2017-05-05 17:31:39 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-05 17:31:39 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-05 17:31:39 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-05 17:31:39 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-05 17:31:39 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-05 17:31:39 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-05 17:31:39 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-05 17:31:39 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-05 17:31:39 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-05 17:31:39 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-05 17:31:39 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-05 17:31:39 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-05 17:31:39 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-10 09:07:15 - websocket: close 1006 (abnormal closure): unexpected EOF
+2017-05-10 09:08:29 - client:  dial tcp 192.168.0.130:456: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-10 09:37:35 - client:  read tcp 192.168.0.73:62637->192.168.0.130:456: wsarecv: An existing connection was forcibly closed by the remote host.
+2017-05-10 11:03:15 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-10 11:03:15 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-10 11:03:15 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
