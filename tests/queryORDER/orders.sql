@@ -35,7 +35,7 @@ drop type payment_enum;
 drop type payment_type;
 ------------------------------------------------------------------------------
 CREATE TABLE "order" (
-	"id" serial NOT NULL,
+	"id" BIGSERIAL NOT NULL,
 	"side_order" int,
 	"time_delivery" TIMESTAMP,
 	"date_preorder_cook" TIMESTAMP,
@@ -139,7 +139,7 @@ CREATE TABLE "order_status" (
 
 
 CREATE TABLE "status" (
-	"id" serial NOT NULL UNIQUE,
+	"id" bigserial NOT NULL UNIQUE,
 	"name" character varying NOT NULL,
 	CONSTRAINT status_pk PRIMARY KEY ("id")
 ) WITH (
@@ -147,7 +147,7 @@ CREATE TABLE "status" (
 );
 
 CREATE TABLE "type_payment" (
-	"id" serial NOT NULL,
+	"id" bigserial NOT NULL,
 	"name" character varying NOT NULL,
 	CONSTRAINT type_payment_pk PRIMARY KEY ("id")
 ) WITH (
@@ -155,8 +155,9 @@ CREATE TABLE "type_payment" (
 );
 
 CREATE TABLE "cashbox" (
-	"id" serial NOT NULL,
+	"id" bigserial NOT NULL,
 	"order_id" bigint,
+  "сhange_employee_id" bigint NOT NULL,
 	"first_sure_name" character varying NOT NULL,
 	"user_hash" character varying NOT NULL,
 	"role_name" character varying NOT NULL,
@@ -172,6 +173,20 @@ CREATE TABLE "cashbox" (
   OIDS=FALSE
 );
 
+CREATE TABLE "сhange_employee" (
+	"id" bigserial NOT NULL,
+	"user_hash" character varying NOT NULL,
+	"org_hash" character varying NOT NULL,
+	"sum_in_cashbox" numeric NOT NULL,
+	"non_cash_end_day" numeric NOT NULL,
+	"cash_end_day" numeric NOT NULL,
+	"close" bool NOT NULL,
+	"date_begin" TIMESTAMP NOT NULL,
+	"date_end" TIMESTAMP NOT NULL,
+	CONSTRAINT сhange_employee_pk PRIMARY KEY ("id")
+) WITH (
+OIDS=FALSE
+);
 
 CREATE TABLE "order_payments" (
 	"order_id" bigint NOT NULL,
@@ -214,4 +229,5 @@ ALTER TABLE "order_status" ADD CONSTRAINT "order_status_fk1" FOREIGN KEY ("statu
 
 ALTER TABLE "order_customer" ADD CONSTRAINT "order_customer_fk0" FOREIGN KEY ("order_id") REFERENCES "order"("id") ON DELETE CASCADE;
 
-ALTER TABLE "cashbox" ADD CONSTRAINT "cashbox_fk0" FOREIGN KEY ("type_payments") REFERENCES "type_payment"("id");
+ALTER TABLE "cashbox" ADD CONSTRAINT "cashbox_fk0" FOREIGN KEY ("сhange_employee_id") REFERENCES "сhange_employee"("id");
+ALTER TABLE "cashbox" ADD CONSTRAINT "cashbox_fk1" FOREIGN KEY ("type_payments") REFERENCES "type_payment"("id");

@@ -17,6 +17,7 @@ type AuthWEB struct {
 
 
 func WSHandler(w http.ResponseWriter, r *http.Request) {
+    //
     conn, err := websocket.Upgrade(w, r, nil, 1024, 1024)
     if _, ok := err.(websocket.HandshakeError); ok {
         http.Error(w, "Not a websocket handshake", 400)
@@ -45,7 +46,7 @@ func WSHandler(w http.ResponseWriter, r *http.Request) {
         conn.Close()
         return
     }
-
+    println("HashAuth: ",auth.HashAuth, conn.RemoteAddr().String())
     socketClient.HashAuth = auth.HashAuth
     err = structures.AddClient(socketClient)
     if err != nil {
@@ -86,10 +87,12 @@ func WSHandler(w http.ResponseWriter, r *http.Request) {
         }
         st := structure{Client: &socketClient}
         err = st.SelectTables(msg)
-        if err != nil && !strings.Contains(err.Error(),"sql: no rows in result set") {
+        if err != nil {
             //conn.WriteMessage(1,[]byte("00:" + st.qm.ID_msg + "{" + st.qm.Table + " ERROR " + st.qm.Query + ", TYPE PARAMETERS \"" + st.qm.TypeParameter + "\" VALUES: "+fmt.Sprintf("%v",st.qm.Values)+": " + err.Error()))
             st.send([]byte(st.qm.ID_msg + "{" + st.qm.Table + " ERROR " + st.qm.Query + ", TYPE PARAMETERS \"" + st.qm.TypeParameter + "\" VALUES: "+fmt.Sprintf("%v",st.qm.Values)+": "),err)
-            log.Println("00:" + st.qm.ID_msg + "{" + st.qm.Table + " ERROR " + st.qm.Query + ", TYPE PARAMETERS \"" + st.qm.TypeParameter + "\" VALUES: "+fmt.Sprintf("%v",st.qm.Values)+":", err.Error())
+            if strings.Contains(err.Error(),"sql: no rows in result set") {
+                log.Println("00:"+st.qm.ID_msg+"{"+st.qm.Table+" ERROR "+st.qm.Query+", TYPE PARAMETERS \""+st.qm.TypeParameter+"\" VALUES: "+fmt.Sprintf("%v", st.qm.Values)+":", err.Error())
+            }
         }
     }
 }

@@ -245,3 +245,47 @@ function counter( val ) {
         return ++count;
     };
 }
+
+function stackOfWaiting( time ) {
+    var functions = []
+        , exec = function () {
+        while ( functions.length ) {
+            (functions.shift())();
+        }
+        timeOut = false;
+    }
+        , timeOut;
+    return function ( func ) {
+        functions.push( func );
+        if ( !timeOut ) {
+            timeOut = setTimeout( exec, time );
+        }
+    }
+}
+
+
+function division( val, by ) { // для деления, возвращает целое число.
+    return (val - val % by) / by;
+}
+
+// var x = [];
+// x.push( 1 );
+// console.log( '1', x );
+// x.push( 2 );
+// console.log( '2', x );
+// x.push( 3 );
+// console.log( '3', x );
+// x.push( 4 );
+// console.log( '4', x );
+// x.push( 5 );
+// console.log( '5', x );
+//
+//
+// console.log( x.shift(), x );
+// console.log( x.shift(), x );
+// console.log( x.shift(), x );
+// console.log( x.shift(), x );
+// console.log( x.shift(), x );
+
+// var x = 'ws.js:90 x10068{Cashbox ERROR Create, TYPE PARAMETERS "" VALUES: []: sql: statement expects 11 inputs; got 12';
+// /sql: statement expects 11 inputs; got 12/.test( x );

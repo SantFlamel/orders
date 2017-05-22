@@ -1,7 +1,7 @@
 // TODO: минимальная сумма заказа 300р.
 // : V уменьшить шрифт каталог.!!!
-// : V пустота меж кнопками.
-// : V Сортировка по имени продукта.
+// TODO: добавление в каталоге, описание не открывать
+// TODO: чдлелать списком елементы карзины
 
 function Cart() {
 }
@@ -16,16 +16,6 @@ function Product( data ) {
     }
     this.added = Order.except( data.Price_id );
     this.mass = this.Value + ' ' + this.Units;
-
-    // if ( data.Type_id == 14 ) {
-    //     this.defaultCount = 3; // для сета 3 палочки
-    // }
-    // if ( data.Type_id == 12 || data.Type_id == 13 || data.Type_id == 15 ) {
-    //     this.defaultCount = 1; //для ролов суши 1 палочка
-    // }
-    // if ( !(data.Type_id == 12 || data.Type_id == 13 || data.Type_id == 15 || data.Type_id == 14) ) {
-    //     this.defaultCount = 0;
-    // }
 
     this.CookingTracker = data.CookingTracker || 0;
     if ( data.Type_id == 12 || data.Type_id == 13 || data.Type_id == 14 || data.Type_id == 15 ) {
@@ -214,292 +204,293 @@ Product.prototype.deleteFromCart = function ( f ) {
 
 ////////--------| CART |----------------------------------------------------------
 /* TODO: сделать корзину в виде cart{10:[ {id: 10, ...}, {id: 10, ...}, ...], 12:[ {id: 12, ...}, ...], ...} */
-Cart.list = [];
-Cart.cartCount = {};
+if ( TEST ) {
+    Cart.list = {};
+    Cart.cartCount = {};
+    Cart.getIDForList = counter();
 
-Cart.findID = function () {
-    var find, i;
-    return function ( id, arr ) {
-        find = [];
-        for ( i in arr ) if ( arr[i].Price_id === id ) {
-            find.push( i );
-        }
-        return find;
-    }
-}(); // САМОИСПОЛНЯЮЩАЯСЯ!!!!!!!!!!!!!!!!!
-Cart.findAddeds = function ( parent_id, arr ) {
-    var i, x;
-    arr = arr || Cart.list;
-    for ( i in arr ) {
-        x = arr[i]; //!!!!!!!!!!!!!!!!!!!!!!!
-        if ( i.parent_id === parent_id && i.Price_id !== i.parent_id ) {
-            return i;
-        }
-    }
-};
-
-Cart.copyObj = function ( obj ) {
-    var x = {}, i;
-    for ( i in obj ) {
-        x[i] = obj[i]
-    }
-    return x
-};
-
-Product.setCountCart = function ( mainID, id, val ) {
-    // console.group( 'setCountCart' );
-    if ( val > LIMIT_IN_CART ) {
-        return;
-    }
-    var self = Product.list[id], i;
-    switch ( val ) {
-        case 1:
-            // console.group( 's inc' );
-            Cart.inc( self );
-            // console.groupEnd();
-            break;
-        case -1:
-            // console.group( 's dec' );
-            Cart.dec( self );
-            // console.groupEnd();
-            break;
-        default:
-            // console.group( 's set', val );
-            if ( val ) {
-                var qu = Cart.findID( id, Cart.list ).length, odds = +val - qu;
-                // console.log( 'val, qu, odds', val, qu , odds );
-                if ( odds < 0 ) {
-                    odds *= -1;
-                    // console.time( 'Cycle' );
-                    for ( i = 0; i < odds; i++ ) {
-                        Cart.dec( self );
-                    }
-                    // console.timeEnd( 'Cycle' );
-                } else if ( odds > 0 ) {
-                    for ( i = 0; i < odds; i++ ) {
-                        Cart.inc( self );
-                    }
-                } else {
-                    return;
-                }
+    Cart.findID = function () {
+        var find, i;
+        return function ( id, arr ) {
+            find = [];
+            for ( i in arr ) if ( arr[i].Price_id === id ) {
+                find.push( i );
             }
-            // console.groupEnd();
-            break;
-    }
-
-    Cart.showPrice();
-    Cart.getCartCount();
-    Product.list[mainID].updateCunt();
-    Product.list[id].updateCunt();
-    // console.groupEnd();
-};
-
-
-Cart.inc = function ( self ) {
-    var prod = {
-        Price_id: self.Price_id, Price: self.Price, DiscountName: self.DiscountName || null,
-        DiscountPercent: self.DiscountPercent || 0, PriceName: self.PriceName, count: 1
-        , Type_id: self.Type_id
+            return find;
+        }
+    }(); // САМОИСПОЛНЯЮЩАЯСЯ!!!!!!!!!!!!!!!!!
+    Cart.findAddeds = function ( parent_id, arr ) {
+        var i, x;
+        arr = arr || Cart.list;
+        for ( i in arr ) {
+            x = arr[i]; //!!!!!!!!!!!!!!!!!!!!!!!
+            if ( i.parent_id === parent_id && i.Price_id !== i.parent_id ) {
+                return i;
+            }
+        }
     };
-    if ( Promotion.hasOwnProperty( '_selectDiscount' ) ) {
-        if ( Promotion._selectDiscount.hasOwnProperty( 'DiscountPercent' ) ) {
-            prod.DiscountPercent = Promotion._selectDiscount.DiscountPercent;
-            prod.DiscountName = Promotion._selectDiscount.DiscountName;
-            prod.IDPresent = Promotion._selectDiscount.IDPresent;
-            prod.ID = Promotion._selectDiscount.ID;
 
+    Cart.copyObj = function ( obj ) {
+        var x = {}, i;
+        for ( i in obj ) {
+            x[i] = obj[i]
         }
-    }
-    // if ( self.addeds.length !== 0 ) {
-    //     for ( var i in self.addeds ) {
-    //         i = self.addeds[i]; //!!!!!!!!!!!!!!!!!!!!!!!
-    //         // console.log( 'function "Cart.add" Product.list[i].name =', Product.list[i].name );
-    //         c = 0;
-    //         while ( c < (self.defaultCount || 1) ) {
-    //             Cart.list.push( {
-    //                 id: i
-    //                 , price: Product.list[i].price
-    //                 , DiscountName: 'к набору'
-    //                 , DiscountPercent: 100
-    //                 , name: Product.list[i].name
-    //                 , count: 1
-    //                 , parent_id: self.id
-    //             } );
-    //             c++
-    //         }
-    //     }
-    // }
-    Promotion._selectDiscount = Cart.list.push( prod ) - 1;
-};
-Cart.dec = function ( self ) {
-    var elemList = Cart.findID( self.Price_id, Cart.list ), list = {
-        elem: {}, DiscountPercent: 'no', index: 'no'
-    }, elem, elemCart, len, c;
-    for ( elem in elemList ) {
-        elemCart = Cart.list[elemList[elem]]; //!!!!!!!!!!!!!!!!!!!!!!!!!{
-        if ( (elemCart.DiscountPercent < list.DiscountPercent || list.index === 'no') &&
-            (elemCart.DiscountName !== 'к набору' ||
-            elemList.length > Cart.findID( elemCart.parent_id, Cart.list ).length ) ) {
-            list.elem = elemCart;
-            list.DiscountPercent = elemCart.DiscountPercent;
-            list.index = elemList[elem]
-        }
-    }
-    if ( list.index !== 'no' ) {
-        Cart.list.splice( list.index, 1 );
-    }
-    // if ( self.addeds.length !== 0 ) {
-    //     // console.log('HAVE LENGTH');
-    //     for ( elem in self.addeds ) {
-    //         c = 0;
-    //         while ( c < (self.defaultCount || 1) ) {
-    //             Cart.list.splice( Cart.findAddeds( self.id ), 1 );
-    //             c++
-    //         }
-    //     }
-    // }
-    // console.groupEnd();
-};
+        return x
+    };
 
-Cart.getCartCount = function () {
-    var cart = {}, i;
-    for ( i in Cart.list ) {
-        i = Cart.list[i]; //!!!!!!!!!!!!!!!!!!
-        if ( i.hasOwnProperty( 'parent_id' ) ) {
-            if ( cart.hasOwnProperty( i.parent_id ) ) {
-                if ( cart[i.parent_id].hasOwnProperty( i.Price_id ) ) {
-                    cart[i.parent_id][i.Price_id].count += 1;
+    Product.setCountCart = function ( mainID, id, val ) {
+        // console.group( 'setCountCart' );
+        if ( val > LIMIT_IN_CART ) {
+            return;
+        }
+        var self = Product.list[id], i;
+        switch ( val ) {
+            case 1:
+                // console.group( 's inc' );
+                Cart.inc( self );
+                // console.groupEnd();
+                break;
+            case -1:
+                // console.group( 's dec' );
+                Cart.dec( self );
+                // console.groupEnd();
+                break;
+            default:
+                // console.group( 's set', val );
+                if ( val ) {
+                    var qu = Cart.findID( id, Cart.list ).length, odds = +val - qu;
+                    // console.log( 'val, qu, odds', val, qu , odds );
+                    if ( odds < 0 ) {
+                        odds *= -1;
+                        // console.time( 'Cycle' );
+                        for ( i = 0; i < odds; i++ ) {
+                            Cart.dec( self );
+                        }
+                        // console.timeEnd( 'Cycle' );
+                    } else if ( odds > 0 ) {
+                        for ( i = 0; i < odds; i++ ) {
+                            Cart.inc( self );
+                        }
+                    } else {
+                        return;
+                    }
+                }
+                // console.groupEnd();
+                break;
+        }
+
+        Cart.showPrice();
+        Cart.getCartCount();
+        Product.list[mainID].updateCunt();
+        Product.list[id].updateCunt();
+        // console.groupEnd();
+    };
+
+
+    Cart.inc = function ( self ) {
+        var prod = {
+            Price_id: self.Price_id, Price: self.Price, DiscountName: self.DiscountName || null,
+            DiscountPercent: self.DiscountPercent || 0, PriceName: self.PriceName, count: 1
+            , Type_id: self.Type_id
+        };
+        if ( Promotion.hasOwnProperty( '_selectDiscount' ) ) {
+            if ( Promotion._selectDiscount.hasOwnProperty( 'DiscountPercent' ) ) {
+                prod.DiscountPercent = Promotion._selectDiscount.DiscountPercent;
+                prod.DiscountName = Promotion._selectDiscount.DiscountName;
+                prod.ID = Promotion._selectDiscount.ID;
+            }
+        }
+        // if ( self.addeds.length !== 0 ) {
+        //     for ( var i in self.addeds ) {
+        //         i = self.addeds[i]; //!!!!!!!!!!!!!!!!!!!!!!!
+        //         // console.log( 'function "Cart.add" Product.list[i].name =', Product.list[i].name );
+        //         c = 0;
+        //         while ( c < (self.defaultCount || 1) ) {
+        //             Cart.list.push( {
+        //                 id: i
+        //                 , price: Product.list[i].price
+        //                 , DiscountName: 'к набору'
+        //                 , DiscountPercent: 100
+        //                 , name: Product.list[i].name
+        //                 , count: 1
+        //                 , parent_id: self.id
+        //             } );
+        //             c++
+        //         }
+        //     }
+        // }
+        var ID = Cart.getIDForList();
+        Cart.list[ID] = prod;
+        Promotion._selectDiscount = ID;
+    };
+    Cart.dec = function ( self ) {
+        var elemList = Cart.findID( self.Price_id, Cart.list )
+            , list = {
+            elem: {}, DiscountPercent: 'no', index: 'no'
+        }, elem, elemCart;
+        for ( elem in elemList ) {
+            elemCart = Cart.list[elemList[elem]]; //!!!!!!!!!!!!!!!!!!!!!!!!!{
+            if ( (elemCart.DiscountPercent < list.DiscountPercent || list.index === 'no') &&
+                (elemCart.DiscountName !== 'к набору' ||
+                elemList.length > Cart.findID( elemCart.parent_id, Cart.list ).length ) ) {
+                list.elem = elemCart;
+                list.DiscountPercent = elemCart.DiscountPercent;
+                list.index = elemList[elem]
+            }
+        }
+        if ( list.index !== 'no' ) {
+            delete Cart.list[list.index];
+        }
+        // if ( self.addeds.length !== 0 ) {
+        //     // console.log('HAVE LENGTH');
+        //     for ( elem in self.addeds ) {
+        //         c = 0;
+        //         while ( c < (self.defaultCount || 1) ) {
+        //             Cart.list.splice( Cart.findAddeds( self.id ), 1 );
+        //             c++
+        //         }
+        //     }
+        // }
+        // console.groupEnd();
+    };
+
+    Cart.getCartCount = function () {
+        var cart = {}, i;
+        for ( i in Cart.list ) {
+            i = Cart.list[i]; //!!!!!!!!!!!!!!!!!!
+            if ( i.hasOwnProperty( 'parent_id' ) ) {
+                if ( cart.hasOwnProperty( i.parent_id ) ) {
+                    if ( cart[i.parent_id].hasOwnProperty( i.Price_id ) ) {
+                        cart[i.parent_id][i.Price_id].count += 1;
+                    } else {
+                        cart[i.parent_id][i.Price_id] = { count: 1 };
+                    }
                 } else {
+                    cart[i.parent_id] = { count: 0 };
                     cart[i.parent_id][i.Price_id] = { count: 1 };
                 }
             } else {
-                cart[i.parent_id] = { count: 0 };
-                cart[i.parent_id][i.Price_id] = { count: 1 };
-            }
-        } else {
-            if ( cart.hasOwnProperty( i.Price_id ) ) {
-                cart[i.Price_id].count += 1;
-            } else {
-                cart[i.Price_id] = { count: 1 };
-            }
-        }
-    }
-    Cart.cartCount = cart;
-};
-Cart.getType = function () {
-    // Доставка, Навынос
-    return $( ".delivery_met.active a" ).html();
-};
-Cart.getCart = function () {
-    var cart = [], i, ii, x, exist;
-    for ( i in Cart.list ) {
-        i = Cart.copyObj( Cart.list[i] );
-        exist = Cart.findID( i.Price_id, cart );
-        if ( exist.length !== 0 ) {
-            for ( ii in exist ) {
-                x = true;
-                ii = cart[exist[ii]]; //!!!!!!!!!!!!!!!!!!!!!!!!
-                if ( ii.DiscountName === i.DiscountName ) {
-                    ii.count += 1;
-                    x = false;
-                    break;
+                if ( cart.hasOwnProperty( i.Price_id ) ) {
+                    cart[i.Price_id].count += 1;
+                } else {
+                    cart[i.Price_id] = { count: 1 };
                 }
             }
-            if ( x ) {
+        }
+        Cart.cartCount = cart;
+    };
+    Cart.getType = function () {
+        // Доставка, Навынос
+        return $( ".delivery_met.active a" ).html();
+    };
+    Cart.getCart = function () {
+        var cart = [], i, ii, x, exist;
+        for ( i in Cart.list ) {
+            i = Cart.copyObj( Cart.list[i] );
+            exist = Cart.findID( i.Price_id, cart );
+            if ( exist.length !== 0 ) {
+                for ( ii in exist ) {
+                    x = true;
+                    ii = cart[exist[ii]]; //!!!!!!!!!!!!!!!!!!!!!!!!
+                    if ( ii.DiscountName === i.DiscountName ) {
+                        ii.count += 1;
+                        x = false;
+                        break;
+                    }
+                }
+                if ( x ) {
+                    cart.push( Cart.copyObj( i ) );
+                }
+            } else {
                 cart.push( Cart.copyObj( i ) );
             }
+        }
+        return cart;
+    };
+
+
+    Cart.getPrice = function () {
+        // console.group( 'Cart.getPrice ' );
+        var price1, price = 0, i, discount = ' ', discountPercent = 0, cart = Cart.getCart();
+        for ( i in cart ) if ( cart.hasOwnProperty( i ) ) {
+            i = cart[i]; //!!!!!!!!!!!!!!!!!!!!!!!!
+            price += i.count * (i.Price - (i.DiscountPercent / 100 * i.Price));
+        }
+
+        price1 = price;
+        if ( !$( '#to_workers' ).prop( 'checked' ) ) {
+            if ( Promotion.selectDiscount ) {
+                discount = Promotion.selectDiscount.Name;
+                discountPercent = Promotion.selectDiscount.Value;
+                price1 = price - price * (discountPercent / 100);
+            }
+        }
+        // console.log('price', price, discount, discountPercent );
+        // console.groupEnd();
+        return [Math.floor( price ), discount, discountPercent, Math.floor( price1 )];
+    };
+    Cart.showPrice = function () {
+        var p = Cart.getPrice();
+        $( '.over_price' ).html( p[0] + ' p.' );
+        $( '.over_price_without' ).html( p[3] + ' p.' );
+    };
+
+    Product.prototype.updateCunt = function () {
+        // console.group( 'updateCunt' );
+
+        Cart.getCartCount();
+        var del = false, add = false;
+        if ( Cart.cartCount.hasOwnProperty( this.Price_id ) ) {
+            this.updateInputVal( this.Price_id, Cart.cartCount[this.Price_id].count, this.Price + 'р. x ' );
+            add = true;
+            // for ( i in this.addeds ) {
+            //     ii = Product.list[this.addeds[i]]; // !!!!!!!!!!!!!!!!!
+            //     if ( Cart.cartCount[this.Price_id].hasOwnProperty( ii.Price_id ) ) {
+            //         this.updateInputVal( ii.Price_id, Cart.cartCount[this.Price_id][ii.Price_id].count );
+            //         add = true;
+            //     } else {
+            //         this.updateInputVal( ii.Price_id, 0 );
+            //         del = true
+            //     }
+            // }
         } else {
-            cart.push( Cart.copyObj( i ) );
+            this.updateInputVal( this.Price_id, 0, this.Price + 'р. x ' );
+            del = true
         }
-    }
-    return cart;
-};
-
-
-Cart.getPrice = function () {
-    // console.group( 'Cart.getPrice ' );
-    var price1, price = 0, i, discount = ' ', discountPercent = 0, cart = Cart.getCart();
-    for ( i in cart ) if ( cart.hasOwnProperty( i ) ) {
-        i = cart[i]; //!!!!!!!!!!!!!!!!!!!!!!!!
-        price += i.count * (i.Price - (i.DiscountPercent / 100 * i.Price));
-    }
-
-    price1 = price;
-    if ( !$( '#to_workers' ).prop( 'checked' ) ) {
-        if ( Promotion.selectDiscount ) {
-            discount = Promotion.selectDiscount.Name;
-            discountPercent = Promotion.selectDiscount.Value;
-            price1 = price - price * (discountPercent / 100);
+        if ( add ) {
+            // console.log( 'if ( add ) ' );
+            this.addCartListElement();
+            // for ( var i in this.addeds ) {
+            //     i = Product.list[this.addeds[i]]; // !!!!!!!!!!!!!!!!!
+            //     i.addCartListElement();
+            // }
+        } else if ( del ) {
+            // console.log( 'else if ( del )' );
+            this.deleteFromCart();
+            // for ( var i in this.addeds ) {
+            //     i = Product.list[this.addeds[i]]; // !!!!!!!!!!!!!!!!!
+            //     i.deleteFromCart( true );
+            // }
         }
-    }
-    // console.log('price', price, discount, discountPercent );
-    // console.groupEnd();
-    return [Math.floor( price ), discount, discountPercent, Math.floor( price1 )];
-};
-Cart.showPrice = function () {
-    var p = Cart.getPrice();
-    $( '.over_price' ).html( p[0] + ' p.' );
-    $( '.over_price_without' ).html( p[3] + ' p.' );
-};
+        // console.groupEnd()
+    };
 
-Product.prototype.updateCunt = function () {
-    // console.group( 'updateCunt' );
-
-    Cart.getCartCount();
-    var del = false, add = false;
-    if ( Cart.cartCount.hasOwnProperty( this.Price_id ) ) {
-        this.updateInputVal( this.Price_id, Cart.cartCount[this.Price_id].count, this.Price + 'р. x ' );
-        add = true;
-        // for ( i in this.addeds ) {
-        //     ii = Product.list[this.addeds[i]]; // !!!!!!!!!!!!!!!!!
-        //     if ( Cart.cartCount[this.Price_id].hasOwnProperty( ii.Price_id ) ) {
-        //         this.updateInputVal( ii.Price_id, Cart.cartCount[this.Price_id][ii.Price_id].count );
-        //         add = true;
-        //     } else {
-        //         this.updateInputVal( ii.Price_id, 0 );
-        //         del = true
-        //     }
-        // }
-    } else {
-        this.updateInputVal( this.Price_id, 0, this.Price + 'р. x ' );
-        del = true
-    }
-    if ( add ) {
-        // console.log( 'if ( add ) ' );
-        this.addCartListElement();
-        // for ( var i in this.addeds ) {
-        //     i = Product.list[this.addeds[i]]; // !!!!!!!!!!!!!!!!!
-        //     i.addCartListElement();
-        // }
-    } else if ( del ) {
-        // console.log( 'else if ( del )' );
-        this.deleteFromCart();
-        // for ( var i in this.addeds ) {
-        //     i = Product.list[this.addeds[i]]; // !!!!!!!!!!!!!!!!!
-        //     i.deleteFromCart( true );
-        // }
-    }
-    // console.groupEnd()
-};
-
-Cart.clean = function () {
-    Cart.list = []; // очищаем корзину
-    Cart.cartCount = {}
-};
-Cart.cancelOrder = function () {
-    Promotion.reset();
-    Promotion.checkAll();
-    Cart.clean();
-    $( '.product_in_cart' ).remove(); // очищаем боковую панель
-    Cart.showPrice(); // сбрасыываем ценник
-    Page.show.Cassir()
-};
+    Cart.clean = function () {
+        Cart.list = {}; // очищаем корзину
+        Cart.cartCount = {}
+    };
+    Cart.cancelOrder = function () {
+        Cart.clean();
+        $( '.product_in_cart' ).remove(); // очищаем боковую панель
+        Cart.showPrice(); // сбрасыываем ценник
+        Page.show.Cassir()
+    };
 
 
 //--------------\ CART |----------------------------------------------------------
-$( '#products_cat li' ).click( function () {
-    $( '#products_cat li' ).removeClass( 'active' )
-} );
+    $( '#products_cat li' ).click( function () {
+        $( '#products_cat li' ).removeClass( 'active' )
+    } );
 // $( document ).on( "click", ".delivery_met", function () {
 //     // пересчёт стоимости при смене способа доставки
 //     var h = this.childNodes[0].hash, i;
@@ -519,27 +510,358 @@ $( '#products_cat li' ).click( function () {
 //     }
 // } );
 
-$( '#promo_discount' ).change( function () {
-    Cart.showPrice()
-} );
-
-$( document ).ready( function () {
-    $( '#product_search' ).keyup( function ( e ) {
-        var code = e.keyCode || e.which;
-        if ( code == '9' ) return;
-        var $Items = $( ".tab-pane .product_group li a:not(.part)" ), $input = $( this ), inputContent = $input.val()
-            .toLowerCase();
-        var $filterItems = $Items.filter( function () {
-            var value = $( this ).text().toLowerCase();
-            if ( value.indexOf( inputContent ) === -1 ) return true;
-        } );
-        //отображает все строки,  скрывает отфтльтрованные
-        $Items.parent().show();
-        $filterItems.parent().hide();
+    $( '#promo_discount' ).change( function () {
+        Cart.showPrice()
     } );
-} );
 
-$( document ).on( 'click', '.cart_btn_cancel', function () {
-    Cart.cancelOrder()
-} );
+    $( document ).ready( function () {
+        $( '#product_search' ).keyup( function ( e ) {
+            var code = e.keyCode || e.which;
+            if ( code == '9' ) return;
+            var $Items = $( ".tab-pane .product_group li a:not(.part)" ), $input = $( this ), inputContent = $input.val()
+                .toLowerCase();
+            var $filterItems = $Items.filter( function () {
+                var value = $( this ).text().toLowerCase();
+                if ( value.indexOf( inputContent ) === -1 ) return true;
+            } );
+            //отображает все строки,  скрывает отфтльтрованные
+            $Items.parent().show();
+            $filterItems.parent().hide();
+        } );
+    } );
 
+    $( document ).on( 'click', '.cart_btn_cancel', function () {
+        Cart.cancelOrder()
+    } );
+} else { //////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////
+    Cart.list = [];
+    Cart.cartCount = {};
+
+    Cart.findID = function () {
+        var find, i;
+        return function ( id, arr ) {
+            find = [];
+            for ( i in arr ) if ( arr[i].Price_id === id ) {
+                find.push( i );
+            }
+            return find;
+        }
+    }(); // САМОИСПОЛНЯЮЩАЯСЯ!!!!!!!!!!!!!!!!!
+    Cart.findAddeds = function ( parent_id, arr ) {
+        var i, x;
+        arr = arr || Cart.list;
+        for ( i in arr ) {
+            x = arr[i]; //!!!!!!!!!!!!!!!!!!!!!!!
+            if ( i.parent_id === parent_id && i.Price_id !== i.parent_id ) {
+                return i;
+            }
+        }
+    };
+
+    Cart.copyObj = function ( obj ) {
+        var x = {}, i;
+        for ( i in obj ) {
+            x[i] = obj[i]
+        }
+        return x
+    };
+
+    Product.setCountCart = function ( mainID, id, val ) {
+        // console.group( 'setCountCart' );
+        if ( val > LIMIT_IN_CART ) {
+            return;
+        }
+        var self = Product.list[id], i;
+        switch ( val ) {
+            case 1:
+                // console.group( 's inc' );
+                Cart.inc( self );
+                // console.groupEnd();
+                break;
+            case -1:
+                // console.group( 's dec' );
+                Cart.dec( self );
+                // console.groupEnd();
+                break;
+            default:
+                // console.group( 's set', val );
+                if ( val ) {
+                    var qu = Cart.findID( id, Cart.list ).length, odds = +val - qu;
+                    // console.log( 'val, qu, odds', val, qu , odds );
+                    if ( odds < 0 ) {
+                        odds *= -1;
+                        // console.time( 'Cycle' );
+                        for ( i = 0; i < odds; i++ ) {
+                            Cart.dec( self );
+                        }
+                        // console.timeEnd( 'Cycle' );
+                    } else if ( odds > 0 ) {
+                        for ( i = 0; i < odds; i++ ) {
+                            Cart.inc( self );
+                        }
+                    } else {
+                        return;
+                    }
+                }
+                // console.groupEnd();
+                break;
+        }
+
+        Cart.showPrice();
+        Cart.getCartCount();
+        Product.list[mainID].updateCunt();
+        Product.list[id].updateCunt();
+        // console.groupEnd();
+    };
+
+
+    Cart.inc = function ( self ) {
+        var prod = {
+            Price_id: self.Price_id, Price: self.Price, DiscountName: self.DiscountName || null,
+            DiscountPercent: self.DiscountPercent || 0, PriceName: self.PriceName, count: 1
+            , Type_id: self.Type_id
+        };
+        if ( Promotion.hasOwnProperty( '_selectDiscount' ) ) {
+            if ( Promotion._selectDiscount.hasOwnProperty( 'DiscountPercent' ) ) {
+                prod.DiscountPercent = Promotion._selectDiscount.DiscountPercent;
+                prod.DiscountName = Promotion._selectDiscount.DiscountName;
+                prod.IDPresent = Promotion._selectDiscount.IDPresent;
+                prod.ID = Promotion._selectDiscount.ID;
+
+            }
+        }
+        // if ( self.addeds.length !== 0 ) {
+        //     for ( var i in self.addeds ) {
+        //         i = self.addeds[i]; //!!!!!!!!!!!!!!!!!!!!!!!
+        //         // console.log( 'function "Cart.add" Product.list[i].name =', Product.list[i].name );
+        //         c = 0;
+        //         while ( c < (self.defaultCount || 1) ) {
+        //             Cart.list.push( {
+        //                 id: i
+        //                 , price: Product.list[i].price
+        //                 , DiscountName: 'к набору'
+        //                 , DiscountPercent: 100
+        //                 , name: Product.list[i].name
+        //                 , count: 1
+        //                 , parent_id: self.id
+        //             } );
+        //             c++
+        //         }
+        //     }
+        // }
+        Promotion._selectDiscount = Cart.list.push( prod ) - 1;
+    };
+    Cart.dec = function ( self ) {
+        var elemList = Cart.findID( self.Price_id, Cart.list ), list = {
+            elem: {}, DiscountPercent: 'no', index: 'no'
+        }, elem, elemCart, len, c;
+        for ( elem in elemList ) {
+            elemCart = Cart.list[elemList[elem]]; //!!!!!!!!!!!!!!!!!!!!!!!!!{
+            if ( (elemCart.DiscountPercent < list.DiscountPercent || list.index === 'no') &&
+                (elemCart.DiscountName !== 'к набору' ||
+                elemList.length > Cart.findID( elemCart.parent_id, Cart.list ).length ) ) {
+                list.elem = elemCart;
+                list.DiscountPercent = elemCart.DiscountPercent;
+                list.index = elemList[elem]
+            }
+        }
+        if ( list.index !== 'no' ) {
+            Cart.list.splice( list.index, 1 );
+        }
+        // if ( self.addeds.length !== 0 ) {
+        //     // console.log('HAVE LENGTH');
+        //     for ( elem in self.addeds ) {
+        //         c = 0;
+        //         while ( c < (self.defaultCount || 1) ) {
+        //             Cart.list.splice( Cart.findAddeds( self.id ), 1 );
+        //             c++
+        //         }
+        //     }
+        // }
+        // console.groupEnd();
+    };
+
+    Cart.getCartCount = function () {
+        var cart = {}, i;
+        for ( i in Cart.list ) {
+            i = Cart.list[i]; //!!!!!!!!!!!!!!!!!!
+            if ( i.hasOwnProperty( 'parent_id' ) ) {
+                if ( cart.hasOwnProperty( i.parent_id ) ) {
+                    if ( cart[i.parent_id].hasOwnProperty( i.Price_id ) ) {
+                        cart[i.parent_id][i.Price_id].count += 1;
+                    } else {
+                        cart[i.parent_id][i.Price_id] = { count: 1 };
+                    }
+                } else {
+                    cart[i.parent_id] = { count: 0 };
+                    cart[i.parent_id][i.Price_id] = { count: 1 };
+                }
+            } else {
+                if ( cart.hasOwnProperty( i.Price_id ) ) {
+                    cart[i.Price_id].count += 1;
+                } else {
+                    cart[i.Price_id] = { count: 1 };
+                }
+            }
+        }
+        Cart.cartCount = cart;
+    };
+    Cart.getType = function () {
+        // Доставка, Навынос
+        return $( ".delivery_met.active a" ).html();
+    };
+    Cart.getCart = function () {
+        var cart = [], i, ii, x, exist;
+        for ( i in Cart.list ) {
+            i = Cart.copyObj( Cart.list[i] );
+            exist = Cart.findID( i.Price_id, cart );
+            if ( exist.length !== 0 ) {
+                for ( ii in exist ) {
+                    x = true;
+                    ii = cart[exist[ii]]; //!!!!!!!!!!!!!!!!!!!!!!!!
+                    if ( ii.DiscountName === i.DiscountName ) {
+                        ii.count += 1;
+                        x = false;
+                        break;
+                    }
+                }
+                if ( x ) {
+                    cart.push( Cart.copyObj( i ) );
+                }
+            } else {
+                cart.push( Cart.copyObj( i ) );
+            }
+        }
+        return cart;
+    };
+
+
+    Cart.getPrice = function () {
+        // console.group( 'Cart.getPrice ' );
+        var price1, price = 0, i, discount = ' ', discountPercent = 0, cart = Cart.getCart();
+        for ( i in cart ) if ( cart.hasOwnProperty( i ) ) {
+            i = cart[i]; //!!!!!!!!!!!!!!!!!!!!!!!!
+            price += i.count * (i.Price - (i.DiscountPercent / 100 * i.Price));
+        }
+
+        price1 = price;
+        if ( !$( '#to_workers' ).prop( 'checked' ) ) {
+            if ( Promotion.selectDiscount ) {
+                discount = Promotion.selectDiscount.Name;
+                discountPercent = Promotion.selectDiscount.Value;
+                price1 = price - price * (discountPercent / 100);
+            }
+        }
+        // console.log('price', price, discount, discountPercent );
+        // console.groupEnd();
+        return [Math.floor( price ), discount, discountPercent, Math.floor( price1 )];
+    };
+    Cart.showPrice = function () {
+        var p = Cart.getPrice();
+        $( '.over_price' ).html( p[0] + ' p.' );
+        $( '.over_price_without' ).html( p[3] + ' p.' );
+    };
+
+    Product.prototype.updateCunt = function () {
+        // console.group( 'updateCunt' );
+
+        Cart.getCartCount();
+        var del = false, add = false;
+        if ( Cart.cartCount.hasOwnProperty( this.Price_id ) ) {
+            this.updateInputVal( this.Price_id, Cart.cartCount[this.Price_id].count, this.Price + 'р. x ' );
+            add = true;
+            // for ( i in this.addeds ) {
+            //     ii = Product.list[this.addeds[i]]; // !!!!!!!!!!!!!!!!!
+            //     if ( Cart.cartCount[this.Price_id].hasOwnProperty( ii.Price_id ) ) {
+            //         this.updateInputVal( ii.Price_id, Cart.cartCount[this.Price_id][ii.Price_id].count );
+            //         add = true;
+            //     } else {
+            //         this.updateInputVal( ii.Price_id, 0 );
+            //         del = true
+            //     }
+            // }
+        } else {
+            this.updateInputVal( this.Price_id, 0, this.Price + 'р. x ' );
+            del = true
+        }
+        if ( add ) {
+            // console.log( 'if ( add ) ' );
+            this.addCartListElement();
+            // for ( var i in this.addeds ) {
+            //     i = Product.list[this.addeds[i]]; // !!!!!!!!!!!!!!!!!
+            //     i.addCartListElement();
+            // }
+        } else if ( del ) {
+            // console.log( 'else if ( del )' );
+            this.deleteFromCart();
+            // for ( var i in this.addeds ) {
+            //     i = Product.list[this.addeds[i]]; // !!!!!!!!!!!!!!!!!
+            //     i.deleteFromCart( true );
+            // }
+        }
+        // console.groupEnd()
+    };
+
+    Cart.clean = function () {
+        Cart.list = []; // очищаем корзину
+        Cart.cartCount = {}
+    };
+    Cart.cancelOrder = function () {
+        Cart.clean();
+        Promotion.runAll();
+        $( '.product_in_cart' ).remove(); // очищаем боковую панель
+        Cart.showPrice(); // сбрасыываем ценник
+        Page.show.Cassir()
+    };
+
+
+//--------------\ CART |----------------------------------------------------------
+    $( '#products_cat li' ).click( function () {
+        $( '#products_cat li' ).removeClass( 'active' )
+    } );
+// $( document ).on( "click", ".delivery_met", function () {
+//     // пересчёт стоимости при смене способа доставки
+//     var h = this.childNodes[0].hash, i;
+//     $( '.delivery_met' ).removeClass( 'active' );
+//     $( '.delivery_met [href = "' + h + '"]' ).parent().addClass( 'active' );
+//     Cart.showPrice();
+//     // TODO: при отсутствии соединения с зонами доставки???
+//     if ( h == '#delivery' ) {
+//         $( "#warning_dellivery" ).css( "color", "green" ).html( "Выберите точку" );
+//         $( ".delivery_name" ).html( "приготовлен" );
+//         MSG.requestDeliveryZone();
+//     } else if ( h == '#take_away' ) {
+//         for ( i in Organization.list ) {
+//             Organization.list[i].enableSelect()
+//         }
+//         MSG.requestDeliveryZone()
+//     }
+// } );
+
+    $( '#promo_discount' ).change( function () {
+        Cart.showPrice()
+    } );
+
+    $( document ).ready( function () {
+        $( '#product_search' ).keyup( function ( e ) {
+            var code = e.keyCode || e.which;
+            if ( code == '9' ) return;
+            var $Items = $( ".tab-pane .product_group li a:not(.part)" ), $input = $( this ), inputContent = $input.val()
+                .toLowerCase();
+            var $filterItems = $Items.filter( function () {
+                var value = $( this ).text().toLowerCase();
+                if ( value.indexOf( inputContent ) === -1 ) return true;
+            } );
+            //отображает все строки,  скрывает отфтльтрованные
+            $Items.parent().show();
+            $filterItems.parent().hide();
+        } );
+    } );
+
+    $( document ).on( 'click', '.cart_btn_cancel', function () {
+        Cart.cancelOrder()
+    } );
+
+}

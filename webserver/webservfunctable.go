@@ -128,6 +128,9 @@ func (st *structure) SelectTables(msg []byte) error {
 		case "Update":
 			all := structures.All{}
 			err = all.Update(&st.qm)
+            if err==nil{
+                st.send([]byte(st.qm.Query+": it is no problem"),nil)
+            }
 			//if err == nil {
 			//	st.send([]byte(st.qm.Table+" NO ERRORS "+st.qm.Query+", TYPE PARAMETERS: \""+st.qm.TypeParameter+"\""), nil)
 			//}
@@ -135,9 +138,9 @@ func (st *structure) SelectTables(msg []byte) error {
 		case "Delete":
 			all := structures.All{}
 			err = all.Delete(&st.qm)
-			//if err == nil {
-			//	st.send([]byte(st.qm.Table+" NO ERRORS "+st.qm.Query+", TYPE PARAMETERS: \""+st.qm.TypeParameter+"\""), nil)
-			//}
+            if err==nil{
+                st.send([]byte(st.qm.Query+": it is no problem"),nil)
+            }
 			break
 		}
 
@@ -182,6 +185,10 @@ func (st *structure) SelectTables(msg []byte) error {
 
 	case "Cashbox":
 		st.orders = &structures.Cashbox{}
+        break
+
+	case "ChangeEmployee":
+		st.orders = &structures.ChangeEmployee{}
         break
 
 	case "Status":
@@ -467,6 +474,7 @@ func (st *structure) SelectTables(msg []byte) error {
 		if err == nil {
 			st.ID, err = st.orders.Insert(&st.qm)
 			if err == nil {
+				println(st.ID)
 				if st.ID != int64(-1) {
 					st.send([]byte(strconv.FormatInt(st.ID, 10)), nil)
 				} else {
@@ -477,6 +485,8 @@ func (st *structure) SelectTables(msg []byte) error {
 				//	ClientOrder := structures.ClientOrder{IP: item, MSG: msg}
 				//	go ClientOrder.Write()
 				//}
+			}else{
+				println("no work insert",err.Error())
 			}
 		}
         break

@@ -2,10 +2,10 @@ package main
 
 import (
     "time"
-    "fmt"
 )
 
 
 func main() {
-    println(fmt.Sprint(time.Now().Date()))
+    t := time.Now()
+    println(t.String()[:10] + "T" + t.String()[11:19])
 }

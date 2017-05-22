@@ -50,7 +50,7 @@ func (c *Configurations) LogPrintln(v ...interface{}) {
 
 func (c *Configurations) getConfigurations() error {
 
-	confFile, err := os.Open("order.json")
+	confFile, err := os.Open("config.json")
 
 	if err != nil {
 		return err
@@ -116,6 +116,7 @@ func RecLog() {
 			//MAKE LOG FILE
 			LogFile, err = os.OpenFile("log/"+time.Now().String()[:10]+".log", os.O_APPEND | os.O_CREATE | os.O_RDWR, 0666)
 		}
+
 		if err != nil {
 			log.Panic("Logfile not found!:", err)
 		}
@@ -124,9 +125,10 @@ func RecLog() {
 		log.SetPrefix(" - ")
 		log.SetFlags(0)
 		//log.SetPrefix(time.Now().String()[:19])
+
 		log.Println()
-		log.Println("*********************************")
-		log.Println("*********************************")
+		//log.Println("*********************************")
+		//log.Println("*********************************")
 		log.Println("_______NEW_START_OF_SERVER_______")
 
 		t1 = time.Now()
@@ -139,6 +141,7 @@ func RecLog() {
 		if err = LogFile.Close();err!=nil{
 			log.Println("err close: ", LogFile)
 		}
+
 	//}
 }
 

@@ -12,6 +12,7 @@ function Promotion( data ) {
     this.condition = []; // список условий
     this.overal = []; // сгрупированный список того что подходит под условия
     this.availableList = []; // список елементов корзины на которые можно назначить скидку
+    this.listApplyPresent = [];
 
     Promotion.list[this.ID] = this
 }
@@ -202,7 +203,7 @@ Promotion.prototype.makeCollapseElementHead = function () {
         </a>\
         </div>\
         <div style="width: 100%; border-bottom: 1px solid #9d9d9d;" id="collapse_promotion'
-        + this.ID + '" class="panel-collapse collapse" role="tabpanel"\
+        + this.ID + '" class="panel-collapse collapse in" role="tabpanel"\
                 aria-expanded="true" aria-labelledby="heading_promotion' + this.ID + '">\
         <div class="panel-body">';
 };
@@ -403,15 +404,15 @@ Promotion.prototype.setupPresent = function () {
         }//--------------\  |----------------------------------------------------------
         this.unSelectPresent = function () {
             var indexInCart = findAllProp( 'ID', this.ID, Cart.list )[0].reverse()
-                , prodInCart
+                , prodInCart = Cart.list[indexInCart[0]].Price_id
                 ;
             for ( i in indexInCart ) {
-                prodInCart = Cart.list[indexInCart[i]].Price_id;
                 Cart.list.splice( +indexInCart[i], 1 );
-                Product.list[prodInCart].updateCunt();
             }
             delete Promotion.selectList[self.ID];
             Cart.showPrice();
+            Cart.getCartCount();
+            Product.list[prodInCart].updateCunt();
             $( '[data-id_presenr="' + this.ID + '"] span' ).html( '0' )
         };
     }
@@ -441,11 +442,6 @@ $( document ).on( 'click', 'input[type="radio"][id^="present"]', function () {
     console.log( 'Cart.list', Cart.list );
     var self = Promotion.list[this.id.split( 'present' )[1]];
     self.selectPresent( this.value, this.dataset.id_present );
-    if ( self.ID === 3 ) {
-        Promotion.list[6].unSelectPresent();
-        Promotion.list[6].check();
-        Promotion.list[6].showPresent();
-    }
 } );
 // убираем несовместимые "подарки"
 Promotion.prototype.unSelectedAllConflict = function ( ID ) {
@@ -456,42 +452,31 @@ Promotion.prototype.unSelectedAllConflict = function ( ID ) {
     for ( i in Promotion.selectList ) {
         i = +i;
         if ( !~this.SummarizedWith.indexOf( i ) && i !== ID ) {
-            try {
-                Promotion.list[i].unSelectPresent( true );
-            } catch ( e ) {
-            }
-            try {
-                Promotion.list[i].unSelectedAllConflict( true );
-            } catch ( e ) {
-            }
+            Promotion.list[i].unSelectPresent( true );
         }
     }
 };
 
 $( document ).on( 'click', '#load_promo', function () {
     Promotion.runAll();
+    // if ( $( '#promotion:visible' ).length !== 0 ) {
+    //     $( '#promotion' ).css( 'display', 'none' );
+    // } else {
+    //     $( '#promotion' ).css( 'display', '' );
+    // }
 } );
 
 Promotion.reset = function () {
     var i, ii;
-    for ( i = Cart.list.length - 1; i >= 0; i-- ) {
+    for ( i in Cart.list ) {
         ii = Cart.list[i];
         if ( ii.DiscountName !== null || ii.DiscountPercent !== 0 ) {
             if ( ii.IDPresent ) {
-                var id = ii.Price_id;
                 Cart.list.splice( i, 1 );
-                Product.list[id].updateCunt();
             } else {
                 ii.DiscountName = null;
                 ii.DiscountPercent = 0;
             }
-        }
-    }
-    for ( i in Promotion.list ) {
-        ii = Promotion.list[i];
-        try {
-            ii.unSelectPresent();
-        } catch ( e ) {
         }
     }
 };

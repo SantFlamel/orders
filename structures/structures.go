@@ -142,18 +142,32 @@ type TypePayment struct {
 }
 
 type Cashbox struct {
-	ID              int64     //- идентификатор
-	Order_id        int64     //- идентификатор заказа
-	First_sure_name string    //- Фамилия Имя юзера
-	UserHash        string    //- Хеш юзера
-	RoleName        string    //- Имя роли
-	OrgHash         string    //- хеш организации
-	TypePayments    int64     //- тип оплаты
-	TypeOperation   bool      //- тип операции
-	Cause           string    //- описание
-	Deposit         float64   //- сумма внесения
-	ShortChange     float64   //- сдача
-	TimeOperation   time.Time //- время операции
+	ID                 int64     //- идентификатор
+	Order_id           int64     //- идентификатор заказа
+	Change_employee_id int64     //- идентификатор смены
+	First_sure_name    string    //- Фамилия Имя юзера
+	UserHash           string    //- Хеш юзера
+	RoleName           string    //- Имя роли
+	OrgHash            string    //- хеш организации
+	TypePayments       int64     //- тип оплаты
+	TypeOperation      bool      //- тип операции
+	Cause              string    //- описание
+	Deposit            float64   //- сумма внесения
+	ShortChange        float64   //- сдача
+	TimeOperation      time.Time //- время операции
+}
+
+//СМЕНЫ пользователей
+type ChangeEmployee struct {
+	ID              int64
+	UserHash        string
+	OrgHash         string
+	Sum_in_cashbox  float64
+	NonCash_end_day float64
+	Cash_end_day    float64
+	Close           bool
+	Date_begin      time.Time
+	Date_end        time.Time
 }
 
 //для курьеров

@@ -78,6 +78,7 @@ Page.hide = {
 };
 Page.show = {
     Cassir: function () {
+        document.title = 'Заказы';
         Page.hide.all();
         timeOutRe( 'MSG.requestOrdersByOrgHash', function () {
             MSG.requestOrdersByOrgHash()
@@ -86,21 +87,25 @@ Page.show = {
         document.getElementById( 'orders' ).className = 'active';
         document.getElementById( 'cassir' ).style.display = '';
         Page.show.telephone.ready();
-        var x = +document.querySelector( '#cassir_tab li.active' ).dataset.status || 0;
-        Cassir.showOrders( x );
+        Order.showOrders();
     }, DescriptionOrder: function () {
-        Page.hide.all();
+        document.getElementById( 'cassir' ).style.display = 'none';
+        // Page.hide.all();
         document.getElementById( 'description_order' ).style.display = '';
     }, CashBox: function () {
         Page.hide.all();
         document.getElementById( 'cash_box' ).style.display = '';
-        MSG.request.cashBoxOperationByDate( Page.timeBeginDay() );
+        waitProp( function () {
+            MSG.request.cashBoxOperationByChangeEmployee( Cashier.ChangeEmployee.ID );
+        }, function () {
+            return Cashier.ChangeEmployee;
+        }, 500, 10 );
         waitProp( function () {
                 MSG.request.personal( Cashier.OrganizationHash, DELYVERYMAN_HASH, Deliveryman );
             }
             , function () {
                 return !!Cashier.OrganizationHash;
-            } );
+            }, 500, 10 );
     }, Operator: function () {
         Page.hide.all();
         document.getElementById( 'interfase_operator' ).style.display = '';
@@ -188,8 +193,7 @@ Page.update = function () { // обновление информаци
             if ( $( '#description_order:visible' ).length !== 0 ) {
                 Order.list[document.title.split( '#' )[1]].showDescription();
             } else if ( $( '#cassir:visible' ).length !== 0 ) {
-                var x = +document.querySelector( '#cassir_tab li.active' ).dataset.status || 0;
-                Cassir.showOrders( x );
+                Order.showOrders();
             } else if ( $( '#interfase_operator:visible' ).length !== 0 ) {
                 // Page.show.Operator();
             } else {
@@ -201,19 +205,22 @@ Page.update = function () { // обновление информаци
 };
 
 
+// if ( TEST ) {
+//     waitProp( function () {
+//         Page.show.makeOrder();
+//         Page.show.Carts();
+//     }, function () {
+//         return Cashier.OrganizationHash;
+//     } );
+// } else {
+Page.show.Cassir();
+// }
 // Page.show.DescriptionOrder();
 // Order.list[382].showDescription();
-// waitProp( function () {
-//     Page.show.makeOrder();
-//     Page.show.Carts();
-// }, function () {
-//     return Cashier.OrganizationHash;
-// } );
 // Cart.Products[12].showDescription(); //TEST
 // Page.update();
 // Page.show.CashBox();
 // Page.show.Operator();
-Page.show.Cassir();
 // Page.show.delivery();
 
 //////////////////////////////////////////////////////////////////////////////

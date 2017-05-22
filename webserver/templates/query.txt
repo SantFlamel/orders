@@ -224,13 +224,16 @@ qmessage := c.PostForm("qmessage")
 --------------------------------------------------------------------------------
 ----Cashbox
 ----Создаем
-{"Table":"Cashbox","Query":"Create","TypeParameter":"","Values":null,"Limit":0,"Offset":0}{"Order_id":1,"First_sure_name":"First_sure_name","UserHash":"UserHash","RoleName":"RoleName","OrgHash":"OrgHash","TypePayments":id_payments,"TypeOperation":"TypeOperation","Cause":"Cause","Deposit":13.3,"ShortChange":11.1,"TimeOperation":"1320-12-04"}
+{"Table":"Cashbox","Query":"Create","TypeParameter":"","Values":null,"Limit":0,"Offset":0}{"Order_id":1,"Change_employee_id":Change_employee_id,"First_sure_name":"First_sure_name","UserHash":"UserHash","RoleName":"RoleName","OrgHash":"OrgHash","TypePayments":id_payments,"TypeOperation":"TypeOperation","Cause":"Cause","Deposit":13.3,"ShortChange":11.1,"TimeOperation":"1320-12-04"}
 
 ----Обновляем
 {"Table":"Cashbox","Query":"Update","TypeParameter":"Cause","Values":[id],"Limit":0,"Offset":0}
 
 ----Читаем элемент
 {"Table":"Cashbox","Query":"Read","TypeParameter":"Value","Values":[id],"Limit":0,"Offset":0}
+
+----Читаем все элементы операций за смену
+{"Table":"Cashbox","Query":"Read","TypeParameter":"RangeChangeEmployeeID","Values":[id_смены],"Limit":0,"Offset":0}
 
 ----Читаем сумму всех заказов по хешу организации, хешу пользователя и за диапозон времени  который были доставлены
 {"Table":"Cashbox","Query":"Read","TypeParameter":"ValueNumberCountPriceWithDiscount","Values":[orgHash, userHash, typepayment, timeBegin, timeEnd],"Limit":0,"Offset":0}
@@ -247,6 +250,23 @@ qmessage := c.PostForm("qmessage")
 ----Читаем диапозон по идентификатору заказа
 {"Table":"Cashbox","Query":"Read","TypeParameter":"RangeOrderID","Values":[order_id]}
 
+
+--------------------------------------------------------------------------------
+----ChangeEmployee
+----Создаем смену
+{"Table":"ChangeEmployee","Query":"Create","TypeParameter":"GetID","Values":null,"Limit":0,"Offset":0}{"UserHash":"UserHash","OrgHash":"OrgHash","Sum_in_cashbox":Sum_in_cashbox,"NonCash_end_day":NonCash_end_day,"Cash_end_day":Cash_end_day}
+
+----Обновляем
+{"Table":"ChangeEmployee","Query":"Update","TypeParameter":"Close","Values":[id,sum_in_cashbox,non_cash_end_day,cash_end_day,date_end],"Limit":0,"Offset":0}
+
+----Чтение смены
+{"Table":"ChangeEmployee","Query":"Read","TypeParameter":"Value","Values":[id],"Limit":0,"Offset":0}
+
+----Чтение всех смен по user_hash, org_hash, close
+{"Table":"ChangeEmployee","Query":"Read","TypeParameter":"RangeCloseUserHashOrgHash","Values":[user_hash,org_hash,close],"Limit":10,"Offset":0}
+
+----Чтение всех смен по org_hash, close
+{"Table":"ChangeEmployee","Query":"Read","TypeParameter":"RangeCloseOrgHash","Values":[org_hash, ],"Limit":10,"Offset":0}
 
 --------------------------------------------------------------------------------
 ----TimersCook

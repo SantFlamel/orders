@@ -1,0 +1,8 @@
+/*стоплист*/
+.stop_list_product {
+    border: 1px solid #ff2d55 !important;
+}
+
+.stop_list_product a {
+    color: #ff2d55 !important;
+}

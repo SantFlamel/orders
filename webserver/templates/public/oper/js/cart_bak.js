@@ -3,7 +3,7 @@
 // TODO: V пустота меж кнопками.
 // TODO: Сортировка по имени продукта.
 
-var LIMIT_IN_CART = 500,
+var LIMIT_IN_CART=500,
     DISCOUNT_FREE_SOUSES = 'Бесплатный соус для пиццы.';
 var FREE_SOUSES_FOR_PIZZA = [87];
 var NO_NAME = 'Без имени'
@@ -30,7 +30,7 @@ function Product( data ) {//TODO не работало как у Дениса, �
     var i;
     this.Type_id = data.Type_id;
     this.added = data.added;
-    // this.id = data.id;
+   // this.id = data.id;
     this.Price_id = data.Price_id;
     this.name = data.name;
     this.PriceName = data.PriceName;
@@ -50,16 +50,16 @@ function Product( data ) {//TODO не работало как у Дениса, �
     this.Set = data.Set;
     this.TimeCook = data.TimeCook;
     this.TimeFry = data.TimeFry;
-    this.ProductHash = data.ProductHash;
-    this.Units = data.Units;
-    this.Value = data.Value;
+    this.ProductHash  = data.ProductHash ;
+    this.Units=data.Units;
+    this.Value=data.Value;
 
     // if ( !this.added ) {
     //     console.log('if ( !this.added ) {', this.added);
     //     this.makeCatalogElement();
     // }
 
-    // this.added = Order.except(data.Price_id);
+   // this.added = Order.except(data.Price_id);
     this.mass = this.Value + ' ' + this.Units;
 
     this.CookingTracker = data.CookingTracker || 0;
@@ -480,7 +480,7 @@ Cart.showPrice = function () {
 Product.prototype.updateCunt = function () {
     // console.group( 'updateCunt' );
 
-    Cart.getCartCount();
+        Cart.getCartCount();
     var del = false, add = false;
     if ( Cart.cartCount.hasOwnProperty( this.Price_id ) ) {
         this.updateInputVal( this.Price_id, Cart.cartCount[this.Price_id].count, this.Price + 'р. x ' );
@@ -522,8 +522,8 @@ Cart.clean = function () {
     Cart.cartCount = {}
 };
 Cart.cancelOrder = function () {
+        Promotion.runAll();
     Cart.clean();
-    Promotion.runAll();
     $( '.product_in_cart' ).remove(); // очищаем боковую панель
     Cart.showPrice(); // сбрасыываем ценник
 };
@@ -540,22 +540,22 @@ $( document ).on( "click", ".delivery_met", function () {
     $( '.delivery_met' ).removeClass( 'active' );
     $( '.delivery_met [href = "' + h + '"]' ).parent().addClass( 'active' );
     Cart.showPrice();
-    $( '#take_away_address' ).prop( 'selectedIndex', -1 );
+    $( '#take_away_address').prop('selectedIndex', -1);
 
-    if ( $( '.delivery_met.active a' ).html() === 'Навынос' ) {
-        for ( var i = 0; i < Organizations.length; i++ )
-            $( '#take_away_address option[value=' + i + ']' ).removeAttr( 'disabled' );// активируем адреса
-        $( "#warning_dellivery" ).css( "color", "green" );
-        $( "#warning_dellivery" ).html( "Выберите точку" );
-        $( ".delivery_name" ).html( "приготовлен" );
+    if  ($( '.delivery_met.active a' ).html() === 'Навынос') {
+        for (var i = 0; i < Organizations.length; i++)
+            $('#take_away_address option[value=' + i + ']').removeAttr('disabled');// активируем адреса
+        $("#warning_dellivery").css( "color", "green" );
+        $("#warning_dellivery").html("Выберите точку");
+        $(".delivery_name").html("приготовлен");
     }
     else {
 
-        $( ".delivery_name" ).html( "доставлен" );
+        $(".delivery_name").html("доставлен");
         getDeliveryZone(
-            $( "#city_client" ).val(),
-            $( ".operator_client_adress .collapse.in #street_client" ).val(),
-            $( ".operator_client_adress .collapse.in #home_number" ).val() );
+        $("#city_client").val(),
+        $(".operator_client_adress .collapse.in #street_client").val(),
+        $(".operator_client_adress .collapse.in #home_number").val());
     }
 } );
 
@@ -598,7 +598,7 @@ $( document ).on( 'click', '.cart_btn_cancel', function () {
 
 Cart.addProduct = function ( prod ) { //TEST
     //Product.list[prod['id']] =
-    new Product( prod );
+        new Product( prod );
 };
 
 // for ( var i in products ) { //TEST

@@ -8,131 +8,130 @@ function getTime() {
     var hours = d.getHours();
     var minutes = d.getMinutes();
 
-    month = new Array("января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря");
-    weekday = new Array("Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота");
+    month = new Array( "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря" );
+    weekday = new Array( "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" );
 
-    if (day <= 9) day = "0" + day;
-    if (hours <= 9) hours = "0" + hours;
-    if (minutes <= 9) minutes = "0" + minutes;
+    if ( day <= 9 ) day = "0" + day;
+    if ( hours <= 9 ) hours = "0" + hours;
+    if ( minutes <= 9 ) minutes = "0" + minutes;
 
     current_time = hours + ":" + minutes;
     current_date = weekday[day_num] + ",  " + day + " " + month[month_num];
-    if (document.layers) {
-        document.layers.doc_time.document.write(current_time);
-        document.layers.doc_date.document.write(current_date);
+    if ( document.layers ) {
+        document.layers.doc_time.document.write( current_time );
+        document.layers.doc_date.document.write( current_date );
         document.layers.doc_time.document.close();
         document.layers.doc_date.document.close();
     } else {
-        document.getElementById("doc_time").innerHTML = current_time;
-        document.getElementById("doc_date").innerHTML = current_date;
+        document.getElementById( "doc_time" ).innerHTML = current_time;
+        document.getElementById( "doc_date" ).innerHTML = current_date;
     }
-    setTimeout("getTime()", 30000);
+    setTimeout( "getTime()", 30000 );
 }
 
 getTime();
 
 
-$(document).ready(function() {
-    $(".table-cashbox").on("click", ".table-cashbox__payment", function(){
+$( document ).ready( function () {
+    $( ".table-cashbox" ).on( "click", ".table-cashbox__payment", function () {
 
-        $(this).toggleClass("table-cashbox__payment--active");
-        $(".btn-re-check").toggleClass("btn-disabled"); 
-        $(".btn-return-check").toggleClass("btn-disabled");
-        $(".btn-return-check").toggleClass("btn-red");
-    });
-});
-
+        $( this ).toggleClass( "table-cashbox__payment--active" );
+        $( ".btn-re-check" ).toggleClass( "btn-disabled" );
+        $( ".btn-return-check" ).toggleClass( "btn-disabled" );
+        $( ".btn-return-check" ).toggleClass( "btn-red" );
+    } );
+} );
 
 
 //$('#tel_num, #client_phone').val('8(657)856-78-56');
 
 // Переключатель онлайн-оффлайн
 function onOff() {
-    if ($('i:hover').hasClass('fa-toggle-on')) {
-        $('i:hover').removeClass('fa-toggle-on').addClass('fa-toggle-off');
-    } else if ($('i:hover').hasClass('fa-toggle-off')) {
-        $('i:hover').removeClass('fa-toggle-off').addClass('fa-toggle-on');
+    if ( $( 'i:hover' ).hasClass( 'fa-toggle-on' ) ) {
+        $( 'i:hover' ).removeClass( 'fa-toggle-on' ).addClass( 'fa-toggle-off' );
+    } else if ( $( 'i:hover' ).hasClass( 'fa-toggle-off' ) ) {
+        $( 'i:hover' ).removeClass( 'fa-toggle-off' ).addClass( 'fa-toggle-on' );
     }
 }
 
 
-
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-});
+$( function () {
+    $( '[data-toggle="tooltip"]' ).tooltip()
+} );
 
 // Кнопка для активации боковой панели
-$(document).ready(function(){
-    $(".trigger").click(function(){
-        $(".panel").toggle("fast");
-        $(this).toggleClass("active");
+$( document ).ready( function () {
+    $( ".trigger" ).click( function () {
+        $( ".panel" ).toggle( "fast" );
+        $( this ).toggleClass( "active" );
         return false;
-    });
-});
+    } );
+} );
 
 
 // Для боковой панели на планшетных экранах
-function screen_check(){
-    if ($(window).width() <=1600) {
-       $('.sidebar-operator').addClass('panel');
-       $('.sidebar-operator').css("display", "none");
-       $('#mydell').removeClass('col-lg-3');
+function screen_check() {
+    if ( $( window ).width() <= 1600 ) {
+        $( '.sidebar-operator' ).addClass( 'panel' );
+        $( '.sidebar-operator' ).css( "display", "none" );
+        $( '#mydell' ).removeClass( 'col-lg-3' );
     } else {
-       $('.sidebar-operator').removeClass('panel');
-       $('.sidebar-operator').css("display", "block");
-       $('#mydell').addClass('col-lg-3');
-    };
+        $( '.sidebar-operator' ).removeClass( 'panel' );
+        $( '.sidebar-operator' ).css( "display", "block" );
+        $( '#mydell' ).addClass( 'col-lg-3' );
+    }
+    ;
 }
 
 screen_check();
-$(window).on('resize', function(){ screen_check(); });
-
+$( window ).on( 'resize', function () {
+    screen_check();
+} );
 
 
 //-------------------------------------------------------------------------- новый заказ
 
-$('body').on('click', '#on_time', (function () { // anonim
+$( 'body' ).on( 'click', '#on_time', (function () { // anonim
     var x = true;
     var _date = new Date();
-    var _hours = parseInt(_date.getHours());
-    var _minutes = parseInt(_date.getMinutes());
+    var _hours = parseInt( _date.getHours() );
+    var _minutes = parseInt( _date.getMinutes() );
 
-    var _time = ((_hours+2)%24 < 10 ? '0' + (_hours+2)%24 : (_hours+2)%24) + ':' + (_minutes < 10 ? '0' + _minutes : _minutes);
-    var _months = parseInt(_date.getMonth()) + 1;
+    var _time = ((_hours + 2) % 24 < 10 ? '0' + (_hours + 2) % 24 : (_hours + 2) % 24) + ':' + (_minutes < 10 ? '0' + _minutes : _minutes);
+    var _months = parseInt( _date.getMonth() ) + 1;
     _months = _months < 10 ? '0' + _months : _months;
     var _day = _date.getDate();
     _day = _day < 10 ? '0' + _day : _day;
     _date = _date.getFullYear() + '-' + _months + '-' + _day;
-    $('#select_time').val(_time);
-    $('#select_date').attr('min', _date).val(_date);
+    $( '#select_time' ).val( _time );
+    $( '#select_date' ).attr( 'min', _date ).val( _date );
     return function () {
         x = !x;
-        $('#select_date, #select_time').prop('disabled', x);
+        $( '#select_date, #select_time' ).prop( 'disabled', x );
     }
-})());
+})() );
 
 
-$(document).ready(function(){       /// изменение имени на странице заказа
-    $("#client_name").keyup(function() {
-        var $input = $(this),
+$( document ).ready( function () {       /// изменение имени на странице заказа
+    $( "#client_name" ).keyup( function () {
+        var $input = $( this ),
             inputContent = $input.val();
-        phone_client_name= $input.val();
-        $(".client_name_oper").html(phone_client_name);
-    })
-})
+        phone_client_name = $input.val();
+        $( ".client_name_oper" ).html( phone_client_name );
+    } )
+} )
 
 
 //---------- приготовить сдачу
-$(".money_summ a").click(function (event) {
-    $("#ostatok").val(this.text);
+$( ".money_summ a" ).click( function ( event ) {
+    $( "#ostatok" ).val( this.text );
 
-})
-$('#ostatok').next().click(function () {
-    $("#ostatok").val("");
-});
+} )
+$( '#ostatok' ).next().click( function () {
+    $( "#ostatok" ).val( "" );
+} );
 
 //-----
-
 
 
 //-------------------------------------------------------------------------------------------------------------------

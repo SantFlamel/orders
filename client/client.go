@@ -133,8 +133,10 @@ func main() {
     //----DELETE_ITEM----
     //err = order(100)
     //if err!=nil{println(err);return }
-    st := "{\"Table\":\"Session\",\"Query\":\"Read\",\"TypeParameter\":\"Hash\",\"Values\":[\"94cf8307be3a50abe776132ca0ab18b53c6de12a47cafdbcd3970aa5877a8cde\"]}"
 
+
+    //st := "{\"Table\":\"Session\",\"Query\":\"Read\",\"TypeParameter\":\"Hash\",\"Values\":[\"94cf8307be3a50abe776132ca0ab18b53c6de12a47cafdbcd3970aa5877a8cde\"]}"
+    st := ""
     println(len(st))
     s:=strconv.Itoa(len(st))
     println(len(s))

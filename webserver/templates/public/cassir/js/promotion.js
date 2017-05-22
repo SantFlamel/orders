@@ -12,10 +12,10 @@ function Promotion( data ) {
     this.condition = []; // список условий
     this.overal = []; // сгрупированный список того что подходит под условия
     this.availableList = []; // список елементов корзины на которые можно назначить скидку
-    this.listApplyPresent = [];
 
     Promotion.list[this.ID] = this
 }
+
 Promotion.list = {};
 Promotion.selectedDiscount = false; // выбранная скидка если скидка на весь чек
 Promotion.selectList = {}; // все активированные акции
@@ -23,10 +23,12 @@ Promotion.selectList = {}; // все активированные акции
 function PromotionType( data ) {
     PromotionType.list[data.ID] = data;
 }
+
 PromotionType.list = {};
 function PromotionSubjects( data ) {
     PromotionSubjects.list[data.ID] = data;
 }
+
 PromotionSubjects.list = {};
 
 Promotion.all = function ( func ) {
@@ -57,8 +59,8 @@ Promotion.prototype.setupChecks = function () {
             index = [];
             for ( i in Cart.list ) {
                 ii = Cart.list[i];
-                if ( (condition.Type_id === 0 || condition.Type_id === ii.Type_id)
-                    && ( condition.Price_id.length === 0 || ~condition.Price_id.indexOf( ii.Price_id ))
+                if ( ( condition.Price_id.length === 0 || ~condition.Price_id.indexOf( ii.Price_id ))
+                    && (condition.Type_id === 0 || condition.Type_id === ii.Type_id)
                     && (condition.NameParameterForType === '' || ~ii.PriceName.indexOf( condition.NameParameterForType )) ) {
                     index.push( i );
                     if ( self.ForEach && index.length === condition.Count ) {
@@ -154,8 +156,7 @@ Promotion.prototype.setupAvailableList = function () {
         }
     }
     console.groupEnd();
-}
-;
+};
 
 // проверяем что доступна при данном случае
 Promotion.prototype.checkAvailable = function () {
@@ -204,7 +205,7 @@ Promotion.prototype.makeCollapseElementHead = function () {
         </a>\
         </div>\
         <div style="width: 100%; border-bottom: 1px solid #9d9d9d;" id="collapse_promotion'
-        + this.ID + '" class="panel-collapse collapse in" role="tabpanel"\
+        + this.ID + '" class="panel-collapse collapse" role="tabpanel"\
                 aria-expanded="true" aria-labelledby="heading_promotion' + this.ID + '">\
         <div class="panel-body">';
 };
@@ -339,8 +340,7 @@ Promotion.prototype.setupPresent = function () {
                         + '</div>';
                 }
             }
-            elem += '</div>\
-                    </div>';
+            elem += '</div></div>';
             $( '#promotion' ).append( elem );
         };
         this.unShowPresent = function () {
@@ -408,8 +408,8 @@ Promotion.prototype.setupPresent = function () {
                 , prodInCart
                 ;
             for ( i in indexInCart ) {
-                Cart.list.splice( +indexInCart[i], 1 );
                 prodInCart = Cart.list[indexInCart[i]].Price_id;
+                Cart.list.splice( +indexInCart[i], 1 );
                 Product.list[prodInCart].updateCunt();
             }
             delete Promotion.selectList[self.ID];
@@ -443,6 +443,11 @@ $( document ).on( 'click', 'input[type="radio"][id^="present"]', function () {
     console.log( 'Cart.list', Cart.list );
     var self = Promotion.list[this.id.split( 'present' )[1]];
     self.selectPresent( this.value, this.dataset.id_present );
+    if ( self.ID === 3 ) {
+        Promotion.list[6].unSelectPresent();
+        Promotion.list[6].check();
+        Promotion.list[6].showPresent();
+    }
 } );
 // убираем несовместимые "подарки"
 Promotion.prototype.unSelectedAllConflict = function ( ID ) {
@@ -471,7 +476,7 @@ $( document ).on( 'click', '#load_promo', function () {
 
 Promotion.reset = function () {
     var i, ii;
-    for ( i = Cart.list.length - 1; i >= 0; i--  ) {
+    for ( i = Cart.list.length - 1; i >= 0; i-- ) {
         ii = Cart.list[i];
         if ( ii.DiscountName !== null || ii.DiscountPercent !== 0 ) {
             if ( ii.IDPresent ) {

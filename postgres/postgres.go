@@ -107,7 +107,7 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 	}
 
 	//----READ_COUNT_ALL
-	dbr.requestsList["queryReadOrderCheckInfo"], err = db.Prepare("select org_hash,discount_name,discount_percent,price,price_with_discount,price_currency from \"order\" where id=$1;")
+	dbr.requestsList["queryReadOrderCheckInfo"], err = db.Prepare("select org_hash,discount_name,\"type\",note,discount_percent,price,price_with_discount,price_currency from \"order\" where id=$1;")
 	if err != nil {
 		return err
 	}
@@ -306,7 +306,7 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 		"WHEN(select max(id_item) from order_list where order_id = $1) is null THEN 1 " +
 		"ELSE(select max(id_item)+1 from order_list where order_id = $1) " +
 		"END), $2, $3, $4, $5, $6, " +
-		"$7, $8, $9, $10, $11, $12, (case when $17 = 0 THEN true else false end), $13, " +
+		"$7, $8, $9, $10, $11, $12, (case when $16 = 0 THEN true else false end), $13, " +
 		"$14, $15, $16, $17, $18, $19, $20, $21) RETURNING id_item")
 	if err != nil {
 		return err
@@ -395,7 +395,19 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 		"finished, discount_name, discount_percent, price, cooking_tracker, time_cook, " +
 		"time_fry, composition, additionally, packaging " +
 		"FROM order_list where  order_id = $1 ORDER BY price_name ASC;")
-		//"FROM order_list where  order_id = $1 ORDER BY id_item ASC;")
+	//"FROM order_list where  order_id = $1 ORDER BY id_item ASC;")
+	if err != nil {
+		return err
+	}
+
+	//----READ_RANGE_ID
+	dbr.requestsList["queryReadOrderListRangeOrderIDSet"], err = db.Prepare("" +
+		"SELECT order_id, id_item, id_parent_item, price_id, price_name, type_id, " +
+		"type_name, parent_id, parent_name, image, units, value, set, " +
+		"finished, discount_name, discount_percent, price, cooking_tracker, time_cook, " +
+		"time_fry, composition, additionally, packaging " +
+		"FROM order_list where  order_id = $1 AND id_parent_item = 0 ORDER BY price_name ASC;")
+	//"FROM order_list where  order_id = $1 ORDER BY id_item ASC;")
 	if err != nil {
 		return err
 	}
@@ -456,12 +468,15 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 		"RIGHT JOIN order_list ol ON ol.order_id=o.id " +
 		"WHERE " +
 		"o.org_hash=$1 " +
-		"AND (o.date_preorder_cook - interval '1 hours') < $2 " +
+		"AND (select case when o.type = 'Доставка' then " +
+		"o.date_preorder_cook - interval '45 minutes' else " +
+		"o.date_preorder_cook - interval '30 minutes' end) < $2 " +
 		"AND ol.set=false " +
 		"AND ol.time_cook>0 " +
 		"AND ol.finished=false " +
 		")	ol " +
 		"WHERE " +
+		//"(cooking_tracker=$3 AND (status_id < 4 OR status_id=14 OR status_id is null) OR (status_id = 4 AND cooking_tracker=$3 AND OSU = $4)) AND status_id_order<>15 AND status_id_order<>16 " +
 		"(cooking_tracker=$3 AND (status_id < 4 OR status_id=14 OR status_id is null) OR (status_id = 4 AND cooking_tracker=$3 AND OSU = $4)) AND status_id_order<>15 AND status_id_order<>16 " +
 		"ORDER BY ol.order_id, ol.id_item  ASC  LIMIT $5  OFFSET $6",
 
@@ -517,19 +532,27 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 		"FROM order_status " +
 		"WHERE order_id=ol.order_id AND order_id_item=id_item AND order_status.status_id=4 " +
 		"ORDER BY \"time\" DESC LIMIT 1) as osu " +
+		",(SELECT CASE WHEN (SELECT order_status.status_id " +
+		"FROM order_status " +
+		"WHERE order_status.order_id=ol.order_id AND order_status.status_id=4 " +
+		"ORDER BY id DESC LIMIT 1)is not null then 0 else 1 end " +
+		") as oss " +
 		"FROM  \"order\" o " +
 		"RIGHT JOIN order_list ol ON ol.order_id=o.id " +
 		"WHERE " +
 		"o.org_hash=$1 " +
-		"AND (o.date_preorder_cook - interval '1 hours') < $2 " +
+		"AND (select case when o.type = 'Доставка' then " +
+		"o.date_preorder_cook - interval '45 minutes' else " +
+		"o.date_preorder_cook - interval '30 minutes' end) < $2 " +
 		"AND ol.set=false " +
 		"AND ol.time_cook>0 " +
 		"AND ol.finished=false " +
 		")	ol " +
 		"WHERE " +
 		"((cooking_tracker=$3 AND  (status_id < 4 OR status_id=14 OR status_id is null)) " +
-		"OR (status_id=$4  AND OSU = $5) OR (status_id = 4 AND cooking_tracker=$3 AND OSU = $5)) AND status_id_order<>15 AND status_id_order<>16   " +
-		"ORDER BY ol.order_id, ol.id_item  ASC  LIMIT $6  OFFSET $7",
+		"OR status_id=$4 OR (status_id = 4 AND cooking_tracker=$3 AND OSU = $5)) AND status_id_order<>15 AND status_id_order<>16   " +
+		//"OR (status_id=$4  AND OSU = $5) OR (status_id = 4 AND cooking_tracker=$3 AND OSU = $5)) AND status_id_order<>15 AND status_id_order<>16   " +
+		"ORDER BY ol.oss, ol.order_id, ol.id_item  ASC  LIMIT $6  OFFSET $7",
 	)
 	if err != nil {
 		return err
@@ -820,7 +843,7 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 	//==================================================================================================================
 	//==================================================================================================================
 	//----Cashbox
-	dbr.requestsList["execInsertCashbox"], err = db.Prepare("INSERT INTO cashbox(order_id, first_sure_name, user_hash, role_name, org_hash, type_payments, type_operation, deposit, short_change, cause, time_operation)VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id;")
+	dbr.requestsList["execInsertCashbox"], err = db.Prepare("INSERT INTO cashbox(order_id, \"сhange_employee_id\", first_sure_name, user_hash, role_name, org_hash, type_payments, type_operation, deposit, short_change, cause, time_operation)VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING id;")
 	if err != nil {
 		return err
 	}
@@ -834,7 +857,7 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 
 	//------------------------------------------------------------------------------------------------------------------
 	//----READ_ITEM
-	dbr.requestsList["queryReadCashboxValue"], err = db.Prepare("SELECT id, order_id, first_sure_name, user_hash, role_name, org_hash, type_payments, type_operation,deposit, short_change, cause, time_operation FROM cashbox WHERE  id = $1")
+	dbr.requestsList["queryReadCashboxValue"], err = db.Prepare("SELECT id, order_id, \"сhange_employee_id\", first_sure_name, user_hash, role_name, org_hash, type_payments, type_operation,deposit, short_change, cause, time_operation FROM cashbox WHERE  id = $1")
 	if err != nil {
 		return err
 	}
@@ -847,6 +870,15 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 
 	//----READ_ITEM_Value
 	dbr.requestsList["queryReadCashboxValueNumberCountPriceWithDiscount"], err = db.Prepare("SELECT count(price_with_discount) FROM " +
+		"(SELECT id, price_with_discount FROM \"order\" " +
+		"INNER JOIN order_personal os ON os.order_id = id " +
+		"WHERE org_hash = $1 AND user_hash = $2 AND type_payments = $3 AND order_time > $4 AND  order_time < $5) as o WHERE (SELECT status_id FROM order_status WHERE order_id=o.id ORDER BY id DESC LIMIT 1)=11")
+	if err != nil {
+		return err
+	}
+
+	//----READ_ITEM_Value
+	dbr.requestsList["queryReadCashboxValueNumberSumPriceWithDiscount"], err = db.Prepare("SELECT sum(price_with_discount) FROM " +
 		"(SELECT id, price_with_discount FROM \"order\" " +
 		"INNER JOIN order_personal os ON os.order_id = id " +
 		"WHERE org_hash = $1 AND user_hash = $2 AND type_payments = $3 AND order_time > $4 AND  order_time < $5) as o WHERE (SELECT status_id FROM order_status WHERE order_id=o.id ORDER BY id DESC LIMIT 1)=11")
@@ -885,13 +917,19 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 	}
 
 	//----READ_RANGE_ALL
-	dbr.requestsList["queryReadCashboxRangeUserAndOrdAndTime"], err = db.Prepare("SELECT id, order_id, first_sure_name, user_hash, role_name, org_hash, type_payments, type_operation,deposit, short_change, cause, time_operation FROM cashbox WHERE  user_hash=$1 AND org_hash=$2 AND time_operation > $3 AND time_operation < $4 LIMIT $5  OFFSET $6 ")
+	dbr.requestsList["queryReadCashboxRangeUserAndOrdAndTime"], err = db.Prepare("SELECT id, order_id, \"сhange_employee_id\", first_sure_name, user_hash, role_name, org_hash, type_payments, type_operation,deposit, short_change, cause, time_operation FROM cashbox WHERE  user_hash=$1 AND org_hash=$2 AND time_operation > $3 AND time_operation < $4 LIMIT $5  OFFSET $6 ")
+	if err != nil {
+		return err
+	}
+
+	//----READ_RANGE
+	dbr.requestsList["queryReadCashboxRangeChangeEmployeeID"], err = db.Prepare("SELECT id, order_id, \"сhange_employee_id\", first_sure_name, user_hash, role_name, org_hash, type_payments, type_operation, deposit, short_change, cause, time_operation FROM public.cashbox where \"сhange_employee_id\" = $1;")
 	if err != nil {
 		return err
 	}
 
 	//----READ_RANGE_BY_ORDER_ID
-	dbr.requestsList["queryReadCashboxRangeOrderID"], err = db.Prepare("SELECT id, order_id, first_sure_name, user_hash, role_name, org_hash, type_payments, type_operation,deposit, short_change, cause, time_operation FROM cashbox WHERE  order_id=$1;")
+	dbr.requestsList["queryReadCashboxRangeOrderID"], err = db.Prepare("SELECT id, order_id, \"сhange_employee_id\", first_sure_name, user_hash, role_name, org_hash, type_payments, type_operation,deposit, short_change, cause, time_operation FROM cashbox WHERE  order_id=$1;")
 	if err != nil {
 		return err
 	}
@@ -1017,6 +1055,111 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 		"WHERE order_id=$1 AND order_id_item=$2 AND count = (select CASE " +
 		"WHEN(SELECT max(count) FROM timers_cook WHERE order_id = $1 AND order_id_item = $2 LIMIT 1) IS NULL THEN 0 " +
 		"ELSE(SELECT max(count) FROM timers_cook WHERE order_id = $1 AND order_id_item = $2 LIMIT 1)END AS m);")
+	if err != nil {
+		return err
+	}
+
+	//==================================================================================================================
+	//==================================================================================================================
+	//----ChangeEmployee
+	dbr.requestsList["execInsertChangeEmployeeGetID"], err = db.Prepare("INSERT INTO \"сhange_employee\"( " +
+		"user_hash, org_hash, sum_in_cashbox, \"non_cash_end_day\", cash_end_day, close, date_begin, date_end) " +
+		"VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id;")
+	if err != nil {
+		return err
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	//----UPDATE_CLOSE_courrier
+	dbr.requestsList["execUpdateChangeEmployeeClose"], err = db.Prepare("" +
+            "with a as (select close from \"сhange_employee\" where id = $1 ), s as( " +
+            "UPDATE \"сhange_employee\" SET sum_in_cashbox=$2, non_cash_end_day=$3, cash_end_day=$4, close=true, date_end=$5 WHERE id = $1 AND false in (select close from a)) " +
+            "SELECT raise_exception('Already closed') FROM a WHERE a.close = true;")
+            //"UPDATE \"сhange_employee\" SET sum_in_cashbox=$2, non_cash_end_day=$3, cash_end_day=$4, close=true, date_end=$5 WHERE id = $1;")
+	if err != nil {
+		return err
+	}
+
+	//dbr.requestsList["execUpdateChangeEmployeeCloseCourrier"], err = db.Prepare("WITH hash AS( " +
+	//"SELECT sum(price_with_discount) FROM " +
+	//"(SELECT id, price_with_discount FROM \"order\" " +
+	//"INNER JOIN order_personal os ON os.order_id = id WHERE " +
+	//"org_hash = (SELECT org_hash FROM \"сhange_employee\" WHERE id = $1) " +
+	//"AND user_hash = (SELECT user_hash FROM \"сhange_employee\" WHERE id = $1) " +
+	//"AND type_payments = 1 " +
+	//"AND order_time > (SELECT date_begin FROM \"сhange_employee\" WHERE id = $1) " +
+	//"AND  order_time < $2 " +
+	//") as o " +
+	//"WHERE (SELECT status_id FROM order_status WHERE order_id=o.id ORDER BY id DESC LIMIT 1)=11) " +
+	//
+	//", nonhash AS( " +
+	//"SELECT sum(price_with_discount) as s " +
+	//"FROM (SELECT id, price_with_discount FROM \"order\" " +
+	//"INNER JOIN order_personal os ON os.order_id = id " +
+	//"WHERE org_hash = (SELECT org_hash FROM \"сhange_employee\" WHERE id = $1) " +
+	//"AND user_hash = (SELECT user_hash FROM \"сhange_employee\" WHERE id = $1) " +
+	//"AND type_payments = 2 " +
+	//"AND order_time > (SELECT date_begin FROM \"сhange_employee\" WHERE id = $1) " +
+	//"AND  order_time < $2 " +
+	//") as o " +
+	//"WHERE (SELECT status_id FROM order_status WHERE order_id=o.id ORDER BY id DESC LIMIT 1)=11) " +
+	//
+	//"UPDATE \"сhange_employee\" " +
+	//"SET non_cash_end_day=(SELECT s FROM nonhash), " +
+	//"cash_end_day=(SELECT s FROM hash), close=true, date_end=$2 " +
+	//"WHERE id = $1;")
+	//if err != nil {
+	//	return err
+	//}
+	//
+	////----UPDATE_CLOSE_Cashier
+	//dbr.requestsList["execUpdateChangeEmployeeCloseCashier"], err = db.Prepare("WITH hash AS( " +
+	//"SELECT sum(price_with_discount) FROM " +
+	//"(SELECT id, price_with_discount FROM \"order\" " +
+	//"INNER JOIN order_personal os ON os.order_id = id WHERE " +
+	//"org_hash = (SELECT org_hash FROM \"сhange_employee\" WHERE id = $1) " +
+	//"AND user_hash = (SELECT user_hash FROM \"сhange_employee\" WHERE id = $1) " +
+	//"AND type_payments = 1 " +
+	//"AND order_time > (SELECT date_begin FROM \"сhange_employee\" WHERE id = $1) " +
+	//"AND  order_time < $2 " +
+	//") as o " +
+	//"WHERE (SELECT status_id FROM order_status WHERE order_id=o.id ORDER BY id DESC LIMIT 1)=11) " +
+	//
+	//", nonhash AS( " +
+	//"SELECT sum(price_with_discount) as s " +
+	//"FROM (SELECT id, price_with_discount FROM \"order\" " +
+	//"INNER JOIN order_personal os ON os.order_id = id " +
+	//"WHERE org_hash = (SELECT org_hash FROM \"сhange_employee\" WHERE id = $1) " +
+	//"AND user_hash = (SELECT user_hash FROM \"сhange_employee\" WHERE id = $1) " +
+	//"AND type_payments = 2 " +
+	//"AND order_time > (SELECT date_begin FROM \"сhange_employee\" WHERE id = $1) " +
+	//"AND  order_time < $2 " +
+	//") as o " +
+	//"WHERE (SELECT status_id FROM order_status WHERE order_id=o.id ORDER BY id DESC LIMIT 1)=11) " +
+	//
+	//"UPDATE \"сhange_employee\" " +
+	//"SET non_cash_end_day=(SELECT s FROM nonhash), " +
+	//"cash_end_day=(SELECT s FROM hash), close=true, date_end=$2 " +
+	//"WHERE id = $1;")
+	//if err != nil {
+	//	return err
+	//}
+
+	//------------------------------------------------------------------------------------------------------------------
+	//----READ_ITEM
+	dbr.requestsList["queryReadChangeEmployeeValue"], err = db.Prepare("SELECT id, user_hash, org_hash, sum_in_cashbox, non_cash_end_day, cash_end_day, close, date_begin, date_end FROM \"сhange_employee\" WHERE id = $1;")
+	if err != nil {
+		return err
+	}
+
+	//----READ_RANGE_ALL
+	dbr.requestsList["queryReadChangeEmployeeRangeCloseUserHashOrgHash"], err = db.Prepare("SELECT id, user_hash, org_hash, sum_in_cashbox, non_cash_end_day, cash_end_day, close, date_begin, date_end FROM \"сhange_employee\" WHERE user_hash = $1 AND org_hash = $2 AND close = $3 ORDER BY date_begin DESC  LIMIT $4  OFFSET $5;")
+	if err != nil {
+		return err
+	}
+
+	//----READ_RANGE_ALL
+	dbr.requestsList["queryReadChangeEmployeeRangeCloseOrgHash"], err = db.Prepare("SELECT id, user_hash, org_hash, sum_in_cashbox, non_cash_end_day, cash_end_day, close, date_begin, date_end FROM \"сhange_employee\" WHERE org_hash = $1 AND close = $2 ORDER BY date_begin DESC  LIMIT $3  OFFSET $4;")
 	if err != nil {
 		return err
 	}

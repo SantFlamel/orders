@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="../../public/cassir/img/favicon.png">
     <link rel="stylesheet" type="text/css" href="../../public/cassir/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../../public/cassir/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../../public/cassir/css/my.css">
+    <link rel="stylesheet" type="text/css" href="../../public/cassir/css/my.css?123">
     <link rel="stylesheet" type="text/css" href="../../public/cassir/css/cassa.css">
     <title>Панель управления</title>
 </head>
@@ -30,20 +30,18 @@
                     <ul id="cassir_tab" class="nav nav-tabs">
                         <li id="new_order"><a href="" data-toggle="tab">+ Новый
                             заказ</a></li>
-                        <li onclick="Cassir.showOrders(+this.dataset.status, true);" data-status="0" id="orders"
-                            class="active"><a
-                                href=""
+                        <li  data-status="0" id="orders" class="active"><a href=""
                                 data-toggle="tab">Активные<span></span></a></li>
-                        <li onclick="Cassir.showOrders(+this.dataset.status, true);" data-status="1" id="pre_order"><a
+                        <li  data-status="1" id="pre_order"><a
                                 href="#pre_order"
                                 data-toggle="tab">Предзаказы
                             <span></span></a></li>
-                        <li onclick="Cassir.showOrders(+this.dataset.status, true);" data-status="9"><a
+                        <li data-status="10"><a
                                 class="delivery_order"
                                 href="#delivery_order"
                                 data-toggle="tab">Доставка<span></span></a>
                         </li>
-                        <li onclick="Cassir.showOrders(+this.dataset.status, true);" data-status="999" id="done"><a
+                        <li  data-status="999" id="done"><a
                                 class="contractor_order"
                                 href="#contractor_order"
                                 data-toggle="tab">Исполнено<span></span></a>
@@ -265,7 +263,7 @@
                 </div>
             </div>
             <div class="col-md-12 col-lg-3 sidebar-order">
-                <div onclick="Page.show.Cassir();" class="sidebar-order__link-home text-right">
+                <div id="home_description_order" class="sidebar-order__link-home text-right">
                     <a>Домой
                         <img src="../../public/cassir/img/home-icon.png" alt="Домой">
                     </a>
@@ -309,15 +307,14 @@
                     </div>
                     <div class="sidebar-order__sum clearfix">
                         <span class="sidebar-order__left-column">Сдача:</span>
-                        <span id="" class="sidebar-order__right-column">-</span>
+                        <span class="sidebar-order__right-column">-</span>
                     </div>
                 </div>
                 <div class="sidebar-order__comments">
                     <span>Комментарии:</span>
-                    <p id="note" class="sidebar-order__text-comments">Ролл и сетт в разные пакеты.<br>
-                        Деловой центр.<br>Позвонить, встретят</p>
+                    <p id="note" class="sidebar-order__text-comments"></p>
                 </div>
-                <span class="sidebar-order__timer">00:00</span>
+                <!--<span class="sidebar-order__timer">00:00</span>-->
                 <div class="sidebar-order__order-control-buttons">
                     <!--получаем айди ордера в котором вызвали модалку и ставим на кнопку "оплатиь"-->
                     <button id="pay_order" class="btn-deposit" data-toggle="modal" data-target="#introduction">Оплатить
@@ -517,8 +514,8 @@
                         </table>
                     </div>
                     <div class="sidebar-cashbox__control-buttons">
-                        <button class="btn-close-shift" data-toggle="modal" data-target="#close-shift" type="button">
-                            Закрыть смену
+                        <button id="change_employee" class="btn-close-shift" data-toggle="modal" data-target="#close-shift" type="button">
+                            Открыть смену
                         </button>
                         <!--<button class="btn-deposit">Внесение</button>-->
                         <button id="btn_deposit"
@@ -547,11 +544,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p>Вы действительно хотите закрыть смену?</p>
+                    <p>Вы действительно хотите открыть смену?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal">Нет</button>
-                    <button type="button" data-dismiss="modal">Да</button>
+                    <button id="close_day_cashier" type="button" data-dismiss="modal">Да</button>
                 </div>
             </div>
         </div>
@@ -922,7 +919,7 @@
                         </div>
                         <div class="col-sm-6">
                             <input class="tel_num" type="text" id="client_phone" placeholder="Введите номер телефона"
-                                   autocomplete="off" value="7(909)777-77-77">
+                                   autocomplete="off" value="">
                             <a class="button_border clearbutton">Очистить</a>
                             <a style="margin-left: 15px " class="button_border" id="loadtel">Загрузить</a>
                             <div id="black_list" class="red_txt"></div>
@@ -1343,20 +1340,20 @@
 <script src="../../public/cassir/js/jquery.formstyler.js" type="text/javascript"></script>
 <script src="../../public/cassir/js/jquery.maskedinput.js" type="text/javascript"></script>
 <script src="../../public/cassir/js/typeahead.jquery.js" type="text/javascript"></script>
-<script src="../../public/cassir/js/myjs.js" type="text/javascript"></script>
-<script src="../../public/cassir/js/cfg.js" type="text/javascript"></script>
-<script src="../../public/cassir/js/TEST.js" type="text/javascript"></script>
+<script src="../../public/cassir/js/myjs.js?123" type="text/javascript"></script>
+<script src="../../public/cassir/js/cfg.js?123" type="text/javascript"></script>
+<script src="../../public/cassir/js/TEST.js?123" type="text/javascript"></script>
 <script src="../../public/cassir/js/bootstrap.js" type="text/javascript"></script>
-<script src="../../public/cassir/js/cassir.js" type="text/javascript"></script>
-<script src="../../public/cassir/js/cart.js" type="text/javascript"></script>
-<script src="../../public/cassir/js/description_order.js"></script>
-<script src="../../public/cassir/js/cashbox.js"></script>
-<script src="../../public/cassir/js/operator.js"></script>
-<script src="../../public/cassir/js/ws.js"></script>
-<script src="../../public/cassir/js/delivery.js" type="text/javascript"></script>
-<!--<script src="../../public/cassir/js/promotion.js" type="text/javascript"></script>-->
-<script src="../../public/cassir/js/promotion_new.js" type="text/javascript"></script>
-<script src="../../public/cassir/js/page.js" type="text/javascript"></script>
+<script src="../../public/cassir/js/cassir.js?123" type="text/javascript"></script>
+<script src="../../public/cassir/js/cart.js?123" type="text/javascript"></script>
+<script src="../../public/cassir/js/description_order.js?123"></script>
+<script src="../../public/cassir/js/cashbox.js?123"></script>
+<script src="../../public/cassir/js/operator.js?123"></script>
+<script src="../../public/cassir/js/ws.js?123"></script>
+<script src="../../public/cassir/js/delivery.js?123" type="text/javascript"></script>
+<!--<script src="../../public/cassir/js/test_promotion.js?123" type="text/javascript"></script>-->
+<!--<script src="../../public/cassir/js/promotion.js?123" type="text/javascript"></script>-->
+<script src="../../public/cassir/js/page.js?123" type="text/javascript"></script>
 
 
 </body>

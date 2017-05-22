@@ -124,33 +124,47 @@ func (st *structure) SelectTables(msg []byte) error {
 	switch st.qm.Table {
 	case "Order":
 		st.orders = &structures.Order{}
+		break
 
 	case "OrderCustomer":
 		st.orders = &structures.OrderCustomer{}
+		break
 
 	case "OrderList":
 		st.orders = &structures.OrderList{}
+		break
 
 	case "OrderPersonal":
 		st.orders = &structures.OrderPersonal{}
+		break
 
 	case "OrderPayments":
 		st.orders = &structures.OrderPayments{}
+		break
 
 	case "OrderStatus":
 		st.orders = &structures.OrderStatus{}
+		break
 
 	case "Cashbox":
 		st.orders = &structures.Cashbox{}
+		break
+
+	case "ChangeEmployee":
+		st.orders = &structures.ChangeEmployee{}
+		break
 
 	case "Status":
 		st.orders = &structures.Status{}
+		break
 
 	case "TypePayment":
 		st.orders = &structures.TypePayment{}
+		break
 
 	case "TimersCook":
 		st.orders = &structures.TimersCook{}
+		break
 
 	case "ProductOrder":
 		//Тут рассылка по вебьсокетам
@@ -197,6 +211,7 @@ func (st *structure) SelectTables(msg []byte) error {
 			} else {
 				err = st.Read()
 			}
+            break
 		case "Range":
 			if st.stream.Rows == nil {
 				st.send([]byte("EOF"), nil)
@@ -215,6 +230,7 @@ func (st *structure) SelectTables(msg []byte) error {
 
 			st.send([]byte("EOF"), nil)
 			go st.stream.Rows.Close()
+            break
 		default:
 			return errors.New("NOT IDENTIFICATION TYPE READ")
 		}

@@ -1,5 +1,8 @@
 // : V не блокируется кнопка собрать после сборки
 // : V отображение информации о назначенном курьере.
+// TODO: отображать время к которому доставить
+// TODO: сделать отображение курьера назначенного на заказ,
+// TODO: при сборке запроса печать чек
 
 // {"Table":"OrderPersonal","Query":"Create","TypeParameter":"","Values":[40,0,"1","1"]
 // ,"Limit":0,"Offset":0,"ID_msg":"1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"}
@@ -176,6 +179,7 @@ $( document ).on( 'click', '#btn_deliveryman', function () {
         MSG.sendPersonal( document.title.split( '#' )[1], 0, MSG.get._personal[hash] );
     }
     $( '#deliveryman' ).modal( 'hide' );
+    Order.check();
 } );
 //--------------\ Доставка |----------------------------------------------------------
 
@@ -199,8 +203,7 @@ Order.prototype.countElements = function () {
             waitProp( function () {
                     self.countElements();
                 }, function () {
-                    console.log( 'Order.prototype.countElements'.toUpperCase() );
-                    return self.hasOwnProperty( 'OrderList' );
+                    return self.OrderList;
                 }, 300, 10
                 , function () {
                     warning( 'Заказ #' + this.ID + ' пустой!!!' );
@@ -323,10 +326,12 @@ Order.prototype.statusCounted = function () {
             ////////--------| for set |----------------------------------------------------------
             zz = [];
             ////////--------| child |----------------------------------------------------------
+            var ch = true; // если нет готовищехся елементов отсатётся true
             for ( j in ii.child ) {
                 jj = ii.child[j];
                 z = [];
-                if ( !Order.except( jj.Price_id ) )
+                if ( jj.CookingTracker !== 0 ) {
+                    ch = false;
                     for ( k in jj.ID_items ) {
                         kk = this.OrderList[jj.ID_items[k]];
                         if ( !kk.hasOwnProperty( 'status' ) ) {
@@ -344,13 +349,35 @@ Order.prototype.statusCounted = function () {
                             }
                         }
                     } // конец цикла
-                jj.status = Order.checkStatus( z );
+                    jj.status = Order.checkStatus( z );
+                } else {
+                    jj.status = this.status;
+                }
                 if ( jj.status ) {
                     jj.statusT = Order.status[jj.status]["Name"];
                 }
             } // конец цикла
             //--------------\ child |----------------------------------------------------------
             ////////--------| parent |----------------------------------------------------------
+            if ( ch ) { // если нет готовищехся елементов
+                for ( k in ii.ID_items ) {
+                    kk = this.OrderList[ii.ID_items[k]];
+                    if ( !kk.hasOwnProperty( 'status' ) ) {
+                        kk.status = 2;
+                        if ( !~z.indexOf( kk.status ) ) {
+                            z.push( 2 );
+                            zz.push( 2 );
+                        }
+                    } else {
+                        if ( !~z.indexOf( kk.status ) ) {
+                            z.push( kk.status );
+                        }
+                        if ( !~zz.indexOf( kk.status ) ) {
+                            zz.push( kk.status );
+                        }
+                    }
+                } // конец цикла
+            }
             ii.status = Order.checkStatus( zz );
             if ( ii.status ) {
                 ii.statusT = Order.status[ii.status]["Name"];
@@ -425,10 +452,10 @@ Order.prototype.updateStatusForDescription = function () {
                 btn = ( ((jj.status === 9 || jj.status === 8) && jj.CookingTracker !== 0) ? '<button class="btn-refresh" data-toggle="modal" data-target="#remake" type="button"></button>' : '');
                 // ставим текст состояния заголовка
                 select = '[data-id_items="' + jj.ID_items + '"][data-id_parent="' + ii.Price_id + '"][data-id="' + this.ID + '"][data-price_id="' + jj.Price_id + '"] ';
-                document.querySelector( select ).className = '';
-                document.querySelector( select + '.table-order__status-trekking' ).innerHTML = (jj.CookingTracker == 0 ? '' : jj.statusT);
-                document.querySelector( select + '.table-order__img-product' ).innerHTML = img;
-                document.querySelector( select + '.table-order__refresh' ).innerHTML = btn;
+                $( select ).removeClass();
+                $( select + '.table-order__status-trekking' ).html( (jj.CookingTracker == 0 ? '' : jj.statusT) );
+                $( select + '.table-order__img-product' ).html( img );
+                $( select + '.table-order__refresh' ).html( btn );
             }
         } else {
             img = (ii.Image.length < 3 ? '' : '<button data-image="' + ii.Image + '" class="btn-switch-img" data-toggle="modal" data-target="#show-img" type="button"></button>');
@@ -437,18 +464,18 @@ Order.prototype.updateStatusForDescription = function () {
 
             select = '[data-id="' + this.ID + '"][data-price_id="' + ii.Price_id + '"] ';
 
-            document.querySelector( select ).className = ('table-order__no-spoiler ' + cl( ii ));
+            $( select ).removeClass().addClass( 'table-order__no-spoiler ' + cl( ii ) );
             // ставим текст состояния заголовка
-            document.querySelector( select + ' .table-order__status-trekking' ).innerHTML = (ii.CookingTracker == 0 ? '' : ii.statusT);
-            document.querySelector( select + '.table-order__img-product' ).innerHTML = img;
-            document.querySelector( select + '.table-order__refresh' ).innerHTML = btn;
+            $( select + ' .table-order__status-trekking' ).html( (ii.CookingTracker == 0 ? '' : ii.statusT) );
+            $( select + '.table-order__img-product' ).html( img );
+            $( select + '.table-order__refresh' ).html( btn );
         }
     }
     Order.check();
 };
 
 Order.prototype.makeDescriptionElement = function () {
-    var finElem = [], mainElem, headElem, addingElem
+    var finElem = [], mainElem, headElem
         , decorateElem1 = '<tr class="table-order__spoiler-content"><td colspan="6"><table class="table-order inner-table">'
         , decorateElem2 = '</table></td></tr>'
         , data, st, i, ii, j, jj, count = 0
@@ -465,7 +492,7 @@ Order.prototype.makeDescriptionElement = function () {
 
             headElem = '<tr ' + data + ' class="table-order__spoiler">\
                 <td class="table-order__order-number" style="padding-left: 15px">#' + this.ID + '-' + count + '</td>\
-                <td class="table-order__menu-name">' + ii.PriceName + '\
+                <td class="table-order__menu-name">' + ii.PriceName + ' x' + ii.count + '\
                     <button  class="btn-switch-spoiler" type="button">- \
                         <span class="arr-up"></span>\
                     </button>\
@@ -534,11 +561,11 @@ Order.prototype.calcPayment = function () {
     if ( motPayment <= 0 || this.Division !== ' ' ) { // оплаченно ли
         document.getElementById( 'payment_over' ).classList.remove( 'red_txt' );
         document.getElementById( 'payment_over' ).innerHTML = 'Оплачено';
-        $( '#pay_order' ).attr( 'disabled', true ).addClass( 'disabled' );
+        // $( '#pay_order' ).attr( 'disabled', true ).addClass( 'disabled' );
     } else {
         document.getElementById( 'payment_over' ).classList.add( 'red_txt' );
         document.getElementById( 'payment_over' ).innerHTML = 'Не оплачено';
-        $( '#pay_order' ).attr( 'disabled', false ).removeClass( 'disabled' );
+        // $( '#pay_order' ).attr( 'disabled', false ).removeClass( 'disabled' );
     }
     document.getElementById( 'price' ).innerHTML = this.Price;
     document.getElementById( 'discount' ).innerHTML = this.DiscountPercent + '%';
@@ -552,18 +579,19 @@ Order.prototype.calcPayment = function () {
     // console.groupEnd();
 };
 Order.prototype.addAddress = function () {
-    var address = 'ул. ' + this.Custumer.Street
-        + ' д.' + this.Custumer.House
-        + ' ст.' + this.Custumer.Building
-        + ' кв.' + this.Custumer.Apartment
-        + ' п.' + this.Custumer.Entrance
-        + ' эт.' + this.Custumer.Floor
-        + ' домофон:' + this.Custumer.DoorphoneCode
-        + ' <br> Тел.' + this.Custumer.Phone;
+    var address =
+        ( this.Custumer.Street === ' ' ? '' : 'ул. ' + this.Custumer.Street)
+        + (this.Custumer.House === 0 ? '' : ' д.' + this.Custumer.House )
+        + (this.Custumer.Building === ' ' ? '' : ' ст.' + this.Custumer.Building )
+        + (this.Custumer.Apartment === 0 ? '' : ' кв.' + this.Custumer.Apartment )
+        + (this.Custumer.Entrance === 0 ? '' : ' п.' + this.Custumer.Entrance )
+        + (this.Custumer.Floor === 0 ? '' : ' эт.' + this.Custumer.Floor )
+        + (this.Custumer.DoorphoneCode === ' ' || this.Custumer.DoorphoneCode === '0' ? '' : ' домофон:' + this.Custumer.DoorphoneCode )
+        + (this.Custumer.Phone === ' ' ? '' : ' <br> Тел.' + this.Custumer.Phone );
     document.getElementById( 'address' ).innerHTML = address;
 };
 
-Order.prototype.showDescription = function () {
+Order.prototype.showDescription = function () { // для отображения нужно вызывать MSG.requestOrderLists(ID)
     document.title = "Заказ #" + this.ID;
     $( '#ready_order' ).attr( 'disabled', true ).addClass( 'btn-order-ready__disabled' );
     // console.log( 'showDescription', this );
@@ -588,7 +616,7 @@ Order.prototype.showDescription = function () {
         self.addAddress()
     }, function () {
         return self.Custumer;
-    } );
+    }, 300, 5 );
     Order.check();
 };
 
@@ -626,7 +654,7 @@ $( document ).on( 'click', '#btn_remake', function () {
 // !!! для всего заказа ставим отменён без списания.
 $( document ).on( 'click', '#btn_cancel_order', function () {
     var ord = Order.list[document.getElementById( 'span_cancel_order' ).innerHTML];
-    if ( ord.status < 11 ) {
+    if ( ord.status < 11 || !ord.status ) {
         MSG.setStatus( ord.ID, 0, 16 );
     }
 } );
@@ -637,3 +665,9 @@ $( document ).on( 'click', '#cancel_order', function () {
 
 // TODO: подсчёт не отмеченных елементов
 //--------------\ Модалки и кнопки |----------------------------------------------------------
+
+$( document ).on( 'click', '#home_description_order', function () {
+    document.getElementById( 'description_order' ).style.display = 'none';
+    document.getElementById( 'cassir' ).style.display = '';
+    document.title = 'Заказы';
+} );

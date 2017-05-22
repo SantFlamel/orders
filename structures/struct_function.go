@@ -39,7 +39,7 @@ func messageToWebSoc(qm *QueryMessage, values ...interface{}) {
 			if err == nil {
 				msg = append([]byte("02:{"), msg...)
 				for _, conn := range cl {
-					println("messageToWebSoc", string(msg))
+					println("messageToWebSoc: ", string(msg))
 					conn.Send <- msg
 				}
 			}
@@ -666,6 +666,70 @@ func (os *OrderStatus) Insert(qm *QueryMessage) (int64, error) {
 		}
 	}
 
+	if os.Status_id == 11 && os.Order_id_item == 0 {
+		var s controller.Stream
+		err2 := s.ReadRows("OrderList", "RangeOrderID", os.Order_id)
+		if err2 == nil {
+			orl := OrderList{}
+			for s.Rows.Next() {
+				println("for c.Rows.Next() {")
+				err2 = orl.ReadRows(s.Rows)
+				if err2 == nil {
+					err2 = s.ReadRow("Order", "ValueStringOrgHash", os.Order_id)
+					if err2 == nil {
+						var org_hash string
+						err2 = s.Row.Scan(&org_hash)
+						if err2 == nil {
+							//отправляем запрос на склад для списания
+							t := time.Now()
+
+							/*
+							   Date time.Time
+							   DateStr string
+							   NameSklad string
+							   OrgHash string
+							   OrderID int64
+							   Composition []ComprositionRashod
+							   Product pq.Int64Array //Массив id на блюда
+							   ProductName pq.StringArray //Название блюда
+							   Operator string
+							*/
+
+							c := ClientOrder{IP: conf.Config.TLS_serv_sklad,
+								MSG: []byte("{\"Table\":\"Rashod\",\"Query\":\"Create\"}" +
+									"{\"Date\":\"" + t.String()[:10] + "T" + t.String()[11:19] + "Z\"" +
+									//",\"NameSklad\":\""+org_hash+"\"" +
+									",\"NameSklad\":\"Sklad\"" +
+									",\"OrgHash\":\"" + org_hash + "\"" +
+									",\"OrderID\":" + strconv.FormatInt(os.Order_id, 10) +
+									",\"Product\":[" + strconv.FormatInt(orl.Price_id, 10) +
+									"],\"ProductName\":[\"" + orl.PriceName + "\"]" +
+									//",\"Operator\":\"operator\"}"),
+									",\"Operator\":\"" + os.UserHash + "\"}"),
+							}
+							c.Write()
+							bs := make([]byte, 9999)
+							//c.Conn.Read(bs)
+							var n int
+							//n, err2 = c.Conn.Read(bs)
+							//if err==nil {
+							//	n, err2 = strconv.Atoi(string(bs))
+							//	if err == nil {
+							//		bs = make([]byte, n)
+							//		n, err2 = io.ReadFull(c.Conn, bs)
+							//	}
+							//}
+							bs, n, err2 = c.Read()
+							println("c.Conn.Read(bs)", string(bs[:n]))
+
+						}
+					}
+				}
+			}
+		}
+		s.Rows.Close()
+	}
+
 	if err == nil {
 		if (os.Status_id == 15 || os.Status_id == 14 || os.Status_id == 5) && os.Order_id_item > 0 {
 			println("--Если отменен со списанием или приготовлен или на переделке тогда отправляем на склад списать")
@@ -706,7 +770,7 @@ func (os *OrderStatus) Insert(qm *QueryMessage) (int64, error) {
 											t := time.Now()
 											c := ClientOrder{IP: conf.Config.TLS_serv_sklad,
 												MSG: []byte("{\"Table\":\"Rashod\",\"Query\":\"Create\"}" +
-													"{\"Date\":\"" + t.String()[:10] + "T" + t.String()[11:29] + "Z\"" +
+													"{\"Date\":\"" + t.String()[:10] + "T" + t.String()[11:19] + "Z\"" +
 													",\"NameSklad\":" + org_hash +
 													",\"NumberZakaz\":" + strconv.FormatInt(os.Order_id, 10) +
 													",\"Product\":" + strconv.FormatInt(orl.Price_id, 10) +
@@ -795,7 +859,7 @@ func (os *OrderStatus) Insert(qm *QueryMessage) (int64, error) {
 
 												c := ClientOrder{IP: conf.Config.TLS_serv_sklad,
 													MSG: []byte("{\"Table\":\"Rashod\",\"Query\":\"Create\"}" +
-														"{\"Date\":\"" + t.String()[:10] + "T" + t.String()[11:29] + "Z\"" +
+														"{\"Date\":\"" + t.String()[:10] + "T" + t.String()[11:19] + "Z\"" +
 														//",\"NameSklad\":\""+org_hash+"\"" +
 														",\"NameSklad\":\"Sklad\"" +
 														",\"OrgHash\":\"" + org_hash + "\"" +
@@ -920,7 +984,7 @@ func (tc *TimersCook) ReadRows(rows *sql.Rows) error {
 //----CASH_BOX
 func (c *Cashbox) Insert(qm *QueryMessage) (int64, error) {
 	mng := controller.Manager{}
-	row, err := mng.InsertGetID(qm.Table, qm.TypeParameter, c.Order_id,
+	row, err := mng.InsertGetID(qm.Table, qm.TypeParameter, c.Order_id, c.Change_employee_id,
 		c.First_sure_name, c.UserHash, c.RoleName, c.OrgHash, c.TypePayments, c.TypeOperation,
 		c.Deposit, c.ShortChange, c.Cause, time.Now())
 	if err == nil {
@@ -938,16 +1002,46 @@ func (c *Cashbox) Insert(qm *QueryMessage) (int64, error) {
 }
 
 func (c *Cashbox) ReadRow(row *sql.Row) error {
-	err := row.Scan(&c.ID, &c.Order_id,
+	err := row.Scan(&c.ID, &c.Order_id, &c.Change_employee_id,
 		&c.First_sure_name, &c.UserHash, &c.RoleName, &c.OrgHash, &c.TypePayments, &c.TypeOperation,
 		&c.Deposit, &c.ShortChange, &c.Cause, &c.TimeOperation)
 	return err
 }
 
 func (c *Cashbox) ReadRows(rows *sql.Rows) error {
-	err := rows.Scan(&c.ID, &c.Order_id,
+	err := rows.Scan(&c.ID, &c.Order_id, &c.Change_employee_id,
 		&c.First_sure_name, &c.UserHash, &c.RoleName, &c.OrgHash, &c.TypePayments, &c.TypeOperation,
 		&c.Deposit, &c.ShortChange, &c.Cause, &c.TimeOperation)
+	return err
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
+//----ChangeEmployee
+func (ce *ChangeEmployee) Insert(qm *QueryMessage) (int64, error) {
+	mng := controller.Manager{}
+	row, err := mng.InsertGetID(qm.Table, qm.TypeParameter, ce.UserHash, ce.OrgHash,
+		ce.Sum_in_cashbox, ce.NonCash_end_day, ce.Cash_end_day, ce.Close, time.Now(), ce.Date_end,
+	)
+	if err == nil {
+		err = row.Scan(&ce.ID)
+		if err == nil {
+			return ce.ID, err
+		}
+	}
+
+	return int64(-1), err
+}
+
+func (ce *ChangeEmployee) ReadRow(row *sql.Row) error {
+	err := row.Scan(&ce.ID, &ce.UserHash, &ce.OrgHash,
+		&ce.Sum_in_cashbox, &ce.NonCash_end_day, &ce.Cash_end_day, &ce.Close, &ce.Date_begin, &ce.Date_end)
+	return err
+}
+
+func (ce *ChangeEmployee) ReadRows(rows *sql.Rows) error {
+	err := rows.Scan(&ce.ID, &ce.UserHash, &ce.OrgHash,
+		&ce.Sum_in_cashbox, &ce.NonCash_end_day, &ce.Cash_end_day, &ce.Close, &ce.Date_begin, &ce.Date_end)
 	return err
 }
 
@@ -958,7 +1052,7 @@ type CHPrint struct {
 }
 
 func (p *CHPrint) init() {
-	p.sp.Header = "ТЕСТ!\n    ДОСТАВКА ЗА 60 МИНУТ ИЛИ БЕСПЛАТНО \n" +
+	p.sp.Header = "\n    ДОСТАВКА ЗА 60 МИНУТ ИЛИ БЕСПЛАТНО \n" +
 		"приедем - подарим сертификат на 600 рублей"
 
 	p.sp.InfoOrg = "         СЕТЬ РЕСТОРАНОВ \"ЯПОКИ\"\n " +
@@ -1069,15 +1163,14 @@ func (p *CHPrint) PrintCountPriceWithDiscount(values ...interface{}) error {
 		}
 	}
 
-
-    return err
+	return err
 }
 
 func (p *CHPrint) PrintAllRange(values ...interface{}) error {
 
 	if len(values) < 1 {
 		log.Println("CHPrint.PrintAllRange() LENGTH VALUES < 1")
-        return errors.New("CHPrint.PrintAllRange() LENGTH VALUES < 1")
+		return errors.New("CHPrint.PrintAllRange() LENGTH VALUES < 1")
 	}
 	p.init()
 	stream := controller.Stream{}
@@ -1167,10 +1260,10 @@ func (p *CHPrint) PrintAllRange(values ...interface{}) error {
 			err = co.Write()
 		}
 	}
-    if err!=nil{
+	if err != nil {
 		log.Println("CASHBOX CHECK:", err)
 	}
-    return err
+	return err
 }
 
 //func (p *CHPrint) Printer(id int64) {
@@ -1218,7 +1311,7 @@ func (p *CHPrint) Printer(values ...interface{}) error {
 			//}
 		} else {
 
-			var org_hash, discount_name string
+			var org_hash, discount_name, type_send, note string
 			var discount_percent string
 			var price, price_currency string
 			var price_with_discount float64
@@ -1227,10 +1320,10 @@ func (p *CHPrint) Printer(values ...interface{}) error {
 			err = stream.ReadRow("Order", "CheckInfo", op.Order_id)
 			if err == nil {
 				println("err = stream.ReadRow(\"Order\"", op.Order_id)
-				err = stream.Row.Scan(&org_hash, &discount_name, &discount_percent, &price, &price_with_discount, &price_currency)
+				err = stream.Row.Scan(&org_hash, &discount_name, &type_send, &note, &discount_percent, &price, &price_with_discount, &price_currency)
 				if err == nil {
 					println("err = stream.Row.Scan")
-					err = stream.ReadRows("OrderList", "RangeOrderID", op.Order_id)
+					err = stream.ReadRows("OrderList", "RangeOrderIDSet", op.Order_id)
 					if err == nil {
 						println("err = stream.ReadRows(\"OrderList\"")
 						p.sp.InfoCheck = op.RoleName + ": " + op.First_sure_name + " " + time.Now().String()[:19] + "\n" +
@@ -1247,12 +1340,12 @@ func (p *CHPrint) Printer(values ...interface{}) error {
 							)
 							if err3 == nil {
 								//p.sp.ItemOrders = append(p.sp.ItemOrders, orl.PriceName+"\t"+fmt.Sprintf("%v", (float64(orl.Price) - (float64(orl.Price) * (float64(orl.DiscountPercent) / 100)))))
-								p.sp.Body = append(p.sp.Body, orl.PriceName+"\t"+fmt.Sprintf("%v", (float64(orl.Price)-(float64(orl.Price)*(float64(orl.DiscountPercent)/100)))) + " " + price_currency)
+								p.sp.Body = append(p.sp.Body, orl.PriceName+"\t"+fmt.Sprintf("%v", (float64(orl.Price)-(float64(orl.Price)*(float64(orl.DiscountPercent)/100))))+" "+price_currency)
 							}
 						}
 						//p.sp.Body = append(p.sp.Body, "   ************************************")
 						p.sp.Body = append(p.sp.Body, "   ------------------------------------")
-						p.sp.Body = append(p.sp.Body, "Итого:\t" + price + " " + price_currency)
+						p.sp.Body = append(p.sp.Body, "Итого:\t"+price+" "+price_currency)
 						p.sp.Body = append(p.sp.Body, "Скидка:\t"+discount_name+" "+fmt.Sprint(discount_percent)+"%")
 
 						paid_off := float64(0)
@@ -1287,8 +1380,64 @@ func (p *CHPrint) Printer(values ...interface{}) error {
 						//p.sp.ShortChange = "Сдача:\t" + fmt.Sprint(op.ShortChange)
 						//p.sp.TypePayment = DBTypePayment[op.TypePayments]
 						//p.sp.TypeOperation = "Получено:\t" + fmt.Sprint(op.Deposit)
-
 						p.sp.OrgHash = org_hash
+                        println("type_send:",type_send)
+						if type_send == "Доставка" {
+                            println("err2 := stream.ReadRow")
+
+                            err2 := stream.ReadRow("OrderCustomer", "Value", op.Order_id)
+							if err2 == nil {
+                                println("err2 = oc.ReadRow(stream.Row)")
+								oc := OrderCustomer{}
+								err2 = oc.ReadRow(stream.Row)
+								if err2 == nil {
+                                    println(1)
+									p.sp.Footer = p.sp.Footer +
+										"\n   ------------------------------------"
+
+									if oc.Street != "" && oc.Street != " " {
+										p.sp.Footer = p.sp.Footer +
+											"\nУлица: " + oc.Street
+                                        println(2)
+									}
+
+									if oc.House > int64(0) {
+										p.sp.Footer = p.sp.Footer +
+											" Дом: " + fmt.Sprint(oc.House)
+                                        println(3)
+									}
+
+									if oc.Building != "" && oc.Building != " " {
+										p.sp.Footer = p.sp.Footer +
+											" Строение: " + oc.Building
+                                        println(4)
+									}
+
+									if oc.Entrance > int64(0) {
+										p.sp.Footer = p.sp.Footer +
+											" Подъезд: " + fmt.Sprint(oc.Entrance)
+                                        println(5)
+									}
+
+									if oc.Phone != "" && oc.Phone != " " {
+										p.sp.Footer = p.sp.Footer +
+											" Телефон: " + oc.Phone
+                                        println(6)
+									}
+
+									if note != "" && note != " " {
+										p.sp.Footer = p.sp.Footer +
+											"\n" + note
+                                        println(7)
+									}
+
+								}
+							}
+                            println(p.sp.Footer)
+                            if err2!=nil{
+                                println("err2: ", err2.Error())
+                            }
+						}
 						var b []byte
 						b, err = json.Marshal(p.sp)
 						if err == nil {
@@ -1308,5 +1457,5 @@ func (p *CHPrint) Printer(values ...interface{}) error {
 	if err != nil {
 		println("Print err:", err.Error())
 	}
-    return err
+	return err
 }

@@ -19,8 +19,9 @@ function webSocket() {
         setTimeout( webSocket, WS_TIMEOUT );
     };
     ws.onmessage = function ( msg ) {
-        // console.info( 'onmessage', msg );
-        var type = msg.data.slice( 0, 2 ), data = msg.data, IDMsg = msg.data.split( '{' )[0].split( ':' )[1];
+        // console.info( 'ws.onmessage', msg );
+        var type = msg.data.slice( 0, 2 ), data = msg.data
+            , IDMsg = msg.data.split( '{' )[0].split( ':' )[1];
         data = data.slice( data.indexOf( '{' ) + 1 );
         MSG._in( IDMsg, data, type );
     };
@@ -29,10 +30,10 @@ function webSocket() {
         console.info( 'WS OPEN', new Date().toJSON(), WS_URL );
         MSG.send( { structure: AUTH } ); // авторизация // в начале файла
         MSG.request.sessionInfo();
-        while ( MSG.wait.length > 0 ) {
-            console.info( 'WS SEND WAIT' );
-            (MSG.wait.pop())();
-        }
+        // while ( MSG.wait.length > 0 ) {
+        //     console.info( 'WS SEND WAIT' );
+        //     (MSG.wait.pop())();
+        // }
         Page.update();
         // ws.send('EndConn');
     };
@@ -57,9 +58,9 @@ webSocket();
 var getIDMsg = counter( 10000 );
 MSG = {
     get: {}, request: {}, close: {}, set: {}, exceptionOrder: [], wait: [] // отложенные отправки
-    , handlers: {} // storage handlers
+    , handlersList: {} // storage handlers
     , multipleHandlers: {} // storage multiple handlers
-    , EOFHandlers: {}, check: {}
+    , EOFHandlersList: {}, check: {}
     , notGet: {}, notGetEOF: {}
     , _in: function ( IDMsg, data, type ) { // input MSG
         // if ( MSG.notGet[IDMsg] ) {
@@ -90,14 +91,14 @@ MSG = {
                 console.error( data );
             }
             console.groupEnd();
-            delete MSG.handlers[IDMsg];
+            delete MSG.handlersList[IDMsg];
             delete MSG.multipleHandlers[IDMsg];
             return;
         } else if ( data === 'EOF' ) { // конец передаци.
             // удаляем обработчик, после прерываем функцию
-            if ( MSG.EOFHandlers.hasOwnProperty( IDMsg ) ) {
-                MSG.EOFHandlers[IDMsg]();
-                delete MSG.EOFHandlers[IDMsg];
+            if ( MSG.EOFHandlersList.hasOwnProperty( IDMsg ) ) {
+                MSG.EOFHandlersList[IDMsg]();
+                delete MSG.EOFHandlersList[IDMsg];
             }
             if ( MSG.multipleHandlers.hasOwnProperty( IDMsg ) ) {
                 delete MSG.multipleHandlers[IDMsg];
@@ -126,10 +127,10 @@ MSG = {
                 console.warn( data );
             }
         }
-        if ( MSG.handlers[IDMsg] ) {
-            MSG.handlers[IDMsg]( data, IDMsg );
-            delete MSG.handlers[IDMsg];
-        } else if ( (MSG.multipleHandlers.hasOwnProperty( IDMsg )) ) {
+        if ( MSG.handlersList[IDMsg] ) {
+            MSG.handlersList[IDMsg]( data, IDMsg );
+            delete MSG.handlersList[IDMsg];
+        } else if ( MSG.multipleHandlers[IDMsg] ) {
             MSG.multipleHandlers[IDMsg]( data, IDMsg );
         }
         console.groupEnd();
@@ -180,7 +181,7 @@ MSG = {
             }, WS_ERROR_TIMEOUT );
         }
         if ( option.EOFHandler ) {
-            MSG.EOFHandlers[IDMsg] = option.EOFHandler;
+            MSG.EOFHandlersList[IDMsg] = option.EOFHandler;
         }
         console.group( "%cMSG SEND::::>>>>%c" + IDMsg, 'color: blue', 'color: #444100', (table || '') );
         console.info( struct );
@@ -194,14 +195,13 @@ MSG = {
             if ( option.mHandlers ) {
                 MSG.multipleHandlers[IDMsg] = option.handler;
             } else {
-                MSG.handlers[IDMsg] = option.handler;
+                MSG.handlersList[IDMsg] = option.handler;
             }
         }
     }
 };
 //--------------\ MSG |----------------------------------------------------------
 MSG.updaateTimeOut = { de: 0 };
-// : V переделать апдейт при создании заказа, в случае создангия 2х заказаов один заказ будет проигнорирован???
 MSG.update = function ( data ) {
     console.group( 'MSG.update' );
     var ID = data.Values[0];
@@ -212,9 +212,7 @@ MSG.update = function ( data ) {
     console.log( 'data.Table', data.Table );
     switch ( data.Table ) {
         case "Order":
-            wait( 'order' + ID, function () {
-                MSG.requestOrder( ID );
-            }, 300 );
+            MSG.requestOrder( ID );
             warningAudio();
             break;
         case "OrderCustomer":
@@ -252,6 +250,7 @@ MSG.update = function ( data ) {
         case "OrderPersonal":
             break;
         case "OrderStatus":
+            // console.log( "OrderStatus" );
             if ( Order.list[ID] ) {
                 Order.list[ID].addStatus( { Order_id_item: data.Values[1], Status_id: data.Values[2] } );
                 console.log( 'data.Values[1], data.Values[2]', data.Values[1], data.Values[2] );
@@ -268,20 +267,65 @@ MSG.close.session = function () {
     } catch ( e ) {
 
     }
+    alert( 'УДАЛЕНЫ КУКИ' );
     cookie.delete( 'hash', { domain: '.yapoki.net', path: '/' } );
     cookie.delete( 'mysession', { domain: '.yapoki.net', path: '/' } );
     ws.stop();
     // document.location.href = AUTH_URL;
 };
 MSG.request.sessionInfo = function () {
-    MSG.send( { structure: { "Table": "Session", "TypeParameter": "ReadNotRights" }, handler: MSG.get.cashierInfo } );
+    MSG.send( {
+        structure: { "Table": "Session", "TypeParameter": "ReadNotRights" }
+        , handler: function ( data ) {
+            CashierGet( data );
+            MSG.request.tabel();
+            CashBox.getSumInCashbox();
+        }
+    } );
 };
 MSG.request.tabel = function () {
     MSG.send( { structure: { "Table": "Tabel", "Values": [Cashier.UserHash] }, handler: MSG.get.tabel } );
 };
-MSG.get.cashierInfo = function ( data ) {
-    CashierGet( data );
-    MSG.request.tabel();
+
+MSG.request.ChangeEmployee = function ( id ) {
+    var s = { Table: "ChangeEmployee", Query: "Read", TypeParameter: "Value", Values: [id], Limit: 1, Offset: 0 };
+    MSG.send( {
+        structure: s, handler: false, mHandlers: false, EOFHandler: false, check: false
+    } );
+};
+MSG.set.ChangeEmployee = function () {
+    var s = [{ Table: "ChangeEmployee", Query: "Create", TypeParameter: "GetID", Values: null, Limit: 0, Offset: 0 }
+        , {
+            UserHash: Cashier.UserHash, OrgHash: Cashier.OrganizationHash, Sum_in_cashbox: null
+            , NonCash_end_day: null, Cash_end_day: null
+        }];
+    MSG.send( {
+        structure: s, handler: CashBox.getSumInCashbox, mHandlers: false, EOFHandler: false, check: false
+    } );
+};
+MSG.close.ChangeEmployee = function ( sum_in_cashbox, non_cash_end_day, cash_end_day ) {
+    var s = {
+        Table: "ChangeEmployee", Query: "Update", TypeParameter: "Close"
+        , Values: [Cashier.ChangeEmployee.ID, sum_in_cashbox, non_cash_end_day, cash_end_day, Page.time()]
+        , Limit: 0, Offset: 0
+    };
+    MSG.send( { structure: s, handler: false, mHandlers: false, EOFHandler: false, check: false } );
+};
+MSG.request.ChangeEmployeeByOrgHash = function ( close ) {
+    var s = {
+        Table: "ChangeEmployee", Query: "Read", TypeParameter: "RangeCloseOrgHash"
+        , Values: [Cashier.OrganizationHash, close], Limit: 10, Offset: 0
+    };
+    MSG.send( { structure: s, handler: false, mHandlers: false, EOFHandler: false, check: false } );
+};
+MSG.request.ChangeEmployeeByOrgHashUserHash = function ( close, limit, fn, eofFn ) {
+    var s = {
+        Table: "ChangeEmployee", Query: "Read", TypeParameter: "RangeCloseUserHashOrgHash"
+        , Values: [Cashier.UserHash, Cashier.OrganizationHash, close], Limit: limit || 10, Offset: 0
+    };
+    fn = fn || false;
+    eofFn = eofFn == undefined ? false : eofFn;
+    MSG.send( { structure: s, handler: fn, mHandlers: true, EOFHandler: eofFn, check: false } );
 };
 //--------------\ User_info |----------------------------------------------------------
 
@@ -290,7 +334,11 @@ MSG.requestOrder = function ( ID ) {
     var s = {
         "Table": "Order", "Query": "Read", "TypeParameter": "Value", "Values": [ID], "Limit": 0, "Offset": 0
     };
-    MSG.send( { structure: s, handler: MSG.get.Order } );
+    MSG.send( {
+        structure: s, handler: function ( data ) {
+            MSG.get.Order( data );
+        }
+    } );
 };
 MSG.requestOrdersByOrgHash = function () {
     if ( !Cashier.OrganizationHash ) {
@@ -299,28 +347,21 @@ MSG.requestOrdersByOrgHash = function () {
     }
     var s = {
         "Table": "Order", "Query": "Read", "TypeParameter": "RangeOrgHash",
-        "Values": [Cashier.OrganizationHash, Page.timeBeginDay(), Page.time()],
+        "Values": [Cashier.OrganizationHash, BEGIN_TIME_FOR_ORDER, Page.time()],
         "Limit": 999, "Offset": 0
     };
-    MSG.send( { structure: s, handler: MSG.get.Order, mHandlers: true } );
+    MSG.send( { structure: s, handler: MSG.get.Order, mHandlers: true, EOFHandler: false/*Page.update*/ } )
 };
 MSG.get.Order = function ( data ) {
-    // console.groupCollapsed( 'getOrder' );
-    if ( data['OrgHash'] !== Cashier.OrganizationHash ) {
-        console.error( 'ОРГАНИЗАЦИЯ НЕ СОВПАДАЕТ' )
-    }
-    new Order( data );
     MSG.requestOrderStatus( data.ID );
-    MSG.requestCustomer( data.ID );
-    // MSG.requestOrderLists( data.ID );
-    // console.groupEnd();
-    Page.update();
+    new Order( data );
 };
 //--------------\ ORDER |----------------------------------------------------------
 ////////--------| ORDER_LIST |----------------------------------------------------------
 MSG.requestOrderLists = function ( ID ) {
     var s = {
-        "Table": "OrderList", "Query": "Read", "TypeParameter": "RangeOrderID", "Values": [ID], "Limit": 0, "Offset": 0
+        "Table": "OrderList", "Query": "Read", "TypeParameter": "RangeOrderID", "Values": [ID]
+        , "Limit": 0, "Offset": 0
     };
     MSG.send( {
         structure: s, handler: MSG.get.OrderList, mHandlers: true, EOFHandler: function () {
@@ -329,8 +370,6 @@ MSG.requestOrderLists = function ( ID ) {
     } );
 };
 MSG.get.OrderList = function ( data ) {
-    // console.group( 'getOrderList' );
-    // console.log( data );
     if ( Order.list[data['Order_id']] ) {
         var order = Order.list[data['Order_id']];
         if ( !order.OrderList ) {
@@ -342,7 +381,6 @@ MSG.get.OrderList = function ( data ) {
         }
         order.OrderList[data['ID_item']] = data;
         MSG.requestOrderStatus( data['Order_id'], data['ID_item'] );
-        // console.groupEnd();
     }
 };
 //--------------\ ORDER_LIST |----------------------------------------------------------
@@ -364,10 +402,9 @@ MSG.setFinished = function ( ID, id_item, fin ) {
     MSG.send( { structure: s } )
 };
 MSG.get.Status = function ( data ) {
-    if ( data['Order_id'] == 0 || !Order.list[data['Order_id']] ) {
-        return;
+    if ( data.Order_id !== 0 || Order.list[data.Order_id] ) {
+        Order.list[data.Order_id].addStatus( data )
     }
-    Order.list[data['Order_id']].addStatus( data )
 };
 
 MSG.setStatus = function ( Order_id, Order_id_item, Status_id ) {
@@ -472,8 +509,23 @@ MSG.request.cashBoxOperationByDate = function ( date ) {
         setTimeout( arguments.callee, 50 )
     }
 };
+MSG.request.cashBoxOperationByChangeEmployee = function ( ID ) {
+    CashBox.reset();
+    var s = {
+        "Table": "Cashbox", "Query": "Read", "TypeParameter": "RangeChangeEmployeeID"
+        , "Values": [ID], "Limit": 0, "Offset": 0
+    };
+    MSG.send( { structure: s, handler: Operation, mHandlers: true } )
+};
 MSG.request.cashBoxOperation = function ( ID ) {
-    var s = { "Table": "Cashbox", "Query": "Read", "TypeParameter": "Value", "Values": [ID], "Limit": 0, "Offset": 0 };
+    var s = {
+        "Table": "Cashbox",
+        "Query": "Read",
+        "TypeParameter": "Value",
+        "Values": [ID],
+        "Limit": 0,
+        "Offset": 0
+    };
     MSG.send( { structure: s, handler: Operation, mHandlers: true } )
 };
 MSG.request.payment = function ( ID ) {
@@ -482,14 +534,14 @@ MSG.request.payment = function ( ID ) {
     MSG.send( { structure: s, handler: MSG.get.payment, mHandlers: true } )
 };
 MSG.get.payment = function ( data ) {
-    if ( !Order.list.hasOwnProperty( data['Order_id'] ) ) {
+    if ( !Order.list[data.Order_id] ) {
         console.error( 'Нет заказа', data );
         return;
     }
-    var order = Order.list[data['Order_id']];
+    var order = Order.list[data.Order_id];
     order.payments.push( data );
-    if ( $( '#description_order:visible' ).length !== 0 ) {
-        Order.list[data['Order_id']].calcPayment()
+    if ( document.title.split( '#' )[1] == data.Order_id ) {
+        Order.list[data['Order_id']].calcPayment();
     }
 };
 MSG.request.paymentByDeliveryman = function ( type_payments, user_hash, time_operation_begin, time_operation_end ) {
@@ -527,21 +579,21 @@ MSG.request.dayOverPrintCheck = function () {
 ////////--------| Personal_order |----------------------------------------------------------
 MSG.requestCustomer = function ( id ) {
     var s = {
-        "Table": "OrderCustomer", "Query": "Read", "TypeParameter": "Value", "Values": [id], "Limit": 0, "Offset": 0,
+        "Table": "OrderCustomer",
+        "Query": "Read",
+        "TypeParameter": "Value",
+        "Values": [id],
+        "Limit": 0,
+        "Offset": 0,
         "ID_msg": ""
     };
-    MSG.send( { structure: s, handler: MSG.get.Costumer } )
-};
-MSG.get.Costumer = function ( data ) {
-    // data = {"Order_id":5,"NameCustomer":"Алексей","Phone":"+84451556","Note":"капуцк","City":"Курган","Street":"ул. Красина","House":20,"Building":"0","Floor":5,"Apartment":52,"Entrance":2,"DoorphoneCode":"52"}
-    if ( Order.list[data["Order_id"]] ) {
-        Order.list[data["Order_id"]].addNameCustomer( data );
-    }
-    var i;
-    Order.list[data["Order_id"]].Custumer = {};
-    for ( i in data ) {
-        Order.list[data["Order_id"]].Custumer[i] = data[i];
-    }
+    MSG.send( {
+        structure: s, handler: function ( data ) {
+            if ( Order.list[data["Order_id"]] ) {
+                Order.list[data.Order_id].addNameCustomer( data );
+            }
+        }
+    } )
 };
 //--------------\ Personal_order |----------------------------------------------------------
 
@@ -552,7 +604,7 @@ MSG.order = function ( onTime, Type ) {
     onTime = onTime || $( "#on_time" ).is( ":checked" );
     var TimeDelivery = onTime ?
             (document.getElementById( 'select_date' ).value + 'T' + document.getElementById( 'select_time' ).value + ':00Z')
-            : "0001-01-01T00:00:00Z"
+            : EMPTY_TIME
         , CountPerson = document.getElementById( 'count_person' ).value
         , Division = $( '#to_workers' ).prop( 'checked' ) ? document.getElementById( 'input_to_workers' ).value : " "
         , bonus = 0, getPrice = Cart.getPrice(), price = getPrice[0], PriceWithDiscount = getPrice[3], discountName = getPrice[1], discountPerc = getPrice[2]
@@ -570,7 +622,7 @@ MSG.order = function ( onTime, Type ) {
         ID: 0
         , SideOrder: SIDE_ORDER
         , TimeDelivery: TimeDelivery
-        , DatePreOrderCook: '0001-01-01T00:00:00Z'
+        , DatePreOrderCook: TimeDelivery
         , CountPerson: +CountPerson
         , Division: Division
         , NameStorage: NameStorage
@@ -617,7 +669,12 @@ MSG.cart = function ( ID ) {
         discountName = Cart.list[i].DiscountName;
         discountPerc = Cart.list[i].DiscountPercent;
         s = [{
-            "Table": "OrderList", "Query": "Create", "TypeParameter": "GetID", "Values": null, "Limit": 0, "Offset": 0
+            "Table": "OrderList",
+            "Query": "Create",
+            "TypeParameter": "GetID",
+            "Values": null,
+            "Limit": 0,
+            "Offset": 0
         }, {
             "Order_id": +ID, "ID_item": 1, "ID_parent_item": 0, "Price_id": ii.Price_id, "PriceName": ii.PriceName,
             "Type_id": ii.Type_id, "TypeName": ii.TypeName, "Parent_id": ii.Parent_id, "ParentName": ii.ParentName,
@@ -660,7 +717,7 @@ MSG.clientInfoAddress = function ( Order_id ) {
 MSG.collectOrder = function () {
     console.group( 'MSG.collectOrder' );
     MSG.collectOrder.list = { cart: [], customer: [], order: [], status: {}, payment: {} };
-    var Type = Cart.getType(), onTime = $( "#on_time" ).is( ":checked" )
+    var Type = /*Cart.getType()*/ TAKEAWAY, onTime = $( "#on_time" ).is( ":checked" )
         , note = document.getElementById( 'comment_order' ).value, note1 = document.getElementById( 'comment_order1' ).value
         // , street = $( ".operator_client_adress .collapse.in #street_client" ).val()
         // , home = $( ".operator_client_adress .collapse.in #home_number" ).val()
@@ -689,11 +746,11 @@ MSG.collectOrder = function () {
         console.groupEnd();
         throw new Error( "Корзина пуста." );
     }
-    if ( document.getElementById( 'count_person' ).value == 0 ) {
-        warning( 'Количество персон не указанно.', 'alert' );
-        console.groupEnd();
-        throw new Error( "Количество персон не указанно." );
-    }
+    // if ( document.getElementById( 'count_person' ).value == 0 ) {
+    //     warning( 'Количество персон не указанно.', 'alert' );
+    //     console.groupEnd();
+    //     throw new Error( "Количество персон не указанно." );
+    // }
 
     MSG.collectOrder.list.cart = MSG.cart();
     MSG.collectOrder.list.clientInfo = MSG.clientInfo();
@@ -875,16 +932,39 @@ MSG.get.AvailableProd = function ( data ) {
 //--------------\ PRODUCT |----------------------------------------------------------
 
 ////////--------| Promotions |----------------------------------------------------------
-MSG.request.promotions = function () {
-    Promotion._getAllCounter = 0;
+if ( TEST ) {
+    MSG.request.promotions = function () {
+        var s = { "Table": "ProductOrder", "TypeParameter": "Promotions" };
+        MSG.send( {
+            structure: s, handler: function ( data ) {
+                new Promotion( data );
+            }, mHandlers: true
 
-    var s = { "Table": "ProductOrder", "TypeParameter": "PromotionsTypes" };
-    MSG.send( { structure: s, handler: PromotionType, mHandlers: true, EOFHandler: Promotion._getAll } );
-    s = { "Table": "ProductOrder", "TypeParameter": "Promotions" };
-    MSG.send( { structure: s, handler: Promotion, mHandlers: true, EOFHandler: Promotion._getAll } );
-    s = { "Table": "ProductOrder", "TypeParameter": "Subjects" };
-    MSG.send( { structure: s, handler: PromotionSubjects, mHandlers: true, EOFHandler: Promotion._getAll } );
-};
+            , EOFHandler: function () {
+                s = { "Table": "ProductOrder", "TypeParameter": "Subjects" };
+                MSG.send( {
+                    structure: s, handler: Promotion.Subjects, mHandlers: true,
+                    EOFHandler: Promotion.setup
+                } );
+            }
+        } );
+    };
+} else {
+    MSG.request.promotions = function () {
+        Promotion._getAllCounter = 0;
+
+        var s = { "Table": "ProductOrder", "TypeParameter": "PromotionsTypes" };
+        MSG.send( { structure: s, handler: PromotionType, mHandlers: true, EOFHandler: Promotion._getAll } );
+        s = { "Table": "ProductOrder", "TypeParameter": "Promotions" };
+        MSG.send( {
+            structure: s, handler: function ( data ) {
+                new Promotion( data )
+            }, mHandlers: true, EOFHandler: Promotion._getAll
+        } );
+        s = { "Table": "ProductOrder", "TypeParameter": "Subjects" };
+        MSG.send( { structure: s, handler: PromotionSubjects, mHandlers: true, EOFHandler: Promotion._getAll } );
+    };
+}
 //--------------\ Promotions |----------------------------------------------------------
 
 ////////--------| Organization |----------------------------------------------------------
