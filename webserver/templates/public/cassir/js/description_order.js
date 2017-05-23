@@ -604,7 +604,11 @@ Order.prototype.showDescription = function () { // для отображения
     document.getElementById( 'name_customer' ).innerHTML = this.NameCustomer || NO_NAME + '.';
     document.getElementById( 'order_type' ).innerHTML = this.Type.slice( 0, 1 ) + this.Type.slice( 1 );
 
-    var note = '';
+    var note = Page.timeReplace( this.Order_time ).split( ' ' )[1].slice(0,5);
+    if ( this.TimeDelivery !== EMPTY_TIME ) {
+        note += ' / ' + Page.timeReplace( this.TimeDelivery ).slice(0,-4);
+    }
+    note += '<br>';
     if ( this.Division != ' ' ) {
         note += 'Обед для: ' + this.Division + '<br>'
     }

@@ -4,7 +4,7 @@ if ( ~window.location.href.indexOf( 'http://localhost:63342' ) ) {
     AUTH_URL = '';
     WS_URL = 'ws://192.168.0.73:80/ws';
     DELYVERYMAN_HASH = '1';
-    SESSION_HASH = '0c8daf321ece26e2d74b00e84faa94e2c9c537b6411d6d576ff58a1c0955ab3d';
+    SESSION_HASH = 'c867f877ce0c5dfdd7b9ee0235c2fcd2f02b081791b77f28d894beb463803b39';
 
 
     // для приготовления елементов заказа

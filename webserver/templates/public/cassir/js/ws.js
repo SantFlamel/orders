@@ -519,12 +519,7 @@ MSG.request.cashBoxOperationByChangeEmployee = function ( ID ) {
 };
 MSG.request.cashBoxOperation = function ( ID ) {
     var s = {
-        "Table": "Cashbox",
-        "Query": "Read",
-        "TypeParameter": "Value",
-        "Values": [ID],
-        "Limit": 0,
-        "Offset": 0
+        "Table": "Cashbox", "Query": "Read", "TypeParameter": "Value", "Values": [ID], "Limit": 0, "Offset": 0
     };
     MSG.send( { structure: s, handler: Operation, mHandlers: true } )
 };
@@ -546,13 +541,11 @@ MSG.get.payment = function ( data ) {
 };
 MSG.request.paymentByDeliveryman = function ( type_payments, user_hash, time_operation_begin, time_operation_end ) {
     var s = {
-        "Table": "Cashbox",
-        "Query": "Read",
-        "TypeParameter": "ValueNumberCountPriceWithDiscount",
-        "Values": [user_hash
-            , Cashier.OrganizationHash, type_payments, time_operation_begin, time_operation_end],
-        "Limit": 0,
-        "Offset": 0
+        "Table": "Cashbox", "Query": "Read"
+        , "TypeParameter": "ValueNumberCountPriceWithDiscount"
+        , "Values": [user_hash
+            , Cashier.OrganizationHash, type_payments, time_operation_begin, time_operation_end]
+        , "Limit": 0, "Offset": 0
     };
     MSG.send( {
         structure: s, handler: function () { // самоисполляющаяся
@@ -567,8 +560,7 @@ MSG.request.rePrintCheck = function ( order_id ) {
 };
 MSG.request.dayOverPrintCheck = function () {
     var s = {
-        "Table": "Printer",
-        "TypeParameter": "AllRange",
+        "Table": "Printer", "TypeParameter": "AllRange",
         "Values": [Cashier.OrganizationHash, Cashier.UserHash, Page.timeBeginDay(), Page.time()]
     };
     MSG.send( { structure: s } )
@@ -579,13 +571,8 @@ MSG.request.dayOverPrintCheck = function () {
 ////////--------| Personal_order |----------------------------------------------------------
 MSG.requestCustomer = function ( id ) {
     var s = {
-        "Table": "OrderCustomer",
-        "Query": "Read",
-        "TypeParameter": "Value",
-        "Values": [id],
-        "Limit": 0,
-        "Offset": 0,
-        "ID_msg": ""
+        "Table": "OrderCustomer", "Query": "Read", "TypeParameter": "Value",
+        "Values": [id], "Limit": 0, "Offset": 0, "ID_msg": ""
     };
     MSG.send( {
         structure: s, handler: function ( data ) {
@@ -669,12 +656,8 @@ MSG.cart = function ( ID ) {
         discountName = Cart.list[i].DiscountName;
         discountPerc = Cart.list[i].DiscountPercent;
         s = [{
-            "Table": "OrderList",
-            "Query": "Create",
-            "TypeParameter": "GetID",
-            "Values": null,
-            "Limit": 0,
-            "Offset": 0
+            "Table": "OrderList", "Query": "Create", "TypeParameter": "GetID",
+            "Values": null, "Limit": 0, "Offset": 0
         }, {
             "Order_id": +ID, "ID_item": 1, "ID_parent_item": 0, "Price_id": ii.Price_id, "PriceName": ii.PriceName,
             "Type_id": ii.Type_id, "TypeName": ii.TypeName, "Parent_id": ii.Parent_id, "ParentName": ii.ParentName,
@@ -705,7 +688,7 @@ MSG.clientInfoAddress = function ( Order_id ) {
         ;
     if ( x != undefined && x.length ) {
         s = [{ "Table": "ClientInfo", "TypeParameter": "CreateAddress" }
-            , { ID: +x }];
+            , { ID: +x, Phone: getPhone( 'client_phone' ) }];
     } else {
         s = [{ "Table": "ClientInfo", "TypeParameter": "CreateAddress" }
             , { Phone: tel, Order_id: Order_id || 0, ID: 0, ClientHash: '', Comment: '' }];
@@ -800,7 +783,7 @@ MSG.sendOrderData = function ( ID ) {
 MSG.clientAddress = function ( s ) {
     var i
         , x = {
-        City: $( "#city_client" ).val()
+        City: $( "#city_client" ).val() || ' '
         , Street: ($( ".operator_client_adress .collapse.in #street_client" ).val() || ' ') + ''
         , House: +$( ".operator_client_adress .collapse.in #home_number" ).val() || 0
         , Building: ($( ".operator_client_adress .collapse.in #corp_str" ).val() || ' ') + ''
@@ -809,6 +792,10 @@ MSG.clientAddress = function ( s ) {
         , Entrance: +$( ".operator_client_adress .collapse.in #podyezd" ).val() || 0
         , DoorphoneCode: ($( ".operator_client_adress .collapse.in #cod" ).val() || ' ') + ''
     };
+    if ( x.Street === ' ' && x.House === 0 && Cart.getType() === TAKEAWAY ) {
+        var zz = Cashier.OrganizationName.split(';');
+        x.City = zz[0]; x.Street = zz[1]; x.House = +zz[2];
+    }
     if ( s != undefined ) {
         for ( i in x ) {
             s[i] = x[i];
@@ -896,12 +883,9 @@ MSG.sendPersonal = function ( ID, Order_id_item, del ) {
 };
 MSG.request.orderPersonal = function ( ID, Role, fn ) {
     var s = {
-        "Table": "OrderPersonal",
-        "Query": "Read",
-        "TypeParameter": "RangeRole",
-        "Values": [ID, Role],
-        "Limit": 10,
-        "Offset": 0
+        "Table": "OrderPersonal", "Query": "Read", "TypeParameter": "RangeRole"
+        , "Values": [ID, Role]
+        , "Limit": 10, "Offset": 0
     };
     MSG.send( { structure: s, handler: fn, mHandlers: true } )
 };

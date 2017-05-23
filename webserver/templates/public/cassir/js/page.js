@@ -265,7 +265,7 @@ getPhone = function ( id ) {
 
 // Фильтрация для input
 $( document ).on( 'keyup', 'input.number', function () {
-    this.value = this.value.replace( /[^0-9.]/g, '' );
+    this.value = this.value.replace( /[^0-9.,]/g, '' ).replace( /,/g, '.' );
 } );
 // function LIMIT ( lim ) {
 //     return function () {

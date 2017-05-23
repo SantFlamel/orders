@@ -1053,7 +1053,7 @@ type CHPrint struct {
 
 func (p *CHPrint) init() {
 	p.sp.Header = "\n    ДОСТАВКА ЗА 60 МИНУТ ИЛИ БЕСПЛАТНО \n" +
-		"приедем - подарим сертификат на 600 рублей"
+		"опоздаем - подарим сертификат на 600 руб."
 
 	p.sp.InfoOrg = "         СЕТЬ РЕСТОРАНОВ \"ЯПОКИ\"\n " +
 		"         OOO \"ВКУС БЕЗ ГРАНИЦ\"\n" +
@@ -1381,64 +1381,75 @@ func (p *CHPrint) Printer(values ...interface{}) error {
 						//p.sp.TypePayment = DBTypePayment[op.TypePayments]
 						//p.sp.TypeOperation = "Получено:\t" + fmt.Sprint(op.Deposit)
 						p.sp.OrgHash = org_hash
-                        println("type_send:",type_send)
-						if type_send == "Доставка" {
-                            println("err2 := stream.ReadRow")
 
-                            err2 := stream.ReadRow("OrderCustomer", "Value", op.Order_id)
-							if err2 == nil {
-                                println("err2 = oc.ReadRow(stream.Row)")
-								oc := OrderCustomer{}
-								err2 = oc.ReadRow(stream.Row)
-								if err2 == nil {
-                                    println(1)
-									p.sp.Footer = p.sp.Footer +
-										"\n   ------------------------------------"
-
-									if oc.Street != "" && oc.Street != " " {
-										p.sp.Footer = p.sp.Footer +
-											"\nУлица: " + oc.Street
+                        err2 := stream.ReadRow("OrderCustomer", "Value", op.Order_id)
+                        if err2 == nil {
+                            println("err2 = oc.ReadRow(stream.Row)")
+                            oc := OrderCustomer{}
+                            err2 = oc.ReadRow(stream.Row)
+                            if err2 == nil {
+                                println(1)
+                                p.sp.Footer = p.sp.Footer +
+                                    "\n   ------------------------------------\n"
+                                if type_send == "Доставка" {
+                                    if oc.Street != "" && oc.Street != " " {
+                                        p.sp.Footer = p.sp.Footer +
+                                                "\nУлица: " + oc.Street
                                         println(2)
-									}
+                                    }
 
-									if oc.House > int64(0) {
-										p.sp.Footer = p.sp.Footer +
-											" Дом: " + fmt.Sprint(oc.House)
+                                    if oc.House > int64(0) {
+                                        p.sp.Footer = p.sp.Footer +
+                                                " Дом: " + fmt.Sprint(oc.House)
                                         println(3)
-									}
+                                    }
 
-									if oc.Building != "" && oc.Building != " " {
-										p.sp.Footer = p.sp.Footer +
-											" Строение: " + oc.Building
+                                    if oc.Apartment > int64(0) {
+                                        p.sp.Footer = p.sp.Footer +
+                                                " Квартира: " + fmt.Sprint(oc.Apartment)
+                                        println(3)
+                                    }
+
+                                    if oc.Floor > int64(0) {
+                                        p.sp.Footer = p.sp.Footer +
+                                                " Этаж: " + fmt.Sprint(oc.Floor)
+                                        println(3)
+                                    }
+
+                                    if oc.Building != "" && oc.Building != " " {
+                                        p.sp.Footer = p.sp.Footer +
+                                                " Строение: " + oc.Building
                                         println(4)
-									}
+                                    }
 
-									if oc.Entrance > int64(0) {
-										p.sp.Footer = p.sp.Footer +
-											" Подъезд: " + fmt.Sprint(oc.Entrance)
+                                    if oc.Entrance > int64(0) {
+                                        p.sp.Footer = p.sp.Footer +
+                                                "\nПодъезд: " + fmt.Sprint(oc.Entrance)
                                         println(5)
-									}
+                                    }
+                                }
 
-									if oc.Phone != "" && oc.Phone != " " {
-										p.sp.Footer = p.sp.Footer +
-											" Телефон: " + oc.Phone
-                                        println(6)
-									}
+                                if oc.Phone != "" && oc.Phone != " " {
+                                    p.sp.Footer = p.sp.Footer +
+                                        " Телефон: " + oc.Phone
+                                    println(6)
+                                }
 
-									if note != "" && note != " " {
-										p.sp.Footer = p.sp.Footer +
-											"\n" + note
-                                        println(7)
-									}
+                                if note != "" && note != " " {
+                                    p.sp.Footer = p.sp.Footer +
+                                        "\n" + note
+                                    println(7)
+                                }
 
-								}
-							}
-                            println(p.sp.Footer)
-                            if err2!=nil{
-                                println("err2: ", err2.Error())
                             }
-						}
+                        }
+                        println(p.sp.Footer)
+                        if err2!=nil{
+                            println("err2: ", err2.Error())
+                        }
+
 						var b []byte
+                        p.sp.Footer = p.sp.Footer + "\n\n\n\n\n"
 						b, err = json.Marshal(p.sp)
 						if err == nil {
 							println("---------------------------------------------")

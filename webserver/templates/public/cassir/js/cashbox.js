@@ -107,12 +107,12 @@ CashBox.closeChangeEmployee = function () {
         , cash_end_day = document.getElementById( 'countDeposit' ).innerHTML
         ;
     MSG.close.ChangeEmployee( +sum_in_cashbox, +non_cash_end_day, +cash_end_day );
+    MSG.request.dayOverPrintCheck();
     delete Cashier.ChangeEmployee;
     CashBox.reset();
     wait( 'CashBox.closeChangeEmployee', function () {
         CashBox.getSumInCashbox();
     }, 300 )
-
 };
 CashBox.checkChangeEmployee = function () {
     if ( CashBox.ChangeEmployee.length === 0 ) {
@@ -121,6 +121,7 @@ CashBox.checkChangeEmployee = function () {
             MSG.set.ChangeEmployee();
         };
         document.getElementById( 'shiftNumber' ).innerHTML = '-';
+        document.querySelector('#close-shift p').innerHTML= 'Вы действительно хотите открыть смену?';
     } else {
         Cashier.ChangeEmployee = CashBox.ChangeEmployee.pop();
         document.getElementById( 'change_employee' ).innerHTML = CLOSE_CHANGE_EMPLOYEE;
@@ -128,6 +129,7 @@ CashBox.checkChangeEmployee = function () {
         document.getElementById( 'close_day_cashier' ).onclick = function () {
             CashBox.closeChangeEmployee();
         };
+        document.querySelector('#close-shift p').innerHTML= 'Вы действительно хотите закрыть смену?';
     }
     CashBox.update();
 };
@@ -239,7 +241,7 @@ Operation.prototype.showOperation = function () {
 
 ////////--------| Check |----------------------------------------------------------
 Operation.prototype.rePrintCheck = function () {
-    MSG.request.rePrintCheck( this.Order_id );
+    MSG.request.rePrintCheck( this.ID );
 };
 //--------------\ Check |----------------------------------------------------------
 
