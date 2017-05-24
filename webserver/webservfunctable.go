@@ -456,7 +456,6 @@ func (st *structure) SelectTables(msg []byte) error {
 				MSG: []byte("{\"Table\":\"Point\",\"Query\":\"Select\"," +
 					"\"TypeParameter\":\"AllCity\",\"Values\":null}" + fmt.Sprintf("%v", st.qm.Values[0])),
 			}
-
             //err = st.getDateWithServicesRangeRead(co)
             go st.getDateWithServicesRangeRead(co)
 		} else {

@@ -124,11 +124,12 @@ Page.show = {
     }, makeOrder: function () {
         MSG.requestProducts();
         // MSG.requestOrganization()
-        $( '#sets .product_group, #rols .product_group, #zrols .product_group, #sushi .product_group, #pizza .product_group' ).empty();
-        $( '#pizza .product_group' ).append(
-            '<li><a class="part" href="#pizza_big" data-toggle="tab">Большая</a></li>' +
-            '<li><a class="part" href="#pizza_small" data-toggle="tab">Маленькая</a></li>' );
-        $( '#sous .product_group, #salat .product_group, #drink .product_group, #pizza_small .product_group, #pizza_big_t .product_group, #pizza_big_tr .product_group' ).empty();
+        $( '#sets .product_group, #rols .product_group, #zrols .product_group, #sushi .product_group\
+            , #sous .product_group, #salat .product_group, #drink .product_group, #pizza_small .product_group\
+            , #pizza_big_t .product_group, #pizza_big_tr .product_group, #other .product_group' ).empty();
+        $( '#pizza .product_group' ).empty().append( '<ul class="product_group"> ' +
+            '<li><a href="#pizza_big" data-toggle="tab">Большая</a></li>' +
+            '<li><a href="#pizza_small" data-toggle="tab">Маленькая</a></li>' );
         Cart.showCatalog();
         if ( !$( '.delivery_met' ).hasClass( 'active' ) ) {
             $( '.delivery_met:has([href="#take_away"])' ).addClass( 'active' );

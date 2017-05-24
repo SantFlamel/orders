@@ -107,7 +107,7 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 	}
 
 	//----READ_COUNT_ALL
-	dbr.requestsList["queryReadOrderCheckInfo"], err = db.Prepare("select org_hash,discount_name,\"type\",note,discount_percent,price,price_with_discount,price_currency from \"order\" where id=$1;")
+	dbr.requestsList["queryReadOrderCheckInfo"], err = db.Prepare("select org_hash,discount_name,\"type\",note, (SELECT order_customer.note FROM order_customer WHERE order_id = id),discount_percent,price,price_with_discount,price_currency from \"order\" where id=$1;")
 	if err != nil {
 		return err
 	}
@@ -464,6 +464,11 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 		"FROM order_status " +
 		"WHERE order_id=ol.order_id AND order_id_item=id_item AND order_status.status_id=4 " +
 		"ORDER BY \"time\" DESC LIMIT 1) as osu " +
+		",(SELECT CASE WHEN (SELECT order_status.status_id " +
+		"FROM order_status " +
+		"WHERE order_status.order_id=ol.order_id AND order_status.status_id=4 " +
+		"ORDER BY id DESC LIMIT 1)is not null then 0 else 1 end " +
+		") as oss " +
 		"FROM  \"order\" o " +
 		"RIGHT JOIN order_list ol ON ol.order_id=o.id " +
 		"WHERE " +
@@ -478,7 +483,7 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 		"WHERE " +
 		//"(cooking_tracker=$3 AND (status_id < 4 OR status_id=14 OR status_id is null) OR (status_id = 4 AND cooking_tracker=$3 AND OSU = $4)) AND status_id_order<>15 AND status_id_order<>16 " +
 		"(cooking_tracker=$3 AND (status_id < 4 OR status_id=14 OR status_id is null) OR (status_id = 4 AND cooking_tracker=$3 AND OSU = $4)) AND status_id_order<>15 AND status_id_order<>16 " +
-		"ORDER BY ol.order_id, ol.id_item  ASC  LIMIT $5  OFFSET $6",
+		"ORDER BY ol.oss, ol.order_id, ol.id_item  ASC  LIMIT $5  OFFSET $6",
 
 	//	"cooking_tracker=$3 AND  (status_id < 4 OR status_id=14 OR status_id is null) OR (status_id = 4 AND cooking_tracker=$3 AND OSU = $4)  " +
 	//"ORDER BY ol.order_id, ol.id_item  ASC  LIMIT $5  OFFSET $6"
@@ -843,7 +848,24 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 	//==================================================================================================================
 	//==================================================================================================================
 	//----Cashbox
-	dbr.requestsList["execInsertCashbox"], err = db.Prepare("INSERT INTO cashbox(order_id, \"сhange_employee_id\", first_sure_name, user_hash, role_name, org_hash, type_payments, type_operation, deposit, short_change, cause, time_operation)VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING id;")
+	//dbr.requestsList["execInsertCashbox"], err = db.Prepare("INSERT INTO cashbox(order_id, \"сhange_employee_id\", first_sure_name, user_hash, role_name, org_hash, type_payments, type_operation, deposit, short_change, cause, time_operation)VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING id;")
+
+	dbr.requestsList["execInsertCashbox"], err = db.Prepare("" +
+		"WITH sum_dep as ( " +
+		"SELECT CASE WHEN (SELECT sum(deposit) FROM cashbox WHERE order_id = $1) is not null THEN " +
+		"(SELECT sum(deposit) FROM cashbox WHERE order_id = $1) ELSE 0 END ) " +
+
+		",ins as (INSERT INTO cashbox(order_id, \"сhange_employee_id\", first_sure_name, user_hash, role_name, " +
+		"org_hash, type_payments, type_operation, deposit, short_change, cause, time_operation)  " +
+		"SELECT $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 " +
+		"WHERE ($9 + (SELECT * FROM sum_dep))<=(SELECT price_with_discount FROM \"order\" WHERE id = $1)  RETURNING id) " +
+
+		"SELECT CASE WHEN (SELECT * FROM ins) is null " +
+		"THEN (select a from (SELECT 1 as a, raise_exception('Already exists')) aa ) " +
+		"ELSE (SELECT * FROM ins) END")
+
+	//"SELECT CASE WHEN (SELECT * FROM ins) is not null THEN (select a from (SELECT 1 as a, raise_exception('Already exists')) aa ) " +
+	//"ELSE (SELECT raise_exception('Already exists')) END")
 	if err != nil {
 		return err
 	}
@@ -1072,10 +1094,10 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 	//------------------------------------------------------------------------------------------------------------------
 	//----UPDATE_CLOSE_courrier
 	dbr.requestsList["execUpdateChangeEmployeeClose"], err = db.Prepare("" +
-            "with a as (select close from \"сhange_employee\" where id = $1 ), s as( " +
-            "UPDATE \"сhange_employee\" SET sum_in_cashbox=$2, non_cash_end_day=$3, cash_end_day=$4, close=true, date_end=$5 WHERE id = $1 AND false in (select close from a)) " +
-            "SELECT raise_exception('Already closed') FROM a WHERE a.close = true;")
-            //"UPDATE \"сhange_employee\" SET sum_in_cashbox=$2, non_cash_end_day=$3, cash_end_day=$4, close=true, date_end=$5 WHERE id = $1;")
+		"with a as (select close from \"сhange_employee\" where id = $1 ), s as( " +
+		"UPDATE \"сhange_employee\" SET sum_in_cashbox=$2, non_cash_end_day=$3, cash_end_day=$4, close=true, date_end=$5 WHERE id = $1 AND false in (select close from a)) " +
+		"SELECT raise_exception('Already closed') FROM a WHERE a.close = true;")
+	//"UPDATE \"сhange_employee\" SET sum_in_cashbox=$2, non_cash_end_day=$3, cash_end_day=$4, close=true, date_end=$5 WHERE id = $1;")
 	if err != nil {
 		return err
 	}

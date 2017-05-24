@@ -1311,7 +1311,7 @@ func (p *CHPrint) Printer(values ...interface{}) error {
 			//}
 		} else {
 
-			var org_hash, discount_name, type_send, note string
+			var org_hash, discount_name, type_send, note, notecustomer string
 			var discount_percent string
 			var price, price_currency string
 			var price_with_discount float64
@@ -1320,7 +1320,7 @@ func (p *CHPrint) Printer(values ...interface{}) error {
 			err = stream.ReadRow("Order", "CheckInfo", op.Order_id)
 			if err == nil {
 				println("err = stream.ReadRow(\"Order\"", op.Order_id)
-				err = stream.Row.Scan(&org_hash, &discount_name, &type_send, &note, &discount_percent, &price, &price_with_discount, &price_currency)
+				err = stream.Row.Scan(&org_hash, &discount_name, &type_send, &note, &notecustomer, &discount_percent, &price, &price_with_discount, &price_currency)
 				if err == nil {
 					println("err = stream.Row.Scan")
 					err = stream.ReadRows("OrderList", "RangeOrderIDSet", op.Order_id)
@@ -1391,6 +1391,12 @@ func (p *CHPrint) Printer(values ...interface{}) error {
                                 println(1)
                                 p.sp.Footer = p.sp.Footer +
                                     "\n   ------------------------------------\n"
+                                if oc.Phone != "" && oc.Phone != " " {
+                                    p.sp.Footer = p.sp.Footer +
+                                            " Телефон: " + oc.Phone
+                                    println(6)
+                                }
+
                                 if type_send == "Доставка" {
                                     if oc.Street != "" && oc.Street != " " {
                                         p.sp.Footer = p.sp.Footer +
@@ -1427,20 +1433,19 @@ func (p *CHPrint) Printer(values ...interface{}) error {
                                                 "\nПодъезд: " + fmt.Sprint(oc.Entrance)
                                         println(5)
                                     }
-                                }
 
-                                if oc.Phone != "" && oc.Phone != " " {
-                                    p.sp.Footer = p.sp.Footer +
-                                        " Телефон: " + oc.Phone
-                                    println(6)
-                                }
+                                    if note != "" && note != " " {
+                                        p.sp.Footer = p.sp.Footer +
+                                                "\n" + note
+                                        println(7)
+                                    }
 
-                                if note != "" && note != " " {
-                                    p.sp.Footer = p.sp.Footer +
-                                        "\n" + note
-                                    println(7)
+                                    if notecustomer != "" && notecustomer != " " {
+                                        p.sp.Footer = p.sp.Footer +
+                                                "\n" + notecustomer
+                                        println(7)
+                                    }
                                 }
-
                             }
                         }
                         println(p.sp.Footer)

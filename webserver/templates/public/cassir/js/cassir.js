@@ -27,70 +27,46 @@ Cassir.FlippingFunc = {
         Cassir.flippIndex -= 20;
     }
 };
-$( 'body' ).on( 'click', '.next_page', Cassir.FlippingFunc.next ).on( 'click', '.prev_page', Cassir.FlippingFunc.prev );
-
-Cassir.updateDisplay = function () {
-    $( '.orders_li' ).css( 'display', 'none' ); // при удалении на предыдущей странице.
-    // если должны отобразится первые 20, то gt() не используется. - (index1 > 0 ? ':gt(' + index1 + ')' : '')
-    $( '.orders_li' + ( (Cassir.flippIndex > 0) ? (':gt(' + (+Cassir.flippIndex - 1) + ')') : '' ) + ':lt(20)' )
-        .css( 'display', '' );
-};
+var ELEM_ON_PAGE = 20
+    // $( '.orders_li' )
+    , $btn = $( '.orders_li.btn' )
+    ;
+Cassir.flippPage = 0;
 Cassir.showBtnFlipping = function ( po, recursion ) {
-    // кнопки делаются автоматом, но style="display: none"
-    po = po || 19;
+    po = po || (ELEM_ON_PAGE - 1);
     if ( !recursion ) {
-        $( '.orders_li.btn' ).remove();
+        $btn.remove();
     }
-    if ( $( '.orders_li:gt(' + (po ) + ')' ).length !== 0 ) {
+    if ( $( '.orders_li:gt(' + (po) + ')' ).length !== 0 ) {
         $( '.orders_li:eq(' + po + ')' ).before( Cassir.elem.nextBtn ).before( Cassir.elem.prevBtn );
-        if ( $( '.orders_li:gt(' + (po + 20) + ')' ).length !== 0 ) {
-            Cassir.showBtnFlipping( po + 20, true ); // рекурсия тут!!!
+        if ( $( '.orders_li:gt(' + (po + ELEM_ON_PAGE) + ')' ).length !== 0 ) {
+            Cassir.showBtnFlipping( po + ELEM_ON_PAGE, true ); // рекурсия тут!!!
         }
     }
 };
-
-if ( TEST ) {
-    var ELEM_ON_PAGE = 20
-        // $( '.orders_li' )
-        , $btn = $( '.orders_li.btn' )
-        ;
-    Cassir.flippPage = 0;
-    Cassir.showBtnFlipping = function ( po, recursion ) {
-        po = po || (ELEM_ON_PAGE - 1);
-        if ( !recursion ) {
-            $btn.remove();
-        }
-        if ( $( '.orders_li:gt(' + (po) + ')' ).length !== 0 ) {
-            $( '.orders_li:eq(' + po + ')' ).before( Cassir.elem.nextBtn ).before( Cassir.elem.prevBtn );
-            if ( $( '.orders_li:gt(' + (po + ELEM_ON_PAGE) + ')' ).length !== 0 ) {
-                Cassir.showBtnFlipping( po + ELEM_ON_PAGE, true ); // рекурсия тут!!!
-            }
-        }
-    };
-    Cassir.showPage = function () {
-        var pageCount = Math.ceil( document.querySelectorAll( '.orders_li' ).length / ELEM_ON_PAGE );
-        if ( Cassir.flippPage >= pageCount ) {
-            Cassir.flippPage = pageCount - 1;
-        }
-        if ( Cassir.flippPage < 0 ) {
-            Cassir.flippPage = 0;
-        }
-        $( '.orders_li' ).css( 'display', 'none' );
-        var eq = Cassir.flippPage * ELEM_ON_PAGE
-            , gt = eq === 0 ? eq : eq - 1
-            , lt = eq === 0 ? ELEM_ON_PAGE - 1 : ELEM_ON_PAGE
-            , sel = '.orders_li:eq(' + eq + '), .orders_li:gt(' + gt + '):lt(' + (lt) + ')';
-        console.log( 'Sel', sel );
-        $( sel ).css( 'display', '' );
-    };
-    $( 'body' ).off( 'click', '.next_page' ).off( 'click', '.prev_page' ).on( 'click', '.next_page', function () {
-        Cassir.flippPage++;
-        Cassir.showPage();
-    } ).on( 'click', '.prev_page', function () {
-        Cassir.flippPage--;
-        Cassir.showPage();
-    } );
-}
+Cassir.showPage = function () {
+    var pageCount = Math.ceil( document.querySelectorAll( '.orders_li' ).length / ELEM_ON_PAGE );
+    if ( Cassir.flippPage >= pageCount ) {
+        Cassir.flippPage = pageCount - 1;
+    }
+    if ( Cassir.flippPage < 0 ) {
+        Cassir.flippPage = 0;
+    }
+    $( '.orders_li' ).css( 'display', 'none' );
+    var eq = Cassir.flippPage * ELEM_ON_PAGE
+        , gt = eq === 0 ? eq : eq - 1
+        , lt = eq === 0 ? ELEM_ON_PAGE - 1 : ELEM_ON_PAGE
+        , sel = '.orders_li:eq(' + eq + '), .orders_li:gt(' + gt + '):lt(' + (lt) + ')';
+    console.log( 'Sel', sel );
+    $( sel ).css( 'display', '' );
+};
+$( 'body' ).off( 'click', '.next_page' ).off( 'click', '.prev_page' ).on( 'click', '.next_page', function () {
+    Cassir.flippPage++;
+    Cassir.showPage();
+} ).on( 'click', '.prev_page', function () {
+    Cassir.flippPage--;
+    Cassir.showPage();
+} );
 // делаем все елементы видимыми -> скрываем не нужные
 // -> делаем листалки игнорируя скрытые -> оставляем только первые 20 елементов
 // Cassir.sortedOrders = [];
@@ -180,6 +156,7 @@ Order.prototype.addStatus = function ( data ) {
     }
     // console.groupEnd();
 };
+
 Order.prototype.showOrder = function () {
     var state = +document.querySelector( '#cassir_tab li.active' ).dataset.status;
     if ( ((state === 0) &&
@@ -198,49 +175,14 @@ Order.prototype.showOrder = function () {
         return;
     }
     this.addOrder();
-    // TODO: убрать?????
-    wait( 'Order.updateView', Order.updateView, 100 );
 };
 Order.updateView = function () {
-    var $orderInPage = $( '.orders_li:gt(18)' )
-        ;
     $( '.orders_li.empty' ).remove();
+    $( '.orders_li.btn' ).remove();
     Cassir.showBtnFlipping();
-    if ( $orderInPage.length !== 0 ) {
-        $orderInPage.css( 'display', 'none' );
-        $( '.orders_li:lt(20)' ).css( 'display', '' );
-    }
     Cassir.showEmptyElem();
-    Cassir.flippIndex = 0;
+    Cassir.showPage();
 };
-if ( TEST ) {
-    Order.prototype.showOrder = function () {
-        var state = +document.querySelector( '#cassir_tab li.active' ).dataset.status;
-        if ( ((state === 0) &&
-            (  this.status === 11 || this.status === 15 || this.status === 16 /* доставлен, отменён, отменён */
-            || this.status === 1    /* предзаказ*/
-            || this.status === 10     /*доставляется*/
-            || this.status === 13))   /*Заказ не забрали*/
-            || ((state === 999) && !( this.status === 11 || this.status === 15 || this.status === 16 /* доставлен, отменён, отменён */)) ) {
-            this.deleteOrder( true );
-            wait( 'Order.updateView', Order.updateView, 100 );
-            return;
-        }
-        if ( this.status !== state && !(state === 0 || state === 999) ) {
-            this.deleteOrder( true );
-            wait( 'Order.updateView', Order.updateView, 100 );
-            return;
-        }
-        this.addOrder();
-    };
-    Order.updateView = function () {
-        $( '.orders_li.empty' ).remove();
-        $( '.orders_li.btn' ).remove();
-        Cassir.showBtnFlipping();
-        Cassir.showEmptyElem();
-        Cassir.showPage();
-    };
-}
 Order.prototype.addOrder = function () {
     var elem = document.querySelectorAll( '.orders_li.ord' )
         , len = elem.length, i, y, x;

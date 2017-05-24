@@ -57,6 +57,7 @@ function buildOrdersTable() {
             getProduct();
             getDeliveryZone( "", "", "" );
             if ( $( "#on_time" ).is( ":checked" ) ) {
+                $( '#on_time' ).click();
                 $( "#timeFinish1" ).html( timePlus1( $( "#select_time" ).val(), 30 ) );
                 $( "#timeFinish2" ).html( timePlus1( $( "#select_time" ).val(), 59 ) );
             } else {
@@ -158,7 +159,6 @@ $( document ).ready( function () {
 
             // inputContent = $input.val().toLowerCase(),
             $columns = $( this ).parents( '.filters' ).find( 'input' );
-        //console.log($(this).parents('.filterable').find('tr.table-operator__row'));
         var inputContent1 = $columns.eq( 0 ).val().toLowerCase(),
             inputContent2 = $columns.eq( 1 ).val().toLowerCase(),
             inputContent3 = $columns.eq( 2 ).val().toLowerCase(),
@@ -303,7 +303,7 @@ function reloadClientTel() {
 
     for ( var i = 1; i <= telinfo.count; i++ ) {//if (i=="count") continue;
         newaddress[i] =
-            '<div class="panel"> <div class="panel-heading" role="tab" id="heading' + 1 + i + '">' +
+            '<div data-id_address="' + telinfo[i].ID + '" class="panel"> <div class="panel-heading" role="tab" id="heading' + 1 + i + '">' +
             '  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1"' +
             ' href="#collapse' + 1 + i + '" aria-expanded="false" aria-controls="collapse' + 1 + i + '">' +
             ' ' + telinfo[i].Street + ' д. ' + telinfo[i].House + ' ' + ((telinfo[i].Building > 0) ? telinfo[i].Building : "") + ', кв. ' + telinfo[i].Apartment + ' ' +
@@ -447,7 +447,6 @@ $( "#cancel_btn22,#cancel_btn2" ).on( 'click', function () {
     $( '#order_client' ).removeClass( "active" );
     $( '#tab_client' ).addClass( "active" );
     $( '#client' ).addClass( "active" );
-
 } );
 // создание заказа, переход  на главную страницу оператора
 $( "#finish_btn" ).on( 'click', function () {
@@ -571,7 +570,6 @@ $( document ).on( "click", ".editOrder", function () {
     Cart.clean();
     for ( var j in orders[id].orderlist )
         if ( orders[id].orderlist[j].ID_parent_item == 0 ) {
-            console.log( "111111" );
             Product.setCountCart( orders[id].orderlist[j].Price_id, orders[id].orderlist[j].Price_id, +1 );
         }
     Cart.showPrice();
@@ -608,7 +606,6 @@ $( document ).ready( function () {
     } );
     $( ".operator_client_adress" ).find( ".panel-heading" ).on( "click", function () {
         if ( $( '.delivery_met.active a' ).first().html() === 'Доставка' )
-        //console.log(this);
             getDeliveryZone(
                 $( "#city_client" ).val(),
                 $( this ).next().find( "#street_client" ).val(),

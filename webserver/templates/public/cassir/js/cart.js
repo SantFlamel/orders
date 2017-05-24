@@ -62,7 +62,7 @@ Product.prototype.showCatalogElements = function () {
                     $( '#pizza_big_tr .product_group' ).append( this.catalogElement );
                 }
             } else { // остальное // сеты
-                $( '#pizza .product_group' ).append( this.catalogElement );
+                $( '#pizza>.product_group' ).append( this.catalogElement );
             }
             break;
         }
@@ -483,7 +483,10 @@ if ( TEST ) {
         Cart.clean();
         $( '.product_in_cart' ).remove(); // очищаем боковую панель
         Cart.showPrice(); // сбрасыываем ценник
-        Page.show.Cassir()
+        Page.show.Cassir();
+        if ( $( "#on_time" ).is( ":checked" ) ) {
+            $( '#on_time' ).click();
+        }
     };
 
 
@@ -813,7 +816,10 @@ if ( TEST ) {
         Promotion.runAll();
         $( '.product_in_cart' ).remove(); // очищаем боковую панель
         Cart.showPrice(); // сбрасыываем ценник
-        Page.show.Cassir()
+        Page.show.Cassir();
+        if ( $( "#on_time" ).is( ":checked" ) ) {
+            $( '#on_time' ).click();
+        }
     };
 
 

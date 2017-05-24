@@ -11,8 +11,7 @@ var addressWS = 'ws://order.yapoki.net:8080/ws';
 var auth_page = 'http://yapoki.net:7070';
 //локальная версия
 if ( ~window.location.href.indexOf( 'http://localhost:63342' ) ) {
-    // $.cookie( "hash", "8f22015198ec146cf67134c6b18d36cc2c3e8c5c8eeff777d6d095ab096575e5" );
-    $.cookie( "hash", "1c471a2a3977ced196dd34eefe7c5257d68be750fd43a38f0e3b2230ae55f305" );
+    $.cookie( "hash", "808b11c4c24867cc909f40b85917d8323e2773f6e87ac36768733c5873587af2" );
     addressWS = 'ws://192.168.0.73:80/ws';
     auth_page = 'http://192.168.0.73:7070';
     var minimal_cook_time = "00:00:15";  //минимальное время после которого повар сможет нажать готово

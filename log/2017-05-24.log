@@ -1,0 +1,204 @@
+2017-05-24 09:12:52 - 
+2017-05-24 09:12:52 - _______NEW_START_OF_SERVER_______
+2017-05-24 09:12:52 - Postgresql running!
+2017-05-24 09:12:52 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-24 09:12:52 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-24 09:12:52 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-24 09:12:52 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-24 09:12:52 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-24 09:12:52 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-24 09:12:52 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-24 09:12:52 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-24 09:12:52 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-24 09:12:52 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-24 09:12:52 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-24 09:12:52 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-24 09:12:52 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-24 09:14:03 - 00:x10022{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [9]: sql: no rows in result set
+2017-05-24 09:14:03 - 00:x10024{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [10]: sql: no rows in result set
+2017-05-24 09:14:03 - 00:x10026{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [11]: sql: no rows in result set
+2017-05-24 09:14:03 - 00:x10028{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [12]: sql: no rows in result set
+2017-05-24 09:14:03 - 00:x10030{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [13]: sql: no rows in result set
+2017-05-24 09:14:03 - 00:x10068{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [33]: sql: no rows in result set
+2017-05-24 09:14:03 - 00:x10070{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [34]: sql: no rows in result set
+2017-05-24 09:14:03 - 00:x10074{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [36]: sql: no rows in result set
+2017-05-24 09:14:03 - 00:x10076{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [37]: sql: no rows in result set
+2017-05-24 09:14:03 - 00:x10082{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [40]: sql: no rows in result set
+2017-05-24 09:14:03 - 00:x10084{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [41]: sql: no rows in result set
+2017-05-24 09:18:53 - ERROR get message 192.168.0.132:483 : [48 48 58 82 101 97 100 32 67 108 105 101 110 116 73 110 102 111 58 115 113 108 58 32 110 111 32 114 111 119 115 32 105 110 32 114 101 115 117 108 116 32 115 101 116]
+2017-05-24 09:18:57 - ERROR get message 192.168.0.132:483 : [48 48 58 82 101 97 100 32 67 108 105 101 110 116 73 110 102 111 58 115 113 108 58 32 110 111 32 114 111 119 115 32 105 110 32 114 101 115 117 108 116 32 115 101 116]
+2017-05-24 09:19:25 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-24 09:19:25 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-24 09:19:25 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-24 09:19:28 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-24 09:19:28 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-24 09:19:28 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-24 09:19:33 - client:  dial tcp 192.168.0.245:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2017-05-24 09:22:49 - 00:x10022{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [9]: sql: no rows in result set
+2017-05-24 09:22:49 - 00:x10024{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [10]: sql: no rows in result set
+2017-05-24 09:22:49 - 00:x10026{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [11]: sql: no rows in result set
+2017-05-24 09:22:49 - 00:x10028{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [12]: sql: no rows in result set
+2017-05-24 09:22:49 - 00:x10030{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [13]: sql: no rows in result set
+2017-05-24 09:22:49 - 00:x10068{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [33]: sql: no rows in result set
+2017-05-24 09:22:49 - 00:x10070{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [34]: sql: no rows in result set
+2017-05-24 09:22:49 - 00:x10074{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [36]: sql: no rows in result set
+2017-05-24 09:22:49 - 00:x10076{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [37]: sql: no rows in result set
+2017-05-24 09:22:49 - 00:x10082{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [40]: sql: no rows in result set
+2017-05-24 09:22:49 - 00:x10084{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [41]: sql: no rows in result set
+2017-05-24 09:23:01 - 
+2017-05-24 09:23:01 - _______NEW_START_OF_SERVER_______
+2017-05-24 09:23:01 - Postgresql running!
+2017-05-24 09:23:01 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-05-24 09:23:01 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-24 09:23:01 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-24 09:23:01 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-24 09:23:01 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-24 09:23:01 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-24 09:23:01 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-24 09:23:01 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-24 09:23:01 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-24 09:23:01 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-24 09:23:01 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-24 09:23:01 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-24 09:23:01 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-24 09:24:03 - 00:x10381{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [9]: sql: no rows in result set
+2017-05-24 09:24:03 - 00:x10383{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [10]: sql: no rows in result set
+2017-05-24 09:24:03 - 00:x10385{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [11]: sql: no rows in result set
+2017-05-24 09:24:03 - 00:x10387{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [12]: sql: no rows in result set
+2017-05-24 09:24:03 - 00:x10389{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [13]: sql: no rows in result set
+2017-05-24 09:24:03 - 00:x10427{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [33]: sql: no rows in result set
+2017-05-24 09:24:03 - 00:x10429{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [34]: sql: no rows in result set
+2017-05-24 09:24:03 - 00:x10433{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [36]: sql: no rows in result set
+2017-05-24 09:24:03 - 00:x10435{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [37]: sql: no rows in result set
+2017-05-24 09:24:03 - 00:x10441{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [40]: sql: no rows in result set
+2017-05-24 09:24:03 - 00:x10443{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [41]: sql: no rows in result set
+2017-05-24 09:25:26 - 00:x10022{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [9]: sql: no rows in result set
+2017-05-24 09:25:26 - 00:x10024{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [10]: sql: no rows in result set
+2017-05-24 09:25:26 - 00:x10026{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [11]: sql: no rows in result set
+2017-05-24 09:25:26 - 00:x10028{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [12]: sql: no rows in result set
+2017-05-24 09:25:26 - 00:x10030{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [13]: sql: no rows in result set
+2017-05-24 09:25:26 - 00:x10068{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [33]: sql: no rows in result set
+2017-05-24 09:25:26 - 00:x10070{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [34]: sql: no rows in result set
+2017-05-24 09:25:26 - 00:x10074{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [36]: sql: no rows in result set
+2017-05-24 09:25:26 - 00:x10076{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [37]: sql: no rows in result set
+2017-05-24 09:25:26 - 00:x10082{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [40]: sql: no rows in result set
+2017-05-24 09:25:26 - 00:x10084{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [41]: sql: no rows in result set
+2017-05-24 09:26:05 - websocket: close 1001 (going away)
+2017-05-24 09:26:06 - websocket: close 1001 (going away)
+2017-05-24 09:27:58 - 00:x10022{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [9]: sql: no rows in result set
+2017-05-24 09:27:58 - 00:x10024{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [10]: sql: no rows in result set
+2017-05-24 09:27:58 - 00:x10026{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [11]: sql: no rows in result set
+2017-05-24 09:27:58 - 00:x10028{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [12]: sql: no rows in result set
+2017-05-24 09:27:58 - 00:x10030{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [13]: sql: no rows in result set
+2017-05-24 09:27:58 - 00:x10068{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [33]: sql: no rows in result set
+2017-05-24 09:27:58 - 00:x10070{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [34]: sql: no rows in result set
+2017-05-24 09:27:58 - 00:x10074{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [36]: sql: no rows in result set
+2017-05-24 09:27:58 - 00:x10076{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [37]: sql: no rows in result set
+2017-05-24 09:27:58 - 00:x10082{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [40]: sql: no rows in result set
+2017-05-24 09:27:58 - 00:x10084{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [41]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 2]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 2]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 3]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 4]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 3]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 4]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 6]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 6]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 7]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 7]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 8]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 2]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 3]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 4]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 8]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 2]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 3]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 4]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 6]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 7]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 8]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 2]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 3]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 4]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 6]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 7]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 8]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 6]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 7]: sql: no rows in result set
+2017-05-24 09:28:17 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 8]: sql: no rows in result set
+2017-05-24 09:28:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 3]: sql: no rows in result set
+2017-05-24 09:28:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 4]: sql: no rows in result set
+2017-05-24 09:28:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 6]: sql: no rows in result set
+2017-05-24 09:28:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 7]: sql: no rows in result set
+2017-05-24 09:28:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 8]: sql: no rows in result set
+2017-05-24 09:28:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 3]: sql: no rows in result set
+2017-05-24 09:28:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 4]: sql: no rows in result set
+2017-05-24 09:28:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 6]: sql: no rows in result set
+2017-05-24 09:28:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 7]: sql: no rows in result set
+2017-05-24 09:28:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 8]: sql: no rows in result set
+2017-05-24 09:28:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 3]: sql: no rows in result set
+2017-05-24 09:28:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 4]: sql: no rows in result set
+2017-05-24 09:28:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 6]: sql: no rows in result set
+2017-05-24 09:28:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 7]: sql: no rows in result set
+2017-05-24 09:28:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 8]: sql: no rows in result set
+2017-05-24 09:28:37 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 3]: sql: no rows in result set
+2017-05-24 09:28:37 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 4]: sql: no rows in result set
+2017-05-24 09:28:37 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 6]: sql: no rows in result set
+2017-05-24 09:28:37 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 7]: sql: no rows in result set
+2017-05-24 09:28:37 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 8]: sql: no rows in result set
+2017-05-24 09:28:40 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 3]: sql: no rows in result set
+2017-05-24 09:28:40 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 4]: sql: no rows in result set
+2017-05-24 09:28:40 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 6]: sql: no rows in result set
+2017-05-24 09:28:40 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 7]: sql: no rows in result set
+2017-05-24 09:28:40 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 3]: sql: no rows in result set
+2017-05-24 09:28:40 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 4]: sql: no rows in result set
+2017-05-24 09:28:40 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 6]: sql: no rows in result set
+2017-05-24 09:28:40 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 7]: sql: no rows in result set
+2017-05-24 09:28:40 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 3]: sql: no rows in result set
+2017-05-24 09:28:40 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 4]: sql: no rows in result set
+2017-05-24 09:28:40 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 6]: sql: no rows in result set
+2017-05-24 09:28:40 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 7]: sql: no rows in result set
+2017-05-24 09:30:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 3]: sql: no rows in result set
+2017-05-24 09:30:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 4]: sql: no rows in result set
+2017-05-24 09:30:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 6]: sql: no rows in result set
+2017-05-24 09:30:21 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 7]: sql: no rows in result set
+2017-05-24 09:30:22 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 3]: sql: no rows in result set
+2017-05-24 09:30:22 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 4]: sql: no rows in result set
+2017-05-24 09:30:22 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 6]: sql: no rows in result set
+2017-05-24 09:30:22 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 3]: sql: no rows in result set
+2017-05-24 09:30:22 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 4]: sql: no rows in result set
+2017-05-24 09:30:22 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 6]: sql: no rows in result set
+2017-05-24 09:30:22 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 3]: sql: no rows in result set
+2017-05-24 09:30:22 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 4]: sql: no rows in result set
+2017-05-24 09:30:22 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 6]: sql: no rows in result set
+2017-05-24 09:31:03 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 3]: sql: no rows in result set
+2017-05-24 09:31:03 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 4]: sql: no rows in result set
+2017-05-24 09:31:03 - 00:gettimer{TimersCook ERROR Read, TYPE PARAMETERS "Value" VALUES: [174 6]: sql: no rows in result set
+2017-05-24 09:38:17 - 00:x10022{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [9]: sql: no rows in result set
+2017-05-24 09:38:17 - 00:x10024{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [10]: sql: no rows in result set
+2017-05-24 09:38:17 - 00:x10026{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [11]: sql: no rows in result set
+2017-05-24 09:38:17 - 00:x10028{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [12]: sql: no rows in result set
+2017-05-24 09:38:17 - 00:x10030{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [13]: sql: no rows in result set
+2017-05-24 09:38:17 - 00:x10068{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [33]: sql: no rows in result set
+2017-05-24 09:38:17 - 00:x10070{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [34]: sql: no rows in result set
+2017-05-24 09:38:17 - 00:x10074{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [36]: sql: no rows in result set
+2017-05-24 09:38:17 - 00:x10076{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [37]: sql: no rows in result set
+2017-05-24 09:38:17 - 00:x10082{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [40]: sql: no rows in result set
+2017-05-24 09:38:17 - 00:x10084{OrderCustomer ERROR Read, TYPE PARAMETERS "Value" VALUES: [41]: sql: no rows in result set
+2017-05-24 09:38:41 - websocket: close 1001 (going away)

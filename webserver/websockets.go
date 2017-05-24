@@ -66,7 +66,7 @@ func WSHandler(w http.ResponseWriter, r *http.Request) {
         if err != nil {
             println("==============================================================")
             println("ВЕБСОКЕТЫ УПАЛИ",conn.RemoteAddr().String())
-            println(err.Error())
+            println("Ошибка:",err.Error())
             break
         }
         println("GET MESSAGE:",string(msg))

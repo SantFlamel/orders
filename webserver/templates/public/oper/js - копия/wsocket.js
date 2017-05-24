@@ -100,9 +100,9 @@ function newWS() {
         // нужен таймаут перед подключением.
         // ws = new WebSocket('ws://localhost:8080/ws');
     };
-    function Xx( msg ) {
-        console.log( '\n\nmessage', msg.data, '\n\n' );
-    }
+    // function Xx( msg ) {
+    //     console.log( '\n\nmessage', msg.data, '\n\n' );
+    // }
 
     ws.onmessage = function ( msg ) {
         // console.log('message', msg.data);
@@ -120,7 +120,7 @@ function newWS() {
             console.log( 'message', msg.data );
             return;
         }
-        if ( WSerror == "01" )
+        if ( WSerror == "01" ) {
             switch ( WSidMsg ) {
 
                 case "ordcre" :     //создать заказ
@@ -128,14 +128,14 @@ function newWS() {
                     console.log( "Создан заказ - " + WSdata );
                     var idd = WSdata;
                     var stat = ($( "#on_time" ).is( ":checked" )) ? 1 : 2;
-                    var payName = $( "ul.pay_met .active a" ).html();
+                    // var payName = $( "ul.pay_met .active a" ).html();
                     newOrderPersonal( idd, 0, 1 );//oper =1 courier -2
                     neworderuser( idd );
                     newOrderStatus( idd, stat );// 1-предзаказ 2- принят
                     neworderelem( idd );
                     //  newOrderPayment(idd,payName,0);
-                    var id_cl = newClientInfo( 0, 0 );
-                    newClientAddress( idd, id_cl );
+                    // var id_cl = newClientInfo( 0, 0 );
+                    // newClientAddress( idd, id_cl );
                     newClientAddress( idd, 0 );
                     break;
 
@@ -343,6 +343,7 @@ function newWS() {
                 default://console.log("Default"+WSdata);
                     break;
             }
+        }
 
         if ( WSerror == "02" ) {
             //console.log("JSON - "+WSdata);
@@ -613,8 +614,9 @@ function newClientAddress( order_id, id_adr ) {
 
     //street=(street=="")?" ":street; home=(home=="")?0:home; corp=(corp=="")?0:corp;
     //podyezd=(podyezd=="")?0:podyezd; level=(level=="")?0:level; kv=(kv=="")?0:kv; cod=(cod=="")?0:cod;
+    var x = $( ".operator_client_adress .collapse.in" ).parent().attr( 'data-id_address' );
     ws.send( '{"Table":"ClientInfo","TypeParameter":"CreateAddress","ID_msg":"clientAddressCr"}' +
-        '{"Phone":"' + clAddress.Phone + '","Order_id":' + order_id + ', "ID":' + id_adr || null + ', ' +
+        '{"Phone":"' + clAddress.Phone + '","Order_id":' + order_id + ', "ID":' + (x || 0) + ', ' +
         '"City":"' + clAddress.City + '", "Street":"' + clAddress.Street + '", "House":' + clAddress.House + ', "Building":"' + clAddress.Building + '",' +
         ' "Floor":' + clAddress.Floor + ', "Apartment":' + clAddress.Apartment + ', "Entrance":' + clAddress.Entrance + ', ' +
         '"DoorphoneCode":"' + clAddress.DoorphoneCode + '","Comment":"' + clAddress.Comment + '"}' );
@@ -691,8 +693,7 @@ function getProduct() {
         $( '#rols .product_group' ).empty();
         $( '#zrols .product_group' ).empty();
         $( '#sushi .product_group' ).empty();
-        $( '#pizza .product_group' ).empty();
-        $( '#pizza .product_group' ).append( '<ul class="product_group"> ' +
+        $( '#pizza .product_group' ).empty().append( '<ul class="product_group"> ' +
             '<li><a href="#pizza_big" data-toggle="tab">Большая</a></li>' +
             '<li><a href="#pizza_small" data-toggle="tab">Маленькая</a></li>' );
         $( '#sous .product_group' ).empty();
@@ -1186,8 +1187,8 @@ function getproductOrg() {
 }
 
 // $( "#take_away_address" ).on( "change", function () {
-    //option:selected
-    //  var org_index=get
+//option:selected
+//  var org_index=get
 // } )
 
 
@@ -1216,19 +1217,19 @@ function getproductOrg() {
 // }
 
 // if ( false ) {
-    function addProductOrg( data ) {
-        console.log( data );
-        if ( data == "EOF" ) return;
-        var data1 = JSON.parse( data )
-            , el = document.querySelector( 'li[data-hash="' + data1.ProdHash + '"]' );
-        if ( el !== null ) {
-            if ( data1.StopList ) {
-                el.classList.add( 'stop_list_product' );
-            } else {
-                el.classList.remove( 'stop_list_product' );
-            }
+function addProductOrg( data ) {
+    console.log( data );
+    if ( data == "EOF" ) return;
+    var data1 = JSON.parse( data )
+        , el = document.querySelector( 'li[data-hash="' + data1.ProdHash + '"]' );
+    if ( el !== null ) {
+        if ( data1.StopList ) {
+            el.classList.add( 'stop_list_product' );
+        } else {
+            el.classList.remove( 'stop_list_product' );
         }
     }
+}
 // }
 
 function getSessionHash() {

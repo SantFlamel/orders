@@ -264,7 +264,9 @@ MSG.close.session = function () {
     try {
         MSG.send( { structure: { "Table": "Session", "TypeParameter": "Abort" } } );
     } catch ( e ) {
+
     }
+    alert( 'УДАЛЕНЫ КУКИ' );
     cookie.delete( 'hash', { domain: '.yapoki.net', path: '/' } );
     cookie.delete( 'mysession', { domain: '.yapoki.net', path: '/' } );
     ws.stop();
@@ -283,47 +285,6 @@ MSG.request.sessionInfo = function () {
 MSG.request.tabel = function () {
     MSG.send( { structure: { "Table": "Tabel", "Values": [Cashier.UserHash] }, handler: MSG.get.tabel } );
 };
-
-MSG.request.ChangeEmployee = function ( id ) {
-    var s = { Table: "ChangeEmployee", Query: "Read", TypeParameter: "Value", Values: [id], Limit: 1, Offset: 0 };
-    MSG.send( {
-        structure: s, handler: false, mHandlers: false, EOFHandler: false, check: false
-    } );
-};
-MSG.set.ChangeEmployee = function () {
-    var s = [{ Table: "ChangeEmployee", Query: "Create", TypeParameter: "GetID", Values: null, Limit: 0, Offset: 0 }
-        , {
-            UserHash: Cashier.UserHash, OrgHash: Cashier.OrganizationHash, Sum_in_cashbox: null
-            , NonCash_end_day: null, Cash_end_day: null
-        }];
-    MSG.send( {
-        structure: s, handler: CashBox.getSumInCashbox, mHandlers: false, EOFHandler: false, check: false
-    } );
-};
-MSG.close.ChangeEmployee = function ( sum_in_cashbox, non_cash_end_day, cash_end_day ) {
-    var s = {
-        Table: "ChangeEmployee", Query: "Update", TypeParameter: "Close"
-        , Values: [Cashier.ChangeEmployee.ID, sum_in_cashbox, non_cash_end_day, cash_end_day, Page.time()]
-        , Limit: 0, Offset: 0
-    };
-    MSG.send( { structure: s, handler: false, mHandlers: false, EOFHandler: false, check: false } );
-};
-MSG.request.ChangeEmployeeByOrgHash = function ( close ) {
-    var s = {
-        Table: "ChangeEmployee", Query: "Read", TypeParameter: "RangeCloseOrgHash"
-        , Values: [Cashier.OrganizationHash, close], Limit: 10, Offset: 0
-    };
-    MSG.send( { structure: s, handler: false, mHandlers: false, EOFHandler: false, check: false } );
-};
-MSG.request.ChangeEmployeeByOrgHashUserHash = function ( close, limit, fn, eofFn ) {
-    var s = {
-        Table: "ChangeEmployee", Query: "Read", TypeParameter: "RangeCloseUserHashOrgHash"
-        , Values: [Cashier.UserHash, Cashier.OrganizationHash, close], Limit: limit || 10, Offset: 0
-    };
-    fn = fn || false;
-    eofFn = eofFn == undefined ? false : eofFn;
-    MSG.send( { structure: s, handler: fn, mHandlers: true, EOFHandler: eofFn, check: false } );
-};
 //--------------\ User_info |----------------------------------------------------------
 
 ////////--------| ORDER |----------------------------------------------------------
@@ -337,18 +298,7 @@ MSG.requestOrder = function ( ID ) {
         }
     } );
 };
-MSG.requestOrdersByOrgHash = function () {
-    if ( !Cashier.OrganizationHash ) {
-        setTimeout( MSG.requestOrdersByOrgHash, WS_WAIT_RE );
-        return;
-    }
-    var s = {
-        "Table": "Order", "Query": "Read", "TypeParameter": "RangeOrgHash",
-        "Values": [Cashier.OrganizationHash, BEGIN_TIME_FOR_ORDER, Page.time()],
-        "Limit": 999, "Offset": 0
-    };
-    MSG.send( { structure: s, handler: MSG.get.Order, mHandlers: true, EOFHandler: false/*Page.update*/ } )
-};
+
 MSG.get.Order = function ( data ) {
     MSG.requestOrderStatus( data.ID );
     new Order( data );
@@ -434,42 +384,42 @@ Order.status = {
 };
 
 // Подсчёт времени готовки
-// MSG.request.allStatusOrder = function ( ID ) {
-//     var s = {
-//         "Table": "OrderStatus", "Query": "Read"
-//         , "TypeParameter": "RangeOrderID", "Values": [ID], "Limit": 999, "Offset": 0
-//     };
-//     MSG.send( { structure: s, handler: MSG.get.allStatusOrder, mHandlers: true, EOFHandler: MSG.get.timeCock } );
-// };
-// MSG.get.allStatusOrder = function ( data ) {
-//     if ( !MSG.get.hasOwnProperty( '_allStatusOrder' ) ) {
-//         MSG.get._allStatusOrder = []
-//     }
-//     MSG.get._allStatusOrder.push( data )
-// };
-// MSG.get.timeCock = function () {
-//     var i, ii, s = {}, len, t1, t2;
-//     for ( i in MSG.get._allStatusOrder ) {
-//         ii = MSG.get._allStatusOrder[i];
-//         if ( ii.Status_id == 4 || ii.Status_id == 8 ) {
-//             if ( !s.hasOwnProperty( ii.Order_id_item ) ) {
-//                 s[ii.Order_id_item] = [];
-//             }
-//             s[ii.Order_id_item].push( ii );
-//         }
-//     }
-//     for ( i in s ) {
-//         ii = s[i];
-//         len = ii.length;
-//         if ( len < 1 ) {
-//             continue
-//         } else if ( len == 2 ) {
-//             t1 = new Date( ii[0].Time );
-//             t2 = new Date( ii[1].Time );
-//             Order.list[ii[0].Order_id].OrderList[ii[0].Order_id_item].cookTime = t1 - t2;
-//         }
-//     }
-// };
+MSG.request.allStatusOrder = function ( ID ) {
+    var s = {
+        "Table": "OrderStatus", "Query": "Read"
+        , "TypeParameter": "RangeOrderID", "Values": [ID], "Limit": 999, "Offset": 0
+    };
+    MSG.send( { structure: s, handler: MSG.get.allStatusOrder, mHandlers: true, EOFHandler: MSG.get.timeCock } );
+};
+MSG.get.allStatusOrder = function ( data ) {
+    if ( !MSG.get.hasOwnProperty( '_allStatusOrder' ) ) {
+        MSG.get._allStatusOrder = []
+    }
+    MSG.get._allStatusOrder.push( data )
+};
+MSG.get.timeCock = function () {
+    var i, ii, s = {}, len, t1, t2;
+    for ( i in MSG.get._allStatusOrder ) {
+        ii = MSG.get._allStatusOrder[i];
+        if ( ii.Status_id == 4 || ii.Status_id == 8 ) {
+            if ( !s.hasOwnProperty( ii.Order_id_item ) ) {
+                s[ii.Order_id_item] = [];
+            }
+            s[ii.Order_id_item].push( ii );
+        }
+    }
+    for ( i in s ) {
+        ii = s[i];
+        len = ii.length;
+        if ( len < 1 ) {
+            continue
+        } else if ( len == 2 ) {
+            t1 = new Date( ii[0].Time );
+            t2 = new Date( ii[1].Time );
+            Order.list[ii[0].Order_id].OrderList[ii[0].Order_id_item].cookTime = t1 - t2;
+        }
+    }
+};
 //--------------\ STATUS |----------------------------------------------------------
 
 
@@ -949,64 +899,64 @@ if ( TEST ) {
 //--------------\ Promotions |----------------------------------------------------------
 
 ////////--------| Organization |----------------------------------------------------------
-// MSG.requestOrganization = function ( city ) {
-//     city = city || document.getElementById( 'city_client' ).value;
-//     if ( !Array.isArray( city ) ) {
-//         city = [city];
-//     }
-//     MSG.send( { "Table": "GetPoint", "Values": city }, MSG.get.Organization, true );
-//     document.getElementById( 'take_away_address' ).innerHTML = '';
-// };
-// MSG.get.Organization = function ( data ) {
-//     new Organization( data );
-// };
+MSG.requestOrganization = function ( city ) {
+    city = city || document.getElementById( 'city_client' ).value;
+    if ( !Array.isArray( city ) ) {
+        city = [city];
+    }
+    MSG.send( { "Table": "GetPoint", "Values": city }, MSG.get.Organization, true );
+    document.getElementById( 'take_away_address' ).innerHTML = '';
+};
+MSG.get.Organization = function ( data ) {
+    new Organization( data );
+};
 //--------------\ Organization |----------------------------------------------------------
 ////////--------| DeliveryZone |----------------------------------------------------------
-// MSG.requestDeliveryZone = function ( city, street, house ) {
-//     var s, i;
-//     city = city || $( "#city_client" ).val();
-//     street = street || $( ".operator_client_adress .collapse.in #street_client" ).val();
-//     house = house || $( ".operator_client_adress .collapse.in #home_number" ).val();
-//     if ( Cart.getType() == DELIVERY ) {
-//         for ( i in Organization.list ) {
-//             Organization.list[i].disableSelect();
-//         }
-//     }
-//     $( '#take_away_address' ).prop( 'selectedIndex', -1 );
-//
-//     if ( (street == "" && house == "") || (!street && !house) ) {
-//         $( "#warning_dellivery" ).html( "Выберите адрес" ).css( "color", "red" );
-//         return;
-//     } else if ( city == "" || city == undefined ) {
-//         $( "#warning_dellivery" ).html( "Введите город" ).css( "color", "red" );
-//         return;
-//     } else if ( street == "" || street == undefined ) {
-//         $( "#warning_dellivery" ).html( "Введите улицу" ).css( "color", "red" );
-//         return;
-//     } else if ( house == "" || house == undefined ) {
-//         $( "#warning_dellivery" ).html( "Введите номер дома" ).css( "color", "red" );
-//         return;
-//     } else {
-//         $( "#warning_dellivery" ).html( "" );
-//     }
-//
-//     //if (house!="")
-//     s = {
-//         "Table": "GetAreas", "TypeParameter": "WithHouse", "Values": [city, street, house]
-//     };
-//     MSG.send( s, MSG.get.DeliveryZone );
-//     // ----БЕЗ ДОМА
-//     //else ws.send({"Table":"GetAreas","TypeParameter":"NotWithHouse","Values":[city,street]});
-// };
-// MSG.get.DeliveryZone = function ( data ) {
-//     var i, ii;
-//     if ( data.Exist ) {
-//         for ( i in data.HashList ) {
-//             ii = data.HashList[i];
-//             Organization.list[ii].enableSelect();
-//         }
-//         document.getElementById( 'take_away_address' ).value = data.HashList[0]
-//     }
-// };
+MSG.requestDeliveryZone = function ( city, street, house ) {
+    var s, i;
+    city = city || $( "#city_client" ).val();
+    street = street || $( ".operator_client_adress .collapse.in #street_client" ).val();
+    house = house || $( ".operator_client_adress .collapse.in #home_number" ).val();
+    if ( Cart.getType() == DELIVERY ) {
+        for ( i in Organization.list ) {
+            Organization.list[i].disableSelect();
+        }
+    }
+    $( '#take_away_address' ).prop( 'selectedIndex', -1 );
+
+    if ( (street == "" && house == "") || (!street && !house) ) {
+        $( "#warning_dellivery" ).html( "Выберите адрес" ).css( "color", "red" );
+        return;
+    } else if ( city == "" || city == undefined ) {
+        $( "#warning_dellivery" ).html( "Введите город" ).css( "color", "red" );
+        return;
+    } else if ( street == "" || street == undefined ) {
+        $( "#warning_dellivery" ).html( "Введите улицу" ).css( "color", "red" );
+        return;
+    } else if ( house == "" || house == undefined ) {
+        $( "#warning_dellivery" ).html( "Введите номер дома" ).css( "color", "red" );
+        return;
+    } else {
+        $( "#warning_dellivery" ).html( "" );
+    }
+
+    //if (house!="")
+    s = {
+        "Table": "GetAreas", "TypeParameter": "WithHouse", "Values": [city, street, house]
+    };
+    MSG.send( s, MSG.get.DeliveryZone );
+    // ----БЕЗ ДОМА
+    //else ws.send({"Table":"GetAreas","TypeParameter":"NotWithHouse","Values":[city,street]});
+};
+MSG.get.DeliveryZone = function ( data ) {
+    var i, ii;
+    if ( data.Exist ) {
+        for ( i in data.HashList ) {
+            ii = data.HashList[i];
+            Organization.list[ii].enableSelect();
+        }
+        document.getElementById( 'take_away_address' ).value = data.HashList[0]
+    }
+};
 //--------------\ DeliveryZone |----------------------------------------------------------
 

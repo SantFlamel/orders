@@ -120,7 +120,7 @@ function newWS() {
             console.log( 'message', msg.data );
             return;
         }
-        if ( WSerror == "01" )
+        if ( WSerror == "01" ) {
             switch ( WSidMsg ) {
 
                 case "ordcre" :     //создать заказ
@@ -284,9 +284,8 @@ function newWS() {
                     break;
                 case "SessionTabel":
                     console.log( "Получена session tabel - " + WSdata );
-                    setSessionTabel( WSdata );
+                    user_stat = JSON.parse( WSdata );
                     break;
-
                 case "clientInfoCr":
                     console.log( "Получена clientInfoCr - " + WSdata ); //setSessionTabel(WSdata);
                     break;
@@ -343,6 +342,7 @@ function newWS() {
                 default://console.log("Default"+WSdata);
                     break;
             }
+        }
 
         if ( WSerror == "02" ) {
             //console.log("JSON - "+WSdata);
@@ -688,38 +688,24 @@ function getProduct() {
     products = {};
     Product.list = {};
     $( document ).ready( function () {
-        $( '#sets .product_group' ).empty();
-        $( '#rols .product_group' ).empty();
-        $( '#zrols .product_group' ).empty();
-        $( '#sushi .product_group' ).empty();
+        $( '#sets .product_group, #rols .product_group, #zrols .product_group, #sushi .product_group\
+            , #sous .product_group, #salat .product_group, #drink .product_group, #pizza_small .product_group\
+            , #pizza_big_t .product_group, #pizza_big_tr .product_group, #other .product_group' ).empty();
         $( '#pizza .product_group' ).empty().append( '<ul class="product_group"> ' +
             '<li><a href="#pizza_big" data-toggle="tab">Большая</a></li>' +
             '<li><a href="#pizza_small" data-toggle="tab">Маленькая</a></li>' );
-        $( '#sous .product_group' ).empty();
-        $( '#salat .product_group' ).empty();
-        $( '#drink .product_group' ).empty();
-        $( '#pizza_small .product_group' ).empty();
-        $( '#pizza_big_t .product_group' ).empty();
-        $( '#pizza_big_tr .product_group' ).empty();
     } );
     ws.send( '{"Table":"ProductOrder","ID_msg":"product"}' );
 
 }
 //---------------------------------------------ПОЛУЧЕНЕ ТОЧЕК ПО ГОРОДУ----
-function getOrgbyCity() {
-    ws.send( '{"Table":"GetPoint","Values":["Курган"],"ID_msg":"getorg"}' );
-}
 function getOrg( city ) {
     // if (city=="") return;
     Organizations = [];
     console.log( "getOrg" + city );
     ws.send( '{"Table":"GetPoint","Values":["' + city + '"],"ID_msg":"orgcity"}' );
-    //ws.send('{"Table":"GetAllProduct","ID_msg":"orgcity"}');
 }
 
-function getPromoType() {
-    ws.send( '{"Table":"ProductOrder","TypeParameter":"PromotionsTypes","ID_msg":"PromoType"}' );
-}
 
 function getPromo() {
     Promotion._getAllCounter = 0;
@@ -728,35 +714,11 @@ function getPromo() {
     ws.send( '{"Table":"ProductOrder","TypeParameter":"Subjects","ID_msg":"Subjects"}' );
 }
 
-function getPromoSubjects() {
-    ws.send( '{"Table":"ProductOrder","TypeParameter":"Subjects","ID_msg":"Subjects"}' );
-}
-
-function getStatus() {
-    ws.send( '{"Table":"Status","Query":"Read","TypeParameter":"RangeAll","Values":null,"Limit":0,"Offset":0,"ID_msg":"status"}' );
-}
-
 
 function addOrderToArray2( data ) {
     var data1 = JSON.parse( data );
     if ( data1.ID == 0 ) return;
-    orders[data1.ID] = {};
-    orders[data1.ID].ID = data1.ID;
-    orders[data1.ID].SideOrder = data1.SideOrder;
-    orders[data1.ID].TimeDelivery = data1.TimeDelivery;
-    orders[data1.ID].DatePreOrderCook = data1.DatePreOrderCook;
-    orders[data1.ID].CountPerson = data1.CountPerson;
-    orders[data1.ID].Division = data1.Division;
-    orders[data1.ID].OrgHash = data1.OrgHash;
-    orders[data1.ID].Note = data1.Note;
-    orders[data1.ID].DiscountName = data1.DiscountName;
-    orders[data1.ID].DiscountPercent = data1.DiscountPercent;
-    orders[data1.ID].Bonus = data1.Bonus;
-    orders[data1.ID].Type = data1.Type;
-    orders[data1.ID].TypePayments = data1.TypePayments;
-    orders[data1.ID].Price = data1.Price;
-    orders[data1.ID].PriceWithDiscount = data1.PriceWithDiscount;
-    orders[data1.ID].PriceCurrency = data1.PriceCurrency;
+    orders[data1.ID] = data1;
 
     var orderStr = "";
     var tempStr = "";
@@ -897,21 +859,10 @@ function addLastStatusToArray( data ) {
 }
 
 function addUserToArray( data ) {
-    //console.log(data);
     var data1 = JSON.parse( data );
-    //console.log(data1);
     if ( data1.Order_id == 0 ) return;
-    orders[data1.Order_id].NameCustomer = data1.NameCustomer;
-    orders[data1.Order_id].Phone = data1.Phone;
+    orders[data1.Order_id] = data1;
     orders[data1.Order_id].NoteUser = data1.Note;
-    orders[data1.Order_id].City = data1.City;
-    orders[data1.Order_id].Street = data1.Street;
-    orders[data1.Order_id].House = data1.House;
-    orders[data1.Order_id].Building = data1.Building;
-    orders[data1.Order_id].Floor = data1.Floor;
-    orders[data1.Order_id].Apartment = data1.Apartment;
-    orders[data1.Order_id].Entrance = data1.Entrance;
-    orders[data1.Order_id].DoorphoneCode = data1.DoorphoneCode;
 
     $( "#tr" + data1.Order_id ).ready( function () {
         $( "#tr" + data1.Order_id + "_city" ).text( (data1.City || " ") );
@@ -936,7 +887,6 @@ function addUserToArray( data ) {
 function addUserToTel( data ) {
     console.log( "TEL-Igor----" + data );
     var data1 = JSON.parse( data );
-    //  console.log(data1);
     if ( data1.Order_id == 0 ) return;
     for ( var i = 1; i <= telinfo.count; i++ ) {
         if (
@@ -948,18 +898,10 @@ function addUserToTel( data ) {
     }
 
     telinfo.count++;
-    telinfo[telinfo.count] = {};
+    telinfo[telinfo.count] = data1;
     telinfo[telinfo.count].NameCustomer = data1.NameCustomer || " ";
     telinfo[telinfo.count].Phone = data1.Phone || 0;
     telinfo[telinfo.count].NoteUser = data1.Note || 0;
-    telinfo[telinfo.count].City = data1.City;//
-    telinfo[telinfo.count].Street = data1.Street;//
-    telinfo[telinfo.count].House = data1.House;//
-    telinfo[telinfo.count].Building = data1.Building;//
-    telinfo[telinfo.count].Floor = data1.Floor;//
-    telinfo[telinfo.count].Apartment = data1.Apartment;//
-    telinfo[telinfo.count].Entrance = data1.Entrance;//
-    telinfo[telinfo.count].DoorphoneCode = data1.DoorphoneCode;//
     telinfo[telinfo.count].ID = data1.ID || 0;
     console.log( "123" );
     reloadClientTel();
@@ -975,33 +917,10 @@ function addClientInfo( data ) {
 }
 function addElementToArray( data ) {
     var data1 = JSON.parse( data );
-    //var orderlist={};
     if ( data1.Order_id == 0 ) return;
     if ( !orders[data1.Order_id].orderlist )
         orders[data1.Order_id].orderlist = {};
-    orders[data1.Order_id].orderlist[data1.ID_item] = {};
-    orders[data1.Order_id].orderlist[data1.ID_item].Order_id = data1.Order_id;
-    orders[data1.Order_id].orderlist[data1.ID_item].ID_item = data1.ID_item;
-    orders[data1.Order_id].orderlist[data1.ID_item].ID_parent_item = data1.ID_parent_item;
-    orders[data1.Order_id].orderlist[data1.ID_item].Price_id = data1.Price_id;
-    orders[data1.Order_id].orderlist[data1.ID_item].PriceName = data1.PriceName;
-    orders[data1.Order_id].orderlist[data1.ID_item].TypeName = data1.TypeName;
-    orders[data1.Order_id].orderlist[data1.ID_item].Parent_id = data1.Parent_id;
-    orders[data1.Order_id].orderlist[data1.ID_item].ParentName = data1.ParentName;
-    orders[data1.Order_id].orderlist[data1.ID_item].Image = data1.Image;
-    orders[data1.Order_id].orderlist[data1.ID_item].Units = data1.Units;
-    orders[data1.Order_id].orderlist[data1.ID_item].Value = data1.Value;
-    orders[data1.Order_id].orderlist[data1.ID_item].Set = data1.Set;
-    orders[data1.Order_id].orderlist[data1.ID_item].Finished = data1.Finished;
-    orders[data1.Order_id].orderlist[data1.ID_item].DiscountName = data1.DiscountName;
-    orders[data1.Order_id].orderlist[data1.ID_item].DiscountPercent = data1.DiscountPercent;
-    orders[data1.Order_id].orderlist[data1.ID_item].Price = data1.Price;
-    orders[data1.Order_id].orderlist[data1.ID_item].TimeCook = data1.TimeCook;
-    orders[data1.Order_id].orderlist[data1.ID_item].TimeFry = data1.TimeFry;
-    orders[data1.Order_id].orderlist[data1.ID_item].CookingTracker = data1.CookingTracker;
-    orders[data1.Order_id].orderlist[data1.ID_item].Composition = data1.Composition;
-    orders[data1.Order_id].orderlist[data1.ID_item].Additionally = data1.Additionally;
-    orders[data1.Order_id].orderlist[data1.ID_item].Packaging = data1.Packaging;
+    orders[data1.Order_id].orderlist[data1.ID_item] = data1;
 
     $( "#trr" + data1.Order_id ).ready( function () {
         var count_id = 'ttr' + data1.Order_id + '_list_' + data1.Price_id + '_' + data1.DiscountPercent;
@@ -1029,49 +948,16 @@ function addProduct( data ) {
     if ( !products[data1.Price_id] )
         products[data1.Price_id] = {};
 
-    products[data1.Price_id].typeID = data1.Type_id;
-    products[data1.Price_id].Type_id = data1.Type_id;
-    products[data1.Price_id].TypeName = data1.TypeName;
-    if ( data1.Price_id == 679 || data1.Price_id == 680 ) products[data1.Price_id].added = true;
-    products[data1.Price_id].id = data1.Price_id;
-    products[data1.Price_id].Price_id = data1.Price_id;
-    products[data1.Price_id].name = data1.PriceName;
-    products[data1.Price_id].PriceName = data1.PriceName;
-    products[data1.Price_id].mass = data1.Value + ' ' + data1.Units;
-    products[data1.Price_id].price = data1.Price;
-    products[data1.Price_id].Price = data1.Price;
-    products[data1.Price_id].description = data1.Composition;
-    products[data1.Price_id].description_added = data1.Additionally;
-    products[data1.Price_id].pack_info = data1.Packaging;
-    if ( data1.Type_id == 14 ) products[data1.Price_id].defaultCount = 3;// для сета 3 палочки
-    if ( data1.Type_id == 12 || data1.Type_id == 13 || data1.Type_id == 15 )
-        products[data1.Price_id].defaultCount = 1;      //для ролов суши 1 палочка
-    if ( !(data1.Type_id == 12 || data1.Type_id == 13 || data1.Type_id == 15 || data1.Type_id == 14) )
-        products[data1.Price_id].defaultCount = 0;
-    products[data1.Price_id].Image = data1.Image;
-    products[data1.Price_id].Parent_id = data1.Parent_id;
-    products[data1.Price_id].ParentName = data1.ParentName;
-    products[data1.Price_id].Units = data1.Units;
-    products[data1.Price_id].Value = data1.Value;
-    products[data1.Price_id].Set = data1.Set;
-    products[data1.Price_id].TimeCook = data1.TimeCook;
-    products[data1.Price_id].TimeFry = data1.TimeFry;
-    products[data1.Price_id].Composition = data1.Composition;
-    products[data1.Price_id].Additionally = data1.Additionally;
-    products[data1.Price_id].Packaging = data1.Packaging;
-    products[data1.Price_id].ProductHash = data1.ProductHash;
+    products[data1.Price_id] = data1;
     if ( data1.CookingTracker )
         products[data1.Price_id].CookingTracker = data1.CookingTracker;
     else products[data1.Price_id].CookingTracker = 0;
-
-    if ( data1.Type_id == 12 || data1.Type_id == 13 || data1.Type_id == 14 || data1.Type_id == 15 )
-        products[data1.Price_id].addeds = [679, 680];
 
     $( document ).ready( function () {
         if ( !(Product.list[data1.Price_id]) ) Cart.addProduct( products[data1.Price_id] );
     } );
 
-};
+}
 
 function addOrgAddressToOrg( data ) {
     console.log( "getcity " + data );
@@ -1166,28 +1052,15 @@ function setDeliveryZonePage( data ) {
 }
 
 function getproductOrg() {
-    // $( document ).ready( function () { //обнуляет измененные свойства элементов корзины, прячет все элементы
-    //     var $Items = $( '.product_group li[data-hash]' );
-    //     var $Itemsa = $( '.product_group li[data-hash] a' );
-    //     $Items.hide();
-    //     $Itemsa.css( "color", '' );
-    //
-    //     $.each( $Items, function ( key, LI ) {
-    //         //console.log("LI -"+$(LI).attr("onclick").indexOf("return"));
-    //         if ( $( this ).attr( "onclick" ).indexOf( "return" ) >= 0 )
-    //             $( this ).attr( 'onclick', $( this ).attr( 'onclick' ).slice( 13 ) );
-    //     } );
-    // } );
     var org_index = $( "#take_away_address option:selected" ).index(),
         hash1 = Organizations[org_index].Hash;
     console.log( hash1 );
-    //var hash1="d5f702eb3d250ffe09d8a16677015f450290242dfb86db14231806abaa315951a4d900ecc8ea42bb864f8b4bad51fdb480d192605da599ab2462eba9d414f6c0";
     ws.send( '{"Table":"ProductOrder","TypeParameter":"OrgHash","Values":["' + hash1 + '"],"ID_msg":"productOrg"}' );
 }
 
 // $( "#take_away_address" ).on( "change", function () {
-    //option:selected
-    //  var org_index=get
+//option:selected
+//  var org_index=get
 // } )
 
 
@@ -1215,61 +1088,33 @@ function getproductOrg() {
 //     } );
 // }
 
-// if ( false ) {
-    function addProductOrg( data ) {
-        console.log( data );
-        if ( data == "EOF" ) return;
-        var data1 = JSON.parse( data )
-            , el = document.querySelector( 'li[data-hash="' + data1.ProdHash + '"]' );
-        if ( el !== null ) {
-            if ( data1.StopList ) {
-                el.classList.add( 'stop_list_product' );
-            } else {
-                el.classList.remove( 'stop_list_product' );
-            }
+function addProductOrg( data ) {
+    console.log( data );
+    if ( data == "EOF" ) return;
+    var data1 = JSON.parse( data )
+        , el = document.querySelector( 'li[data-hash="' + data1.ProdHash + '"]' );
+    if ( el !== null ) {
+        if ( data1.StopList ) {
+            el.classList.add( 'stop_list_product' );
+        } else {
+            el.classList.remove( 'stop_list_product' );
         }
     }
-// }
+}
 
 function getSessionHash() {
-    //var hash=SessionInfo1.SessionHash;
     //ws.send('{"Table":"Session","TypeParameter":"Read","ID_msg":"SessionHash"}');
     ws.send( '{"Table":"Session","TypeParameter":"ReadNotRights","ID_msg":"SessionHash"}' );
-
-    // {"Table":"Tabel","Values":["UserHash"],"ID_msg":""}
 }
 
 function setSessionInfo( data ) {
-    // console.log(data);
-    var data1 = JSON.parse( data );
-    SessionInfo1.FirstName = data1.FirstName;
-    SessionInfo1.SecondName = data1.SecondName;
-    SessionInfo1.SurName = data1.SurName;
-    SessionInfo1.RoleHash = data1.RoleHash;
-    SessionInfo1.RoleName = data1.RoleName;
-    SessionInfo1.UserHash = data1.UserHash;
-    SessionInfo1.VPNNumber = data1.VPNNumber;
-    SessionInfo1.VPNPassword = data1.VPNPassword;
-    SessionInfo1.Language = data1.Language;
-    SessionInfo1.OrganizationHash = data1.OrganizationHash;
-    SessionInfo1.OrganizationName = data1.OrganizationName;
-    SessionInfo1.Rights = data1.Rights;
-    SessionInfo1.SkladName = data1.SkladName;
-    SessionInfo1.SessionData = data1.SessionData;
-    SessionInfo1.Begin = data1.Begin;
-    SessionInfo1.End = data1.End;
+    SessionInfo1 = JSON.parse( data );
     ws.send( '{"Table":"Tabel","Values":["' + SessionInfo1.UserHash + '"],"ID_msg":"SessionTabel"}' );
     setupSessionInfo();
-
 }
 
 function setSessionTabel( data ) {
-    //console.log(data);
-    var data1 = JSON.parse( data );
-
-    user_stat.PlanTime = data1.PlanTime;
-    user_stat.JobTime = data1.JobTime;
-
+    user_stat = JSON.parse( data );
 }
 
 //$(document).on("click","#logout", function () {
@@ -1453,7 +1298,6 @@ function addPersToArrayCourierHistory( data ) {
 
 function addFirstStatusToArrayHistory( data ) {
     var data1 = JSON.parse( data );
-    //console.log(data1);
     if ( data1.Order_id == 0 ) return;
 
     $( "#tr" + data1.Order_id + '_his' ).ready( function () {
