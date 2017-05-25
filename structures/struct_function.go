@@ -242,11 +242,11 @@ func (orl *OrderList) Insert(qm *QueryMessage) (int64, error) {
 		orl.Price, orl.CookingTracker, orl.TimeCook, orl.TimeFry,
 		orl.Composition, orl.Additionally, orl.Packaging,
 	)
-	messageToWebSoc(qm, orl.Order_id, orl.ID_item)
-	//----ЕСЛИ ЭТО СЕТ ТО ОБРАЩАЕМСЯ К МИКРОСЕРВИСУ ПРОДУКТОВ
+	//----ОБРАЩАЕМСЯ К МИКРОСЕРВИСУ ПРОДУКТОВ ДЛЯ ПОЛУЧЕНИЯ ЭЛЕМЕНТОВ ПРОДУКТА
 	if err == nil {
 		err = row.Scan(&orl.ID_item)
 		if err == nil {
+            messageToWebSoc(qm, orl.Order_id, orl.ID_item)
 			cop := ClientOrder{
 				IP:  conf.Config.TLS_serv_product,
 				MSG: []byte("{\"Table\":\"ProductOrder\",\"Query\":\"Read\",\"TypeParameter\":\"Price_id\",\"Values\":[" + fmt.Sprintf("%v", orl.Price_id) + "]}"),
@@ -292,17 +292,19 @@ func (orl *OrderList) Insert(qm *QueryMessage) (int64, error) {
 							if err2 == nil {
 								err2 = row2.Scan(&ol.ID_item)
 								if err2 == nil {
-									var msg []byte
-									if msg, err2 = json.Marshal(ol); err2 == nil {
-										if qmsg, errs := json.Marshal(qm); errs == nil {
-											msg = append(qmsg, msg...)
+                                    //println("------messageToWebSoc",orl.Order_id, ol.ID_item,"\n")
+                                    messageToWebSoc(qm, orl.Order_id, ol.ID_item)
+									//var msg []byte
+									//if msg, err2 = json.Marshal(ol); err2 == nil {
+										//if qmsg, errs := json.Marshal(qm); errs == nil {
+										//	msg = append(qmsg, msg...)
 											//for _, item := range conf.Config.TLS_serv_reader {
 											//	ClientOrder := ClientOrder{IP: item, MSG: msg}
 											//	go ClientOrder.Write()
 											//}
-											messageToWebSoc(qm, orl.Order_id, ol.ID_item)
-										}
-									}
+										//	messageToWebSoc(qm, orl.Order_id, ol.ID_item)
+										//}
+									//}
 								}
 							}
 						}
@@ -1273,14 +1275,14 @@ func (p *CHPrint) Printer(values ...interface{}) error {
 	//if err != nil {log.Println("CHPrint.Printer()",err);return }
 	p.init()
 	println("func (p *Print) Printer(id int64) {")
-	op := Cashbox{}
+	cashbox := Cashbox{}
 	s := controller.Stream{}
 	s.ReadRow("Cashbox", "Value", values...)
-	err := op.ReadRow(s.Row)
+	err := cashbox.ReadRow(s.Row)
 	if err == nil {
 		println("+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=")
 
-		if op.Order_id == 0 {
+		if cashbox.Order_id == 0 {
 			//sp := StructPrintable{
 			//	Header: "    ДОСТАВКА ЗА 60 МИНУТ ИЛИ БЕСПЛАТНО \n" +
 			//			"приедем - подарим сертификат на 600 рублей",
@@ -1289,12 +1291,12 @@ func (p *CHPrint) Printer(values ...interface{}) error {
 			//			"Юр. адрес: 640011, Курган, Крулова, 14" +
 			//			"      8 800 200 200 7 mail@yapoki.ru\n" +
 			//			"     ИНН 4501195365 ОГРН 114451004383",
-			//	InfoCheck: op.RoleName + ": " + op.First_sure_name + " " + time.Now().String()[:19] + "\n" +
-			//			"ДОК:" + fmt.Sprintf("%v", op.ID) + " ЧЕК:" + fmt.Sprintf("%v", op.ID) + "",
+			//	InfoCheck: cashbox.RoleName + ": " + cashbox.First_sure_name + " " + time.Now().String()[:19] + "\n" +
+			//			"ДОК:" + fmt.Sprintf("%v", cashbox.ID) + " ЧЕК:" + fmt.Sprintf("%v", cashbox.ID) + "",
 			//}
 			//
-			//sp.Price = fmt.Sprint(op.Deposit)
-			//sp.TypeOperation = op.TypeOperation
+			//sp.Price = fmt.Sprint(cashbox.Deposit)
+			//sp.TypeOperation = cashbox.TypeOperation
 			//sp.Thanks = "        СПАСИБО ЗА ПОКУПКУ!"
 			//sp.Footer = "  Если Вы остались недовольны качеством \n обслуживания, " +
 			//		"позвоните нам по телефону \n  горячей линии 8 800 200 200 7. Звонок \n      бесплатный, даже с мобильного!"
@@ -1311,25 +1313,29 @@ func (p *CHPrint) Printer(values ...interface{}) error {
 			//}
 		} else {
 
-			var org_hash, discount_name, type_send, note, notecustomer string
-			var discount_percent string
-			var price, price_currency string
-			var price_with_discount float64
+			//var org_hash, discount_name, type_send, note, notecustomer string
+			var notecustomer string
+			//var discount_percent string
+			//var price, price_currency string
+			//var price_with_discount float64
 
 			stream := controller.Stream{}
-			err = stream.ReadRow("Order", "CheckInfo", op.Order_id)
+			order := Order{}
+			err = stream.ReadRow("Order", "Value", cashbox.Order_id)
 			if err == nil {
-				println("err = stream.ReadRow(\"Order\"", op.Order_id)
-				err = stream.Row.Scan(&org_hash, &discount_name, &type_send, &note, &notecustomer, &discount_percent, &price, &price_with_discount, &price_currency)
+				println("err = stream.ReadRow(\"Order\"", cashbox.Order_id)
+				//err = stream.Row.Scan(&org_hash, &discount_name, &type_send, &note, &notecustomer, &discount_percent, &price, &price_with_discount, &price_currency)
+				err = order.ReadRow(stream.Row)
 				if err == nil {
 					println("err = stream.Row.Scan")
-					err = stream.ReadRows("OrderList", "RangeOrderIDSet", op.Order_id)
+					err = stream.ReadRows("OrderList", "RangeOrderIDSet", cashbox.Order_id)
 					if err == nil {
 						println("err = stream.ReadRows(\"OrderList\"")
-						p.sp.InfoCheck = op.RoleName + ": " + op.First_sure_name + " " + time.Now().String()[:19] + "\n" +
-							"ДОК:" + fmt.Sprintf("%v", op.Order_id) + " ЧЕК:" + fmt.Sprintf("%v", op.Order_id) + ""
+						p.sp.InfoCheck = cashbox.RoleName + ": " + cashbox.First_sure_name + "\n" +
+							"ДОК:" + fmt.Sprintf("%v", cashbox.Order_id) + " ЧЕК:" + fmt.Sprintf("%v", cashbox.ID)+
+                                "\n\tПринят: " + order.Order_time.String()[:19]
 
-						orl := OrderList{}
+                                orl := OrderList{}
 						var err3 error
 						for stream.Rows.Next() {
 							err3 = stream.Rows.Scan(&orl.Order_id, &orl.ID_item, &orl.ID_parent_item,
@@ -1340,20 +1346,21 @@ func (p *CHPrint) Printer(values ...interface{}) error {
 							)
 							if err3 == nil {
 								//p.sp.ItemOrders = append(p.sp.ItemOrders, orl.PriceName+"\t"+fmt.Sprintf("%v", (float64(orl.Price) - (float64(orl.Price) * (float64(orl.DiscountPercent) / 100)))))
-								p.sp.Body = append(p.sp.Body, orl.PriceName+"\t"+fmt.Sprintf("%v", (float64(orl.Price)-(float64(orl.Price)*(float64(orl.DiscountPercent)/100))))+" "+price_currency)
+								p.sp.Body = append(p.sp.Body, orl.PriceName+"\t"+fmt.Sprintf("%v", (float64(orl.Price)-(float64(orl.Price)*(float64(orl.DiscountPercent)/100))))+" "+order.PriceCurrency)
 							}
 						}
 						//p.sp.Body = append(p.sp.Body, "   ************************************")
 						p.sp.Body = append(p.sp.Body, "   ------------------------------------")
-						p.sp.Body = append(p.sp.Body, "Итого:\t"+price+" "+price_currency)
-						p.sp.Body = append(p.sp.Body, "Скидка:\t"+discount_name+" "+fmt.Sprint(discount_percent)+"%")
+						p.sp.Body = append(p.sp.Body, "Итого:\t"+fmt.Sprint(order.Price)+" "+order.PriceCurrency)
+						//p.sp.Body = append(p.sp.Body, "Скидка:\t"+order.DiscountName+" "+fmt.Sprint(order.DiscountPercent)+"%")
+						p.sp.Body = append(p.sp.Body, "Скидка:\t"+order.DiscountName)
 
 						paid_off := float64(0)
-						err = stream.ReadRow("Cashbox", "ValueNumberSumForOrder", op.Order_id)
+						err = stream.ReadRow("Cashbox", "ValueNumberSumForOrder", cashbox.Order_id)
 						if err == nil {
 							err = stream.Row.Scan(&paid_off)
 							if err == nil {
-								paid_off -= op.Deposit
+								paid_off -= cashbox.Deposit
 								if paid_off > 0 {
 									p.sp.Body = append(p.sp.Body, "Оплачено:\t"+fmt.Sprint(paid_off))
 								}
@@ -1365,86 +1372,88 @@ func (p *CHPrint) Printer(values ...interface{}) error {
 						}
 
 						p.sp.Body = append(p.sp.Body, "   ------------------------------------")
-						p.sp.Body = append(p.sp.Body, "Итого к оплате:\t"+fmt.Sprint(price_with_discount-paid_off))
-						if len(DBTypePayment[op.TypePayments]) > 6 {
-							p.sp.Body = append(p.sp.Body, DBTypePayment[op.TypePayments]+":\t"+fmt.Sprint(op.Deposit+op.ShortChange))
+						p.sp.Body = append(p.sp.Body, "Итого к оплате:\t"+fmt.Sprint(order.PriceWithDiscount-paid_off))
+						if len(DBTypePayment[cashbox.TypePayments]) > 6 {
+							p.sp.Body = append(p.sp.Body, DBTypePayment[cashbox.TypePayments]+":\t"+fmt.Sprint(cashbox.Deposit+cashbox.ShortChange))
 						} else {
-							p.sp.Body = append(p.sp.Body, DBTypePayment[op.TypePayments]+":\t\t"+fmt.Sprint(op.Deposit+op.ShortChange))
+							p.sp.Body = append(p.sp.Body, DBTypePayment[cashbox.TypePayments]+":\t\t"+fmt.Sprint(cashbox.Deposit+cashbox.ShortChange))
 						}
-						p.sp.Body = append(p.sp.Body, "Сдача:\t\t"+fmt.Sprint(op.ShortChange))
+						p.sp.Body = append(p.sp.Body, "Сдача:\t\t"+fmt.Sprint(cashbox.ShortChange))
 
 						//p.sp.Price = price
 						//p.sp.Discount = append(p.sp.Discount, "Скидка: "+discount_name+" "+fmt.Sprint(discount_percent))
 						//p.sp.PriceWithDiscount = "Итого:\t" + price_with_discount
 						//p.sp.PriceCurrency = price_currency
-						//p.sp.ShortChange = "Сдача:\t" + fmt.Sprint(op.ShortChange)
-						//p.sp.TypePayment = DBTypePayment[op.TypePayments]
-						//p.sp.TypeOperation = "Получено:\t" + fmt.Sprint(op.Deposit)
-						p.sp.OrgHash = org_hash
+						//p.sp.ShortChange = "Сдача:\t" + fmt.Sprint(cashbox.ShortChange)
+						//p.sp.TypePayment = DBTypePayment[cashbox.TypePayments]
+						//p.sp.TypeOperation = "Получено:\t" + fmt.Sprint(cashbox.Deposit)
+						p.sp.OrgHash = order.OrgHash
 
-                        err2 := stream.ReadRow("OrderCustomer", "Value", op.Order_id)
+                        err2 := stream.ReadRow("OrderCustomer", "Value", cashbox.Order_id)
                         if err2 == nil {
-                            println("err2 = oc.ReadRow(stream.Row)")
                             oc := OrderCustomer{}
                             err2 = oc.ReadRow(stream.Row)
                             if err2 == nil {
-                                println(1)
                                 p.sp.Footer = p.sp.Footer +
                                     "\n   ------------------------------------\n"
+                                if oc.NameCustomer != "" && oc.NameCustomer != " " {
+                                    p.sp.Footer = p.sp.Footer +
+                                            oc.NameCustomer
+                                }
+
                                 if oc.Phone != "" && oc.Phone != " " {
                                     p.sp.Footer = p.sp.Footer +
                                             " Телефон: " + oc.Phone
-                                    println(6)
                                 }
 
-                                if type_send == "Доставка" {
+                                if order.Type == "Доставка" {
                                     if oc.Street != "" && oc.Street != " " {
                                         p.sp.Footer = p.sp.Footer +
                                                 "\nУлица: " + oc.Street
-                                        println(2)
                                     }
 
                                     if oc.House > int64(0) {
                                         p.sp.Footer = p.sp.Footer +
                                                 " Дом: " + fmt.Sprint(oc.House)
-                                        println(3)
                                     }
 
                                     if oc.Apartment > int64(0) {
                                         p.sp.Footer = p.sp.Footer +
                                                 " Квартира: " + fmt.Sprint(oc.Apartment)
-                                        println(3)
                                     }
 
                                     if oc.Floor > int64(0) {
                                         p.sp.Footer = p.sp.Footer +
                                                 " Этаж: " + fmt.Sprint(oc.Floor)
-                                        println(3)
                                     }
 
                                     if oc.Building != "" && oc.Building != " " {
                                         p.sp.Footer = p.sp.Footer +
                                                 " Строение: " + oc.Building
-                                        println(4)
                                     }
 
                                     if oc.Entrance > int64(0) {
                                         p.sp.Footer = p.sp.Footer +
                                                 "\nПодъезд: " + fmt.Sprint(oc.Entrance)
-                                        println(5)
                                     }
+                                }
 
-                                    if note != "" && note != " " {
-                                        p.sp.Footer = p.sp.Footer +
-                                                "\n" + note
-                                        println(7)
-                                    }
+                                var tf time.Time
+                                if order.TimeDelivery.String()[:19]!=tf.String()[:19]{
+                                    p.sp.Footer = p.sp.Footer +
+                                            "\nПредзаказ на " + order.DatePreOrderCook.String()[:19]
+                                }
 
-                                    if notecustomer != "" && notecustomer != " " {
-                                        p.sp.Footer = p.sp.Footer +
-                                                "\n" + notecustomer
-                                        println(7)
-                                    }
+
+                                if order.Note != "" && order.Note != " " {
+                                    p.sp.Footer = p.sp.Footer +
+                                            "\n" + order.Note
+                                }
+
+
+                                if oc.Note != "" && oc.Note != " " {
+                                    p.sp.Footer = p.sp.Footer +
+                                            "\n" + oc.Note
                                 }
                             }
                         }

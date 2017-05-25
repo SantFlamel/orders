@@ -426,9 +426,9 @@ function neworderelem( id ) {
     var cart1 = Cart.list;
     for ( var i = 0; i < cart1.length; i++ ) {
         price_id = cart1[i].Price_id;
-        typeid = products[price_id].typeID;
+        typeid = products[price_id].Type_id;
         typeName = products[price_id].TypeName;
-        pricename = products[price_id].name;
+        pricename = products[price_id].PriceName;
         price = products[price_id].Price;
         image = products[price_id].Image;
         parent_id = products[price_id].Parent_id;
@@ -445,14 +445,15 @@ function neworderelem( id ) {
         Packaging = products[price_id].Packaging;
         discontname = cart1[i].DiscountName;
         discontperc = cart1[i].DiscountPercent;
-        ws.send( '{"Table":"OrderList","Query":"Create","TypeParameter":"GetID","Values":null,"Limit":0,"Offset":0,"ID_msg":"ordlcr"}' +
+        var s = '{"Table":"OrderList","Query":"Create","TypeParameter":"GetID","Values":null,"Limit":0,"Offset":0,"ID_msg":"ordlcr"}' +
             '{"Order_id":' + id + ',"ID_item":1,"ID_parent_item":' + ID_parent_item + ',' +
             '"Price_id":' + price_id + ',"PriceName":"' + pricename + '","Type_id":' + typeid + ',' +
             '"TypeName":"' + typeName + '","Parent_id":' + parent_id + ',"ParentName":"' + parentName + '","Image":"' + image + '",' +
             '"Units":"' + units + '","Value":' + value + ',"Set":' + set + ',"Finished":' + finished + ',' +
             '"DiscountName":"' + discontname + '","DiscountPercent":' + discontperc + ',' +
             '"Price":' + price + ',"CookingTracker":' + CookingTracker + ',"TimeCook":' + timeCook + ',"TimeFry":' + timeFry + ',' +
-            '"Composition":"' + Composition + '","Additionally":"' + Additionally + '","Packaging":"' + Packaging + '"}' );
+            '"Composition":"' + Composition + '","Additionally":"' + Additionally + '","Packaging":"' + Packaging + '"}';
+        ws.send( s );
     }
 
 }

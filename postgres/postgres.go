@@ -253,6 +253,12 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 		return err
 	}
 
+	//----READ_NOTE
+	dbr.requestsList["queryReadOrderCustomerValueStringNote"], err = db.Prepare("SELECT note FROM order_customer WHERE order_id = $1;")
+	if err != nil {
+		return err
+	}
+
 	//----READ_RANGE_BY_PHONE
 	dbr.requestsList["queryReadOrderCustomerRangeByPhone"], err = db.Prepare(
 		"SELECT DISTINCT order_id, name_customer, phone, note, city, street, house, building, floor, apartment, entrance, doorphone_code FROM order_customer WHERE phone=$1 ORDER BY order_id DESC LIMIT $2  OFFSET $3")
