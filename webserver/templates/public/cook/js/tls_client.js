@@ -59,8 +59,14 @@ newWS();
 function newWS() {
     console.log( 'not open' );
     ws = new WebSocket( addressWS );
-    ;
     ws.onopen = function () {
+        // var x = ws.send;
+        // ws.send = function ( data ) {
+        //     console.group( "%cMSG SEND::::>>>>%c", 'color: blue', 'color: #444100' );
+        //     console.info( data );
+        //     console.groupEnd();
+        //     x.call( ws, data );
+        // };
         console.log( 'open' );
         warning( "Подключено", 'i', 5000 );
         // ws.send('hashauth:'+SessionInfo1.SessionHash);
@@ -83,7 +89,9 @@ function newWS() {
         setTimeout( newWS, 5000 );
     };
     ws.onmessage = function ( msg ) {
-
+        // console.group( '%cMSG IN::::<<<<%c', 'color: green', 'color: #444100' );
+        // console.info( msg.data );
+        // console.groupEnd();
         WSerror = msg.data.slice( 0, 2 ),
             WSdata = msg.data,
             WSidMsg = msg.data.split( '{' )[0].split( ':' )[1];
@@ -201,14 +209,16 @@ function newWS() {
                 switch ( data.Table ) {
                     // case "Order":        getorder(data.Values[0]);       break;
                     // case "OrderCustomer": getorderuser(idd);      break;
-                    case "OrderList":
-                        getOrderL(); //getOrderElemAll(idd);
-                        // $("#sound").click();
-                        break;
+                    // case "Order":
+                    //     setTimeout(getOrderL, 1000); //getOrderElemAll(idd);
+                    //     // $("#sound").click();
+                    //     break;
                     // case "OrderPayments":
                     // case "OrderPersonal":
 
                     case "OrderStatus":
+                        setTimeout( getOrderL, 1000 );
+                        // getOrderL(); //getOrderElemAll(idd);
                         // for(var k=1;k<=OrderL.length;k++) if
                         //if((data.Values[2]==6||data.Values[2]==7)&&(tracker==3||tracker==4))return;//нужны статусы только
                         //  if (data.Values[2]!=6&&data.Values[2]!=7&&tracker!=3&&tracker!=4)return;
@@ -341,12 +351,12 @@ function addActiveOrder( data ) {
     //$("#in_work").attr("data-timer-stat");
     $( "#imgOrder" ).attr( 'src', data1.Image );
 
-    console.log( time_second2( data1.TimeCook ) );
-    console.log( $( "#in_work" ).attr( "data-timer-stat" ) );
-    console.log( getTimeNow1( 0 ) );
-    console.log( timeMinus( getTimeNow1( 0 ), $( "#in_work" ).attr( "data-timer-stat" ), 0 ) );
-    console.log( timeMinus( timeMinus( getTimeNow1( 0 ), $( "#in_work" ).attr( "data-timer-stat" ), 0 ), SYSTIME, 0 ) );
-    console.log( timeMinus( time_second2( data1.TimeCook ), timeMinus( timeMinus( getTimeNow1( 0 ), $( "#in_work" ).attr( "data-timer-stat" ), 0 ), SYSTIME, 0 ), 0 ) );
+    // console.log( time_second2( data1.TimeCook ) );
+    // console.log( $( "#in_work" ).attr( "data-timer-stat" ) );
+    // console.log( getTimeNow1( 0 ) );
+    // console.log( timeMinus( getTimeNow1( 0 ), $( "#in_work" ).attr( "data-timer-stat" ), 0 ) );
+    // console.log( timeMinus( timeMinus( getTimeNow1( 0 ), $( "#in_work" ).attr( "data-timer-stat" ), 0 ), SYSTIME, 0 ) );
+    // console.log( timeMinus( time_second2( data1.TimeCook ), timeMinus( timeMinus( getTimeNow1( 0 ), $( "#in_work" ).attr( "data-timer-stat" ), 0 ), SYSTIME, 0 ), 0 ) );
     //console.log(timeMinus(timeMinus(time_second2 (data1.TimeCook), timeMinus(getTimeNow1(0),$("#in_work").attr("data-timer-stat"),0),0));
 
     if ( $( "#in_work" ).attr( "data-timer-stat" ) != "0001-01-01T00:00:00Z" ) $( "#in_work" ).html( timeMinus( time_second2( data1.TimeCook ), timeMinus( timeMinus( getTimeNow1( 0 ), $( "#in_work" ).attr( "data-timer-stat" ), 0 ), SYSTIME, 0 ), 0 ) );
@@ -665,6 +675,7 @@ $( '.order_table' ).on( 'click', '.col-sm-4.styleDiv', function () {
         console.log( $( this ).find( ".font_main_time" ).attr( "data-timer-stat" ) == "0001-01-01T00:00:00Z" );
         if ( $( this ).find( ".font_main_time" ).attr( "data-timer-stat" ) == "0001-01-01T00:00:00Z" ) createTimer( id, idi );
     }
+    clearOrderL(timer_int);
     timer_int = setInterval( function () {
         downTimer()
     }, 1000 );
@@ -750,8 +761,6 @@ function redoneActive( n1, n3 ) {
         sendStatus2( id, idi, 3 );
         $( '.button_cancel' ).click();
     }   //в трекер
-
-
 }
 
 function soundClick() {

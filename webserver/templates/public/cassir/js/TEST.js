@@ -49,11 +49,10 @@ if ( cookie.get( 'TEST' ) === 'true' ) {
     document.getElementById( 'kv_of' ).value = '45';
     document.getElementById( 'cod' ).value = '*78*';
     function ProfileT( name ) {
-        this.name = name;
         this.count = 0;
         this.time = 0;
         this.listRun = [];
-        ProfileT.list[this.name] = this
+        ProfileT.list[name] = this
     }
 
     ProfileT.list = {};
@@ -62,11 +61,11 @@ if ( cookie.get( 'TEST' ) === 'true' ) {
         console.table( ProfileT.list );
     };
     ProfileT.prototype.start = function () {
-        var self = ProfileT.list[this.name]
+        var self = this
             , _start = new Date;
         this.listRun.push( function () {
             self.time += (new Date() - _start);
-            self.count++
+            self.count++;
         } );
     };
     ProfileT.prototype.stop = function () {
@@ -77,7 +76,7 @@ if ( cookie.get( 'TEST' ) === 'true' ) {
         this.time = 0;
         this.listRun = [];
     };
-    ProfileT.resetAll = function (  ) {
+    ProfileT.resetAll = function () {
         var i, ii;
         for ( i in ProfileT.list ) {
             ii = ProfileT.list[i];

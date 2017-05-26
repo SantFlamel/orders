@@ -11,8 +11,7 @@ var addressWS = 'ws://order.yapoki.net:8080/ws';
 var auth_page = 'http://yapoki.net:7070';
 //локальная версия
 if ( ~window.location.href.indexOf( 'http://localhost:63342' ) ) {
-    // $.cookie( "hash", "8f22015198ec146cf67134c6b18d36cc2c3e8c5c8eeff777d6d095ab096575e5" );
-    $.cookie( "hash", "1c471a2a3977ced196dd34eefe7c5257d68be750fd43a38f0e3b2230ae55f305" );
+    $.cookie( "hash", "7ca557edcec2947277494ba450c980d4654dcb5b598ca5d2c896f86f4af15d40" );
     addressWS = 'ws://192.168.0.73:80/ws';
     auth_page = 'http://192.168.0.73:7070';
     var minimal_cook_time = "00:00:15";  //минимальное время после которого повар сможет нажать готово
@@ -35,3 +34,48 @@ if ( addressWS == 'ws://192.168.0.73:80/ws' ) {
     var test_role_hash = pizza;
     test_role_hash = sushist;
 }
+function ProfileT( name ) {
+    this.countStart = 0;
+    this.countStop = 0;
+    this.SumTime = 0;
+    this.listRun = [];
+    ProfileT.list[name] = this
+}
+ProfileT.list = {};
+
+ProfileT.show = function () {
+    console.table( ProfileT.list );
+};
+ProfileT.prototype.start = function () {
+    this.countStart++;
+    var self = this
+        , _start = new Date;
+    this.listRun.push( function () {
+        self.SumTime += (new Date() - _start);
+        self.countStop++;
+    } );
+};
+ProfileT.prototype.stop = function () {
+    (this.listRun.pop())();
+};
+ProfileT.prototype.reset = function () {
+    this.count = 0;
+    this.SumTime = 0;
+    this.listRun = [];
+};
+ProfileT.resetAll = function () {
+    var i, ii;
+    for ( i in ProfileT.list ) {
+        ii = ProfileT.list[i];
+        ii.reset();
+    }
+};
+var time_timeMinus = new ProfileT('time>>timeMinus');
+var time_timePlus = new ProfileT('time>>timePlus');
+var time_timePlus1 = new ProfileT('time>>timePlus1');
+var time_timeMinus1 = new ProfileT('time>>timeMinus1');
+var time_getTimeNow1 = new ProfileT('time>>getTimeNow1');
+var time_getTimeOnNow = new ProfileT('time>>getTimeOnNow');
+var time_getTimeToday = new ProfileT('time>>getTimeToday');
+var time_getTimeHMminus = new ProfileT('time>>getTimeHMminus');
+var myjs_downTimer = new ProfileT('myjs>>downTimer');

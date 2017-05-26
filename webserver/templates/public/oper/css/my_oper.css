@@ -6,3 +6,13 @@
 .stop_list_product a {
     color: #ff2d55 !important;
 }
+
+.description_img {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    overflow: auto;
+    top: 2px;
+    right: 2px;
+}
+

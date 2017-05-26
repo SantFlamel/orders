@@ -436,7 +436,7 @@ func (os *OrderStatus) Insert(qm *QueryMessage) (int64, error) {
 	}
 	if os.Status_id == 8 {
 		s := controller.Stream{}
-		var zero int
+		zero := 9999
 		err2 := s.ReadRow("OrderList", "ValueNumberCountFinishedForOrder", os.Order_id, false)
 		if err2 == nil {
 			err2 = s.Row.Scan(&zero)
@@ -1314,8 +1314,8 @@ func (p *CHPrint) Printer(values ...interface{}) error {
 		} else {
 
 			//var org_hash, discount_name, type_send, note, notecustomer string
-			var notecustomer string
-			//var discount_percent string
+			//var notecustomer string
+			//var discount_percent st ring
 			//var price, price_currency string
 			//var price_with_discount float64
 
@@ -1405,6 +1405,19 @@ func (p *CHPrint) Printer(values ...interface{}) error {
                                     p.sp.Footer = p.sp.Footer +
                                             " Телефон: " + oc.Phone
                                 }
+
+                                tp := TypePayment{}
+                                err = stream.ReadRow("TypePayment","Value",order.TypePayments)
+                                if err == nil{
+                                    err = tp.ReadRow(stream.Row)
+                                    if err == nil {
+                                        p.sp.Footer = p.sp.Footer +
+                                                "\nТип оплаты: " + tp.Name
+                                    }
+                                }
+                                err = nil
+
+
 
                                 if order.Type == "Доставка" {
                                     if oc.Street != "" && oc.Street != " " {

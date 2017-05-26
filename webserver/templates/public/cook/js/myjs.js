@@ -82,58 +82,69 @@ function startTimer() {
     // });
 }
 
-function timer( block ) {
-    setInterval( function () {
-
-        var d = new Date(),
-            ah = d.getHours(),
-            am = d.getMinutes(),
-            as = d.getSeconds();
-
-        var startTimeOrder = block.parentNode.firstElementChild.getAttribute( 'value' );
-        //while (startTimeOrder.indexOf(":")!= 3)
-        if ( startTimeOrder.length > 8 ) startTimeOrder = startTimeOrder.slice( 11, 19 ); //если время не в формате 00:00:00
-        //console.log(startTimeOrder);
-
-        //console.log(startTimeOrder);
-        var bt = startTimeOrder.split( ":" ),
-            bh = bt[0], bm = bt[1], bs = bt[2],
-            ch = ah - bh, cm = am - bm, cs = as - bs;
-
-        if ( cs < 0 ) {
-            cs = cs + 60;
-            cm = cm - 1;
+var timer = (function () {
+    var listTimer = {};
+    return function ( block ) {
+        var id = block.id;
+        if ( listTimer[id] ) {
+            clearInterval( listTimer[id] );
         }
-        if ( cs < 10 & cs >= 0 ) cs = "0" + cs;
+        listTimer[id] = setInterval( function () {
+            if ( document.querySelector( '#' + id ) === null ) {
+                clearInterval( listTimer[id] );
+                delete listTimer[id]
+            }
+            var d = new Date(),
+                ah = d.getHours(),
+                am = d.getMinutes(),
+                as = d.getSeconds();
 
-        if ( cm < 0 ) {
-            cm = cm + 60;
-            ch = ch - 1;
-        }
-        if ( cm < 10 & cm >= 0 ) cm = "0" + cm;
+            var startTimeOrder = block.parentNode.firstElementChild.getAttribute( 'value' );
+            //while (startTimeOrder.indexOf(":")!= 3)
+            if ( startTimeOrder.length > 8 ) startTimeOrder = startTimeOrder.slice( 11, 19 ); //если время не в формате 00:00:00
+            //console.log(startTimeOrder);
 
-        if ( ch < 0 ) ch = ch + 24;
-        if ( ch < 10 & ch >= 0 ) ch = "0" + ch;
+            //console.log(startTimeOrder);
+            var bt = startTimeOrder.split( ":" ),
+                bh = bt[0], bm = bt[1], bs = bt[2],
+                ch = ah - bh, cm = am - bm, cs = as - bs;
+
+            if ( cs < 0 ) {
+                cs = cs + 60;
+                cm = cm - 1;
+            }
+            if ( cs < 10 & cs >= 0 ) cs = "0" + cs;
+
+            if ( cm < 0 ) {
+                cm = cm + 60;
+                ch = ch - 1;
+            }
+            if ( cm < 10 & cm >= 0 ) cm = "0" + cm;
+
+            if ( ch < 0 ) ch = ch + 24;
+            if ( ch < 10 & ch >= 0 ) ch = "0" + ch;
 
 
-        var time = ch + ":" + cm + ":" + cs;
-        time = timeMinus( time, SYSTIME );
-        $( block ).text( time );
-        //var time = block.innerHTML;
+            var time = ch + ":" + cm + ":" + cs;
+            time = timeMinus( time, SYSTIME );
+            $( block ).text( time );
+            //var time = block.innerHTML;
 
-        // Ограничение времени передаем сюда
-        // var limitTime = block.parentNode.lastElementChild.getAttribute('value');
-        var limitTime = block.nextElementSibling.getAttribute( 'value' );
-        if ( time >= limitTime ) {
-            block.parentNode.setAttribute( 'class', 'col-xs-12 col-sm-4 styleDiv late' );
-        }
-        //   setTimeout("timer(block)", 1000);
-    }, 1000 );
-}
+            // Ограничение времени передаем сюда
+            // var limitTime = block.parentNode.lastElementChild.getAttribute('value');
+            var limitTime = block.nextElementSibling.getAttribute( 'value' );
+            if ( time >= limitTime ) {
+                block.parentNode.setAttribute( 'class', 'col-xs-12 col-sm-4 styleDiv late' );
+            }
+            //   setTimeout("timer(block)", 1000);
+        }, 1000 );
+    }
+})();
 
 
 //function downTimer(my_timer) {
 function downTimer() {
+    myjs_downTimer.start();
     var my_timer = $( "#in_work" );
     var time = my_timer.text();
     if ( time[0] == "-" ) {
@@ -218,7 +229,7 @@ function downTimer2( my_timer ) {
             return;
         }
 
-    }, 1000 )
+    }, 1000 );
 
 
     //$(".lBlock").siblings(".cont")

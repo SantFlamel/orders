@@ -77,6 +77,13 @@ function newWS() {
     ws = new WebSocket( addressWS );
     //warning("Подключение",'i', 5000);
     ws.onopen = function () {
+        // var x = ws.send;
+        // ws.send = function ( data ) {
+        //     console.group( "%cMSG SEND::::>>>>%c", 'color: blue', 'color: #444100' );
+        //     console.info( data );
+        //     console.groupEnd();
+        //     x.call( ws, data );
+        // };
         console.log( 'open' );
         warning( "Подключено", 'i', 5000 );
         console.log( '{"HashAuth":"' + SessionInfo1.SessionHash + '"}' );
@@ -106,6 +113,9 @@ function newWS() {
 
     ws.onmessage = function ( msg ) {
         // console.log('message', msg.data);
+        // console.group( '%cMSG IN::::<<<<%c', 'color: green', 'color: #444100' );
+        // console.info( msg.data );
+        // console.groupEnd();
         WSerror = msg.data.slice( 0, 2 );
         WSdata = msg.data;
         WSidMsg = msg.data.split( '{' )[0].split( ':' )[1];
@@ -136,6 +146,7 @@ function newWS() {
                     //  newOrderPayment(idd,payName,0);
                     // var id_cl = newClientInfo( 0, 0 );
                     // newClientAddress( idd, id_cl );
+                    newClientInfo();
                     newClientAddress( idd, 0 );
                     break;
 
@@ -564,12 +575,10 @@ function getorderuserbyPhone( phone ) {
 
 //----СОЗДАНИЕ ИНФОРМАЦИИ О КЛИЕНТЕ----
 function newClientInfo( phone, name ) {
-    var clAddress = {};
-    clAddress.name_customer = $( "#client_name" ).val();
-    clAddress.Phone = getNumber( $( "#client_phone" ).attr( 'id' ) );
+    var name_customer = $( "#client_name" ).val()
+        , Phone = getNumber( "client_phone" );
     ws.send( ' {"Table":"ClientInfo","TypeParameter":"Create","ID_msg":"clientInfoCr"}' +
-        '{"Phone":"' + clAddress.Phone + '","Name":"' + clAddress.name_customer + '"}' );
-    //'{"Phone":"'+phone+'","Name":"'+name+'"}');
+        '{"Phone":"' + Phone + '","Name":"' + name_customer + '"}' );
 }
 
 //----АПДЕЙТ КЛИЕНТА
@@ -601,7 +610,7 @@ function newClientAddress( order_id, id_adr ) {
     var clAddress = {};
     clAddress.City = $( "#city_client" ).val() || " ";
     //clAddress.name_customer = $("#client_name").val();
-    clAddress.Phone = getNumber( $( "#client_phone" ).attr( 'id' ) );
+    clAddress.Phone = getNumber( "client_phone" );
     //clAddress.ClientHash =$(".operator_client_adress .collapse.in").attr('data-ClientHash'));
     clAddress.Street = $( ".operator_client_adress .collapse.in #street_client" ).val() || " ";
     clAddress.House = parseInt( $( ".operator_client_adress .collapse.in #home_number" ).val() ) || 0;
@@ -615,11 +624,14 @@ function newClientAddress( order_id, id_adr ) {
     //street=(street=="")?" ":street; home=(home=="")?0:home; corp=(corp=="")?0:corp;
     //podyezd=(podyezd=="")?0:podyezd; level=(level=="")?0:level; kv=(kv=="")?0:kv; cod=(cod=="")?0:cod;
     var x = $( ".operator_client_adress .collapse.in" ).parent().attr( 'data-id_address' );
-    ws.send( '{"Table":"ClientInfo","TypeParameter":"CreateAddress","ID_msg":"clientAddressCr"}' +
-        '{"Phone":"' + clAddress.Phone + '","Order_id":' + order_id + ', "ID":' + (x || 0) + ', ' +
-        '"City":"' + clAddress.City + '", "Street":"' + clAddress.Street + '", "House":' + clAddress.House + ', "Building":"' + clAddress.Building + '",' +
-        ' "Floor":' + clAddress.Floor + ', "Apartment":' + clAddress.Apartment + ', "Entrance":' + clAddress.Entrance + ', ' +
-        '"DoorphoneCode":"' + clAddress.DoorphoneCode + '","Comment":"' + clAddress.Comment + '"}' );
+
+    setTimeout( function () {
+        ws.send( '{"Table":"ClientInfo","TypeParameter":"CreateAddress","ID_msg":"clientAddressCr"}' +
+            '{"Phone":"' + clAddress.Phone + '","Order_id":' + order_id + ', "ID":' + (x || 0) + ', ' +
+            '"City":"' + clAddress.City + '", "Street":"' + clAddress.Street + '", "House":' + clAddress.House + ', "Building":"' + clAddress.Building + '",' +
+            ' "Floor":' + clAddress.Floor + ', "Apartment":' + clAddress.Apartment + ', "Entrance":' + clAddress.Entrance + ', ' +
+            '"DoorphoneCode":"' + clAddress.DoorphoneCode + '","Comment":"' + clAddress.Comment + '"}' );
+    }, 500 )
 }
 
 
@@ -699,6 +711,7 @@ function getProduct() {
     ws.send( '{"Table":"ProductOrder","ID_msg":"product"}' );
 
 }
+
 //---------------------------------------------ПОЛУЧЕНЕ ТОЧЕК ПО ГОРОДУ----
 function getOrg( city ) {
     // if (city=="") return;
@@ -914,8 +927,8 @@ function addClientInfo( data ) {
     var data1 = JSON.parse( data );
     console.log( data1 );
     client_hash = data1.Hash;
-
 }
+
 function addElementToArray( data ) {
     var data1 = JSON.parse( data );
     if ( data1.Order_id == 0 ) return;
@@ -1057,6 +1070,7 @@ function getproductOrg() {
         hash1 = Organizations[org_index].Hash;
     console.log( hash1 );
     ws.send( '{"Table":"ProductOrder","TypeParameter":"OrgHash","Values":["' + hash1 + '"],"ID_msg":"productOrg"}' );
+    $( 'li[data-hash]' ).css( 'display', 'none' );
 }
 
 // $( "#take_away_address" ).on( "change", function () {
@@ -1093,13 +1107,12 @@ function addProductOrg( data ) {
     console.log( data );
     if ( data == "EOF" ) return;
     var data1 = JSON.parse( data )
-        , el = document.querySelector( 'li[data-hash="' + data1.ProdHash + '"]' );
-    if ( el !== null ) {
-        if ( data1.StopList ) {
-            el.classList.add( 'stop_list_product' );
-        } else {
-            el.classList.remove( 'stop_list_product' );
-        }
+        , el = $( 'li[data-hash="' + data1.ProdHash + '"]' );
+    el.css( 'display', '' );
+    if ( data1.StopList ) {
+        el.addClass( 'stop_list_product' );
+    } else {
+        el.removeClass( 'stop_list_product' );
     }
 }
 
@@ -1323,21 +1336,27 @@ function addLastStatusToArrayHistory( data ) {
 function getOrderElemAllHistory( id ) {
     ws.send( '{"Table":"OrderList","Query":"Read","TypeParameter":"RangeOrderID","Values":[' + id + '],"Limit":0,"Offset":0,"ID_msg":"ordliahis"}' );
 }
+
 function getOrderPersonalCourierHistory( id ) {
     ws.send( '{"Table":"OrderPersonal","Query":"Read","TypeParameter":"RangeRole","Values":[' + id + ',"' + courier_hash + '"],"Limit":10,"Offset":0,"ID_msg":"persichis"}' );
 }
+
 function getOrderPersonalOperatorHistory( id ) {
     ws.send( '{"Table":"OrderPersonal","Query":"Read","TypeParameter":"RangeRole","Values":[' + id + ',"' + operator_hash + '"],"Limit":10,"Offset":0,"ID_msg":"persimhis"}' );
 }
+
 function getOrderPersonalCassirHistory( id ) {
     ws.send( '{"Table":"OrderPersonal","Query":"Read","TypeParameter":"RangeRole","Values":[' + id + ',"' + cassir_hash + '"],"Limit":10,"Offset":0,"ID_msg":"persimhis"}' );
 }
+
 function getOrderStatusFirstHistory( id ) {
     ws.send( '{"Table":"OrderStatus","Query":"Read","TypeParameter":"Value","Values":[' + id + ',1],"Limit":0,"Offset":0,"ID_msg":"statgshis"}' );
 }
+
 function getOrderStatusLastHistory( id, idi ) {//----Читаем последний статус всего заказа
     ws.send( '{"Table":"OrderStatus","Query":"Read","TypeParameter":"ValueStructEnd","Values":[' + id + ',' + idi + '],"Limit":0,"Offset":0,"ID_msg":"statglhis"}' );
 }
+
 function getorderuserHistory( id ) {
     ws.send( '{"Table":"OrderCustomer","Query":"Read","TypeParameter":"Value","Values":[' + id + '],"Limit":0,"Offset":0,"ID_msg":"useridhis"}' );
 }

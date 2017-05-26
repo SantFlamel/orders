@@ -27,10 +27,10 @@ function Product( data ) {
 Product.list = {};
 //// каталог-------------------------------------------------------------------------
 Product.prototype.makeCatalogElement = function () {
-    // через this.dataset.price_id не работает.
     this.catalogElement =
-        '<li data-id="' + this.Price_id + '" data-hash="' + this.ProductHash + '" onclick="if ( !this.classList.contains(\'stop_list_product\') )   {Product.list[' + this.Price_id + '].showDescription()}"><a>' +
-        this.PriceName + ' ' + this.Price + 'р.</a></li>'
+        '<li style="position: relative" data-id="' + this.Price_id + '" data-hash="' + this.ProductHash
+        + '" onclick="console.log( \'LI\' );if ( !this.classList.contains(\'stop_list_product\') ) {Product.setCountCart(' + this.Price_id + ',' + this.Price_id + ', +1)}">' +
+        '<a><img onclick="if ( !this.parentNode.parentNode.classList.contains(\'stop_list_product\') ) {Product.list[' + this.Price_id + '].showDescription()} event.stopPropagation()" src="../../public/cassir/img/info.png" class="description_img" style="">' + this.PriceName + ' ' + this.Price + 'р.</a></li>'
 };
 
 Product.prototype.showCatalogElements = function () {

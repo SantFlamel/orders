@@ -470,11 +470,20 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 		"FROM order_status " +
 		"WHERE order_id=ol.order_id AND order_id_item=id_item AND order_status.status_id=4 " +
 		"ORDER BY \"time\" DESC LIMIT 1) as osu " +
-		",(SELECT CASE WHEN (SELECT order_status.status_id " +
+
+		",(SELECT CASE WHEN (SELECT order_status.\"time\" " +
 		"FROM order_status " +
-		"WHERE order_status.order_id=ol.order_id AND order_status.status_id=4 " +
-		"ORDER BY id DESC LIMIT 1)is not null then 0 else 1 end " +
+		"WHERE order_status.order_id=ol.order_id and order_status.id = 2)is null then '9999-01-01' " +
+		"ELSE (SELECT order_status.\"time\" " +
+		"FROM order_status " +
+		"WHERE order_status.order_id=ol.order_id and order_status.id = 2) end " +
 		") as oss " +
+
+		//",(SELECT CASE WHEN (SELECT order_status.status_id " +
+		//"FROM order_status " +
+		//"WHERE order_status.order_id=ol.order_id AND order_status.status_id=4 " +
+		//"ORDER BY id DESC LIMIT 1)is not null then 0 else 1 end " +
+		//") as oss " +
 		"FROM  \"order\" o " +
 		"RIGHT JOIN order_list ol ON ol.order_id=o.id " +
 		"WHERE " +

@@ -1,3 +1,5 @@
+﻿Posiflex PP6900 576 Partial Cut v3.01
+
 Авторизация
 {"HashAuth":"хешавторизации"}
 

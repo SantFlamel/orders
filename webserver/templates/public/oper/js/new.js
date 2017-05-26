@@ -251,14 +251,14 @@ function addOrgToPage() {
 
 $( '#loadtel' ).on( 'click', function () {
     //getorderuserbyPhone( getNumber ( $("#client_phone").attr('id'))); //результат запускает  reloadClientTel()
-    getClientInfo( getNumber( $( "#client_phone" ).attr( 'id' ) ) );
-    getClientAddress( getNumber( $( "#client_phone" ).attr( 'id' ) ) );
+    getClientInfo( getNumber( "client_phone" ) );
+    getClientAddress( getNumber( "client_phone" ) );
 } );
 
 $( '#loadtel2' ).on( 'click', function () {
     //getorderuserbyPhone( getNumber ( $("#client_phone").attr('id'))); //результат запускает  reloadClientTel()
     console.log( setPeriod( $( 'input[name=RG1]:checked' ).val() ) );
-    getordersbyphone( getNumber( $( "#client_phone2" ).attr( 'id' ) ), setPeriod( $( 'input[name=RG1]:checked' ).val() ), getTimeOnNow(), 50, 0 );
+    getordersbyphone( getNumber( "client_phone2" ), setPeriod( $( 'input[name=RG1]:checked' ).val() ), getTimeOnNow(), 50, 0 );
 } );
 
 function orderTimer() {

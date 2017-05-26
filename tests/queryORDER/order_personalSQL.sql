@@ -8,10 +8,10 @@ ON op.order_id=os.order_id
 AND op.order_id_item=os.order_id_item
 AND op.user_hash=os.user_hash
 
-WHERE os.time > '2017.03.22 9:31'
+WHERE os.time > '2017.03.22 9:31';
 
 
-//Количество заказов
+--Количество заказов
 WITH iss as (
   SELECT DISTINCT order_id FROM order_status WHERE "time" > current_date ORDER BY order_id ASC)
 
@@ -22,5 +22,5 @@ SELECT COUNT(*)
 FROM s
 INNER JOIN order_personal op ON op.order_id = s.order_id
 WHERE user_hash='eb2ffc0c4632ba9f3026f8ae35520f1fb1a708b7e213bdbfb643bc16a0900190'
-AND status_id>8
-AND status_id<11
+AND status_id > 8
+AND status_id < 11;

@@ -413,6 +413,15 @@ MSG.setStatus = function ( Order_id, Order_id_item, Status_id ) {
     }];
     MSG.send( { structure: status, check: true } );
 };
+var x = {request:[[{
+        "Table": "OrderStatus", "Query": "Create", "TypeParameter": "", "Values": null, "Limit": 0, "Offset": 0
+    }, {
+        "Order_id": +Order_id, "Order_id_item": +Order_id_item, "Cause": "", "Status_id": +Status_id,
+        "UserHash": Cashier.UserHash, "Time": Page.time()
+    }], {
+        "Table": "OrderList", "Query": "Update", "TypeParameter": "Finished"
+        , "Values": [ID, id_item, fin], "Limit": 0, "Offset": 0
+    }] };
 Order.status = {
     1: { "ID": 1, "Name": "Предзаказ" }
     , 2: { "ID": 2, "Name": "Принят" }
@@ -790,8 +799,10 @@ MSG.clientAddress = function ( s ) {
         , DoorphoneCode: ($( ".operator_client_adress .collapse.in #cod" ).val() || ' ') + ''
     };
     if ( x.Street === ' ' && x.House === 0 && Cart.getType() === TAKEAWAY ) {
-        var zz = Cashier.OrganizationName.split(';');
-        x.City = zz[0]; x.Street = zz[1]; x.House = +zz[2];
+        var zz = Cashier.OrganizationName.split( ';' );
+        x.City = zz[0];
+        x.Street = zz[1];
+        x.House = +zz[2];
     }
     if ( s != undefined ) {
         for ( i in x ) {
@@ -899,15 +910,15 @@ MSG.request.AvailableProd = function ( OrgHash ) {
         "ID_msg": "productOrg"
     };
     MSG.send( { structure: s, handler: MSG.get.AvailableProd, mHandlers: true } );
+    $( 'li[data-hash]' ).css( 'display', 'none' );
 };
 MSG.get.AvailableProd = function ( data ) {
-    var el = document.querySelector( 'li[data-hash="' + data.ProdHash + '"]' );
-    if ( el !== null ) {
-        if ( data.StopList ) {
-            el.classList.add( 'stop_list_product' );
-        } else {
-            el.classList.remove( 'stop_list_product' );
-        }
+    var el = $( 'li[data-hash="' + data.ProdHash + '"]' );
+    el.css( 'display', '' );
+    if ( data.StopList ) {
+        el.addClass( 'stop_list_product' );
+    } else {
+        el.removeClass( 'stop_list_product' );
     }
 };
 //--------------\ PRODUCT |----------------------------------------------------------
@@ -939,7 +950,7 @@ if ( TEST ) {
         s = { "Table": "ProductOrder", "TypeParameter": "Promotions" };
         MSG.send( {
             structure: s, handler: function ( data ) {
-                new Promotion( data )
+                new Promotion( data );
             }, mHandlers: true, EOFHandler: Promotion._getAll
         } );
         s = { "Table": "ProductOrder", "TypeParameter": "Subjects" };
