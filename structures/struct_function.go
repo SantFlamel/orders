@@ -488,10 +488,10 @@ func (os *OrderStatus) Insert(qm *QueryMessage) (int64, error) {
 			messageToWebSoc(qm, os.Order_id, 0, os.Status_id, time.Now())
 		}
 		s := controller.Stream{}
-		err2 = s.ReadRows("OrderList", "Value", os.Order_id, os.Order_id_item)
+		err2 = s.ReadRow("OrderList", "Value", os.Order_id, os.Order_id_item)
 		if err2 == nil {
 			orl := OrderList{}
-			err2 = s.Rows.Scan(
+			err2 = s.Row.Scan(
 				&orl.Order_id, &orl.ID_item, &orl.ID_parent_item,
 				&orl.Price_id, &orl.PriceName, &orl.Type_id, &orl.TypeName, &orl.Parent_id, &orl.ParentName,
 				&orl.Image, &orl.Units, &orl.Value, &orl.Set, &orl.Finished, &orl.DiscountName, &orl.DiscountPercent,
@@ -744,10 +744,10 @@ func (os *OrderStatus) Insert(qm *QueryMessage) (int64, error) {
 				err2 = s.Row.Scan(&org_hash)
 				if err2 == nil {
 					//Читаем элемент заказа
-					err2 = s.ReadRows("OrderList", "Value", os.Order_id, os.Order_id_item)
+					err2 = s.ReadRow("OrderList", "Value", os.Order_id, os.Order_id_item)
 					if err2 == nil {
 						orl := OrderList{}
-						err2 = s.Rows.Scan(
+						err2 = s.Row.Scan(
 							&orl.Order_id, &orl.ID_item, &orl.ID_parent_item,
 							&orl.Price_id, &orl.PriceName, &orl.Type_id, &orl.TypeName, &orl.Parent_id, &orl.ParentName,
 							&orl.Image, &orl.Units, &orl.Value, &orl.Set, &orl.Finished, &orl.DiscountName, &orl.DiscountPercent,
@@ -1349,6 +1349,8 @@ func (p *CHPrint) Printer(values ...interface{}) error {
 								p.sp.Body = append(p.sp.Body, orl.PriceName+"\t"+fmt.Sprintf("%v", (float64(orl.Price)-(float64(orl.Price)*(float64(orl.DiscountPercent)/100))))+" "+order.PriceCurrency)
 							}
 						}
+                        stream.Rows.Close()
+
 						//p.sp.Body = append(p.sp.Body, "   ************************************")
 						p.sp.Body = append(p.sp.Body, "   ------------------------------------")
 						p.sp.Body = append(p.sp.Body, "Итого:\t"+fmt.Sprint(order.Price)+" "+order.PriceCurrency)

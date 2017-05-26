@@ -340,14 +340,14 @@ function addActiveOrder( data ) {
     activeOrder.CookingTracker = data1.CookingTracker;
     //$("#in_work").attr("data-timer-stat");
     $( "#imgOrder" ).attr( 'src', data1.Image );
-
-    console.log( time_second2( data1.TimeCook ) );
-    console.log( $( "#in_work" ).attr( "data-timer-stat" ) );
-    console.log( getTimeNow1( 0 ) );
-    console.log( timeMinus( getTimeNow1( 0 ), $( "#in_work" ).attr( "data-timer-stat" ), 0 ) );
-    console.log( timeMinus( timeMinus( getTimeNow1( 0 ), $( "#in_work" ).attr( "data-timer-stat" ), 0 ), SYSTIME, 0 ) );
-    console.log( timeMinus( time_second2( data1.TimeCook ), timeMinus( timeMinus( getTimeNow1( 0 ), $( "#in_work" ).attr( "data-timer-stat" ), 0 ), SYSTIME, 0 ), 0 ) );
-    //console.log(timeMinus(timeMinus(time_second2 (data1.TimeCook), timeMinus(getTimeNow1(0),$("#in_work").attr("data-timer-stat"),0),0));
+    timeMinus
+    // console.log( time_second2( data1.TimeCook ) );
+    // console.log( $( "#in_work" ).attr( "data-timer-stat" ) );
+    // console.log( getTimeNow1( 0 ) );
+    // console.log( timeMinus( getTimeNow1( 0 ), $( "#in_work" ).attr( "data-timer-stat" ), 0 ) );
+    // console.log( timeMinus( timeMinus( getTimeNow1( 0 ), $( "#in_work" ).attr( "data-timer-stat" ), 0 ), SYSTIME, 0 ) );
+    // console.log( timeMinus( time_second2( data1.TimeCook ), timeMinus( timeMinus( getTimeNow1( 0 ), $( "#in_work" ).attr( "data-timer-stat" ), 0 ), SYSTIME, 0 ), 0 ) );
+    // //console.log(timeMinus(timeMinus(time_second2 (data1.TimeCook), timeMinus(getTimeNow1(0),$("#in_work").attr("data-timer-stat"),0),0));
 
     if ( $( "#in_work" ).attr( "data-timer-stat" ) != "0001-01-01T00:00:00Z" ) $( "#in_work" ).html( timeMinus( time_second2( data1.TimeCook ), timeMinus( timeMinus( getTimeNow1( 0 ), $( "#in_work" ).attr( "data-timer-stat" ), 0 ), SYSTIME, 0 ), 0 ) );
     // else $("#in_work").html (timeMinus(time_second2 (data1.TimeCook),SYSTIME,0));
@@ -663,7 +663,8 @@ $( '.order_table' ).on( 'click', '.col-sm-4.styleDiv', function () {
     if ( cooktr == tracker ) {
         sendStatus1( id, idi, 4 );
         console.log( $( this ).find( ".font_main_time" ).attr( "data-timer-stat" ) == "0001-01-01T00:00:00Z" );
-        if ( $( this ).find( ".font_main_time" ).attr( "data-timer-stat" ) == "0001-01-01T00:00:00Z" ) createTimer( id, idi );
+        if ( $( this ).find( ".font_main_time" ).attr( "data-timer-stat" ) == "0001-01-01T00:00:00Z" )
+            createTimer( id, idi );
     }
     timer_int = setInterval( function () {
         downTimer()

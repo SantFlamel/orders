@@ -130,6 +130,7 @@ func init() {
     //            structures.DBTypePayment[id] = name
     //        }
     //    }
+    //    stream.Rows.Close()
     //}
     //if err2!=nil{
     //    println(err2.Error())
@@ -148,6 +149,7 @@ func init() {
     //            structures.DBStatus[id] = name
     //        }
     //    }
+    //    stream.Rows.Close()
     //}
     //if err2!=nil{
     //    println(err2.Error())

@@ -1,3 +1,55 @@
+function counter( val ) {
+    var count = val || -1;
+    return function () {
+        return ++count;
+    };
+}
+////////--------| WARNINGS_MESSAGE |----------------------------------------------------------
+function warning( txt, alert, time, except, impot ) {
+    // txt - выводимый текст, alert - тип(null, 'info', 'alert' - разные по цветам)
+    // , time - время на которое показывается
+    // , except - id сообщения которое нужно удалить при появлении создаваемого
+    // возвращает id сообщения.
+    // impot - зафиксировать сообщение
+    var i, cl = '', id = Math.floor( Math.random() * 1000000 ), id_elem = 'id="' + id + '"'
+        , dublicate = $( 'button:contains(' + txt + ')' )
+        , disabled = '';
+    if ( alert ) {
+        cl = 'class="' + alert + '"';
+    }
+    if ( except ) {
+        if ( !Array.isArray( except ) ) {
+            warning.del( except );
+        } else {
+            for ( i in except ) {
+                warning.del( except[i] );
+            }
+        }
+    }
+    if ( time ) {
+        setTimeout( function () {
+            warning.del( id );
+        }, time );
+    }
+    if ( impot ) {
+        setTimeout( function () {
+            $( '#' + id ).removeAttr( 'disabled' )
+        }, FREEZE_IMPORTANT_ALERT );
+        disabled = 'disabled'
+    }
+    dublicate.remove();
+    document.getElementById( 'warning' ).innerHTML += '<div><button ' + id_elem + ' ' + cl + ' ' + disabled + ' >' + txt + '</button></div>';
+    return id;
+}
+var war = {};
+warning.del = function ( id ) {
+    $( '#' + id ).remove();
+};
+$( document ).on( 'click', '#warning button', function () {
+    $( this ).remove();
+} );
+//--------------\ WARNINGS_MESSAGE |----------------------------------------------------------
+
 //////--------| WEBSOCKET |----------------------------------------------------------
 var ws
     , AUTH = { "HashAuth": SESSION_HASH }
@@ -19,22 +71,25 @@ function webSocket() {
         setTimeout( webSocket, WS_TIMEOUT );
     };
     ws.onmessage = function ( msg ) {
-        // console.info( 'ws.onmessage', msg );
+        //console.info( 'ws.onmessage', msg );
         var type = msg.data.slice( 0, 2 ), data = msg.data
             , IDMsg = msg.data.split( '{' )[0].split( ':' )[1];
-        data = data.slice( data.indexOf( '{' ) + 1 );
-        MSG._in( IDMsg, data, type );
+        MSG._in( IDMsg, data.slice( data.indexOf( '{' ) + 1 ), type );
     };
     ws.onopen = function () {
         war.con1 = warning( 'Подключено.', 'info', ALERT_TIME, [war.con, war.err, war.clo] );
-        console.info( 'WS OPEN', new Date().toJSON(), WS_URL );
+        console.info( 'WS OPEN', new Date(), WS_URL );
         MSG.send( { structure: AUTH } ); // авторизация // в начале файла
         MSG.request.sessionInfo();
+
+        //Для повара
+        if ( MSG.readyState == 1 ) getSystemTime();
+
+
         // while ( MSG.wait.length > 0 ) {
         //     console.info( 'WS SEND WAIT' );
         //     (MSG.wait.pop())();
         // }
-        Page.update();
         // ws.send('EndConn');
     };
     ws.stop = function ( time ) {
@@ -51,7 +106,6 @@ function webSocket() {
         }
     }
 }
-webSocket();
 //--------------\ WEBSOCKET |----------------------------------------------------------
 
 ////////--------| MSG |----------------------------------------------------------
@@ -106,7 +160,7 @@ MSG = {
             console.info( '%cEND:::::: ' + IDMsg, 'color: #444100' );
             return;
         } else if ( type === '02' ) { // обновление данных
-            console.group( '%cMSG UPDATE::::::%c' + IDMsg, 'color: #043700', 'color: #444100', Page.time() );
+            console.group( '%cMSG UPDATE::::::%c' + IDMsg, 'color: #043700', 'color: #444100', 0 );
             console.info( data );
             MSG.update( JSON.parse( data ) );
             console.groupEnd();
@@ -136,9 +190,9 @@ MSG = {
         console.groupEnd();
     }, send: function ( option ) { // send MSG
         // console.trace( 'option' ,option );
-
         // { structure: '', handler: '', mHandlers: '', EOFHandler: '', check: '' };
-
+        // structure обект, массив обектов
+        //
         // console.info( 'WS WAIT' );
         // if ( !~MSG.wait.indexOf( struct ) ) {
         //     MSG.wait.push( function () {
@@ -202,124 +256,61 @@ MSG = {
 };
 //--------------\ MSG |----------------------------------------------------------
 MSG.updaateTimeOut = { de: 0 };
-MSG.update = function ( data ) {
-    console.group( 'MSG.update' );
-    var ID = data.Values[0];
-    if ( data.ID_msg !== Cashier.OrganizationHash && data.ID_msg !== '' ) { // фильтр по организации
-        console.groupEnd();
-        return;
-    }
-    console.log( 'data.Table', data.Table );
-    switch ( data.Table ) {
-        case "Order":
-            MSG.requestOrder( ID );
-            warningAudio();
-            break;
-        case "OrderCustomer":
-            if ( Order.list.hasOwnProperty( ID ) ) {
-                MSG.requestCustomer( ID );
-            } else {
-                MSG.requestOrder( ID );
-            }
-            break;
-        // case "OrderList":
-        //     if ( Order.list.hasOwnProperty( ID ) ) {
-        //         if ( $( '#description_order:visible' ).length !== 0 && document.title.split( '#' )[0] == ID ) {
-        //             if ( MSG.updaateTimeOut.de === 0 ) {
-        //                 MSG.updaateTimeOut.de = setTimeout( function () {
-        //                     MSG.updaateTimeOut.de = 0;
-        //                     MSG.requestOrder( ID );
-        //                     Page.update()
-        //                 }, 500 )
-        //             }
-        //         } else {
-        //             MSG.requestOrderLists( ID );
-        //         }
-        //     } else {
-        //         // MSG.requestOrder( ID );
-        //     }
-        //     break;
-        case "Cashbox":
-            console.group( 'Cashbox', data.Values[1] );
-            if ( Order.list[data.Values[1]] ) {
-                MSG.request.payment( data.Values[1] );
-            } else {
-            }
-            console.groupEnd();
-            break;
-        case "OrderPersonal":
-            break;
-        case "OrderStatus":
-            // console.log( "OrderStatus" );
-            if ( Order.list[ID] ) {
-                Order.list[ID].addStatus( { Order_id_item: data.Values[1], Status_id: data.Values[2] } );
-                console.log( 'data.Values[1], data.Values[2]', data.Values[1], data.Values[2] );
-            }
-            break;
-    }
-    console.groupEnd();
-};
 
-////////--------| User_info |----------------------------------------------------------
+////////////////////////////SESSION
 MSG.close.session = function () {
+    console.trace("CLOSE");
     try {
-        MSG.send( { structure: { "Table": "Session", "TypeParameter": "Abort" } } );
+        // MSG.send( { structure: { "Table": "Session", "TypeParameter": "Abort" } } );
     } catch ( e ) {
-
     }
-    alert( 'УДАЛЕНЫ КУКИ' );
-    cookie.delete( 'hash', { domain: '.yapoki.net', path: '/' } );
-    cookie.delete( 'mysession', { domain: '.yapoki.net', path: '/' } );
+    $.removeCookie( "hash", { domain: 'yapoki.net', path: "/" } );
+    $.removeCookie( "mysession", { domain: 'yapoki.net', path: "/" } );
     ws.stop();
     // document.location.href = AUTH_URL;
 };
+MSG.request.tabel = function (userHash) { // функция не существует
+    MSG.send( { structure: { "Table": "Tabel", "Values": [userHash] }, handler: MSG.get.tabel } );
+};
 MSG.request.sessionInfo = function () {
-    MSG.send( {
-        structure: { "Table": "Session", "TypeParameter": "ReadNotRights" }
-        , handler: function ( data ) {
-            CashierGet( data );
-            MSG.request.tabel();
-            CashBox.getSumInCashbox();
-        }
-    } );
+    MSG.send( { structure: { "Table": "Session", "TypeParameter": "ReadNotRights" }, handler: setupSessionInfo } );
 };
-MSG.request.tabel = function () {
-    MSG.send( { structure: { "Table": "Tabel", "Values": [Cashier.UserHash] }, handler: MSG.get.tabel } );
-};
-////////--------| ORDER |----------------------------------------------------------
-MSG.request.Order = function ( ID ) {
+MSG.request.Order = function ( ID, func ) {
     var s = {
         "Table": "Order", "Query": "Read", "TypeParameter": "Value", "Values": [ID], "Limit": 0, "Offset": 0
     };
     MSG.send( {
-        structure: s, handler: function ( data ) {
-            MSG.get.Order( data );
-        }
-    } );
+        structure: s, handler:func } );
 };
-MSG.get.Order = function ( data ) {
-    MSG.requestOrderStatus( data.ID );
-    new Order( data );
-};
-//--------------\ ORDER |----------------------------------------------------------
-
-////////--------| ORDER_LIST |----------------------------------------------------------
-MSG.requestOrderLists = function ( ID ) {
+MSG.request.OrderLists = function ( ID, func, func1  ) {
     var s = {
         "Table": "OrderList", "Query": "Read", "TypeParameter": "RangeOrderID", "Values": [ID]
         , "Limit": 0, "Offset": 0
     };
-    MSG.send( {
-        structure: s, handler: MSG.get.OrderList, mHandlers: true, EOFHandler: function () {
-            Order.list[ID].showDescription();
-        }
-    } );
+    MSG.send( { structure: s, handler: func, mHandlers: true, EOFHandler: func1 } );
 };
-MSG.get.OrderList = function ( data ) {
-    if (document.querySelector('')){
-
-    }
+//установка статусов заказов
+MSG.set.Status = function ( ID, id_item, stat ,cause) {
+    var time1 = getTimeOnNow();
+    MSG.send(
+        {structure:
+            [{"Table":"OrderStatus","Query":"Create","TypeParameter":"","Values":null,"Limit":0,"Offset":0},
+                {"Order_id":  +ID  ,"Order_id_item":  +id_item  ,"Cause": cause || "" ,"Status_id": +stat ,"UserHash":SessionInfo.UserHash, "Time":time1 }] } );
 };
-//--------------\ ORDER_LIST |----------------------------------------------------------
+//----Сделать заказ прготовленым
+MSG.set.finished = function ( ID, id_item ) {
+    MSG.send(
+        {structure:
+            [{"Table":"OrderList","Query":"Update","TypeParameter":"Finished","Values":[ID,id_item,true],"Limit":0,"Offset":0} ]} );
+};
 
+$( "#logout" ).click( MSG.close.session );
 
+MSG.set.personal = function ( id, idi ) {
+    MSG.send(
+        {structure:
+            [{"Table":"OrderPersonal","Query":"Create","TypeParameter":"","Values":null,"Limit":0,"Offset":0},
+            {"Order_id":  +id  ,"Order_id_item":  +idi  ,"UserHash":SessionInfo.UserHash,
+            "FirstName": SessionInfo.FirstName ,"SecondName":SessionInfo.SecondName ,"SurName": SessionInfo.SurName ,
+            "RoleHash": SessionInfo.RoleHash ,"RoleName":SessionInfo.RoleName}] } );
+};

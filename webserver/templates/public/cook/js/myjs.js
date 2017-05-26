@@ -37,8 +37,6 @@ getTime();
 
 
 // Стилизованный селект и трекер для перехода между режимами
-
-
 $( document ).ready( function () {
     if ( window.location.pathname.indexOf( 'pizzamaker-raskat.html' ) + 1 ) {
         $( "option[value='pizzamaker-raskat.html']" ).attr( 'selected', true );
@@ -67,12 +65,14 @@ $( function () {
 var clickNumber = 0;
 
 function startTimer() {
-    var timers = $( "[data-role=timer]" );
-    //  var down =$ ("[data-role=timer-down]");
-    //   var ring =$ ("[data-role=timer-down-ring]");
+    var timers = {};
+    timers = $( '.font_main_time' );
+    console.log(timers);
+
     $.each( timers, function ( key, up_timer ) {
         timer( up_timer );
     } );
+
     //  $.each(down, function (key2, down_timer) {
     //      downTimer1(down_timer);
     // });
@@ -82,9 +82,11 @@ function startTimer() {
     // });
 }
 
+
+
 var timer = (function () {
     var listTimer = {};
-    return function ( block ) {
+    return function timer( block ) {
         var id = block.id;
         if ( listTimer[id] ) {
             clearInterval( listTimer[id] );
@@ -94,6 +96,7 @@ var timer = (function () {
                 clearInterval( listTimer[id] );
                 delete listTimer[id]
             }
+
             var d = new Date(),
                 ah = d.getHours(),
                 am = d.getMinutes(),
@@ -142,11 +145,11 @@ var timer = (function () {
 })();
 
 
+
 //function downTimer(my_timer) {
 function downTimer() {
-    myjs_downTimer.start();
     var my_timer = $( "#in_work" );
-    var time = my_timer.text();
+    var time = my_timer.text(); //
     if ( time[0] == "-" ) {
         downTimerMinus1( my_timer );
         return;
@@ -174,11 +177,7 @@ function downTimer() {
 }
 
 var timer_int;
-function downTimer1() {
-    timer_int = setInterval( function () {
-        downTimer()
-    }, 1000 )
-}
+
 function downTimerMinus1( my_timer ) {
     //  setInterval(function () {
 
@@ -229,7 +228,7 @@ function downTimer2( my_timer ) {
             return;
         }
 
-    }, 1000 );
+    }, 1000 )
 
 
     //$(".lBlock").siblings(".cont")
@@ -246,17 +245,11 @@ function downTimer2( my_timer ) {
 
 }
 
-function downTimerMinus2( my_timer ) {
-    downTimerMinus1( my_timer );
-}
 // Запуск таймеров в карточке заказа
 
-function startTimers() {
-    //time_second ();
-    //downTimer();
-    //downTimer1();
-    startTimer();
-}
+// function startTimers() {
+//     startTimer();
+// }
 
 
 
