@@ -121,15 +121,16 @@ CashBox.checkChangeEmployee = function () {
             MSG.set.ChangeEmployee();
         };
         document.getElementById( 'shiftNumber' ).innerHTML = '-';
-        document.querySelector('#close-shift p').innerHTML= 'Вы действительно хотите открыть смену?';
+        document.querySelector( '#close-shift p' ).innerHTML = 'Вы действительно хотите открыть смену?';
     } else {
         Cashier.ChangeEmployee = CashBox.ChangeEmployee.pop();
         document.getElementById( 'change_employee' ).innerHTML = CLOSE_CHANGE_EMPLOYEE;
         document.getElementById( 'shiftNumber' ).innerHTML = Cashier.ChangeEmployee.ID;
+        document.getElementById( 'openedTime' ).innerHTML = Page.timeReplace( Cashier.ChangeEmployee.Date_begin ).slice( 0, 16 );
         document.getElementById( 'close_day_cashier' ).onclick = function () {
             CashBox.closeChangeEmployee();
         };
-        document.querySelector('#close-shift p').innerHTML= 'Вы действительно хотите закрыть смену?';
+        document.querySelector( '#close-shift p' ).innerHTML = 'Вы действительно хотите закрыть смену?';
     }
     CashBox.update();
 };
@@ -223,7 +224,7 @@ Operation.prototype.makeElement = function () {
             <td class="table-cashbox__id">#' + this.ID + '</td>\
             <td class="table-cashbox__data">' + time + '</td>\
             <td class="table-cashbox__Type-operation">' + type + '</td>\
-            <td class="table-cashbox__Type-money">' + MSG.payment[this.TypePayments] + '</td>\
+            <td class="table-cashbox__Type-money">' + TYPE_PAYMENTS[this.TypePayments] + '</td>\
             <td class="table-cashbox__amount-money">' + this.Deposit + ' р.</td>\
             <td class="table-cashbox__name-client">' + (this.name || '') + '</td>\
             <td class="cashbox_note">' + this.Cause + '</td>\

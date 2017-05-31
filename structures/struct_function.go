@@ -8,18 +8,101 @@ import (
 	"log"
 	"math"
 	"project/orders/conf"
-	"project/orders/controller"
 	"strconv"
 	"strings"
 	"time"
+    "project/orders/postgres"
 )
 
-//type ClientsMapsWebSock struct{}
+//----------------------------------------------------------------------------------------------------------------------
+/*----READ_FOR_TABLE----*/
+//----ORDER
+func (str *Structures) QueryRead() error {
+    var err error
+    str.st, err = str.Reads.Read(str.QM)
+    return err
+}
+func (str *Structures) Read() error {
+    var err error
+    //println("str.QM.TypeParameter:",fmt.Sprint(str.QM.TypeParameter))
+
+    str.Buf = nil
+
+    if str.QM.TypeParameter == "Value" {
+        err = str.Orders.ReadRow(str.st.Row)
+        if err == nil {
+            str.Buf, err = json.Marshal(str.Orders)
+
+        }
+    } else {
+        if len(str.QM.TypeParameter) < 6 {
+            return errors.New("The length of the parameter type does not satisfy the requirements of")
+        }
+        switch str.QM.TypeParameter[5:11] {
+        case "String":
+            err = str.ReadeByteArray()
+        case "Boolea":
+            err = str.ReadeByteArray()
+        case "Number":
+            err = str.ReadeByteArray()
+        case "Struct":
+            err = str.Orders.ReadRow(str.st.Row)
+            if err == nil {
+                str.Buf, err = json.Marshal(str.Orders)
+            }
+        default:
+            return errors.New("NOT IDENTIFICATION TYPE PARAMETERS")
+        }
+    }
+
+    return err
+}
+
+
+func (str *Structures) ReadRows() (bool,error) {
+    if  str.st.Rows == nil {
+        str.st.Rows.Close()
+        return false,errors.New("READ ROWS: Nil pointer")
+    }
+
+
+    b:=str.st.Rows.Next()
+    if b==false{
+        str.st.Rows.Close()
+        return false,nil
+    }
+
+    err := str.Orders.ReadRows(str.st.Rows)
+    if err == nil {
+        str.Buf, err = json.Marshal(str.Orders)
+    }
+
+
+    if err != nil{
+        return false,err
+    }
+
+
+    return b, err
+}
+
+
+func (str *Structures) ReadeByteArray() (error) {
+
+    err := str.st.Row.Scan(&str.Buf)
+    if err != nil {
+        return err
+    }
+    return nil
+}
+
+
+
 
 func messageToWebSoc(qm *QueryMessage, values ...interface{}) {
 	var err error
 
-	stream := controller.Stream{}
+	stream := postgres.Stream{}
 	err = stream.ReadRow("Order", "ValueStringOrgHash", values[0])
 	if err == nil {
 		cl := ClientList
@@ -71,7 +154,7 @@ func messageToWebSocWithHashOrg(qm *QueryMessage, orghash string, values ...inte
 //----------------------------------------------------------------------------------------------------------------------
 //----FUNCTION_FOR_ALL
 func (*All) Update(qm *QueryMessage) error {
-	mng := controller.Manager{}
+	mng := postgres.Requests
 	println("UPDATE", qm.Table, fmt.Sprint(qm.TypeParameter))
 	err := mng.Update(qm.Table, qm.TypeParameter, qm.Values...)
 
@@ -80,7 +163,7 @@ func (*All) Update(qm *QueryMessage) error {
 			if len(qm.Values) < 2 {
 				return err
 			}
-			s := controller.Stream{}
+			s := postgres.Stream{}
 			err2 := s.ReadRow("OrderList", "ValueNumberGetIDParent", qm.Values[0], qm.Values[1])
 			if err2 == nil {
 				var parent int
@@ -90,7 +173,7 @@ func (*All) Update(qm *QueryMessage) error {
 					if err2 == nil {
 						err2 = s.Row.Scan(&parent)
 						if err2 == nil && parent == 0 {
-							m := controller.Manager{}
+							m := postgres.Requests
 							err2 = m.Insert("OrderStatus", "", qm.Values[0], 0, "", 8, "system", time.Now())
 							if err2 == nil {
 								messageToWebSoc(qm, qm.Values[0], 0, 8, time.Now())
@@ -108,9 +191,9 @@ func (*All) Update(qm *QueryMessage) error {
 	return err
 }
 
-func (*Read) Read(qm *QueryMessage) (*controller.Stream, error) {
+func (*Read) Read(qm *QueryMessage) (*postgres.Stream, error) {
 
-	stream := &controller.Stream{}
+	stream := &postgres.Stream{}
 	var err error
 
 	if len(qm.TypeParameter) < 5 {
@@ -144,7 +227,7 @@ func (*Read) Read(qm *QueryMessage) (*controller.Stream, error) {
 }
 
 func (*All) Delete(qm *QueryMessage) error {
-	mng := controller.Manager{}
+	mng := postgres.Requests
 	err := mng.Delete(qm.Table, qm.TypeParameter, qm.Values...)
 	return err
 }
@@ -152,9 +235,14 @@ func (*All) Delete(qm *QueryMessage) error {
 //----------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------
 //----ORDER
+func (or *Order) ReturnValues()([]interface{}){
+    return append([]interface{}(nil),or.SideOrder, or.TimeDelivery, or.DatePreOrderCook, or.CountPerson,
+            or.Division, or.NameStorage, or.OrgHash, or.Note, or.DiscountName, or.DiscountPercent,
+            or.Bonus, or.Type, or.Price, or.PriceWithDiscount, or.PriceCurrency, or.TypePayments, time.Now(), false)
+}
 func (or *Order) Insert(qm *QueryMessage) (int64, error) {
 
-	mng := controller.Manager{}
+	mng := postgres.Requests
 	row, err := mng.InsertGetID(qm.Table, qm.TypeParameter,
 		or.SideOrder, or.TimeDelivery, or.DatePreOrderCook, or.CountPerson,
 		or.Division, or.NameStorage, or.OrgHash, or.Note, or.DiscountName, or.DiscountPercent,
@@ -193,8 +281,14 @@ func (or *Order) ReadRows(rows *sql.Rows) error {
 //----------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------
 //----ORDER_CUSTOMER
+func (oc *OrderCustomer) ReturnValues()([]interface{}){
+    return append([]interface{}(nil),oc.Order_id, oc.NameCustomer, oc.Phone, oc.Note,
+        oc.City, oc.Street, oc.House, oc.Building,
+        oc.Floor, oc.Apartment, oc.Entrance,
+        oc.DoorphoneCode)
+}
 func (oc *OrderCustomer) Insert(qm *QueryMessage) (int64, error) {
-	mng := controller.Manager{}
+	mng := postgres.Requests
 
 	err := mng.Insert(
 		qm.Table, qm.TypeParameter,
@@ -232,8 +326,15 @@ func (oc *OrderCustomer) ReadRows(rows *sql.Rows) error {
 //----------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------
 //----ORDER_LIST
+func (orl *OrderList)  ReturnValues()([]interface{}){
+    return append([]interface{}(nil),orl.Order_id, orl.ID_parent_item,
+        orl.Price_id, orl.PriceName, orl.Type_id, orl.TypeName, orl.Parent_id, orl.ParentName,
+        orl.Image, orl.Units, orl.Value, orl.Set, orl.DiscountName, orl.DiscountPercent,
+        orl.Price, orl.CookingTracker, orl.TimeCook, orl.TimeFry,
+        orl.Composition, orl.Additionally, orl.Packaging)
+}
 func (orl *OrderList) Insert(qm *QueryMessage) (int64, error) {
-	mng := controller.Manager{}
+	mng := postgres.Requests
 	row, err := mng.InsertGetID(
 		qm.Table, qm.TypeParameter,
 		orl.Order_id, orl.ID_parent_item,
@@ -355,8 +456,14 @@ func (orl *OrderList) ReadRows(rows *sql.Rows) error {
 //----------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------
 //----ORDER_PERSONAL
+func (op *OrderPersonal)  ReturnValues()([]interface{}){
+    return append([]interface{}(nil),op.Order_id, op.Order_id_item, op.UserHash,
+        op.FirstName, op.SecondName, op.SurName,
+        op.RoleHash, op.RoleName)
+}
+
 func (op *OrderPersonal) Insert(qm *QueryMessage) (int64, error) {
-	mng := controller.Manager{}
+	mng := postgres.Requests
 	err := mng.Insert(
 		qm.Table, qm.TypeParameter,
 		op.Order_id, op.Order_id_item, op.UserHash,
@@ -385,8 +492,12 @@ func (op *OrderPersonal) ReadRows(rows *sql.Rows) error {
 //----------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------
 //----ORDER_PAYMENTS
+func (op *OrderPayments) ReturnValues()([]interface{}){
+    return append([]interface{}(nil),op.Order_id, op.UserHash, op.TypePayments, op.Price, op.Time)
+}
+
 func (op *OrderPayments) Insert(qm *QueryMessage) (int64, error) {
-	mng := controller.Manager{}
+	mng := postgres.Requests
 	err := mng.Insert(
 		qm.Table, qm.TypeParameter,
 		op.Order_id, op.UserHash, op.TypePayments, op.Price, op.Time,
@@ -409,8 +520,12 @@ func (op *OrderPayments) ReadRows(rows *sql.Rows) error {
 //----------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------
 //----ORDER_STATUS
+func (os *OrderStatus) ReturnValues()([]interface{}){
+    return append([]interface{}(nil),)
+}
+
 func (os *OrderStatus) Insert(qm *QueryMessage) (int64, error) {
-	mng := controller.Manager{}
+	mng := postgres.Requests
 	var err error
 
 	if qm.TypeParameter == "" {
@@ -435,7 +550,7 @@ func (os *OrderStatus) Insert(qm *QueryMessage) (int64, error) {
 		}
 	}
 	if os.Status_id == 8 {
-		s := controller.Stream{}
+		s := postgres.Stream{}
 		zero := 9999
 		err2 := s.ReadRow("OrderList", "ValueNumberCountFinishedForOrder", os.Order_id, false)
 		if err2 == nil {
@@ -487,7 +602,7 @@ func (os *OrderStatus) Insert(qm *QueryMessage) (int64, error) {
 		if err2 != nil {
 			messageToWebSoc(qm, os.Order_id, 0, os.Status_id, time.Now())
 		}
-		s := controller.Stream{}
+		s := postgres.Stream{}
 		err2 = s.ReadRow("OrderList", "Value", os.Order_id, os.Order_id_item)
 		if err2 == nil {
 			orl := OrderList{}
@@ -522,7 +637,7 @@ func (os *OrderStatus) Insert(qm *QueryMessage) (int64, error) {
 
 	if os.Status_id == 9 && os.Order_id_item == 0 {
 		println("Status_id == 9 && Order_id_item == 0")
-		s := controller.Stream{}
+		s := postgres.Stream{}
 		err2 := s.ReadRow("Order", "ValueStringType", os.Order_id)
 		if err2 == nil {
 			println("err2 := s.ReadRow")
@@ -580,7 +695,7 @@ func (os *OrderStatus) Insert(qm *QueryMessage) (int64, error) {
 							var f float64
 							var t time.Time
 							var maxi int
-							stream := controller.Stream{}
+							stream := postgres.Stream{}
 							for _, ss := range as {
 								//time|distance|status
 								println(ss.SessionData)
@@ -669,7 +784,7 @@ func (os *OrderStatus) Insert(qm *QueryMessage) (int64, error) {
 	}
 
 	if os.Status_id == 11 && os.Order_id_item == 0 {
-		var s controller.Stream
+		var s postgres.Stream
 		err2 := s.ReadRows("OrderList", "RangeOrderID", os.Order_id)
 		if err2 == nil {
 			orl := OrderList{}
@@ -736,7 +851,7 @@ func (os *OrderStatus) Insert(qm *QueryMessage) (int64, error) {
 		if (os.Status_id == 15 || os.Status_id == 14 || os.Status_id == 5) && os.Order_id_item > 0 {
 			println("--Если отменен со списанием или приготовлен или на переделке тогда отправляем на склад списать")
 			//Если отменен со списанием или приготовлен или на переделке тогда отправляем на склад списать
-			s := controller.Stream{}
+			s := postgres.Stream{}
 			//читаем хеш организации
 			err2 := s.ReadRow("Order", "ValueStringOrgHash", os.Order_id)
 			if err2 == nil {
@@ -801,7 +916,7 @@ func (os *OrderStatus) Insert(qm *QueryMessage) (int64, error) {
 			println("--+++++++++++++++++++++++++++++++++++++++++++")
 			println("--Если отменен без списания смотрим что готовится и отправляем списать")
 
-			var s controller.Stream
+			var s postgres.Stream
 			err2 := s.ReadRows("OrderList", "RangeOrderID", os.Order_id)
 			if err2 == nil {
 				orl := OrderList{}
@@ -917,8 +1032,12 @@ func (os *OrderStatus) ReadRows(rows *sql.Rows) error {
 //----------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------
 //----STATUS
+func (s *Status) ReturnValues()([]interface{}){
+    return append([]interface{}(nil),s.Name)
+}
+
 func (s *Status) Insert(qm *QueryMessage) (int64, error) {
-	mng := controller.Manager{}
+	mng := postgres.Requests
 	err := mng.Insert(qm.Table, qm.TypeParameter, s.Name)
 
 	messageToWebSoc(qm)
@@ -939,8 +1058,11 @@ func (s *Status) ReadRows(rows *sql.Rows) error {
 //----------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------
 //----TypePayment
+func (tp *TypePayment) ReturnValues()([]interface{}){
+    return append([]interface{}(nil),tp.Name)
+}
 func (tp *TypePayment) Insert(qm *QueryMessage) (int64, error) {
-	mng := controller.Manager{}
+	mng := postgres.Requests
 	err := mng.Insert(qm.Table, qm.TypeParameter, tp.Name)
 
 	messageToWebSoc(qm)
@@ -961,8 +1083,12 @@ func (tp *TypePayment) ReadRows(rows *sql.Rows) error {
 //----------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------
 //----TimersCook
+func (tc *TimersCook) ReturnValues()([]interface{}){
+    return append([]interface{}(nil),)
+}
+
 func (tc *TimersCook) Insert(qm *QueryMessage) (int64, error) {
-	mng := controller.Manager{}
+	mng := postgres.Requests
 	t := time.Now()
 	err := mng.Insert(qm.Table, qm.TypeParameter, tc.Order_id, tc.Order_id_item, t, tc.Time_end, false)
 	//qm.Values = append(qm.Values, tc.Order_id)
@@ -984,8 +1110,13 @@ func (tc *TimersCook) ReadRows(rows *sql.Rows) error {
 //----------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------
 //----CASH_BOX
+func (c *Cashbox) ReturnValues()([]interface{}){
+    return append([]interface{}(nil),)
+}
+
 func (c *Cashbox) Insert(qm *QueryMessage) (int64, error) {
-	mng := controller.Manager{}
+	println(c.Order_id)
+	mng := postgres.Requests
 	row, err := mng.InsertGetID(qm.Table, qm.TypeParameter, c.Order_id, c.Change_employee_id,
 		c.First_sure_name, c.UserHash, c.RoleName, c.OrgHash, c.TypePayments, c.TypeOperation,
 		c.Deposit, c.ShortChange, c.Cause, time.Now())
@@ -1020,8 +1151,12 @@ func (c *Cashbox) ReadRows(rows *sql.Rows) error {
 //----------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------
 //----ChangeEmployee
+func (ce *ChangeEmployee) ReturnValues()([]interface{}){
+    return append([]interface{}(nil),)
+}
+
 func (ce *ChangeEmployee) Insert(qm *QueryMessage) (int64, error) {
-	mng := controller.Manager{}
+	mng := postgres.Requests
 	row, err := mng.InsertGetID(qm.Table, qm.TypeParameter, ce.UserHash, ce.OrgHash,
 		ce.Sum_in_cashbox, ce.NonCash_end_day, ce.Cash_end_day, ce.Close, time.Now(), ce.Date_end,
 	)
@@ -1077,7 +1212,7 @@ func (p *CHPrint) PrintCountPriceWithDiscount(values ...interface{}) error {
 		return errors.New("CHPrint.PrintAllRange() LENGTH VALUES < 1")
 	}
 	p.init()
-	stream := controller.Stream{}
+	stream := postgres.Stream{}
 	SumAll := int64(0)
 	var Sum int64
 	var err error
@@ -1175,7 +1310,7 @@ func (p *CHPrint) PrintAllRange(values ...interface{}) error {
 		return errors.New("CHPrint.PrintAllRange() LENGTH VALUES < 1")
 	}
 	p.init()
-	stream := controller.Stream{}
+	stream := postgres.Stream{}
 	SumAll := int64(0)
 	var Sum int64
 	var err error
@@ -1276,7 +1411,7 @@ func (p *CHPrint) Printer(values ...interface{}) error {
 	p.init()
 	println("func (p *Print) Printer(id int64) {")
 	cashbox := Cashbox{}
-	s := controller.Stream{}
+	s := postgres.Stream{}
 	s.ReadRow("Cashbox", "Value", values...)
 	err := cashbox.ReadRow(s.Row)
 	if err == nil {
@@ -1319,7 +1454,7 @@ func (p *CHPrint) Printer(values ...interface{}) error {
 			//var price, price_currency string
 			//var price_with_discount float64
 
-			stream := controller.Stream{}
+			stream := postgres.Stream{}
 			order := Order{}
 			err = stream.ReadRow("Order", "Value", cashbox.Order_id)
 			if err == nil {

@@ -44,24 +44,6 @@
             </div>
         </header>
 
-        <!--div с таймерами-->
-         <!--<div class="row " id="timerFinish">-->
-               <!--<div class="row timerItem">-->
-                <!--<a href="#" class=" ">-->
-                <!--<p class="font_main_check">#23-1</p>-->
-                <!--<p >Ролл Калифорния с лососем</p>-->
-                <!--<p >Я запекся</p>            -->
-            <!--</a>-->
-             <!--</div>-->
-             <!--<div class="row timerItem">-->
-                <!--<a href="#" class=" ">-->
-                <!--<p class="font_main_check">#23-2</p>-->
-                <!--<p >Ролл Калифорния </p>-->
-                <!--<p >Я запекся</p>            -->
-            <!--</a>-->
-             <!--</div>-->
-         <!--</div>-->
-
         <!--Основная панель-->
 
         <div class="row page_main  order_table font_blue" accept-charset="UTF-8">
@@ -75,7 +57,7 @@
                 <p class="font_main_name" id="name">Ролл )</p>
                 <p class="font_main_time" id="time" data-role="timer">00:25:05</p>
                 <img src="" id="imgOrder">
-                <p class="font_time" id="in_work">00:01:10</p>
+                <p class="font_time" id="in_work">00:03:00</p>
             </div>
             <div class="col-xs-12 col-sm-8 styleDivOrder">
                 <div class="row">
@@ -104,21 +86,8 @@
             </div>
         </div>
 
-        <!--<div class="modal fade" id="confirmCancel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
-            <!--<div class="modal-dialog">-->
-                <!--<div class="modal-content">-->
-                    <!--<div class="modal-body">-->
-                        <!--<p>Заказ был отменен. Отменить блюдо?</p>-->
-                    <!--</div>-->
-                    <!--<div class="modal-footer">-->
-                        <!--&lt;!&ndash; Используйте data-dismiss="modal" чтобы просто закрыть окно &ndash;&gt;-->
-                        <!--<button type="button" data-dismiss="modal" onclick="cancelStatusActive(16);">Отменить без списания</button>-->
-                        <!--<button type="button" data-dismiss="modal" onclick="cancelStatusActive(15);">Отменить со списанием</button>-->
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
+
         <div class="modal fade" id="confirmCancel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -138,57 +107,35 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <p><b>Переделать заказ</b></p>
+                        <h3><b>Переделать заказ</b><h3>
 
-                        <!--<div class="btn-group" data-toggle="buttons">-->
-                            <!--<label class="btn btn-default redone_button">-->
-                                <!--<input name="year" value="2011" type="radio">Переделать со списанием-->
-                            <!--</label>-->
-                            <!--<label class="btn btn-default redone_button">-->
-                                <!--<input name="year" value="2012" type="radio">Переделать без списания-->
-                            <!--</label>-->
-                        <!--</div>-->
-                        <!--<div class="row">-->
-                        <!--<label class="radio-inline">-->
-                            <!--<input name="RG1" id="radio1" value="0" checked="" type="radio"> Переделать со списанием-->
-                        <!--</label>-->
-                        <!--<label class="radio-inline">-->
-                            <!--<input name="RG1" id="radio2" value="1" type="radio"> Переделать без списания-->
-                        <!--</label>-->
-                        <!--<br>-->
-                        <!--<br>-->
-                        <!--</div>-->
-                        <!--<div class="btn-group" data-toggle="buttons">-->
-                            <!--<label class="btn btn-default">-->
-                                <!--<input name="year" value="self" type="radio">Самостоятельно-->
-                            <!--</label>-->
-                            <!--<label class="btn btn-default">-->
-                                <!--<input name="year" value="return" type="radio">Вернуть в трекер-->
-                            <!--</label>-->
-                        <!--</div>-->
                         <div class="row">
-                        <label class="radio-inline">
-                            <input name="RG2" id="radio3" value="0" type="radio"> Самостоятельно
-                        </label>
-                        <label class="radio-inline">
-                            <input name="RG2" id="radio4" value="1" checked="" type="radio"> Вернуть в трекер
-                        </label>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-default redone_button">
+                                    <input name="RG2" id="radio3" value="0" type="radio">Самостоятельно
+                                </label>
+                                <label class="btn btn-default redone_button">
+                                    <input name="RG2" id="radio4" value="1" checked="" type="radio">Вернуть в трекер
+                                </label>
+                            </div>
                         </div>
                         <br>
-                        <p><b>Причина переделки</b></p>
-                        <br>
+                        <h3><b>Причина переделки</b><h3>
                         <div class="row">
-                            <label class="radio-inline">
-                                <input name="RG3" id="radio5" value="Продукт испорчен" checked="" type="radio"> Продукт испорчен
-                            </label>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-default redone_button">
+                                    <input name="RG3" id="radio5" value="0" type="radio"> Продукт испорчен
+                                </label>
+                                <label class="btn btn-default redone_button">
+                                    <input name="RG3" id="radio6" value="1" checked="" type="radio">Поломка оборудования
+                                </label>
+                            </div>
                         </div>
+                        </div>
+
                         <br>
-                        <div class="row">
-                            <label class="radio-inline">
-                                <input name="RG3" id="radio6" value="Поломка оборудования"  type="radio"> Поломка оборудования
-                            </label>
-                        </div>
-                    </div>
+
+
 
                     <div class="modal-footer">
                         <!-- Используйте data-dismiss="modal" чтобы просто закрыть окно -->
@@ -266,11 +213,14 @@
             <script src="../../public/cook/js/jquery.js" type="text/javascript"></script>
             <script src="../../public/cook/js/jquery.cookie.js" type="text/javascript"></script>
             <script src="../../public/cook/js/jquery.formstyler.js" type="text/javascript"></script>
+
+
             <script src="../../public/cook/js/conf.js" type="text/javascript"></script>
             <script src="../../public/cook/js/new_ws.js" type="text/javascript"></script>
             <script src="../../public/cook/js/ws.js" type="text/javascript"></script>
-            <script src="../../public/cook/js/myjs.js" type="text/javascript"></script>
             <script src="../../public/cook/js/time.js" type="text/javascript"></script>
+
+
             <script src="../../public/cook/js/bootstrap.js" type="text/javascript"></script>
 
 

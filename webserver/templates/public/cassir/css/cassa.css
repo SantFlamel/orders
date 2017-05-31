@@ -266,17 +266,19 @@ body {
 }
 
 .info-shift {
-    min-width: 430px;
+    max-width: 440px;
     margin-bottom: 20px;
 }
 
 .info-shift__table {
-    width: 100%;
+    max-width: 440px;
     font-size: 22px;
+    overflow:auto;
 }
 
 .info-shift__table-value {
     color: #007aff;
+    float: right;
 }
 
 .sidebar-cashbox__control-buttons {
@@ -389,26 +391,38 @@ body {
     margin-left: -6px;
 }
 
-@media (max-width: 1800px) {
-    .left-column {
-        float: none;
-        width: 100%;
+
+
+@media (max-width: 1300px) {
+    .table-cashbox-wrapper {
+        width: 1300px;
     }
 
-    .right-column {
-        float: none;
-        width: 100%;
+    .table-cashbox-wrapper {
+        width: 1300px;
     }
+
+    .info-shift {
+    max-width: 1300px;
+
 }
 
-@media (max-width: 1200px) {
-    .table-cashbox-wrapper {
-        width: 1150px;
-    }
+    .info-shift__table {
+    max-width: 1300px;
 
-    .table-cashbox-wrapper {
-        width: 1200px;
-    }
+}
+
+    .info-shift__table-value {
+    color: #007aff;
+    float: right;
+}
+
+.info-shift__table-value {
+    color: #007aff;
+    float: right;
+}
+
+
 }
 
 /* Конец стилей (Интерфейс кассира - касса)*/

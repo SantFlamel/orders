@@ -1,9 +1,7 @@
 function procCollapse() {
     document.navbar.style.maxHeight = "auto";
 }
-
-// Дата и время
-
+// Дата и время в интерфейс выставляется
 function getTime() {
     var d = new Date();
     var month_num = d.getMonth();
@@ -32,56 +30,20 @@ function getTime() {
     }
     setTimeout( "getTime()", 30000 );
 }
-
 getTime();
 
 
-// Стилизованный селект и трекер для перехода между режимами
-
-
-$( document ).ready( function () {
-    if ( window.location.pathname.indexOf( 'pizzamaker-raskat.html' ) + 1 ) {
-        $( "option[value='pizzamaker-raskat.html']" ).attr( 'selected', true );
-    } else if ( window.location.pathname.indexOf( 'pizzamaker-nachinka.html' ) + 1 ) {
-        $( "option[value='pizzamaker-nachinka.html']" ).attr( 'selected', true );
-    } else if ( window.location.pathname.indexOf( 'pizzamaker-upakovka.html' ) + 1 ) {
-        $( "option[value='pizzamaker-upakovka.html']" ).attr( 'selected', true );
-    }
-    $( '.change-traker' ).attr( 'href', $( '#treker' ).val() );
-} );
-
-$( function () {
-/////------------------------------------------------------------------------
-    $( 'select.styler' ).styler( {
-        selectSmartPositioning: false
-    } );
-
-    $( '#treker' ).on( 'change', function () {
-        $( '.change-traker' ).attr( 'href', $( '#treker' ).val() );
-    } );
-
-} );
-
 // Таймер на увеличение 
 
-var clickNumber = 0;
-
 function startTimer() {
+
     var timers = $( "[data-role=timer]" );
-    //  var down =$ ("[data-role=timer-down]");
-    //   var ring =$ ("[data-role=timer-down-ring]");
+
     $.each( timers, function ( key, up_timer ) {
         timer( up_timer );
     } );
-    //  $.each(down, function (key2, down_timer) {
-    //      downTimer1(down_timer);
-    // });
-    /*   $.each(ring, function (key3, down_ring) {
-     downTimer2(down_ring);*/
-    // if(down_timer) {}
-    // });
-}
 
+}
 function timer( block ) {
     setInterval( function () {
 
@@ -130,9 +92,6 @@ function timer( block ) {
         //   setTimeout("timer(block)", 1000);
     }, 1000 );
 }
-
-
-//function downTimer(my_timer) {
 function downTimer() {
     var my_timer = $( "#in_work" );
     var time = my_timer.text();
@@ -159,15 +118,10 @@ function downTimer() {
     }
     else sd--;
     if ( sd < 10 ) sd = "0" + sd;
-    my_timer.text( hd + ":" + md + ":" + sd );
+        my_timer.text( hd + ":" + md + ":" + sd );
 }
-
 var timer_int;
-function downTimer1() {
-    timer_int = setInterval( function () {
-        downTimer()
-    }, 1000 )
-}
+
 function downTimerMinus1( my_timer ) {
     //  setInterval(function () {
 
@@ -190,9 +144,8 @@ function downTimerMinus1( my_timer ) {
     // setTimeout(downTimerMinus1, 1000);
     //  }, 1000)
 }
-
-
 function downTimer2( my_timer ) {
+
     setInterval( function () {
         downTimer( my_timer );
 
@@ -234,12 +187,10 @@ function downTimer2( my_timer ) {
     //  $(".rool").attr("title")
 
 }
-
 function downTimerMinus2( my_timer ) {
     downTimerMinus1( my_timer );
 }
 // Запуск таймеров в карточке заказа
-
 function startTimers() {
     //time_second ();
     //downTimer();

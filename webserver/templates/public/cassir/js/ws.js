@@ -1,3 +1,30 @@
+var STATUS = {
+    1: { "ID": 1, "Name": "Предзаказ" }
+    , 2: { "ID": 2, "Name": "Принят" }
+    , 3: { "ID": 3, "Name": "Передан" }
+    , 4: { "ID": 4, "Name": "В работе" }
+    , 5: { "ID": 5, "Name": "Раскатка" }
+    , 6: { "ID": 6, "Name": "Начинение" }
+    , 7: { "ID": 7, "Name": "Запекание" }
+    , 8: { "ID": 8, "Name": "Приготовлен" }
+    , 9: { "ID": 9, "Name": "Собран" }
+    , 10: { "ID": 10, "Name": "Доставлятся" }
+    , 11: { "ID": 11, "Name": "Доставлен" }
+    , 12: { "ID": 12, "Name": "На месте в ожидании" }
+    , 13: { "ID": 13, "Name": "Заказ не забрали" }
+    , 14: { "ID": 14, "Name": "На переделке" }
+    , 15: { "ID": 15, "Name": "Отменен со списанием" }
+    , 16: { "ID": 16, "Name": "Отменен без списания" }
+    , 17: { "ID": 17, "Name": "Изменен" }
+}, TYPE_PAYMENTS = {
+    1: "Наличные"
+    , 2: "Банковская карта"
+    , 3: "Яндекс деньги"
+    , 4: "WebMoney"
+    , 5: "Bitcoin"
+};
+
+;
 //////--------| WEBSOCKET |----------------------------------------------------------
 var ws
     , AUTH = { "HashAuth": SESSION_HASH }
@@ -80,6 +107,8 @@ MSG = {
                 console.groupCollapsed( '%cMSG NO RESULT::><><%c' + IDMsg + ' %c-No result', 'color: red', 'color: #444100', 'color: #019500' );
                 console.warn( data );
             } else if ( IDMsg == 'Auth' || ~data.indexOf( 'NO CHECKED' ) ) { // ошибка авторизации
+                console.group( '%cMSG NO CHECKED::><><', 'color: red' );
+                console.error( data );
                 MSG.close.session();
             } else if ( ~data.indexOf( 'duplicate key value violates unique constraint' ) ) {
                 console.groupCollapsed( '%cMSG DUPLICATE::><><%c' + IDMsg, 'color: red', 'color: #444100' );
@@ -211,14 +240,14 @@ MSG.update = function ( data ) {
     console.log( 'data.Table', data.Table );
     switch ( data.Table ) {
         case "Order":
-            MSG.requestOrder( ID );
+            MSG.request.order( ID );
             warningAudio();
             break;
         case "OrderCustomer":
             if ( Order.list.hasOwnProperty( ID ) ) {
-                MSG.requestCustomer( ID );
+                MSG.request.customer( ID );
             } else {
-                MSG.requestOrder( ID );
+                MSG.request.order( ID );
             }
             break;
         // case "OrderList":
@@ -227,15 +256,15 @@ MSG.update = function ( data ) {
         //             if ( MSG.updaateTimeOut.de === 0 ) {
         //                 MSG.updaateTimeOut.de = setTimeout( function () {
         //                     MSG.updaateTimeOut.de = 0;
-        //                     MSG.requestOrder( ID );
+        //                     MSG.request.order( ID );
         //                     Page.update()
         //                 }, 500 )
         //             }
         //         } else {
-        //             MSG.requestOrderLists( ID );
+        //             MSG.request.orderLists( ID );
         //         }
         //     } else {
-        //         // MSG.requestOrder( ID );
+        //         // MSG.request.order( ID );
         //     }
         //     break;
         case "Cashbox":
@@ -327,7 +356,7 @@ MSG.request.ChangeEmployeeByOrgHashUserHash = function ( close, limit, fn, eofFn
 //--------------\ User_info |----------------------------------------------------------
 
 ////////--------| ORDER |----------------------------------------------------------
-MSG.requestOrder = function ( ID ) {
+MSG.request.order = function ( ID ) {
     var s = {
         "Table": "Order", "Query": "Read", "TypeParameter": "Value", "Values": [ID], "Limit": 0, "Offset": 0
     };
@@ -337,9 +366,9 @@ MSG.requestOrder = function ( ID ) {
         }
     } );
 };
-MSG.requestOrdersByOrgHash = function () {
+MSG.request.ordersByOrgHash = function () {
     if ( !Cashier.OrganizationHash ) {
-        setTimeout( MSG.requestOrdersByOrgHash, WS_WAIT_RE );
+        setTimeout( MSG.request.ordersByOrgHash, WS_WAIT_RE );
         return;
     }
     var s = {
@@ -350,12 +379,12 @@ MSG.requestOrdersByOrgHash = function () {
     MSG.send( { structure: s, handler: MSG.get.Order, mHandlers: true, EOFHandler: false/*Page.update*/ } )
 };
 MSG.get.Order = function ( data ) {
-    MSG.requestOrderStatus( data.ID );
+    MSG.request.orderStatus( data.ID );
     new Order( data );
 };
 //--------------\ ORDER |----------------------------------------------------------
 ////////--------| ORDER_LIST |----------------------------------------------------------
-MSG.requestOrderLists = function ( ID ) {
+MSG.request.orderLists = function ( ID ) {
     var s = {
         "Table": "OrderList", "Query": "Read", "TypeParameter": "RangeOrderID", "Values": [ID]
         , "Limit": 0, "Offset": 0
@@ -377,21 +406,19 @@ MSG.get.OrderList = function ( data ) {
             data.Finished = true;
         }
         order.OrderList[data['ID_item']] = data;
-        MSG.requestOrderStatus( data['Order_id'], data['ID_item'] );
+        MSG.request.orderStatus( data['Order_id'], data['ID_item'] );
     }
 };
 //--------------\ ORDER_LIST |----------------------------------------------------------
 ////////--------| STATUS |----------------------------------------------------------
-MSG.requestOrderStatus = function ( ID, ID_item ) {
-    // console.group( 'requestOrderStatus', ID, ID_item );
+MSG.request.orderStatus = function ( ID, ID_item ) {
     var s = {
         "Table": "OrderStatus", "Query": "Read", "TypeParameter": "ValueStructIDOrdIDit"
         , "Values": [ID, ID_item || 0], "Limit": 0, "Offset": 0
     };
     MSG.send( { structure: s, handler: MSG.get.Status } );
-    // console.groupEnd();
 };
-MSG.setFinished = function ( ID, id_item, fin ) {
+MSG.set.finished = function ( ID, id_item, fin ) {
     var s = {
         "Table": "OrderList", "Query": "Update", "TypeParameter": "Finished"
         , "Values": [ID, id_item, fin], "Limit": 0, "Offset": 0
@@ -404,7 +431,7 @@ MSG.get.Status = function ( data ) {
     }
 };
 
-MSG.setStatus = function ( Order_id, Order_id_item, Status_id ) {
+MSG.set.status = function ( Order_id, Order_id_item, Status_id ) {
     var status = [{
         "Table": "OrderStatus", "Query": "Create", "TypeParameter": "", "Values": null, "Limit": 0, "Offset": 0
     }, {
@@ -412,34 +439,6 @@ MSG.setStatus = function ( Order_id, Order_id_item, Status_id ) {
         "UserHash": Cashier.UserHash, "Time": Page.time()
     }];
     MSG.send( { structure: status, check: true } );
-};
-var x = {request:[[{
-        "Table": "OrderStatus", "Query": "Create", "TypeParameter": "", "Values": null, "Limit": 0, "Offset": 0
-    }, {
-        "Order_id": +Order_id, "Order_id_item": +Order_id_item, "Cause": "", "Status_id": +Status_id,
-        "UserHash": Cashier.UserHash, "Time": Page.time()
-    }], {
-        "Table": "OrderList", "Query": "Update", "TypeParameter": "Finished"
-        , "Values": [ID, id_item, fin], "Limit": 0, "Offset": 0
-    }] };
-Order.status = {
-    1: { "ID": 1, "Name": "Предзаказ" }
-    , 2: { "ID": 2, "Name": "Принят" }
-    , 3: { "ID": 3, "Name": "Передан" }
-    , 4: { "ID": 4, "Name": "В работе" }
-    , 5: { "ID": 5, "Name": "Раскатка" }
-    , 6: { "ID": 6, "Name": "Начинение" }
-    , 7: { "ID": 7, "Name": "Запекание" }
-    , 8: { "ID": 8, "Name": "Приготовлен" }
-    , 9: { "ID": 9, "Name": "Собран" }
-    , 10: { "ID": 10, "Name": "Доставлятся" }
-    , 11: { "ID": 11, "Name": "Доставлен" }
-    , 12: { "ID": 12, "Name": "На месте в ожидании" }
-    , 13: { "ID": 13, "Name": "Заказ не забрали" }
-    , 14: { "ID": 14, "Name": "На переделке" }
-    , 15: { "ID": 15, "Name": "Отменен со списанием" }
-    , 16: { "ID": 16, "Name": "Отменен без списания" }
-    , 17: { "ID": 17, "Name": "Изменен" }
 };
 
 // Подсчёт времени готовки
@@ -483,13 +482,6 @@ Order.status = {
 
 
 //////--------| CashBox |----------------------------------------------------------
-MSG.payment = {
-    1: "Наличные"
-    , 2: "Банковская карта"
-    , 3: "Яндекс деньги"
-    , 4: "WebMoney"
-    , 5: "Bitcoin"
-};
 MSG.set.cashBoxOperation = function ( operation ) {
     operation.UserHash = Cashier.UserHash;
     operation.OrgHash = Cashier.OrganizationHash;
@@ -575,7 +567,7 @@ MSG.request.dayOverPrintCheck = function () {
 
 
 ////////--------| Personal_order |----------------------------------------------------------
-MSG.requestCustomer = function ( id ) {
+MSG.request.customer = function ( id ) {
     var s = {
         "Table": "OrderCustomer", "Query": "Read", "TypeParameter": "Value",
         "Values": [id], "Limit": 0, "Offset": 0, "ID_msg": ""
@@ -761,7 +753,7 @@ MSG.sendOrderData = function ( ID ) {
     console.group( 'MSG.sendOrderData' );
     try {
         var list = MSG.collectOrder.list, i, ii;
-        MSG.sendPersonal( ID, 0 );
+        MSG.set.personal( ID, 0 );
         list.customer[1].Order_id = +ID;
         MSG.send( { structure: list.customer, check: true } );
         MSG.send( { structure: list.clientInfo } );
@@ -772,7 +764,7 @@ MSG.sendOrderData = function ( ID ) {
             ii[1].Order_id = ID;
             MSG.send( { structure: ii, check: true } );
         }
-        MSG.setStatus( ID, 0, list.status.Status_id );
+        MSG.set.status( ID, 0, list.status.Status_id );
     } catch ( e ) {
         console.error( e );
         alert( '2 Возникли проблемы с отправкой заказа!!!' )
@@ -814,45 +806,40 @@ MSG.clientAddress = function ( s ) {
     }
 };
 
-MSG.requestCustomerByTel = function () {
-    var tel = getPhone(), s = {
-        "Table": "OrderCustomer", "Query": "Read", "TypeParameter": "RangeByPhone", "Values": [tel], "Limit": 999,
-        "Offset": 0
-    };
-    MSG.send( { structure: s, handler: MSG.get.CostumerInfoByTel, mHandlers: true } );
-    Customer.list = [];
-};
-MSG.get.CostumerInfoByTel = function ( data ) {
-    if ( data.Order_id !== 0 ) {
-        new Customer( data );
-    }
-};
-
-// MSG.request.clientInfo = function ( tel ) {
-//     tel = getPhone();
-//     var s = { "Table": "ClientInfo", "Values": [tel] };
-//     MSG.send( s, MSG.get.clientInfo )
+// MSG.request.customerByTel = function () {
+//     var tel = getPhone(), s = {
+//         "Table": "OrderCustomer", "Query": "Read", "TypeParameter": "RangeByPhone", "Values": [tel], "Limit": 999,
+//         "Offset": 0
+//     };
+//     MSG.send( {
+//         structure: s, handler: function ( data ) {
+//             if ( data.Order_id !== 0 ) {
+//                 new Customer( data );
+//             }
+//         }, mHandlers: true
+//     } );
+//     Customer.list = [];
 // };
+// MSG.get.CostumerInfoByTel = function ( data ) {
+//     if ( data.Order_id !== 0 ) {
+//         new Customer( data );
+//     }
+// };
+
 MSG.request.clientInfo = function ( tel ) {
     tel = tel || getPhone();
     var s = { "Table": "ClientInfo", "TypeParameter": "ReadClient", "Values": [tel] };
     MSG.send( { structure: s, handler: MSG.get.clientInfo } );
     s = { "Table": "ClientInfo", "TypeParameter": "ReadAddress", "Values": [tel] };
-    MSG.send( { structure: s, handler: MSG.get.clientInfoAddress, mHandlers: true } );
+    MSG.send( {
+        structure: s, handler: function ( data ) {
+            $( "#accordion1" ).append( makeAddress( data, $( '#accordion1>div' ).length, data.ID ) )
+        }, mHandlers: true
+    } );
     MSG.clients = [];
 };
-MSG.get.clientInfoAddress = function ( data ) {
-    $( "#accordion1" ).append( makeAddress( data, $( '#accordion1>div' ).length, data.ID ) )
-};
 MSG.get.clientInfo = function ( data ) {
-    // {"Hash":"628b73e45d003f334fb0ee9f87dc12ee11ef6cd8df4bd5a8b8cfc94ae28d2f98","Phone":"77777777777","Name":"Ltybc","Password":"","Mail":"","Bonus":0,"BonusWord":"","Active":false,"BlackList":false,"CauseBlackList":"","Birthday":"0001-01-01T00:00:00Z","CreationTime":"2017-04-25T12:50:26.113092Z"}
-    var s;
-    if ( data.BlackList ) {
-        s = ALERT_CLIENT_IN_BLACK_LIST
-    } else {
-        s = ""
-    }
-    document.getElementById( 'black_list' ).innerHTML = s
+    document.getElementById( 'black_list' ).innerHTML = data.BlackList ? ALERT_CLIENT_IN_BLACK_LIST : '';
 };
 // MSG.set.clientInfoInBlackList = function (  ) {
 //     var s = {"Table":"ClientInfo","TypeParameter":"Update","ID_msg":""}{замаршалиная структура}
@@ -874,9 +861,9 @@ MSG.request.personal = function ( HashOrg, RoleHash, handler, mHandler ) {
 MSG.get.personal = function ( data ) {
     MSG.get._personal[data.UserHash] = data;
 };
-MSG.sendPersonal = function ( ID, Order_id_item, del ) {
+MSG.set.personal = function ( ID, Order_id_item, del ) {
     //{"Table":"OrderPersonal","Query":"Create","TypeParameter":"","Values":null,"Limit":0,"Offset":0}{"Order_id":14,"Order_id_item":1,"UserHash":"aksjdghakjsdghkajs","FirstName":"FirstName","SecondName":"SecondName","SureName":"SureName","RoleHash":"Role","RoleName":"RoleName"}
-    console.group( 'MSG.sendPersonal' );
+    console.group( 'MSG.set.personal' );
     var cassir = del || Cashier;
     var s = [{
         "Table": "OrderPersonal", "Query": "Create", "TypeParameter": "", "Values": null, "Limit": 0, "Offset": 0
@@ -900,7 +887,7 @@ MSG.request.orderPersonal = function ( ID, Role, fn ) {
 //--------------\ Получение_кakoго ни-бдуь |----------------------------------------------------------
 
 ////////--------| PRODUCT |----------------------------------------------------------
-MSG.requestProducts = function () {
+MSG.request.products = function () {
     var s = { "Table": "ProductOrder" };
     MSG.send( { structure: s, handler: Product, mHandlers: true, EOFHandler: MSG.request.AvailableProd } )
 };

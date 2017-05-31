@@ -5,23 +5,21 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log"
 	"net"
 	"project/orders/conf"
-	_ "project/orders/conf"
-	"project/orders/controller"
+	"project/orders/postgres"
 	"project/orders/structures"
 	"strconv"
 	"strings"
-	"sync"
 	"time"
-    "log"
 )
 
 //----------------------------------------------------------------------------------------------------------------------
 /*----INTERFACE_STRUCT----*/
 type Structure interface {
-	Read(qm *structures.QueryMessage, stream *controller.Stream, conn net.Conn) error
-	ReadeByteArray(stream *controller.Stream, conn net.Conn) error
+	Read(qm *structures.QueryMessage, stream *postgres.Stream, conn net.Conn) error
+	ReadeByteArray(stream *postgres.Stream, conn net.Conn) error
 }
 
 type Orders interface {
@@ -33,71 +31,28 @@ type Orders interface {
 //----------------------------------------------------------------------------------------------------------------------
 /*----INTERFACE_STRUCT----*/
 type structure struct {
-	Client            *structures.ClientConn
-	qm                structures.QueryMessage
-	messOrder         interface{}
-	stream            *controller.Stream
-	row               *sql.Row
-	orders            Orders
-	Reads             structures.Read
-	ID                int64
-	clientListRWMutex sync.Mutex
+	Client     *structures.ClientConn
+	qm         structures.QueryMessage
+	messOrder  interface{}
+	row        *sql.Row
+	orders     structures.Orders
+	Structures structures.Structures
+	ID         int64
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 /*----READ_FOR_TABLE----*/
 //----ORDER
-func (st *structure) Read() error {
-	var err error
-	if len(st.qm.TypeParameter) < 6 {
-		return errors.New("The length of the parameter type does not satisfy the requirements of")
-	}
 
-	switch st.qm.TypeParameter[5:11] {
-	case "String":
-		err = st.ReadeByteArray(st.stream)
-        break
-	case "Number":
-		err = st.ReadeByteArray(st.stream)
-        break
-	case "Boolea":
-		err = st.ReadeByteArray(st.stream)
-        break
-	case "Struct":
-		err = st.orders.ReadRow(st.stream.Row)
-		if err == nil {
-			mess, err := json.Marshal(st.orders)
-			if err == nil {
-				st.send(mess, nil)
-			}
-		}
-        break
-	default:
-		return errors.New("NOT IDENTIFICATION TYPE PARAMETERS")
-	}
-
-	return err
-}
-
-func (st *structure) ReadeByteArray(stream *controller.Stream) error {
-	var buf []byte
-	err := stream.Row.Scan(&buf)
-	if err != nil {
-		return err
-	}
-	st.send(buf, nil)
-	return nil
-}
-
-func (st *structure) send (p []byte, err error) {
+func (st *structure) send(p []byte, err error) {
 	if err == nil {
 		p = append([]byte("01:"+st.qm.ID_msg+"{"), p...)
 	} else {
 		p = append([]byte("00:"+st.qm.ID_msg+"{"), p...)
 		p = append(p, []byte(err.Error())...)
 	}
-	println("SEND TO",st.Client.IP.String(),":",string(p))
-	st.Client.Send<-p
+	println("SEND TO", st.Client.IP.String(), ":", string(p))
+	st.Client.Send <- p
 
 	/*if st.Client.conn != nil {
 		println("SEND MESS: ", string(p))
@@ -123,14 +78,16 @@ func (st *structure) SelectTables(msg []byte) error {
 		return errors.New("Length type parameter does not satisfy the requirement")
 	}
 
+	st.Structures.QM =  &st.qm
+
 	if len(msg) < imsg+2 {
 		switch st.qm.Query {
 		case "Update":
 			all := structures.All{}
 			err = all.Update(&st.qm)
-            if err==nil{
-                st.send([]byte(st.qm.Query+": it is no problem"),nil)
-            }
+			if err == nil {
+				st.send([]byte(st.qm.Query+": it is no problem"), nil)
+			}
 			//if err == nil {
 			//	st.send([]byte(st.qm.Table+" NO ERRORS "+st.qm.Query+", TYPE PARAMETERS: \""+st.qm.TypeParameter+"\""), nil)
 			//}
@@ -138,15 +95,15 @@ func (st *structure) SelectTables(msg []byte) error {
 		case "Delete":
 			all := structures.All{}
 			err = all.Delete(&st.qm)
-            if err==nil{
-                st.send([]byte(st.qm.Query+": it is no problem"),nil)
-            }
+			if err == nil {
+				st.send([]byte(st.qm.Query+": it is no problem"), nil)
+			}
 			break
 		}
 
 		if st.qm.Query != "Read" && st.qm.Table != "ProductOrder" && st.qm.Table != "GetPoint" && st.qm.Table != "GetAreas" &&
 			st.qm.Table != "Session" && st.qm.Table != "Tabel" && st.qm.Table != "ClientInfo" && st.qm.Table != "LocalTime" &&
-			st.qm.Table != "Printer"{
+			st.qm.Table != "Printer" {
 			//for _, item := range conf.Config.TLS_serv_reader {
 			//	ClientOrder := structures.ClientOrder{IP: item, MSG: msg}
 			//	go ClientOrder.Write()
@@ -162,80 +119,80 @@ func (st *structure) SelectTables(msg []byte) error {
 	switch st.qm.Table {
 	case "Order":
 		st.orders = &structures.Order{}
-        break
+		break
 
 	case "OrderCustomer":
 		st.orders = &structures.OrderCustomer{}
-        break
+		break
 
 	case "OrderList":
 		st.orders = &structures.OrderList{}
-        break
+		break
 
 	case "OrderPersonal":
 		st.orders = &structures.OrderPersonal{}
-        break
+		break
 
 	//case "OrderPayments":
 	//	st.orders = &structures.OrderPayments{}
 
 	case "OrderStatus":
 		st.orders = &structures.OrderStatus{}
-        break
+		break
 
 	case "Cashbox":
 		st.orders = &structures.Cashbox{}
-        break
+		break
 
 	case "ChangeEmployee":
 		st.orders = &structures.ChangeEmployee{}
-        break
+		break
 
 	case "Status":
 		st.orders = &structures.Status{}
-        break
+		break
 
 	case "TypePayment":
 		st.orders = &structures.TypePayment{}
-        break
+		break
 
 	case "TimersCook":
 		st.orders = &structures.TimersCook{}
-        break
+		break
 
 	case "LocalTime":
-		st.send([]byte(time.Now().String()[11:19]),nil)
+		st.send([]byte(time.Now().String()[11:19]), nil)
 		return nil
 
 	case "Printer":
-		println("Printer",fmt.Sprint(st.qm.Values))
+		println("Printer", fmt.Sprint(st.qm.Values))
 		printer := structures.CHPrint{}
 		switch st.qm.TypeParameter {
 		case "":
 			go func() {
-                err = printer.Printer(st.qm.Values...)
-                if err!=nil{
-                    st.send([]byte(""),err)
-                }
-            }()
+				err = printer.Printer(st.qm.Values...)
+				if err != nil {
+					st.send([]byte(""), err)
+				}
+			}()
 
 		case "AllRange":
-            go func() {
-                err = printer.PrintAllRange(st.qm.Values...)
-                if err!=nil{
-                    st.send([]byte(""),err)
-                }
-            }()
-            break
+			go func() {
+				err = printer.PrintAllRange(st.qm.Values...)
+				if err != nil {
+					st.send([]byte(""), err)
+				}
+			}()
+			break
 
 		case "CountPriceWithDiscount":
-            go func() {
-                err = printer.PrintCountPriceWithDiscount(st.qm.Values...)
-                if err!=nil{
-                    st.send([]byte(""),err)
-                }
-            }()
-            break
+			go func() {
+				err = printer.PrintCountPriceWithDiscount(st.qm.Values...)
+				if err != nil {
+					st.send([]byte(""), err)
+				}
+			}()
+			break
 		}
 		return nil
 
@@ -251,19 +208,19 @@ func (st *structure) SelectTables(msg []byte) error {
 		switch st.qm.TypeParameter {
 		case "":
 			co.MSG = []byte("{\"Table\":\"ProductOrder\",\"Query\":\"Read\"}")
-            break
+			break
 
 		case "PromotionsTypes":
 			co.MSG = []byte("{\"Table\":\"PromotionsTypes\",\"Query\":\"Read\",\"Limit\":999}")
-            break
+			break
 
 		case "Promotions":
 			co.MSG = []byte("{\"Table\":\"Promotions\",\"Query\":\"Read\",\"Limit\":999}")
-            break
+			break
 
 		case "Subjects":
 			co.MSG = []byte("{\"Table\":\"Subjects\",\"Query\":\"Read\",\"Limit\":999}")
-            break
+			break
 
 		case "OrgHash":
 			/*
@@ -277,11 +234,11 @@ func (st *structure) SelectTables(msg []byte) error {
 			co.MSG = []byte("{\"Table\":\"ProductOrder\",\"Query\":\"Read\"," +
 				"\"TypeParameter\":\"" + st.qm.TypeParameter + "\"," +
 				"\"Values\":[\"" + fmt.Sprintf("%v", st.qm.Values[0]) + "\"]}")
-            break
+			break
 		}
 
-        //err = st.getDateWithServicesRangeRead(co)
-        go st.getDateWithServicesRangeRead(co)
+		//err = st.getDateWithServicesRangeRead(co)
+		go st.getDateWithServicesRangeRead(co)
 
 		return err
 
@@ -292,24 +249,24 @@ func (st *structure) SelectTables(msg []byte) error {
 			co.MSG = []byte("{\"Table\":\"ClientInfo\",\"Query\":\"Create\"," +
 				"\"TypeParameter\":\"Operator\"}")
 			co.MSG = append(co.MSG, []byte(msg[imsg+1:])...)
-            break
+			break
 
 		case "Update":
 			co.MSG = []byte("{\"Table\":\"ClientInfo\",\"Query\":\"Update\"," +
 				"\"TypeParameter\":\"Operator\"" + fmt.Sprintf("%v", st.qm.Values[0]))
-            break
+			break
 
 		case "ReadClient":
 			co.MSG = []byte("{\"Table\":\"ClientInfo\",\"Query\":\"Read\"," +
 				"\"TypeParameter\":\"Phone\"," +
 				"\"Values\":[\"" + fmt.Sprintf("%v", st.qm.Values[0]) + "\"]}")
-            break
+			break
 
 		case "CreateAddress":
 			co.MSG = []byte("{\"Table\":\"ClientOrdersAddress\",\"Query\":\"Create\"," +
 				"\"TypeParameter\":\"Operator\"}")
 			co.MSG = append(co.MSG, []byte(msg[imsg+1:])...)
-            break
+			break
 
 		case "ReadAddress":
 			co.MSG = []byte("{\"Table\":\"ClientOrdersAddress\",\"Query\":\"Read\"," +
@@ -319,17 +276,17 @@ func (st *structure) SelectTables(msg []byte) error {
 			//go func() {
 			//	st.clientListRWMutex.Lock()
 			//	st.getDateWithServicesRangeRead(co)
-             //   st.clientListRWMutex.Unlock()
+			//   st.clientListRWMutex.Unlock()
 			//}()
-            //err = st.getDateWithServicesRangeRead(co)
-            go st.getDateWithServicesRangeRead(co)
+			//err = st.getDateWithServicesRangeRead(co)
+			go st.getDateWithServicesRangeRead(co)
 			return err
 		default:
 			return nil
 		}
 
-        //err = st.getDateWithServicesValueRead(co)
-        go st.getDateWithServicesValueRead(co)
+		//err = st.getDateWithServicesValueRead(co)
+		go st.getDateWithServicesValueRead(co)
 		return err
 
 	case "Session":
@@ -373,13 +330,13 @@ func (st *structure) SelectTables(msg []byte) error {
 			co.MSG = []byte("{\"Table\":\"Session\",\"Query\":\"Read\"," +
 				"\"TypeParameter\":\"Hash\"," +
 				"\"Values\":[\"" + st.Client.HashAuth + "\"]}")
-            break
+			break
 
 		case "ReadNotRights":
 			co.MSG = []byte("{\"Table\":\"SessionInfo\",\"Query\":\"Read\"," +
 				"\"TypeParameter\":\"Hash\"," +
 				"\"Values\":[\"" + st.Client.HashAuth + "\"]}")
-            break
+			break
 
 		case "ReadHashNotRights":
 			co.MSG = []byte("{\"Table\":\"SessionInfo\",\"Query\":\"Read\"," +
@@ -387,7 +344,7 @@ func (st *structure) SelectTables(msg []byte) error {
 				"\"Values\":[\"" + fmt.Sprintf("%v", st.qm.Values[0]) + "\",\"" + fmt.Sprintf("%v", st.qm.Values[1]) + "\"],\"Limit\":999}")
 
 			//err = st.getDateWithServicesRangeRead(co)
-            go st.getDateWithServicesRangeRead(co)
+			go st.getDateWithServicesRangeRead(co)
 			return err
 
 		case "Check":
@@ -395,20 +352,20 @@ func (st *structure) SelectTables(msg []byte) error {
 				"\"Query\":\"Check\"," +
 				"\"TypeParameter\":\"SessionHash\"," +
 				"\"Values\":[\"" + st.Client.HashAuth + "\"]}")
-            break
+			break
 
 		case "Abort":
 			co.MSG = []byte("{\"Table\":\"Session\"," +
 				"\"Query\":\"Abort\"," +
 				"\"TypeParameter\":\"Hash\"," +
 				"\"Values\":[\"" + st.Client.HashAuth + "\"]}")
-            break
+			break
 		default:
 			return errors.New("I do not know this type of parameter")
 		}
 
-        //err = st.getDateWithServicesValueRead(co)
-        go st.getDateWithServicesValueRead(co)
+		//err = st.getDateWithServicesValueRead(co)
+		go st.getDateWithServicesValueRead(co)
 		return err
 
 	case "Tabel":
@@ -417,8 +374,8 @@ func (st *structure) SelectTables(msg []byte) error {
 			"\"TypeParameter\":\"\"," +
 			"\"Values\":[\"" + fmt.Sprintf("%v", st.qm.Values[0]) + "\"]}")
 
-        //err = st.getDateWithServicesValueRead(co)
-        go st.getDateWithServicesValueRead(co)
+		//err = st.getDateWithServicesValueRead(co)
+		go st.getDateWithServicesValueRead(co)
 		return err
 
 	case "GetAreas":
@@ -431,16 +388,16 @@ func (st *structure) SelectTables(msg []byte) error {
 			co.MSG = []byte("{\"City\":\"" + fmt.Sprintf("%v", st.qm.Values[0]) + "\"," +
 				"\"Street\":\"" + fmt.Sprintf("%v", st.qm.Values[1]) + "\"," +
 				"\"House\":\"" + fmt.Sprintf("%v", st.qm.Values[2]) + "\"}")
-            break
+			break
 
 		case "NotWithHouse":
 			co.MSG = []byte("{\"City\":\"" + fmt.Sprintf("%v", st.qm.Values[0]) + "\"," +
 				"\"Street\":\"" + fmt.Sprintf("%v", st.qm.Values[1]) + "\"}")
-            break
+			break
 		}
 
-        //err = st.getDateWithServicesRangeRead(co)
-        go st.getDateWithServicesRangeRead(co)
+		//err = st.getDateWithServicesRangeRead(co)
+		go st.getDateWithServicesRangeRead(co)
 
 		return err
 
@@ -454,10 +411,10 @@ func (st *structure) SelectTables(msg []byte) error {
 			co := structures.ClientOrder{IP: conf.Config.TLS_serv_org,
 
 				MSG: []byte("{\"Table\":\"Point\",\"Query\":\"Select\"," +
-					"\"TypeParameter\":\"AllCity\",\"Values\":null}" + fmt.Sprintf("%v", st.qm.Values[0])),
+					"\"TypeParameter\":\"AllCity\",\"Values\":[\""+fmt.Sprintf("%v", st.qm.Values[0])+"\"]}"),
 			}
-            //err = st.getDateWithServicesRangeRead(co)
-            go st.getDateWithServicesRangeRead(co)
+			//err = st.getDateWithServicesRangeRead(co)
+			go st.getDateWithServicesRangeRead(co)
 		} else {
 			st.send([]byte(""), errors.New("NEED MORE ARGUMENTS"))
 		}
@@ -466,6 +423,8 @@ func (st *structure) SelectTables(msg []byte) error {
 	default:
 		return errors.New("ERROR NOT IDENTIFICATION TYPE TABLE")
 	}
+	st.Structures.Orders = st.orders
+
 
 	switch st.qm.Query {
 	case "Create":
@@ -484,55 +443,74 @@ func (st *structure) SelectTables(msg []byte) error {
 				//	ClientOrder := structures.ClientOrder{IP: item, MSG: msg}
 				//	go ClientOrder.Write()
 				//}
-			}else{
-				println("no work insert",err.Error())
+			} else {
+				println("no work insert", err.Error())
 			}
 		}
-        break
+		break
 
 	case "Read":
-		st.stream, err = st.Reads.Read(&st.qm)
+		err = st.Structures.QueryRead()
 		if err != nil {
 			return err
 		}
 		switch st.qm.TypeParameter[:5] {
 		case "Value":
-			if st.qm.TypeParameter == "Value" {
-				err = st.orders.ReadRow(st.stream.Row)
-				if err == nil {
-					mess, err := json.Marshal(st.orders)
-					if err == nil {
-                        println("Value",st.qm.ID_msg)
-						st.send(mess, nil)
-					}
-				}
-			} else {
-				err = st.Read()
-			}
+			err = st.Structures.Read()
+            if err == nil {
+                st.send(st.Structures.Buf, err)
+            }
+
+
+			//if st.qm.TypeParameter == "Value" {
+			//	err = st.orders.ReadRow(st.stream.Row)
+			//	if err == nil {
+			//		mess, err := json.Marshal(st.orders)
+			//		if err == nil {
+			//			st.send(mess, nil)
+			//		}
+			//	}
+			//} else {
+			//	err = st.Read()
+			//}
 			break
 		case "Range":
-			if st.stream.Rows == nil {
-				st.send([]byte("EOF"), nil)
-			} else {
-				for st.stream.Rows.Next() {
-					err = st.orders.ReadRows(st.stream.Rows)
-					if err == nil {
-						var mess []byte
-						mess, err = json.Marshal(st.orders)
-						if err == nil {
-							st.send(mess, nil)
-						}
-					}
-				}
+			b:=true
+
+			for b{
+                b, err = st.Structures.ReadRows()
+                if err == nil && b == true{
+                    st.send(st.Structures.Buf, err)
+                }else{
+                    break
+                }
 			}
 
 			st.send([]byte("EOF"), nil)
-			go st.stream.Rows.Close()
-            break
+
+
+			//if st.stream.Rows == nil {
+			//	st.send([]byte("EOF"), nil)
+			//} else {
+			//	for st.stream.Rows.Next() {
+			//		err = st.orders.ReadRows(st.stream.Rows)
+			//		if err == nil {
+			//			var mess []byte
+			//			mess, err = json.Marshal(st.orders)
+			//			if err == nil {
+			//				st.send(mess, nil)
+			//			}
+			//		}
+			//	}
+			//}
+			//
+			//st.send([]byte("EOF"), nil)
+			//go st.stream.Rows.Close()
+			break
 		default:
 			return errors.New("NOT IDENTIFICATION TYPE READ")
 		}
-        break
+		break
 
 	default:
 		return errors.New("NOT IDENTIFIQTION QUERYS")
@@ -546,7 +524,7 @@ func (st *structure) getDateWithServicesValueRead(co structures.ClientOrder) err
 	var n int
 	err := co.Write()
 	//Если при отправки сообщения нет ошибок идем дальше
-	if err == nil && co.Conn!=nil{
+	if err == nil && co.Conn != nil {
 		//var listen [5000]byte
 		listen := make([]byte, 9999)
 		//Читаем первые 4-ре символа
@@ -556,7 +534,6 @@ func (st *structure) getDateWithServicesValueRead(co structures.ClientOrder) err
 			println("getDateWithServicesRangeRead READ:", err.Error())
 			return err
 		}
-
 
 		if strings.ToUpper(strings.TrimSpace(string(listen[:n]))) == "01:EOF" {
 			println("+++++++++++++++")
@@ -570,7 +547,7 @@ func (st *structure) getDateWithServicesValueRead(co structures.ClientOrder) err
 			st.send(listen[3:n], nil)
 		} else {
 			//st.send(listen[3:n], errors.New(""))
-			log.Println("ERROR get message",co.Conn.RemoteAddr(),":",listen[:n])
+			log.Println("ERROR get message", co.Conn.RemoteAddr(), ":", listen[:n])
 			return err
 		}
 	}
@@ -582,7 +559,6 @@ func (st *structure) getDateWithServicesValueRead(co structures.ClientOrder) err
 }
 
 func (st *structure) getDateWithServicesRangeRead(co structures.ClientOrder) error {
-
 
 	var n int
 	err := co.Write()
@@ -598,7 +574,6 @@ func (st *structure) getDateWithServicesRangeRead(co structures.ClientOrder) err
 				break
 			}
 
-
 			if strings.ToUpper(strings.TrimSpace(string(listen[:n]))) == "01:EOF" {
 				println("+++++++++++++++")
 				println("BREAK")
@@ -611,14 +586,14 @@ func (st *structure) getDateWithServicesRangeRead(co structures.ClientOrder) err
 				st.send(listen[3:n], nil)
 			} else {
 				//st.send(listen[3:n], errors.New(""))
-				log.Println("ERROR get message",co.Conn.RemoteAddr(),":",listen[:n])
+				log.Println("ERROR get message", co.Conn.RemoteAddr(), ":", listen[:n])
 				break
 			}
 
 			time.Sleep(10)
 		}
 		st.send([]byte("EOF"), nil)
-	}else{
+	} else {
 		st.send([]byte(""), err)
 	}
 

@@ -90,7 +90,7 @@ func WSHandler(w http.ResponseWriter, r *http.Request) {
         if err != nil {
             //conn.WriteMessage(1,[]byte("00:" + st.qm.ID_msg + "{" + st.qm.Table + " ERROR " + st.qm.Query + ", TYPE PARAMETERS \"" + st.qm.TypeParameter + "\" VALUES: "+fmt.Sprintf("%v",st.qm.Values)+": " + err.Error()))
             st.send([]byte(st.qm.ID_msg + "{" + st.qm.Table + " ERROR " + st.qm.Query + ", TYPE PARAMETERS \"" + st.qm.TypeParameter + "\" VALUES: "+fmt.Sprintf("%v",st.qm.Values)+": "),err)
-            if strings.Contains(err.Error(),"sql: no rows in result set") {
+            if !strings.Contains(err.Error(),"sql: no rows in result set") {
                 log.Println("00:"+st.qm.ID_msg+"{"+st.qm.Table+" ERROR "+st.qm.Query+", TYPE PARAMETERS \""+st.qm.TypeParameter+"\" VALUES: "+fmt.Sprintf("%v", st.qm.Values)+":", err.Error())
             }
         }

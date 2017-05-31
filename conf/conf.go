@@ -13,8 +13,6 @@ import (
 type Configurations struct {
 	Enable_service_log     bool
 	Enable_order_log       bool
-	Postgre_read_user      string
-	Postgre_read_password  string
 	Postgre_write_user     string
 	Postgre_write_password string
 	Postgre_host           string
@@ -93,9 +91,9 @@ func init() {
 
 	//log.Println("Config established!")
 
-	if Config.Enable_service_log {
-		go RecLog()
-	}
+	//if Config.Enable_service_log {
+	//	go RecLog()
+	//}
 }
 
 func RecLog() {

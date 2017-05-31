@@ -80,9 +80,9 @@ Page.show = {
     Cassir: function () {
         document.title = 'Заказы';
         Page.hide.all();
-        timeOutRe( 'MSG.requestOrdersByOrgHash', function () {
-            MSG.requestOrdersByOrgHash()
-        }, 60000 );
+        timeOutRe( 'MSG.request.ordersByOrgHash', function () {
+            MSG.request.ordersByOrgHash()
+        }, 6000 );
         $( '.nav-tabs > li' ).removeClass( 'active' );
         document.getElementById( 'orders' ).className = 'active';
         document.getElementById( 'cassir' ).style.display = '';
@@ -90,7 +90,6 @@ Page.show = {
         Order.showOrders();
     }, DescriptionOrder: function () {
         document.getElementById( 'cassir' ).style.display = 'none';
-        // Page.hide.all();
         document.getElementById( 'description_order' ).style.display = '';
     }, CashBox: function () {
         Page.hide.all();
@@ -122,7 +121,8 @@ Page.show = {
         Page.hide.all();
         document.getElementById( 'page_cart' ).style.display = '';
     }, makeOrder: function () {
-        MSG.requestProducts();
+        MSG.request.products();
+        $( "#accordion1" ).empty().append( makeAddress( {}, 0 ) );
         // MSG.requestOrganization()
         $( '#sets .product_group, #rols .product_group, #zrols .product_group, #sushi .product_group\
             , #sous .product_group, #salat .product_group, #drink .product_group, #pizza_small .product_group\
@@ -227,9 +227,9 @@ Page.show.Cassir();
 //////////////////////////////////////////////////////////////////////////////
 ////////--------|  |----------------------------------------------------------
 //////////////////////////////////////////////////////////////////////////////
-$( document ).on( 'click', '.orders_li.ord', function () {
+$( document ).on( 'click', '.orders_li.ord, .result-search', function () {
     var ID = this.dataset.id;
-    MSG.requestOrderLists( ID );
+    MSG.request.orderLists( ID );
     MSG.request.payment( ID );
     // Order.list[this.dataset.id].showDescription()
 } );

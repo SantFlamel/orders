@@ -14,7 +14,7 @@ var auth_page = 'http://yapoki.net:7070';
 
 //локальная версия
 if ( ~window.location.href.indexOf( 'http://localhost:63342' ) ) {
-    $.cookie( "hash", "4787dfe7354445b1c89eb74903d8d2864ef142961da4a8fdadd9364d3c146834" );
+    $.cookie( "hash", "31d8401fb8b6eb8a6d6fe873b742e62b461d4da72f14e764479a24f5d94e32c2" );
     addressWS = 'ws://192.168.0.73:80/ws';
     auth_page = 'http://192.168.0.73:7070';
 }

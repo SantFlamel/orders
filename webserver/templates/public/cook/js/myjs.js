@@ -173,7 +173,7 @@ function downTimer() {
     }
     else sd--;
     if ( sd < 10 ) sd = "0" + sd;
-    my_timer.text( hd + ":" + md + ":" + sd );
+      my_timer.text( hd + ":" + md + ":" + sd );//тут записывается таймер in_work
 }
 
 var timer_int;

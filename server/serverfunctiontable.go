@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"errors"
 	"net"
-	"project/orders/controller"
 	"project/orders/structures"
 	"strings"
 	"strconv"
@@ -14,69 +13,18 @@ import (
 
 //----------------------------------------------------------------------------------------------------------------------
 /*----INTERFACE_STRUCT----*/
-type Structure interface {
-	Read(qm *structures.QueryMessage, stream *controller.Stream, conn net.Conn) error
-	ReadeByteArray(stream *controller.Stream, conn net.Conn) error
-}
-
-type Orders interface {
-	Insert(qm *structures.QueryMessage) (int64, error)
-	ReadRow(row *sql.Row) error
-	ReadRows(rows *sql.Rows) error
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-/*----INTERFACE_STRUCT----*/
 type structure struct {
 	conn   net.Conn
 	qm     structures.QueryMessage
-	stream *controller.Stream
+	//stream *postgres.Stream
 	row    *sql.Row
-	orders Orders
-	Reads  structures.Read
+	orders structures.Orders
+	//Reads  structures.Read
+	Structures  structures.Structures
 	ID     int64
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-/*----READ_FOR_TABLE----*/
-//----ORDER
-func (st *structure) Read() error {
-	var err error
-	if len(st.qm.TypeParameter) < 6 {
-		return errors.New("The length of the parameter type does not satisfy the requirements of")
-	}
 
-	switch st.qm.TypeParameter[5:11] {
-	case "String":
-		err = st.ReadeByteArray(st.stream)
-	case "Boolea":
-		err = st.ReadeByteArray(st.stream)
-	case "Number":
-		err = st.ReadeByteArray(st.stream)
-	case "Struct":
-		err = st.orders.ReadRow(st.stream.Row)
-		if err == nil {
-			mess, err := json.Marshal(st.orders)
-			if err == nil {
-				st.send(mess, nil)
-			}
-		}
-	default:
-		return errors.New("NOT IDENTIFICATION TYPE PARAMETERS")
-	}
-
-	return err
-}
-
-func (st *structure) ReadeByteArray(stream *controller.Stream) error {
-	var buf []byte
-	err := stream.Row.Scan(&buf)
-	if err != nil {
-		return err
-	}
-	st.send(buf, nil)
-	return nil
-}
 
 //-----------------------------------------------------------------------------
 func (st *structure) SelectTables(msg []byte) error {
@@ -89,6 +37,7 @@ func (st *structure) SelectTables(msg []byte) error {
 		return errors.New("Length type parameter does not satisfy the requirement")
 	}
 
+    st.Structures.QM =  &st.qm
 
 	if len(msg) < imsg+2 {
 
@@ -173,6 +122,8 @@ func (st *structure) SelectTables(msg []byte) error {
 	default:
 		return errors.New("ERROR NOT IDENTIFICATION TYPE TABLE")
 	}
+    st.Structures.Orders = st.orders
+
 
 	switch st.qm.Query {
 	case "Create":
@@ -194,42 +145,61 @@ func (st *structure) SelectTables(msg []byte) error {
 			}
 		}
 	case "Read":
-		st.stream, err = st.Reads.Read(&st.qm)
+		err = st.Structures.QueryRead()
 		if err != nil {
 			return err
 		}
 		switch st.qm.TypeParameter[:5] {
 		case "Value":
-			if st.qm.TypeParameter == "Value" {
-				err = st.orders.ReadRow(st.stream.Row)
-				if err == nil {
-					mess, err := json.Marshal(st.orders)
-					if err == nil {
-						st.send(mess, nil)
-					}
-				}
-			} else {
-				err = st.Read()
-			}
+			err = st.Structures.Read()
+            if err == nil {
+                st.send(st.Structures.Buf, err)
+            }
+
+
+			//if st.qm.TypeParameter == "Value" {
+			//	err = st.orders.ReadRow(st.stream.Row)
+			//	if err == nil {
+			//		mess, err := json.Marshal(st.orders)
+			//		if err == nil {
+			//			st.send(mess, nil)
+			//		}
+			//	}
+			//} else {
+			//	err = st.Read()
+			//}
             break
 		case "Range":
-			if st.stream.Rows == nil {
-				st.send([]byte("EOF"), nil)
-			} else {
-				for st.stream.Rows.Next() {
-					err = st.orders.ReadRows(st.stream.Rows)
-					if err == nil {
-						var mess []byte
-						mess, err = json.Marshal(st.orders)
-						if err == nil {
-							st.send(mess, nil)
-						}
-					}
-				}
-			}
+			b:=true
 
-			st.send([]byte("EOF"), nil)
-			go st.stream.Rows.Close()
+            for b{
+                b, err = st.Structures.ReadRows()
+                if err == nil && b == true{
+                    st.send(st.Structures.Buf, err)
+                }else{
+                    break
+                }
+            }
+            st.send([]byte("EOF"), nil)
+
+
+			//if st.stream.Rows == nil {
+			//	st.send([]byte("EOF"), nil)
+			//} else {
+			//	for st.stream.Rows.Next() {
+			//		err = st.orders.ReadRows(st.stream.Rows)
+			//		if err == nil {
+			//			var mess []byte
+			//			mess, err = json.Marshal(st.orders)
+			//			if err == nil {
+			//				st.send(mess, nil)
+			//			}
+			//		}
+			//	}
+			//}
+            //
+			//st.send([]byte("EOF"), nil)
+			//go st.stream.Rows.Close()
             break
 		default:
 			return errors.New("NOT IDENTIFICATION TYPE READ")

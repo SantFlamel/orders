@@ -1,73 +1,119 @@
-package controller
+package postgres
 
 import (
 	"database/sql"
+	"errors"
 	"log"
-	"project/orders/postgres"
 	"sync"
 )
 
-type Manager struct{}
+
 
 type Stream struct {
 	Rows *sql.Rows
 	Row  *sql.Row
 }
 
-//var guard *sync.RWMutex
-//
-//func init() {
-//	guard = &sync.RWMutex{}
-//}
-
-//----------------------------------------------------------------------------------------------------------------------
-//----FUNCTION_CREATION_ROW
-func (m *Manager) Insert(Table, Query string, values ...interface{}) error {
+func (dbr *DBRequests) Insert(Table, Query string, values ...interface{}) error {
 	Guard.RLock(Table)
 	defer Guard.RUnlock(Table)
 
-	err := postgres.Requests.ExecTransact("execInsert"+Table+Query, values...)
+	_, ok := dbr.RequestsList["execInsert"+Table+Query]
+	if !ok {
+		return errors.New("Mismatch request!")
+	}
+
+	tx, err := DB.Begin()
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+
+	_, err = tx.Stmt(dbr.RequestsList["execInsert"+Table+Query]).Exec(values...)
+	if err != nil {
+		return err
+	}
+
+	err = tx.Commit()
+	if err != nil {
+		return err
+	}
+
 	return err
 }
 
-func (m *Manager) InsertGetID(Table, Query string, values ...interface{}) (*sql.Row, error) {
+func (dbr *DBRequests) InsertGetID(Table, Query string, values ...interface{}) (*sql.Row, error) {
 	Guard.RLock(Table)
 	defer Guard.RUnlock(Table)
 
-	scan, err := postgres.Requests.QueryRow("execInsert"+Table+Query, values...)
-	return scan, err
+	_, ok := dbr.RequestsList["execInsert"+Table+Query]
+	if !ok {
+		return nil, errors.New("Missmatch request!")
+	}
+
+	row := dbr.RequestsList["execInsert"+Table+Query].QueryRow(values...)
+
+	return row, nil
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 //----UPDATE_DATA
-func (m *Manager) Update(Table, Query string, values ...interface{}) error {
+func (dbr *DBRequests) Update(Table, Query string, values ...interface{}) error {
 	Guard.Lock(Table)
 	defer Guard.Unlock(Table)
 
-	err := postgres.Requests.ExecTransact("execUpdate"+Table+Query, values...)
+	_, ok := dbr.RequestsList["execUpdate"+Table+Query]
+	if !ok {
+		return errors.New("Mismatch request!")
+	}
+
+	tx, err := DB.Begin()
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+
+	_, err = tx.Stmt(dbr.RequestsList["execUpdate"+Table+Query]).Exec(values...)
+	if err != nil {
+		return err
+	}
+
+	err = tx.Commit()
+	if err != nil {
+		return err
+	}
+
 	return err
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 //----READ_ROW
 func (s *Stream) ReadRow(Table, Query string, values ...interface{}) error {
-	//Guard.RLock(Table)
-	//defer Guard.RULock(Table)
+	Guard.RLock(Table)
+	defer Guard.RUnlock(Table)
 
-	var err error
-	s.Row, err = postgres.Requests.QueryRow("queryRead"+Table+Query, values...)
+	_, ok := Requests.RequestsList["queryRead"+Table+Query]
+	if !ok {
+		return errors.New("Missmatch request!")
+	}
 
-	return err
+	s.Row = Requests.RequestsList["queryRead"+Table+Query].QueryRow(values...)
+
+	return nil
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 //----READ_ROWS
 func (s *Stream) ReadRows(Table, Query string, values ...interface{}) error {
-	//Guard.RLock(Table)
-	//defer Guard.RULock(Table)
+	Guard.RLock(Table)
+	defer Guard.RUnlock(Table)
 
+	_, ok := Requests.RequestsList["queryRead"+Table+Query]
+	if !ok {
+		return errors.New("Missmatch request!")
+	}
 	var err error
-	s.Rows, err = postgres.Requests.Query("queryRead"+Table+Query, values...)
+	s.Rows, err = Requests.RequestsList["queryRead"+Table+Query].Query(values...)
 
 	return err
 }
@@ -89,16 +135,37 @@ func (s *Stream) NextOrder() bool {
 
 //----------------------------------------------------------------------------------------------------------------------
 //----DELETE
-func (m *Manager) Delete(Table, Query string, values ...interface{}) error {
+func (dbr *DBRequests) Delete(Table, Query string, values ...interface{}) error {
 	Guard.Lock(Table)
 	defer Guard.Unlock(Table)
 
-	err := postgres.Requests.ExecTransact("execDelete"+Table+Query, values...)
+	_, ok := dbr.RequestsList["execDelete"+Table+Query+Table+Query]
+	if !ok {
+		return errors.New("Mismatch request!")
+	}
+
+	tx, err := DB.Begin()
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+
+	_, err = tx.Stmt(dbr.RequestsList["execDelete"+Table+Query]).Exec(values...)
+	if err != nil {
+		return err
+	}
+
+	err = tx.Commit()
+	if err != nil {
+		return err
+	}
+
 	return err
 }
 
 //======================================================================================================================
 //======================================================================================================================
+
 var Guard Guards
 
 type Guards struct {
@@ -116,17 +183,17 @@ type Guards struct {
 }
 
 func (g *Guards) Init() {
-	g.Order         = &sync.RWMutex{}
+	g.Order = &sync.RWMutex{}
 	g.OrderCustomer = &sync.RWMutex{}
-	g.OrderList     = &sync.RWMutex{}
+	g.OrderList = &sync.RWMutex{}
 	g.OrderPersonal = &sync.RWMutex{}
 	g.OrderPayments = &sync.RWMutex{}
-	g.OrderStatus   = &sync.RWMutex{}
-	g.TimersCook    = &sync.RWMutex{}
-	g.Status        = &sync.RWMutex{}
-	g.TypePayment   = &sync.RWMutex{}
-	g.Cashbox       = &sync.RWMutex{}
-	g.DefaultGuard  = &sync.RWMutex{}
+	g.OrderStatus = &sync.RWMutex{}
+	g.TimersCook = &sync.RWMutex{}
+	g.Status = &sync.RWMutex{}
+	g.TypePayment = &sync.RWMutex{}
+	g.Cashbox = &sync.RWMutex{}
+	g.DefaultGuard = &sync.RWMutex{}
 }
 
 func (g *Guards) Lock(table string) {

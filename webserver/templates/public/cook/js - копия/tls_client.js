@@ -477,6 +477,7 @@ function getOrderStatusActive( idd ) {
         '"Values":[' + id[0] + ',' + id[1] + '],"Limit":0,"Offset":0,"ID_msg":"getactstat"}' );
 }
 
+
 function addActiveStatus( data ) {
     var data1 = JSON.parse( data );
     //console.log(data1);
@@ -589,7 +590,7 @@ function addOrderToTable( arrOrder ) {
         if ( teston > 0 ) sizename += arrOrder.PriceName.slice( teston, teston + 3 );
     }
     else pricename = textVal( arrOrder.PriceName );
-    sizeprice = (tracker == 2) ? ('<p class="font_main_name_small">' + textVal( pricename ) + '</p><p class="font_main_name_big">' + textVal( sizename ) + '</p>') :
+    sizeprice = (tracker == 2 || tracker == 3) ? ('<p class="font_main_name_small">' + textVal( pricename ) + '</p><p class="font_main_name_big">' + textVal( sizename ) + '</p>') :
         ('<p class="font_main_name">' + textVal( pricename ) + '</p>');
 
     var strOrderHTML = "";
@@ -656,7 +657,7 @@ $( '.order_table' ).on( 'click', '.col-sm-4.styleDiv', function () {
     $( "#time" ).html( time );
 
 
-    var cooktr = $( this ).attr( "name" );
+    var cooktr = $( this ).attr( "name" );// что это?
     $( "#check" ).parent().find( ".startTimeOrder" ).attr( 'value', starttime );
     var priceid = $( this ).find( ".priceid" ).attr( 'value' );//activeOrder.Price_id;
     sendPersonal( id, idi );

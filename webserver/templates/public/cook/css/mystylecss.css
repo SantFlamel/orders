@@ -25,6 +25,10 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.redone_button{
+    font-size: 20px;
+}
+
 /* Иконки */
 
 .fa-plus:before {
@@ -393,8 +397,8 @@ img {
     border: 0px;
     background-image: none;
     background-color: transparent;
-    font-size: 14px;
-    padding: 8px;
+    font-size: 25px;
+    padding: 20px;
     line-height: 16px;
     border-top: 1px solid #c8c7cc;
     color: #0076ff;

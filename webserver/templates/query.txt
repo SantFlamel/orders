@@ -276,7 +276,7 @@ qmessage := c.PostForm("qmessage")
 {"Table":"TimersCook","Query":"Create","TypeParameter":"","Values":null,"Limit":0,"Offset":0}{"Order_id":1,"Order_id_item":2}
 
 ----Обновляем
-{"Table":"TimersCook","Query":"Update","TypeParameter":"Cause","Values":[order_id,order_id_item,time_end],"Limit":0,"Offset":0}
+{"Table":"TimersCook","Query":"Update","TypeParameter":"","Values":[order_id,order_id_item,time_end],"Limit":0,"Offset":0}
 
 ----Читаем элемент
 {"Table":"TimersCook","Query":"Read","TypeParameter":"Value","Values":[order_id,order_id_item],"Limit":0,"Offset":0}

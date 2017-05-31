@@ -71,7 +71,7 @@ function webSocket() {
         setTimeout( webSocket, WS_TIMEOUT );
     };
     ws.onmessage = function ( msg ) {
-        //console.info( 'ws.onmessage', msg );
+       //  console.info( 'ws.onmessage', msg );
         var type = msg.data.slice( 0, 2 ), data = msg.data
             , IDMsg = msg.data.split( '{' )[0].split( ':' )[1];
         MSG._in( IDMsg, data.slice( data.indexOf( '{' ) + 1 ), type );
@@ -83,7 +83,7 @@ function webSocket() {
         MSG.request.sessionInfo();
 
         //Для повара
-        if ( MSG.readyState == 1 ) getSystemTime();
+        MSG.request.SystemTime();
 
 
         // while ( MSG.wait.length > 0 ) {
@@ -113,6 +113,7 @@ var getIDMsg = counter( 10000 );
 MSG = {
     get: {}, request: {}, close: {}, set: {}, exceptionOrder: [], wait: [] // отложенные отправки
     , handlersList: {} // storage handlers
+    , errorHandlerList: {} // storage handlers
     , multipleHandlers: {} // storage multiple handlers
     , EOFHandlersList: {}, check: {}
     , notGet: {}, notGetEOF: {}
@@ -125,6 +126,9 @@ MSG = {
         //     delete MSG.notGetEOF[IDMsg];
         // }
         if ( type === '00' ) { // ошибка
+            if (MSG.errorHandlerList[IDMsg]){
+                MSG.errorHandlerList[IDMsg](data);
+            }
             if ( ~data.indexOf( 'sql: no rows in result set' ) ) {
                 if ( ~data.indexOf( 'OrderStatus ERROR Read, TYPE PARAMETERS "ValueStructIDOrdIDit" VALUES: ' ) ) {
                     var x = data.split( '[' )[1].split( ']' )[0].split( ' ' );
@@ -134,7 +138,9 @@ MSG = {
                 }
                 console.groupCollapsed( '%cMSG NO RESULT::><><%c' + IDMsg + ' %c-No result', 'color: red', 'color: #444100', 'color: #019500' );
                 console.warn( data );
-            } else if ( IDMsg == 'Auth' || ~data.indexOf( 'NO CHECKED' ) ) { // ошибка авторизации
+            }  else if ( IDMsg == 'Auth' || ~data.indexOf( 'NO CHECKED' ) ) { // ошибка авторизации
+                console.group( '%cMSG NO CHECKED::><><', 'color: red' );
+                console.error( data );
                 MSG.close.session();
             } else if ( ~data.indexOf( 'duplicate key value violates unique constraint' ) ) {
                 console.groupCollapsed( '%cMSG DUPLICATE::><><%c' + IDMsg, 'color: red', 'color: #444100' );
@@ -190,7 +196,7 @@ MSG = {
         console.groupEnd();
     }, send: function ( option ) { // send MSG
         // console.trace( 'option' ,option );
-        // { structure: '', handler: '', mHandlers: '', EOFHandler: '', check: '' };
+        // { structure: '', handler: '', mHandlers: '', EOFHandler: '', check: '', errorHandler: '' };
         // structure обект, массив обектов
         //
         // console.info( 'WS WAIT' );
@@ -252,6 +258,9 @@ MSG = {
                 MSG.handlersList[IDMsg] = option.handler;
             }
         }
+        if (option.errorHandler){
+            MSG.errorHandlerList[IDMsg] = option.errorHandler;
+        }
     }
 };
 //--------------\ MSG |----------------------------------------------------------
@@ -272,7 +281,7 @@ MSG.close.session = function () {
 MSG.request.tabel = function (userHash) { // функция не существует
     MSG.send( { structure: { "Table": "Tabel", "Values": [userHash] }, handler: MSG.get.tabel } );
 };
-MSG.request.sessionInfo = function () {
+MSG.request.sessionInfo = function () { // получение информации о сессии
     MSG.send( { structure: { "Table": "Session", "TypeParameter": "ReadNotRights" }, handler: setupSessionInfo } );
 };
 MSG.request.Order = function ( ID, func ) {
@@ -291,11 +300,10 @@ MSG.request.OrderLists = function ( ID, func, func1  ) {
 };
 //установка статусов заказов
 MSG.set.Status = function ( ID, id_item, stat ,cause) {
-    var time1 = getTimeOnNow();
     MSG.send(
         {structure:
             [{"Table":"OrderStatus","Query":"Create","TypeParameter":"","Values":null,"Limit":0,"Offset":0},
-                {"Order_id":  +ID  ,"Order_id_item":  +id_item  ,"Cause": cause || "" ,"Status_id": +stat ,"UserHash":SessionInfo.UserHash, "Time":time1 }] } );
+                {"Order_id":  +ID  ,"Order_id_item":  +id_item  ,"Cause": cause || "" ,"Status_id": +stat ,"UserHash":SESSION_INFO.UserHash, "Time":getTimeOnNow() }] } );
 };
 //----Сделать заказ прготовленым
 MSG.set.finished = function ( ID, id_item ) {
@@ -310,7 +318,13 @@ MSG.set.personal = function ( id, idi ) {
     MSG.send(
         {structure:
             [{"Table":"OrderPersonal","Query":"Create","TypeParameter":"","Values":null,"Limit":0,"Offset":0},
-            {"Order_id":  +id  ,"Order_id_item":  +idi  ,"UserHash":SessionInfo.UserHash,
-            "FirstName": SessionInfo.FirstName ,"SecondName":SessionInfo.SecondName ,"SurName": SessionInfo.SurName ,
-            "RoleHash": SessionInfo.RoleHash ,"RoleName":SessionInfo.RoleName}] } );
+            {"Order_id":  +id  ,"Order_id_item":  +idi  ,"UserHash":SESSION_INFO.UserHash,
+            "FirstName": SESSION_INFO.FirstName ,"SecondName":SESSION_INFO.SecondName ,"SurName": SESSION_INFO.SurName ,
+            "RoleHash": SESSION_INFO.RoleHash ,"RoleName":SESSION_INFO.RoleName}] } );
+};
+
+
+//запрос времени сервера
+MSG.request.SystemTime = function() {
+    MSG.send( {structure: {"Table":"LocalTime","Limit":0,"Offset":0}, handler:MSG.get.setsystime } );
 };

@@ -3,31 +3,31 @@
 // : V подсчёт сдачи
 ////////--------| Customer |----------------------------------------------------------
 // TODO: V очистка полей.
-function Customer( c ) {
-    //     var s = { "Order_id": 170, "NameCustomer": "Алексей",
-    //     "Phone": "8(919)581-38-88", "Note": "", "City": "Курган",
-    //     "Street": "Гоголя", "House": 38, "Building": "0",
-    //     "Floor": 0, "Apartment": 0, "Entrance": 0, "DoorphoneCode": "0" };
-    var i, ii;
-    for ( i in Customer.list ) {
-        ii = Customer.list[i];
-        if ( ii.Phone == c.Phone && ii.City == c.City && ii.Street == c.Street && ii.House == c.House &&
-            ii.Building == c.Building && ii.Floor == c.Floor && ii.Apartment == c.Apartment &&
-            ii.Entrance == c.Entrance && ii.DoorphoneCode == c.DoorphoneCode )
-            return;
-    }
-    for ( i in c ) {
-        this[i] = c[i];
-    }
-    Customer.list.push( this );
-    Customer.makeElement( this );
-}
-Customer.list = [];
-Customer.makeElement = function () {
-    for ( var i in Customer.list ) {
-        Customer.list[i].makeElement()
-    }
-};
+// function Customer( c ) {
+//     //     var s = { "Order_id": 170, "NameCustomer": "Алексей",
+//     //     "Phone": "8(919)581-38-88", "Note": "", "City": "Курган",
+//     //     "Street": "Гоголя", "House": 38, "Building": "0",
+//     //     "Floor": 0, "Apartment": 0, "Entrance": 0, "DoorphoneCode": "0" };
+//     var i, ii;
+//     for ( i in Customer.list ) {
+//         ii = Customer.list[i];
+//         if ( ii.Phone == c.Phone && ii.City == c.City && ii.Street == c.Street && ii.House == c.House &&
+//             ii.Building == c.Building && ii.Floor == c.Floor && ii.Apartment == c.Apartment &&
+//             ii.Entrance == c.Entrance && ii.DoorphoneCode == c.DoorphoneCode )
+//             return;
+//     }
+//     for ( i in c ) {
+//         this[i] = c[i];
+//     }
+//     Customer.list.push( this );
+//     Customer.makeElement( this );
+// }
+// Customer.list = [];
+// Customer.makeElement = function () {
+//     for ( var i in Customer.list ) {
+//         Customer.list[i].makeElement()
+//     }
+// };
 function makeAddress( s, i, id ) {
     s = s || {};
     var x = '';
@@ -59,39 +59,38 @@ function makeAddress( s, i, id ) {
         '<input autocomplete="off" type="checkbox" id="domofon"><label style="font-size: 14px" for="domofon">Домофон</label>' +
         '</div> </div> </div> </div>';
 }
-Customer.makeElement = function () {
-    var newaddress, i;
-    for ( i in Customer.list ) {
-        newaddress = makeAddress( Customer.list[i], i + 1 );
-        $( "#accordion1" ).append( newaddress );
-    }
-    $( document ).ready( function () {
-        //проверка адреса доставки при изменении
-        // $( ".operator_client_adress .collapse #street_client, .operator_client_adress .collapse #home_number" )
-        //     .change( function () {
-        //         if ( $( '.delivery_met.active a' ).first().html() === DELIVERY ) {
-        //             MSG.requestDeliveryZone( $( "#city_client" ).val(), $( this ).next().find( "#street_client" ).val(),
-        //                 $( this ).next().find( "#home_number" ).val() );
-        //         }
-        //     } );
-        // $( ".operator_client_adress" ).find( ".panel-heading" ).on( "click", function () {
-        //     if ( $( '.delivery_met.active a' ).first().html() === DELIVERY ) console.log( this );
-        //     MSG.requestDeliveryZone( $( "#city_client" ).val(), $( this ).next().find( "#street_client" ).val(),
-        //         $( this ).next().find( "#home_number" ).val() );
-        // } );
-        //автоподстановка адреса улица из справочника
-        $( '.operator_client_adress .collapse #street_client' ).typeahead( {
-            hint: false, highlight: true, minLength: 1
-        }, {
-            name: 'Street', source: substringMatcher( typeaheadStreet )
-        } );
-    } );
-};
+// Customer.makeElement = function () {
+//     var newaddress, i;
+//     for ( i in Customer.list ) {
+//         newaddress = makeAddress( Customer.list[i], i + 1 );
+//         $( "#accordion1" ).append( newaddress );
+//     }
+//     $( document ).ready( function () {
+//         //проверка адреса доставки при изменении
+//         // $( ".operator_client_adress .collapse #street_client, .operator_client_adress .collapse #home_number" )
+//         //     .change( function () {
+//         //         if ( $( '.delivery_met.active a' ).first().html() === DELIVERY ) {
+//         //             MSG.requestDeliveryZone( $( "#city_client" ).val(), $( this ).next().find( "#street_client" ).val(),
+//         //                 $( this ).next().find( "#home_number" ).val() );
+//         //         }
+//         //     } );
+//         // $( ".operator_client_adress" ).find( ".panel-heading" ).on( "click", function () {
+//         //     if ( $( '.delivery_met.active a' ).first().html() === DELIVERY ) console.log( this );
+//         //     MSG.requestDeliveryZone( $( "#city_client" ).val(), $( this ).next().find( "#street_client" ).val(),
+//         //         $( this ).next().find( "#home_number" ).val() );
+//         // } );
+//         //автоподстановка адреса улица из справочника
+//         $( '.operator_client_adress .collapse #street_client' ).typeahead( {
+//             hint: false, highlight: true, minLength: 1
+//         }, {
+//             name: 'Street', source: substringMatcher( typeaheadStreet )
+//         } );
+//     } );
+// };
 //--------------\ Customer |----------------------------------------------------------
 
 $( '#loadtel' ).on( 'click', function () {
     $( "#accordion1" ).empty().append( makeAddress( {}, 0 ) );
-    MSG.requestCustomerByTel();
     MSG.request.clientInfo();
 } );
 

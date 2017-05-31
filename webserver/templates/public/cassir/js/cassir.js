@@ -117,7 +117,7 @@ function Order( data ) {
     Order.list[this.ID] = this;
     // this.appendInPage();
 
-    MSG.requestCustomer( this.ID );
+    MSG.request.customer( this.ID );
     // console.groupEnd();
 }
 Order.$orderFeeld = $( '#order_block' );
@@ -126,9 +126,9 @@ Order.prototype.addStatus = function ( data ) {
     // console.group( 'addStatus' );
     // console.log( 'this, data', this, data );
     if ( data.Order_id_item === 0 ) { // для всего заказа
-        // console.log( '1  data.Status_id , Order.status[(data.Status_id || 2)].Name', data.Status_id, Order.status[(data.Status_id || 2)].Name );
+        // console.log( '1  data.Status_id , STATUS[(data.Status_id || 2)].Name', data.Status_id, STATUS[(data.Status_id || 2)].Name );
         this.status = data.Status_id || 2;
-        this.statusT = Order.status[this.status].Name;
+        this.statusT = STATUS[this.status].Name;
         if ( this.status == 4 ) {
             this.state.push( 'in_work' )
         }
@@ -138,14 +138,14 @@ Order.prototype.addStatus = function ( data ) {
         this.showOrder();
     } else { // для елемента заказа
         var d = data, self = this;
-        console.log( '2  d.Status_id, Order.status[d.Status_id][\"Name\"]', d.Status_id, Order.status[d.Status_id].Name );
+        console.log( '2  d.Status_id, STATUS[d.Status_id][\"Name\"]', d.Status_id, STATUS[d.Status_id].Name );
         waitProp( function () {
             if ( self.OrderList[d.Order_id_item].CookingTracker === 0 && d.Status_id < 9 ) {
                 d.Status_id = 8;
                 d.Finished = true;
             }
             self.OrderList[d.Order_id_item].status = d.Status_id;
-            self.OrderList[d.Order_id_item].statusT = Order.status[d.Status_id].Name;
+            self.OrderList[d.Order_id_item].statusT = STATUS[d.Status_id].Name;
             try {
                 self.updateStatusForDescription();
             } catch ( e ) {
@@ -357,6 +357,66 @@ Cassir.stopTimer = function () {
     }
 };
 
+
+////////--------| SEARCH |----------------------------------------------------------
+Order.find = function ( val ) {
+    val += '';
+    var i, ii, _id, result = [];
+    for ( i in Order.list ) {
+        ii = Order.list[i];
+        _id = ii.ID + '';
+        if ( (~_id.indexOf( val ) || _id == val)
+            || ( ~ii.Custumer.Phone.indexOf( val ) || ii.Custumer.Phone == val ) ) {
+            result.push( i );
+        }
+    }
+    return (result.length === 0 ? null : result);
+};
+
+var $search = $( '#search' );
+$( '#cassir .fa.fa-search' ).click( function ( event ) {
+    if ( $search.is( ':visible' ) ) {
+        $search.hide();
+    } else {
+        $search.show().css( 'left', event.clientX - 180 ).css( 'top', event.clientY - 15 );
+        $( '#search-input' ).focus();
+        var x = function () {
+            $search.hide();
+            $( document ).off( 'click', x )
+        };
+        $( document ).on( 'click', x );
+    }
+    return false
+} );
+$( document ).on( 'keyup', '#search-input', function () {
+    var result = Order.find( this.value )
+        , i, ii, ord, tel, ad, id, index, elem = '';
+    if ( result ) {
+        result = result.splice( 0, 20 );
+        index = result.indexOf( this.value );
+        if ( ~index ) {
+            id = result.splice( index, 1 );
+            result.unshift( id );
+        }
+    }
+    for ( i in result ) {
+        ii = result[i];
+        ord = Order.list[ii];
+        tel = ord.Custumer.Phone == ' ' ? '' : ord.Custumer.Phone;
+        ad = ord.address();
+        ad = ad == '' ? '' : '<div class="blue_txt address">' + ad + '</div>';
+        elem += '<div data-id="' + ii + '" class="result-search">#<span>' + ii + '</span> тел:<span class="telephone">'
+            + ord.Custumer.Phone + '</span>'
+            + ad + '</div>';
+    }
+    document.getElementById( 'result-search' ).innerHTML = elem;
+} );
+$( '#search-input' ).click( '#search-input', function () {
+    this.value = '';
+    document.getElementById( 'result-search' ).innerHTML = '';
+    return false;
+} );
+//--------------\ SEARCH |----------------------------------------------------------
 
 $( document ).on( 'click', '#cassir_tab li[data-status]', function () {
     Order.showOrders();

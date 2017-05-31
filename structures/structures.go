@@ -1,23 +1,42 @@
 package structures
 
 import (
-	"database/sql"
 	"github.com/lib/pq"
+	"project/orders/postgres"
 	"time"
 )
 
 var DBTypePayment map[int64]string
 var DBStatus map[int64]string
 
-type Structure interface {
-	Read(st *interface{}) error
-	ReadRow(row *sql.Row) error
-	ReadRows(rows *sql.Rows) error
+type Structures struct {
+	st     *postgres.Stream
+	QM     *QueryMessage
+	Orders Orders
+	Buf    []byte
+    Reads  Read
 }
 
-type All struct{}
+//----СООБЩЕНИЯ ПО НОВОМУ ----
+type Message struct {
+	Tables map[string][]interface{}
+	Query  string
+	Error  interface{}
+}
+type Query struct {
+	Type   string
+	Values []interface{}
+	Limit  int
+	Offset int
+}
 
-type Read struct{}
+type Error struct {
+	Code        int
+	Type        string
+	Description string
+}
+
+//-------------------------
 
 type QueryMessage struct {
 	Table         string
@@ -29,6 +48,16 @@ type QueryMessage struct {
 
 	ID_msg string
 }
+
+//type Structure interface {
+//	Read(st *interface{}) error
+//	ReadRow(row *sql.Row) error
+//	ReadRows(rows *sql.Rows) error
+//}
+
+type All struct{}
+
+type Read struct{}
 
 type Order struct {
 	ID                int64

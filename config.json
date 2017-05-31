@@ -17,7 +17,7 @@
   "TLS_serv_session"       : "192.168.0.132:441",
   "TLS_serv_tabel"         : "192.168.0.132:442",
   "TLS_serv_ClientInfo"    : "192.168.0.132:483",
-  "TLS_serv_areas"         : "192.168.0.245:443",
+  "TLS_serv_areas"         : "82.146.49.30:7730",
   "TLS_serv_org"           : "192.168.0.130:456",
   "TLS_serv_sklad"         : "192.168.0.130:50040",
   "TLS_serv_reader"        : ["192.168.0.78:500"],

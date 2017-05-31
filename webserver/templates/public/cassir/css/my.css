@@ -396,3 +396,49 @@ button:disabled { /* Кнопка оплатить */
 }
 
 /*end promotion*/
+
+/* ПОИСК*/
+#search-input {
+    width: 100%;
+    border: solid 1px #0079fe;
+}
+
+#search-label {
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+#search-span {
+    width: 100%;
+    padding-bottom: 5px;
+}
+
+#search {
+    position: fixed;
+    z-index: 1003;
+    background-color: #f1f2f6;
+    padding: 6px;
+    width: 200px;
+    min-height: 50px;
+    max-height: 300px;
+    border: solid 1px #0079fe;
+    border-radius: 10px;
+}
+
+#result-search {
+    background-color: #ffffff;
+    max-height: 258px;
+    margin-top: 5px;
+    width: 100%;
+    border-top: solid 1px #0079fe;
+    overflow-y: auto;
+}
+
+.result-search:nth-child(2n) {
+    background-color: #e9e9e9;
+}
+.result-search {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+/* ПОИСК END*/

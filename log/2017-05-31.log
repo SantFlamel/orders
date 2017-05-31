@@ -1,0 +1,61 @@
+2017-05-31 10:43:55 - 
+2017-05-31 10:43:55 - _______NEW_START_OF_SERVER_______
+2017-05-31 10:43:55 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-31 10:43:55 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-31 10:43:55 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-31 10:43:55 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-31 10:43:55 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-31 10:43:55 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-31 10:43:55 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-31 10:43:55 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-31 10:43:55 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-31 10:43:55 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-31 10:43:55 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-31 10:43:55 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-31 10:43:56 - ERROR get message 192.168.0.130:456 : [48 48 58 208 158 209 136 208 184 208 177 208 186 208 176 32 208 191 209 128 208 184 32 208 191 208 190 208 191 209 139 209 130 208 186 208 184 32 117 110 109 97 114 115 104 97 108 32 209 129 209 130 209 128 209 131 208 186 209 130 209 131 209 128 209 139 58 32 105 110 118 97 108 105 100 32 99 104 97 114 97 99 116 101 114 32 39 195 144 39 32 108 111 111 107 105 110 103 32 102 111 114 32 98 101 103 105 110 110 105 110 103 32 111 102 32 118 97 108 117 101]
+2017-05-31 10:44:32 - 
+2017-05-31 10:44:32 - _______NEW_START_OF_SERVER_______
+2017-05-31 10:44:32 - [GIN-debug] Loaded HTML Templates (4): 
+	- index.html
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+
+2017-05-31 10:44:32 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-31 10:44:32 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-31 10:44:32 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-31 10:44:32 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-31 10:44:32 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-31 10:44:32 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-31 10:44:32 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-31 10:44:32 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-31 10:44:32 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-31 10:44:32 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-31 10:44:32 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-31 10:44:34 - ERROR get message 192.168.0.130:456 : [48 48 58 208 158 209 136 208 184 208 177 208 186 208 176 32 208 191 209 128 208 184 32 208 191 208 190 208 191 209 139 209 130 208 186 208 184 32 117 110 109 97 114 115 104 97 108 32 209 129 209 130 209 128 209 131 208 186 209 130 209 131 209 128 209 139 58 32 105 110 118 97 108 105 100 32 99 104 97 114 97 99 116 101 114 32 39 195 144 39 32 108 111 111 107 105 110 103 32 102 111 114 32 98 101 103 105 110 110 105 110 103 32 111 102 32 118 97 108 117 101]
+2017-05-31 10:44:37 - ERROR get message 192.168.0.130:456 : [48 48 58 208 158 209 136 208 184 208 177 208 186 208 176 32 208 191 209 128 208 184 32 208 191 208 190 208 191 209 139 209 130 208 186 208 184 32 117 110 109 97 114 115 104 97 108 32 209 129 209 130 209 128 209 131 208 186 209 130 209 131 209 128 209 139 58 32 105 110 118 97 108 105 100 32 99 104 97 114 97 99 116 101 114 32 39 195 144 39 32 108 111 111 107 105 110 103 32 102 111 114 32 98 101 103 105 110 110 105 110 103 32 111 102 32 118 97 108 117 101]
+2017-05-31 10:45:35 - 
+2017-05-31 10:45:35 - _______NEW_START_OF_SERVER_______
+2017-05-31 10:45:35 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-05-31 10:45:35 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-05-31 10:45:35 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-05-31 10:45:35 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-05-31 10:45:35 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-05-31 10:45:35 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-05-31 10:45:35 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-05-31 10:45:35 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-05-31 10:45:35 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-05-31 10:45:35 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-31 10:45:35 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-05-31 10:45:35 - [GIN-debug] Listening and serving HTTP on :80
+2017-05-31 10:58:15 - 00:x10008{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"

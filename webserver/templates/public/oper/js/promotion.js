@@ -43,7 +43,7 @@ Promotion.prototype.setupChecks = function () {
     if ( this.condition.length !== 0 ) {
         return;
     }
-    var ch = findAllProp( 'Promotions_id', this.ID, PromotionSubjects.list )
+    var ch = findAllProp( 'Promotion_id', this.ID, PromotionSubjects.list )
         , condition = findAllProp( 'PresentOrChecking', false, ch[1] )[1][0]
         , self = this
         ;
@@ -56,8 +56,8 @@ Promotion.prototype.setupChecks = function () {
             index = [];
             for ( i in Cart.list ) {
                 ii = Cart.list[i];
-                if ( (condition.Type_id === 0 || condition.Type_id === ii.Type_id)
-                    && ( condition.Price_id.length === 0 || ~condition.Price_id.indexOf( ii.Price_id ))
+                if ( ( condition.Price_id.length === 0 || ~condition.Price_id.indexOf( ii.Price_id ))
+                    && (condition.Type_id === 0 || condition.Type_id === ii.Type_id)
                     && (condition.NameParameterForType === '' || ~ii.PriceName.indexOf( condition.NameParameterForType )) ) {
                     index.push( i );
                     if ( self.ForEach && index.length === condition.Count ) {
@@ -209,7 +209,7 @@ Promotion.prototype.makeCollapseElementHead = function () {
 Promotion.ID = counter();
 // список елементов доступных по акции
 Promotion.prototype.makeListElementPresentProduct = function ( IDPresent ) {
-    var ch = findAllProp( 'Promotions_id', this.ID, PromotionSubjects.list )
+    var ch = findAllProp( 'Promotion_id', this.ID, PromotionSubjects.list )
         , present = findAllProp( 'PresentOrChecking', true, ch[1] )[1][0]
         , i, ii
         , elem = ''
@@ -234,7 +234,7 @@ Promotion.prototype.setupPresent = function () {
         if ( ii.length === 0 ) {
         }
     }
-    var ch = findAllProp( 'Promotions_id', this.ID, PromotionSubjects.list )
+    var ch = findAllProp( 'Promotion_id', this.ID, PromotionSubjects.list )
         , present = findAllProp( 'PresentOrChecking', true, ch[1] )[1][0]
         , self = this
         ;
@@ -269,8 +269,7 @@ Promotion.prototype.setupPresent = function () {
                 ii = self.availableList[i];
                 elem += '<div><input style="width: auto" data-avalible_index="' + ii + '" id="present' + self.ID + '" type="checkbox"><label>' + Cart.list[ii].PriceName + '</label></div>';
             }
-            elem += '</div>\
-                    </div>';
+            elem += '</div></div>';
             $( '#promotion' ).append( elem );
         };
         this.unShowPresent = function () {
@@ -337,8 +336,7 @@ Promotion.prototype.setupPresent = function () {
                         + '</div>';
                 }
             }
-            elem += '</div>\
-                    </div>';
+            elem += '</div></div>';
             $( '#promotion' ).append( elem );
         };
         this.unShowPresent = function () {

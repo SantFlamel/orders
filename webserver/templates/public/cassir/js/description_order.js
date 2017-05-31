@@ -176,7 +176,7 @@ Order.prototype.setReady = function ( Price_id1, Price_id2 ) {
 $( document ).on( 'click', '#btn_deliveryman', function () {
     if ( document.querySelectorAll( 'input[name="deliveryman"]:checked' ).length != 0 ) {
         var hash = document.querySelector( 'input[name="deliveryman"]:checked' ).value;
-        MSG.sendPersonal( document.title.split( '#' )[1], 0, MSG.get._personal[hash] );
+        MSG.set.personal( document.title.split( '#' )[1], 0, MSG.get._personal[hash] );
     }
     $( '#deliveryman' ).modal( 'hide' );
     Order.check();
@@ -186,12 +186,12 @@ $( document ).on( 'click', '#btn_deliveryman', function () {
 Order.prototype.setStatus = function ( st, ol ) {
     var i, ii;
     if ( this.status < st && !ol ) {
-        MSG.setStatus( this.ID, 0, st );
+        MSG.set.status( this.ID, 0, st );
     }
     for ( i in this.OrderList ) {
         ii = this.OrderList[i];
         if ( ii.status < st ) {
-            MSG.setStatus( this.ID, ii.ID_item, st );
+            MSG.set.status( this.ID, ii.ID_item, st );
         }
     }
 };
@@ -354,7 +354,7 @@ Order.prototype.statusCounted = function () {
                     jj.status = this.status;
                 }
                 if ( jj.status ) {
-                    jj.statusT = Order.status[jj.status]["Name"];
+                    jj.statusT = STATUS[jj.status]["Name"];
                 }
             } // конец цикла
             //--------------\ child |----------------------------------------------------------
@@ -380,7 +380,7 @@ Order.prototype.statusCounted = function () {
             }
             ii.status = Order.checkStatus( zz );
             if ( ii.status ) {
-                ii.statusT = Order.status[ii.status]["Name"];
+                ii.statusT = STATUS[ii.status]["Name"];
             }
             //--------------\ parent |----------------------------------------------------------
             //--------------\ for set |----------------------------------------------------------
@@ -406,7 +406,7 @@ Order.prototype.statusCounted = function () {
             //--------------\ parent |----------------------------------------------------------
         }
         if ( ii.status ) {
-            ii.statusT = Order.status[ii.status]["Name"];
+            ii.statusT = STATUS[ii.status]["Name"];
         }
     } // конец основного цикла.
 };
@@ -578,24 +578,22 @@ Order.prototype.calcPayment = function () {
     // console.log( 'pay', payment, motPayment, valueCard, valueCash, valueBonus );
     // console.groupEnd();
 };
-Order.prototype.addAddress = function () {
+Order.prototype.address = function () {
     var address =
-        ( this.Custumer.Street === ' ' ? '' : 'ул. ' + this.Custumer.Street)
-        + (this.Custumer.House === 0 ? '' : ' д.' + this.Custumer.House )
-        + (this.Custumer.Building === ' ' ? '' : ' ст.' + this.Custumer.Building )
-        + (this.Custumer.Apartment === 0 ? '' : ' кв.' + this.Custumer.Apartment )
-        + (this.Custumer.Entrance === 0 ? '' : ' п.' + this.Custumer.Entrance )
-        + (this.Custumer.Floor === 0 ? '' : ' эт.' + this.Custumer.Floor )
-        + (this.Custumer.DoorphoneCode === ' ' || this.Custumer.DoorphoneCode === '0' ? '' : ' домофон:' + this.Custumer.DoorphoneCode )
-        + (this.Custumer.Phone === ' ' ? '' : ' <br> Тел.' + this.Custumer.Phone );
-    document.getElementById( 'address' ).innerHTML = address;
+            ( this.Custumer.Street === ' ' ? '' : 'ул. ' + this.Custumer.Street)
+            + (this.Custumer.House === 0 ? '' : ' д.' + this.Custumer.House )
+            + (this.Custumer.Building === ' ' ? '' : ' ст.' + this.Custumer.Building )
+            + (this.Custumer.Apartment === 0 ? '' : ' кв.' + this.Custumer.Apartment )
+            + (this.Custumer.Entrance === 0 ? '' : ' п.' + this.Custumer.Entrance )
+            + (this.Custumer.Floor === 0 ? '' : ' эт.' + this.Custumer.Floor )
+            + (this.Custumer.DoorphoneCode === ' ' || this.Custumer.DoorphoneCode === '0' ? '' : ' домофон:' + this.Custumer.DoorphoneCode )
+        ;
+    return address;
 };
 
-Order.prototype.showDescription = function () { // для отображения нужно вызывать MSG.requestOrderLists(ID)
+Order.prototype.showDescription = function () { // для отображения нужно вызывать MSG.request.orderLists(ID)
     document.title = "Заказ #" + this.ID;
     $( '#ready_order' ).attr( 'disabled', true ).addClass( 'btn-order-ready__disabled' );
-    // console.log( 'showDescription', this );
-    // для работы модалки оплаты
     document.getElementById( 'pay_order' ).dataset.id_order = this.ID;
     this.makeDescriptionElement();
     Page.show.DescriptionOrder();
@@ -604,9 +602,9 @@ Order.prototype.showDescription = function () { // для отображения
     document.getElementById( 'name_customer' ).innerHTML = this.NameCustomer || NO_NAME + '.';
     document.getElementById( 'order_type' ).innerHTML = this.Type.slice( 0, 1 ) + this.Type.slice( 1 );
 
-    var note = Page.timeReplace( this.Order_time ).split( ' ' )[1].slice(0,5);
+    var note = Page.timeReplace( this.Order_time ).split( ' ' )[1].slice( 0, 5 );
     if ( this.TimeDelivery !== EMPTY_TIME ) {
-        note += ' / ' + Page.timeReplace( this.TimeDelivery ).slice(0,-4);
+        note += ' / ' + Page.timeReplace( this.TimeDelivery ).slice( 0, -4 );
     }
     note += '<br>';
     if ( this.Division != ' ' ) {
@@ -615,12 +613,9 @@ Order.prototype.showDescription = function () { // для отображения
     note += 'Количество персон: ' + this.CountPerson + '<br>' + this.Note;
     document.getElementById( 'note' ).innerHTML = note || '--';
     this.calcPayment();
-    var self = Order.list[this.ID];
-    waitProp( function () {
-        self.addAddress()
-    }, function () {
-        return self.Custumer;
-    }, 300, 5 );
+    var ad = this.address();
+    document.getElementById( 'address' ).innerHTML = (ad == '' ? '' : ad + ' <br> ')
+        + (this.Custumer.Phone === '' ? '' : 'Тел.' + this.Custumer.Phone );
     Order.check();
 };
 
@@ -649,7 +644,7 @@ $( document ).on( 'click', '#btn_remake', function () {
         return
     }
     for ( i = 0; i < count; i++ ) {
-        MSG.setStatus( ID, ID_items[i], 14 );
+        MSG.set.status( ID, ID_items[i], 14 );
     }
 } );
 //--------------\ REMAKE |----------------------------------------------------------
@@ -659,7 +654,7 @@ $( document ).on( 'click', '#btn_remake', function () {
 $( document ).on( 'click', '#btn_cancel_order', function () {
     var ord = Order.list[document.getElementById( 'span_cancel_order' ).innerHTML];
     if ( ord.status < 11 || !ord.status ) {
-        MSG.setStatus( ord.ID, 0, 16 );
+        MSG.set.status( ord.ID, 0, 16 );
     }
 } );
 $( document ).on( 'click', '#cancel_order', function () {
