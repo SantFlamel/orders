@@ -63,20 +63,15 @@ $( function () {
 function startTimer() {
     var timers = {};
     timers = $( '.font_main_time' );
-    console.log(timers);
 
     $.each( timers, function ( key, up_timer ) {
 
         timer( up_timer );
+            if(up_timer.innerText == "00:00:00")//если время пустое, надо поппробовать ещё разок
+                setTimeout(startTimer,1000);
     } );
 
-    //  $.each(down, function (key2, down_timer) {
-    //      downTimer1(down_timer);
-    // });
-    /*   $.each(ring, function (key3, down_ring) {
-     downTimer2(down_ring);*/
-    // if(down_timer) {}
-    // });
+
 }
 var timer = (function () {
     var listTimer = {};

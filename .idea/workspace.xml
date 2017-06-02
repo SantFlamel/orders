@@ -2,30 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79ad0459-76ca-4641-b014-b4d71f7338e8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/config.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/sw/sw.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/servOrder" afterPath="$PROJECT_DIR$/servOrder" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/client.go" afterPath="$PROJECT_DIR$/client/client.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/client_order_personal.go" afterPath="$PROJECT_DIR$/client/client_order_personal.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/conf.go" afterPath="$PROJECT_DIR$/conf/conf.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.json" afterPath="$PROJECT_DIR$/config.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log/2017-05-31.log" afterPath="$PROJECT_DIR$/log/2017-05-31.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/postgres/postgres.go" afterPath="$PROJECT_DIR$/postgres/postgres.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/server.go" afterPath="$PROJECT_DIR$/server/server.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/serverfunctiontable.go" afterPath="$PROJECT_DIR$/server/serverfunctiontable.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/structures/serverclient.go" afterPath="$PROJECT_DIR$/structures/serverclient.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/structures/struct_transaction.go" afterPath="$PROJECT_DIR$/structures/struct_transaction.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/structures/struct_websocket.go" afterPath="$PROJECT_DIR$/structures/struct_websocket.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/structures/structures.go" afterPath="$PROJECT_DIR$/structures/structures.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/html/cook/sushimaker-list.html" afterPath="$PROJECT_DIR$/webserver/templates/html/cook/sushimaker-list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/css/bootstrap.css" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/css/bootstrap.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/css/mystylecss.css" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/css/mystylecss.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js/conf.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js/conf.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js/new_ws.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js/new_ws.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js/ws.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js/ws.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/webserver.go" afterPath="$PROJECT_DIR$/webserver/webserver.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/webservfunctable.go" afterPath="$PROJECT_DIR$/webserver/webservfunctable.go" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/log/2017-05-29.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/log/2017-05-30.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/log/2017-05-31.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/log/2017-06-01.log" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log/2017-06-02.log" afterPath="$PROJECT_DIR$/log/2017-06-02.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js/time.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js/time.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/websockets.go" afterPath="$PROJECT_DIR$/webserver/websockets.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,7 +34,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="postgres.go" pinned="false" current-in-tab="true">
+          <file leaf-file-name="postgres.go" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/postgres/postgres.go">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="288">
@@ -140,6 +122,18 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="struct_websocket.go" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/structures/struct_websocket.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="384">
+                  <caret line="111" column="23" lean-forward="false" selection-start-line="111" selection-start-column="23" selection-end-line="111" selection-end-column="23" />
+                  <folding>
+                    <element signature="e#20#145#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-first>
       <split-second>
@@ -156,11 +150,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="websockets.go" pinned="false" current-in-tab="false">
+          <file leaf-file-name="websockets.go" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/webserver/websockets.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="528">
-                  <caret line="54" column="99" lean-forward="false" selection-start-line="54" selection-start-column="99" selection-end-line="54" selection-end-column="99" />
+                <state relative-caret-position="336">
+                  <caret line="54" column="5" lean-forward="false" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
                   <folding />
                 </state>
               </provider>
@@ -188,22 +182,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="struct_websocket.go" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/structures/struct_websocket.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="576">
-                  <caret line="111" column="23" lean-forward="false" selection-start-line="111" selection-start-column="23" selection-end-line="111" selection-end-column="23" />
-                  <folding>
-                    <element signature="e#20#145#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="server.go" pinned="false" current-in-tab="true">
+          <file leaf-file-name="server.go" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/server/server.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-3536">
+                <state relative-caret-position="-560">
                   <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
                   <folding />
                 </state>
@@ -311,9 +293,9 @@
         <option value="$PROJECT_DIR$/conf/conf.go" />
         <option value="$PROJECT_DIR$/config.json" />
         <option value="$PROJECT_DIR$/structures/struct_transaction.go" />
-        <option value="$PROJECT_DIR$/webserver/websockets.go" />
         <option value="$PROJECT_DIR$/structures/struct_websocket.go" />
         <option value="$PROJECT_DIR$/server/server.go" />
+        <option value="$PROJECT_DIR$/webserver/websockets.go" />
       </list>
     </option>
   </component>
@@ -1083,24 +1065,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webserver/websockets.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="54" column="99" lean-forward="false" selection-start-line="54" selection-start-column="99" selection-end-line="54" selection-end-column="99" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/structures/struct_websocket.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="111" column="23" lean-forward="false" selection-start-line="111" selection-start-column="23" selection-end-line="111" selection-end-column="23" />
-          <folding>
-            <element signature="e#20#145#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/structures/struct_transaction.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3216">
@@ -1111,10 +1075,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/structures/struct_websocket.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="111" column="23" lean-forward="false" selection-start-line="111" selection-start-column="23" selection-end-line="111" selection-end-column="23" />
+          <folding>
+            <element signature="e#20#145#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/server.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3536">
+        <state relative-caret-position="-560">
           <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webserver/websockets.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="54" column="5" lean-forward="false" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
           <folding />
         </state>
       </provider>

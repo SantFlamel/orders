@@ -47,6 +47,13 @@ func WSHandler(w http.ResponseWriter, r *http.Request) {
         conn.Close()
         return
     }
+
+    if strings.TrimSpace(auth.HashAuth) == "" {
+        conn.WriteMessage(1,[]byte("00:Auth{EMPTY HASH AUTH"))
+        conn.Close()
+        return
+    }
+
     println("HashAuth: ",auth.HashAuth, conn.RemoteAddr().String())
     socketClient.HashAuth = auth.HashAuth
     err = structures.AddClient(socketClient)
