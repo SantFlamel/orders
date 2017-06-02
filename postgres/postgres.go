@@ -316,6 +316,21 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 		"$14, $15, $16, $17, $18, $19, $20, $21) RETURNING id_item")
 	if err != nil {
 		return err
+	}//----ORDER_LIST----//
+	dbr.RequestsList["execInsertOrderList"], err = DB.Prepare("with s AS(UPDATE \"order\" SET \"Changed\"=true WHERE id=$1) " +
+		"INSERT INTO order_list( " +
+		"order_id, id_item, id_parent_item, price_id, price_name, type_id, " +
+		"type_name, parent_id, parent_name, image, units, value, set, " +
+		"finished, discount_name, discount_percent, price, cooking_tracker, time_cook, " +
+		"time_fry, composition, additionally, packaging ) " +
+		"VALUES ($1, (CASE " +
+		"WHEN(select max(id_item) from order_list where order_id = $1) is null THEN 1 " +
+		"ELSE(select max(id_item)+1 from order_list where order_id = $1) " +
+		"END), $2, $3, $4, $5, $6, " +
+		"$7, $8, $9, $10, $11, $12, (case when $16 = 0 THEN true else false end), $13, " +
+		"$14, $15, $16, $17, $18, $19, $20, $21)")
+	if err != nil {
+		return err
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -873,7 +888,7 @@ func (dbr *DBRequests) InitDatabaseRequests() error {
 		",ins as (INSERT INTO cashbox(order_id, \"сhange_employee_id\", first_sure_name, user_hash, role_name, " +
 		"org_hash, type_payments, type_operation, deposit, short_change, cause, time_operation)  " +
 		"SELECT $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 " +
-		"WHERE ($9 + (SELECT * FROM sum_dep))<=(SELECT price_with_discount FROM \"order\" WHERE id = $1)  RETURNING id) " +
+		"WHERE ($9 + (SELECT * FROM sum_dep))<=(SELECT price_with_discount FROM \"order\" WHERE id = $1)  OR $1=0 RETURNING id) " +
 
 		"SELECT CASE WHEN (SELECT * FROM ins) is null " +
 		"THEN (select a from (SELECT 1 as a, raise_exception('Already paid')) aa ) " +

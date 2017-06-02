@@ -1,3 +1,33 @@
+/***
+ * при подключении webSocket выполняется авторизация,
+ * делается запрос информации о сессии, в качестве обработчика передаётся
+ * функция setupSessionInfo куда передаются полученные данные.
+
+ ** Типы:
+ * 00 - ошибка,
+ * 01 - обычные данные,
+ * 02 - обновление: запускается MSG.update с распарсенными данными.
+
+ * MSG.send - привячзка обработчиков и отправка данных. Принимает:
+ *--| { structure: '', handler: '', mHandlers: '', EOFHandler: '', check: '', errorHandler: '' }
+ *--| structure - запрос,
+ *--| handler - обработчик результатов запроса,
+ *--| mHandlers - флаг - если в ответ ожидается не одино сообщение,
+ *--| EOFHandler - обработчик по оканчанию передачи,
+ *--| check - флаг - если не прийдёт подтверждение то будет выведена ошибка,
+ *--| errorHandler - при ошибке будет запускаться данныый обработчик
+ **** **
+ *
+ * MSG._in - первичная обработка данных
+ *--| в обработчик возвращает обект данных, при создании идентификатор, при ошибке текст.
+
+ * MSG.request - запросы данных
+ * MSG.get - обрботка полученных данных
+ * MSG.set - зоздание, изменение
+ * MSG.close - завершение чего-либо
+
+ * ***/
+
 function counter( val ) {
     var count = val || -1;
     return function () {
@@ -5,30 +35,34 @@ function counter( val ) {
     };
 }
 ////////--------| WARNINGS_MESSAGE |----------------------------------------------------------
+/** txt - выводимый текст
+ * , alert - тип(null, 'info', 'alert' - разные по цветам)
+ * , time - время на которое показывается
+ * , except - id сообщения которое нужно удалить при появлении создаваемого
+ * , impot - флаг - зафиксировать сообщение
+
+ * возвращает id сообщения.
+ * **/
+var countWarning = counter();
 function warning( txt, alert, time, except, impot ) {
-    // txt - выводимый текст, alert - тип(null, 'info', 'alert' - разные по цветам)
-    // , time - время на которое показывается
-    // , except - id сообщения которое нужно удалить при появлении создаваемого
-    // возвращает id сообщения.
-    // impot - зафиксировать сообщение
-    var i, cl = '', id = Math.floor( Math.random() * 1000000 ), id_elem = 'id="' + id + '"'
+    var i, cl = '', id = 'warning-' + countWarning(), id_elem = 'id="' + id + '"'
         , dublicate = $( 'button:contains(' + txt + ')' )
         , disabled = '';
     if ( alert ) {
         cl = 'class="' + alert + '"';
     }
     if ( except ) {
-        if ( !Array.isArray( except ) ) {
-            warning.del( except );
-        } else {
+        if ( Array.isArray( except ) ) {
             for ( i in except ) {
-                warning.del( except[i] );
+                $( '#' + except[i] ).remove();
             }
+        } else {
+            $( '#' + except ).remove();
         }
     }
     if ( time ) {
         setTimeout( function () {
-            warning.del( id );
+            $( '#' + id ).remove();
         }, time );
     }
     if ( impot ) {
@@ -42,9 +76,6 @@ function warning( txt, alert, time, except, impot ) {
     return id;
 }
 var war = {};
-warning.del = function ( id ) {
-    $( '#' + id ).remove();
-};
 $( document ).on( 'click', '#warning button', function () {
     $( this ).remove();
 } );
@@ -52,7 +83,6 @@ $( document ).on( 'click', '#warning button', function () {
 
 //////--------| WEBSOCKET |----------------------------------------------------------
 var ws
-    , AUTH = { "HashAuth": SESSION_HASH }
     , STOP_WS = false
     ;
 function webSocket() {
@@ -79,19 +109,14 @@ function webSocket() {
     ws.onopen = function () {
         war.con1 = warning( 'Подключено.', 'info', ALERT_TIME, [war.con, war.err, war.clo] );
         console.info( 'WS OPEN', new Date(), WS_URL );
-        MSG.send( { structure: AUTH } ); // авторизация // в начале файла
+        MSG.send( { structure: { "HashAuth": SESSION_HASH } } ); // авторизация // в начале файла
         MSG.request.sessionInfo();
 
         //Для повара
         MSG.request.SystemTime();
-
-
-        // while ( MSG.wait.length > 0 ) {
-        //     console.info( 'WS SEND WAIT' );
-        //     (MSG.wait.pop())();
-        // }
-        // ws.send('EndConn');
     };
+
+    // зкарываем подключение через сокеты
     ws.stop = function ( time ) {
         STOP_WS = true;
         if ( time ) {
@@ -111,23 +136,38 @@ function webSocket() {
 ////////--------| MSG |----------------------------------------------------------
 var getIDMsg = counter( 10000 );
 MSG = {
-    get: {}, request: {}, close: {}, set: {}, exceptionOrder: [], wait: [] // отложенные отправки
+    get: {}, request: {}, close: {}, set: {}
     , handlersList: {} // storage handlers
     , errorHandlerList: {} // storage handlers
     , multipleHandlers: {} // storage multiple handlers
     , EOFHandlersList: {}, check: {}
-    , notGet: {}, notGetEOF: {}
     , _in: function ( IDMsg, data, type ) { // input MSG
-        // if ( MSG.notGet[IDMsg] ) {
-        //     clearTimeout( MSG.notGet[IDMsg] );
-        //     delete MSG.notGet[IDMsg]
-        // } else if ( MSG.notGetEOF[IDMsg] ) {
-        //     clearTimeout( MSG.notGetEOF[IDMsg] );
-        //     delete MSG.notGetEOF[IDMsg];
-        // }
-        if ( type === '00' ) { // ошибка
+        if ( type === '02' ) { // обновление данных
+            console.group( '%cMSG UPDATE::::::%c' + IDMsg, 'color: #043700', 'color: #444100', 0 );
+            console.info( data );
+            MSG.update( JSON.parse( data ) );
+            console.groupEnd();
+            return;
+        } else if ( data === 'EOF' ) { // конец передаци.
+            // удаляем обработчик, после прерываем функцию
+            if ( MSG.EOFHandlersList[IDMsg] ) {
+                MSG.EOFHandlersList[IDMsg]();
+                delete MSG.EOFHandlersList[IDMsg];
+            }
+            delete MSG.multipleHandlers[IDMsg];
+            delete MSG.errorHandlerList[IDMsg];
+            console.info( '%cEND:::::: ' + IDMsg, 'color: #444100' );
+            return;
+        } else if ( type === '00' ) { // ошибка
+            // если есть то выполняем его
             if (MSG.errorHandlerList[IDMsg]){
                 MSG.errorHandlerList[IDMsg](data);
+                if ( !MSG.multipleHandlers[IDMsg] ) {
+                    // если ответ доолжен бытьтолько один то удаляем обработчики
+                    delete MSG.errorHandlerList[IDMsg];
+                    delete MSG.handlersList[IDMsg];
+                }
+                return;
             }
             if ( ~data.indexOf( 'sql: no rows in result set' ) ) {
                 if ( ~data.indexOf( 'OrderStatus ERROR Read, TYPE PARAMETERS "ValueStructIDOrdIDit" VALUES: ' ) ) {
@@ -154,23 +194,6 @@ MSG = {
             delete MSG.handlersList[IDMsg];
             delete MSG.multipleHandlers[IDMsg];
             return;
-        } else if ( data === 'EOF' ) { // конец передаци.
-            // удаляем обработчик, после прерываем функцию
-            if ( MSG.EOFHandlersList.hasOwnProperty( IDMsg ) ) {
-                MSG.EOFHandlersList[IDMsg]();
-                delete MSG.EOFHandlersList[IDMsg];
-            }
-            if ( MSG.multipleHandlers.hasOwnProperty( IDMsg ) ) {
-                delete MSG.multipleHandlers[IDMsg];
-            }
-            console.info( '%cEND:::::: ' + IDMsg, 'color: #444100' );
-            return;
-        } else if ( type === '02' ) { // обновление данных
-            console.group( '%cMSG UPDATE::::::%c' + IDMsg, 'color: #043700', 'color: #444100', 0 );
-            console.info( data );
-            MSG.update( JSON.parse( data ) );
-            console.groupEnd();
-            return;
         }
         if ( MSG.check[IDMsg] ) { // удалям сообщение об ошибке
             if ( ~data.indexOf( 'NO ERRORS Create, TYPE PARAMETERS' ) || !isNaN( +data ) ) {
@@ -183,42 +206,23 @@ MSG = {
         try { // пытаеммся распарсить
             data = JSON.parse( data );
         } catch ( e ) {
-            if ( !~data.indexOf( 'NO ERRORS Create, TYPE PARAMETERS: ""' ) ) {
+            if ( !~data.indexOf( 'NO ERRORS Create, TYPE PARAMETERS:' ) ) {
                 console.warn( data );
             }
         }
         if ( MSG.handlersList[IDMsg] ) {
             MSG.handlersList[IDMsg]( data, IDMsg );
             delete MSG.handlersList[IDMsg];
+            delete MSG.errorHandlerList[IDMsg];
         } else if ( MSG.multipleHandlers[IDMsg] ) {
             MSG.multipleHandlers[IDMsg]( data, IDMsg );
         }
         console.groupEnd();
     }, send: function ( option ) { // send MSG
-        // console.trace( 'option' ,option );
-        // { structure: '', handler: '', mHandlers: '', EOFHandler: '', check: '', errorHandler: '' };
-        // structure обект, массив обектов
-        //
-        // console.info( 'WS WAIT' );
-        // if ( !~MSG.wait.indexOf( struct ) ) {
-        //     MSG.wait.push( function () {
-        //         ws.send( struct );
-        //     } );
-        // }
         var IDMsg = 'x' + getIDMsg(), struct = '', table;
 
-        // if ( option.mHandlers ) {
-        //     MSG.notGetEOF[IDMsg] = setTimeout( function () {
-        //         warning( 'Не полученны данные:' + IDMsg );
-        //     }, 5000 );
-        // } else {
-        //     MSG.notGet[IDMsg] = setTimeout( function () {
-        //         warning( 'Не полученны данные:' + IDMsg );
-        //     }, 5000 );
-        // }
-
-        try {
-            checkUndefined( option.structure );  // TEST LINE(S) ////////////////////////
+        try { // проверяет структуры на присутствие undefined
+            checkUndefined( option.structure );
         } catch ( e ) {
         }
         if ( Array.isArray( option.structure ) ) {

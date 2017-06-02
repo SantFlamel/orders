@@ -8,6 +8,7 @@ import (
     "fmt"
     "log"
     "io"
+    "time"
 )
 
 type AuthWEB struct {
@@ -50,8 +51,8 @@ func WSHandler(w http.ResponseWriter, r *http.Request) {
     socketClient.HashAuth = auth.HashAuth
     err = structures.AddClient(socketClient)
     if err != nil {
-        conn.WriteMessage(1, []byte("00:Auth{NO CHECKED "+auth.HashAuth))
-        println("00:Auth{NO CHECKED "+auth.HashAuth)
+        conn.WriteMessage(1, []byte("00:Auth{NO CHECKED "+auth.HashAuth+" ERROR:'"+err.Error()+"' "+time.Now().String()))
+        println("00:Auth{NO CHECKED "+auth.HashAuth+" ERROR:'"+err.Error()+"' "+time.Now().String())
         println("-------DELETE_SOC_CONN : ",socketClient.HashAuth)
         structures.RemoveClient(socketClient)
         conn.Close()

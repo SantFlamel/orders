@@ -14,20 +14,21 @@ type Structures struct {
 	QM     *QueryMessage
 	Orders Orders
 	Buf    []byte
-    Reads  Read
+	Reads  Read
 }
 
 //----СООБЩЕНИЯ ПО НОВОМУ ----
 type Message struct {
-	Tables map[string][]interface{}
+	Tables []Table
 	Query  string
 	Error  interface{}
 }
-type Query struct {
-	Type   string
-	Values []interface{}
-	Limit  int
-	Offset int
+type Table struct {
+	Name          string
+	TypeParameter string
+	Values        []interface{}
+	Limit         int
+	Offset        int
 }
 
 type Error struct {

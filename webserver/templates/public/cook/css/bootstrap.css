@@ -2561,12 +2561,20 @@ output {
 .form-control::-webkit-input-placeholder {
   color: #999;
 }
+.form-control::-ms-expand {
+  background-color: transparent;
+  border: 0;
+}
 .form-control[disabled],
 .form-control[readonly],
 fieldset[disabled] .form-control {
   cursor: not-allowed;
   background-color: #eee;
   opacity: 1;
+}
+.form-control[disabled],
+fieldset[disabled] .form-control {
+  cursor: not-allowed;
 }
 textarea.form-control {
   height: auto;
@@ -2634,6 +2642,7 @@ input[type="search"] {
 }
 .radio-inline,
 .checkbox-inline {
+  position: relative;
   display: inline-block;
   padding-left: 20px;
   margin-bottom: 0;
@@ -2667,6 +2676,7 @@ fieldset[disabled] .checkbox label {
   cursor: not-allowed;
 }
 .form-control-static {
+  min-height: 34px;
   padding-top: 7px;
   padding-bottom: 7px;
   margin-bottom: 0;
@@ -2995,12 +3005,7 @@ select[multiple].form-group-lg .form-control {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.btn:hover,
-.btn:focus,
-.btn.focus {
-  color: #333;
-  text-decoration: none;
-}
+
 .btn:active,
 .btn.active {
   background-image: none;
@@ -3063,11 +3068,7 @@ fieldset[disabled] .btn-default.active {
   color: #fff;
   background-color: #333;
 }
-.btn-primary {
-  color: #fff;
-  background-color: #337ab7;
-  border-color: #2e6da4;
-}
+
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary.focus,
@@ -3392,9 +3393,10 @@ tbody.collapse.in {
           transition-property: height, visibility;
 }
 .caret {
+  margin-top: 7px;
   display: inline-block;
   width: 0;
-  height: 0;
+  height: 11px;
   margin-left: 2px;
   vertical-align: middle;
   border-top: 4px solid;
@@ -3414,8 +3416,7 @@ tbody.collapse.in {
   left: 0;
   z-index: 1000;
   display: none;
-  float: left;
-  min-width: 160px;
+  min-width: 310px;
   padding: 5px 0;
   margin: 2px 0 0;
   font-size: 14px;
@@ -3436,9 +3437,9 @@ tbody.collapse.in {
 }
 .dropdown-menu .divider {
   height: 1px;
-  margin: 9px 0;
+  margin: 10px 0 4px 0;
   overflow: hidden;
-  background-color: #e5e5e5;
+  background-color: #B9BABD;
 }
 .dropdown-menu > li > a {
   display: block;

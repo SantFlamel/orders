@@ -2,197 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79ad0459-76ca-4641-b014-b4d71f7338e8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/2017-05-29.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/2017-05-30.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/2017-05-31.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/postgres/transaction.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/structures/struct_interfaces.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/structures/struct_transaction.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/trazaction/tranzaction.go" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/log/2017-05-23.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/log/2017-05-24.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/log/2017-05-25.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/log/2017-05-26.log" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/controller/controller.go" afterPath="$PROJECT_DIR$/postgres/controller.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/config.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/sw/sw.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/servOrder" afterPath="$PROJECT_DIR$/servOrder" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/promotion.old" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/promotion.old" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/GOPATH__orders_.xml" afterPath="$PROJECT_DIR$/.idea/libraries/GOPATH__orders_.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Go_SDK.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Go_SDK.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/CEPO1701279874.cer" afterPath="$PROJECT_DIR$/client/CEPO1701279874.cer" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/client.go" afterPath="$PROJECT_DIR$/client/client.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/client_order_list.go" afterPath="$PROJECT_DIR$/client/client_order_list.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/client_order_personal.go" afterPath="$PROJECT_DIR$/client/client_order_personal.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/clientorders.go" afterPath="$PROJECT_DIR$/client/clientorders.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-02-15.log" afterPath="$PROJECT_DIR$/client/log/2017-02-15.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-02-16.log" afterPath="$PROJECT_DIR$/client/log/2017-02-16.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-02-17.log" afterPath="$PROJECT_DIR$/client/log/2017-02-17.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-02-20.log" afterPath="$PROJECT_DIR$/client/log/2017-02-20.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-02-28.log" afterPath="$PROJECT_DIR$/client/log/2017-02-28.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-03-01.log" afterPath="$PROJECT_DIR$/client/log/2017-03-01.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-03-02.log" afterPath="$PROJECT_DIR$/client/log/2017-03-02.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-03-03.log" afterPath="$PROJECT_DIR$/client/log/2017-03-03.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-03-04.log" afterPath="$PROJECT_DIR$/client/log/2017-03-04.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-03-05.log" afterPath="$PROJECT_DIR$/client/log/2017-03-05.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-03-06.log" afterPath="$PROJECT_DIR$/client/log/2017-03-06.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-03-09.log" afterPath="$PROJECT_DIR$/client/log/2017-03-09.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-03-10.log" afterPath="$PROJECT_DIR$/client/log/2017-03-10.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-03-13.log" afterPath="$PROJECT_DIR$/client/log/2017-03-13.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-03-14.log" afterPath="$PROJECT_DIR$/client/log/2017-03-14.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-03-15.log" afterPath="$PROJECT_DIR$/client/log/2017-03-15.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-03-21.log" afterPath="$PROJECT_DIR$/client/log/2017-03-21.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-03-22.log" afterPath="$PROJECT_DIR$/client/log/2017-03-22.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-04-06.log" afterPath="$PROJECT_DIR$/client/log/2017-04-06.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/log/2017-04-12.log" afterPath="$PROJECT_DIR$/client/log/2017-04-12.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/logfile.log" afterPath="$PROJECT_DIR$/client/logfile.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/order.conf" afterPath="$PROJECT_DIR$/client/order.conf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/ya.key" afterPath="$PROJECT_DIR$/client/ya.key" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clientNikita/client.go" afterPath="$PROJECT_DIR$/clientNikita/client.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/conf.go" afterPath="$PROJECT_DIR$/conf/conf.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.json" afterPath="$PROJECT_DIR$/config.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.go" afterPath="$PROJECT_DIR$/main.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/order.iml" afterPath="$PROJECT_DIR$/order.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log/2017-05-31.log" afterPath="$PROJECT_DIR$/log/2017-05-31.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/postgres/postgres.go" afterPath="$PROJECT_DIR$/postgres/postgres.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/logfile.log" afterPath="$PROJECT_DIR$/server/logfile.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/order.conf" afterPath="$PROJECT_DIR$/server/order.conf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/server.go" afterPath="$PROJECT_DIR$/server/server.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/serverfunctiontable.go" afterPath="$PROJECT_DIR$/server/serverfunctiontable.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/structures/serverclient.go" afterPath="$PROJECT_DIR$/structures/serverclient.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/structures/struct_function.go" afterPath="$PROJECT_DIR$/structures/struct_function.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/structures/struct_transaction.go" afterPath="$PROJECT_DIR$/structures/struct_transaction.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/structures/struct_websocket.go" afterPath="$PROJECT_DIR$/structures/struct_websocket.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/structures/structures.go" afterPath="$PROJECT_DIR$/structures/structures.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.txt" afterPath="$PROJECT_DIR$/test.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/postgres/logfile.log" afterPath="$PROJECT_DIR$/tests/postgres/logfile.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/postgres/order.conf" afterPath="$PROJECT_DIR$/tests/postgres/order.conf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/postgres/postdb.go" afterPath="$PROJECT_DIR$/tests/postgres/postdb.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/queryORDER/cashbox.sql" afterPath="$PROJECT_DIR$/tests/queryORDER/cashbox.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/queryORDER/functions.sql" afterPath="$PROJECT_DIR$/tests/queryORDER/functions.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/queryORDER/html.txt" afterPath="$PROJECT_DIR$/tests/queryORDER/html.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/queryORDER/order_listSQL.sql" afterPath="$PROJECT_DIR$/tests/queryORDER/order_listSQL.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/queryORDER/order_personalSQL.sql" afterPath="$PROJECT_DIR$/tests/queryORDER/order_personalSQL.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/queryORDER/order_status/for_cook_seelct_orders_items" afterPath="$PROJECT_DIR$/tests/queryORDER/order_status/for_cook_seelct_orders_items" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/queryORDER/orders.sql" afterPath="$PROJECT_DIR$/tests/queryORDER/orders.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/queryORDER/preorder.sql" afterPath="$PROJECT_DIR$/tests/queryORDER/preorder.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/queryORDER/statusSQL.sql" afterPath="$PROJECT_DIR$/tests/queryORDER/statusSQL.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/queryORDER/type_payment.sql" afterPath="$PROJECT_DIR$/tests/queryORDER/type_payment.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/tchan/tchan.go" afterPath="$PROJECT_DIR$/tests/tchan/tchan.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/unmarshaldbarray/cert/CEPO1701279874.cer" afterPath="$PROJECT_DIR$/tests/unmarshaldbarray/cert/CEPO1701279874.cer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/unmarshaldbarray/cert/cr/CEPO1701279874.cer" afterPath="$PROJECT_DIR$/tests/unmarshaldbarray/cert/cr/CEPO1701279874.cer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/unmarshaldbarray/cert/cr/yapoki.net.key" afterPath="$PROJECT_DIR$/tests/unmarshaldbarray/cert/cr/yapoki.net.key" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/unmarshaldbarray/cert/ya.csr" afterPath="$PROJECT_DIR$/tests/unmarshaldbarray/cert/ya.csr" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/unmarshaldbarray/cert/ya.key" afterPath="$PROJECT_DIR$/tests/unmarshaldbarray/cert/ya.key" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/unmarshaldbarray/cert/yapoki.net.key" afterPath="$PROJECT_DIR$/tests/unmarshaldbarray/cert/yapoki.net.key" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/unmarshaldbarray/log/2017-03-20.log" afterPath="$PROJECT_DIR$/tests/unmarshaldbarray/log/2017-03-20.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/unmarshaldbarray/log/2017-03-21.log" afterPath="$PROJECT_DIR$/tests/unmarshaldbarray/log/2017-03-21.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/unmarshaldbarray/order.conf" afterPath="$PROJECT_DIR$/tests/unmarshaldbarray/order.conf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/unmarshaldbarray/unarr.go" afterPath="$PROJECT_DIR$/tests/unmarshaldbarray/unarr.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/websock/sock.go" afterPath="$PROJECT_DIR$/tests/websock/sock.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/cook.txt" afterPath="$PROJECT_DIR$/webserver/templates/cook.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/den.txt" afterPath="$PROJECT_DIR$/webserver/templates/den.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/html/cassir/cassir.html" afterPath="$PROJECT_DIR$/webserver/templates/html/cassir/cassir.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/html/cook/sushimaker-list.html" afterPath="$PROJECT_DIR$/webserver/templates/html/cook/sushimaker-list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/html/index/index.html" afterPath="$PROJECT_DIR$/webserver/templates/html/index/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/html/oper/operator.html" afterPath="$PROJECT_DIR$/webserver/templates/html/oper/operator.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/css/bootstrap.css" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/css/bootstrap.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/css/cassa.css" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/css/cassa.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/css/my.css" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/css/my.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/css/style.css" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/SIP.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/SIP.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/TEST.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/TEST.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/bootstrap.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/cart.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/cart.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/cashbox.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/cashbox.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/cassir.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/cassir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/ccc.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/ccc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/cfg.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/cfg.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/delivery.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/delivery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/description_order.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/description_order.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/jquery.formstyler.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/jquery.formstyler.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/jquery.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/jquery.maskedinput.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/jquery.maskedinput.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/myjs.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/myjs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/operator.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/operator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/page.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/page.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/promotion - копия.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/promotion - копия.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/promotion.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/promotion.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/promotion_new.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/promotion_new.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/test_promotion.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/test_promotion.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/typeahead.jquery.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/typeahead.jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cassir/js/ws.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cassir/js/ws.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/css/bootstrap.css" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/css/bootstrap.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/css/media.css" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/css/media.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/css/mystylecss.css" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/css/mystylecss.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/bootstrap.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/conf.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/conf.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/cook_ws.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/cook_ws.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/jquery.cookie.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/jquery.cookie.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/jquery.formstyler.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/jquery.formstyler.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/jquery.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/myjs.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/myjs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/time.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/time.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/timer.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/timer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/tls_client.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js - копия/tls_client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js/bootstrap.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js/bootstrap.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js/conf.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js/conf.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js/jquery.cookie.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js/jquery.cookie.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js/jquery.formstyler.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js/jquery.formstyler.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js/jquery.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js/jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js/myjs.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js/myjs.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js/new_ws.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js/new_ws.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js/time.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js/time.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js/ws.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js/ws.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/old/down_site.html" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/old/down_site.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/old/order.html" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/old/order.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/old/select_post.html" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/old/select_post.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/old/up_index.html" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/old/up_index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/old/up_order.html" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/old/up_order.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/old/up_pizza.html" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/old/up_pizza.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/css/bootstrap.css" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/css/bootstrap.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/css/media.css" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/css/media.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/css/my_oper.css" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/css/my_oper.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/css/mystylecss.css" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/css/mystylecss.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/bootstrap.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/cart.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/cart.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/cart_bak.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/cart_bak.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/conf.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/conf.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/description_order.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/description_order.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/jquery.cookie.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/jquery.cookie.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/jquery.formstyler.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/jquery.formstyler.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/jquery.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/jquery.maskedinput.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/jquery.maskedinput.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/jquery.maskedinput.min.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/jquery.maskedinput.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/jssip-3.0.7.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/jssip-3.0.7.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/main.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/myjs.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/myjs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/new.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/new.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/new_bak.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/new_bak.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/promotion.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/promotion.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/time.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/time.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/typeahead.jquery.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/typeahead.jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/wsip.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/wsip.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/wsocket.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js - копия/wsocket.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/bootstrap.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/cart.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/cart.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/cart_bak.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/cart_bak.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/conf.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/conf.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/description_order.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/description_order.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/jquery.cookie.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/jquery.cookie.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/jquery.formstyler.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/jquery.formstyler.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/jquery.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/jquery.maskedinput.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/jquery.maskedinput.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/jquery.maskedinput.min.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/jquery.maskedinput.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/jssip-3.0.7.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/jssip-3.0.7.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/main.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/myjs.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/myjs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/new.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/new.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/new_bak.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/new_bak.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/oper_ws.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/oper_ws.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/promotion.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/promotion.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/time.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/time.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/typeahead.jquery.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/typeahead.jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/wsip.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/wsip.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/oper/js/wsocket.js" afterPath="$PROJECT_DIR$/webserver/templates/public/oper/js/wsocket.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/query.txt" afterPath="$PROJECT_DIR$/webserver/templates/query.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/webserver.go" afterPath="$PROJECT_DIR$/webserver/webserver.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/webservfunctable.go" afterPath="$PROJECT_DIR$/webserver/webservfunctable.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/websockets.go" afterPath="$PROJECT_DIR$/webserver/websockets.go" />
@@ -206,29 +37,105 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.47746146">
+    <splitter split-orientation="horizontal" split-proportion="0.4460261">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="controller.go" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/postgres/controller.go">
+          <file leaf-file-name="structures.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/structures/structures.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="352">
-                  <caret line="37" column="19" lean-forward="true" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
+                <state relative-caret-position="176">
+                  <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
                   <folding>
-                    <element signature="e#18#69#0" expanded="true" />
+                    <marker date="1496224611749" expanded="true" signature="3169:4067" ph="{...}" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="struct_function.go" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/structures/struct_function.go">
+          <file leaf-file-name="postgres.go" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/postgres/postgres.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="662">
-                  <caret line="1061" column="44" lean-forward="false" selection-start-line="1061" selection-start-column="44" selection-end-line="1061" selection-end-column="44" />
+                <state relative-caret-position="288">
+                  <caret line="1287" column="63" lean-forward="true" selection-start-line="1287" selection-start-column="63" selection-end-line="1287" selection-end-column="63" />
                   <folding>
-                    <element signature="e#20#178#0" expanded="true" />
+                    <element signature="e#18#115#0" expanded="true" />
+                    <marker date="1496309289167" expanded="true" signature="1995:2097" ph="UPDATE \&quot;ord... " />
+                    <marker date="1496309289167" expanded="true" signature="2240:2331" ph="UPDATE \&quot;ord... " />
+                    <marker date="1496309289167" expanded="true" signature="2455:2543" ph="UPDATE \&quot;ord... " />
+                    <marker date="1496309289167" expanded="true" signature="2666:2728" ph="UPDATE \&quot;ord... " />
+                    <marker date="1496309289167" expanded="true" signature="3385:3425" ph="SELECT type order" />
+                    <marker date="1496309289167" expanded="true" signature="3556:3600" ph="SELECT org_h... order" />
+                    <marker date="1496309289167" expanded="true" signature="3732:3776" ph="SELECT paid_... order" />
+                    <marker date="1496309289167" expanded="true" signature="3899:4097" ph="select org_h... order" />
+                    <marker date="1496309289167" expanded="true" signature="3945:4011" ph="SELECT order... order_customer" />
+                    <marker date="1496309289167" expanded="true" signature="4231:4261" ph="SELECT count... order" />
+                    <marker date="1496309289167" expanded="true" signature="8890:8925" ph="DELETE FROM " />
+                    <marker date="1496309289167" expanded="true" signature="9284:9482" ph="INSERT INTO order_customer... " />
+                    <marker date="1496309289167" expanded="true" signature="9723:9906" ph="UPDATE order... " />
+                    <marker date="1496309289167" expanded="true" signature="10146:10302" ph="SELECT order... order_customer" />
+                    <marker date="1496309289167" expanded="true" signature="10435:10486" ph="SELECT note order_customer" />
+                    <marker date="1496309289167" expanded="true" signature="10629:10834" ph="SELECT DISTI... order_customer" />
+                    <marker date="1496309289167" expanded="true" signature="10971:11175" ph="SELECT DISTI... order_customer" />
+                    <marker date="1496309289167" expanded="true" signature="11856:12036" ph="SELECT order... order_customer" />
+                    <marker date="1496309289167" expanded="true" signature="12274:12318" ph="DELETE FROM " />
+                    <marker date="1496309289167" expanded="true" signature="16680:16711" ph="SELECT count... order_list" />
+                    <marker date="1496309289167" expanded="true" signature="16848:16940" ph="SELECT count... order_list" />
+                    <marker date="1496309289167" expanded="true" signature="17069:17134" ph="select count... order_list" />
+                    <marker date="1496309289167" expanded="true" signature="17252:17322" ph="select id_pa... order_list" />
+                    <marker date="1496309289167" expanded="true" signature="17463:17512" ph="SELECT count... order_list" />
+                    <marker date="1496309289167" expanded="true" signature="26464:26519" ph="DELETE FROM " />
+                    <marker date="1496309289167" expanded="true" signature="26629:26669" ph="DELETE FROM " />
+                    <marker date="1496309289167" expanded="true" signature="27519:27689" ph="SELECT order... order_personal" />
+                    <marker date="1496309289167" expanded="true" signature="28438:28650" ph="SELECT order... order_personal" />
+                    <marker date="1496309289167" expanded="true" signature="28780:28980" ph="SELECT order... order_personal" />
+                    <marker date="1496309289167" expanded="true" signature="29121:29254" ph="SELECT order... order_personal" />
+                    <marker date="1496309289167" expanded="true" signature="29498:29559" ph="DELETE FROM " />
+                    <marker date="1496309289167" expanded="true" signature="29685:29729" ph="DELETE FROM " />
+                    <marker date="1496309289167" expanded="true" signature="36905:37027" ph="SELECT id, o... order_status" />
+                    <marker date="1496309289167" expanded="true" signature="37167:37322" ph="SELECT id, o... order_status" />
+                    <marker date="1496309289167" expanded="true" signature="37503:37603" ph="select \&quot;tim... order_status" />
+                    <marker date="1496309289167" expanded="true" signature="37759:37837" ph="SELECT user_... order_status" />
+                    <marker date="1496309289167" expanded="true" signature="38316:38497" ph="SELECT id, o... order_status" />
+                    <marker date="1496309289167" expanded="true" signature="38644:38801" ph="SELECT id, o... order_status" />
+                    <marker date="1496309289167" expanded="true" signature="38958:39058" ph="SELECT statu... order_status" />
+                    <marker date="1496309289167" expanded="true" signature="39196:39365" ph="SELECT id, o... order_status" />
+                    <marker date="1496309289167" expanded="true" signature="39606:39724" ph="WITH s AS(DE... " />
+                    <marker date="1496309289167" expanded="true" signature="39894:40017" ph="WITH s AS(DE... " />
+                    <marker date="1496309289167" expanded="true" signature="40157:40259" ph="WITH s AS(DE... " />
+                    <marker date="1496309289167" expanded="true" signature="42116:42157" ph="UPDATE cashb... " />
+                    <marker date="1496309289167" expanded="true" signature="42391:42587" ph="SELECT id, o... cashbox" />
+                    <marker date="1496309289167" expanded="true" signature="42726:42776" ph="SELECT SUM(d... cashbox" />
+                    <marker date="1496309289167" expanded="true" signature="45317:45602" ph="SELECT id, o... cashbox" />
+                    <marker date="1496309289167" expanded="true" signature="45736:45959" ph="SELECT id, o... cashbox" />
+                    <marker date="1496309289167" expanded="true" signature="46096:46296" ph="SELECT id, o... cashbox" />
+                    <marker date="1496309289167" expanded="true" signature="46948:47096" ph="select case " />
+                    <marker date="1496309289167" expanded="true" signature="46966:47017" ph="SELECT SUM(d... cashbox" />
+                    <marker date="1496309289167" expanded="true" signature="47040:47091" ph="SELECT SUM(d... cashbox" />
+                    <marker date="1496309289167" expanded="true" signature="47328:47359" ph="DELETE FROM " />
+                    <marker date="1496309289167" expanded="true" signature="47703:47752" ph="INSERT INTO status... " />
+                    <marker date="1496309289167" expanded="true" signature="47985:48022" ph="UPDATE statu... " />
+                    <marker date="1496309289167" expanded="true" signature="48255:48297" ph="SELECT id, n... status" />
+                    <marker date="1496309289167" expanded="true" signature="48420:48447" ph="SELECT id, n... status" />
+                    <marker date="1496309289167" expanded="true" signature="48678:48708" ph="DELETE FROM " />
+                    <marker date="1496309289167" expanded="true" signature="49064:49119" ph="INSERT INTO type_payment... " />
+                    <marker date="1496309289167" expanded="true" signature="49357:49400" ph="UPDATE type_... " />
+                    <marker date="1496309289167" expanded="true" signature="49638:49686" ph="SELECT id, n... type_payment" />
+                    <marker date="1496309289167" expanded="true" signature="49814:49847" ph="SELECT id, n... type_payment" />
+                    <marker date="1496309289167" expanded="true" signature="50083:50119" ph="DELETE FROM " />
+                    <marker date="1496309289167" expanded="true" signature="56655:56801" ph="SELECT id, u... сhange_employee" />
+                    <marker date="1496309289167" expanded="true" signature="56950:57182" ph="SELECT id, u... сhange_employee" />
+                    <marker date="1496309289167" expanded="true" signature="57323:57536" ph="SELECT id, u... сhange_employee" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="config.json" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/config.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="496">
+                  <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -240,36 +147,75 @@
           <file leaf-file-name="struct_transaction.go" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/structures/struct_transaction.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="512">
-                  <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+                <state relative-caret-position="3216">
+                  <caret line="201" column="40" lean-forward="false" selection-start-line="201" selection-start-column="31" selection-end-line="201" selection-end-column="40" />
                   <folding>
-                    <element signature="e#20#92#0" expanded="true" />
+                    <element signature="e#20#115#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="webservfunctable.go" pinned="false" current-in-tab="true">
+          <file leaf-file-name="websockets.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/webserver/websockets.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="528">
+                  <caret line="54" column="99" lean-forward="false" selection-start-line="54" selection-start-column="99" selection-end-line="54" selection-end-column="99" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="struct_interfaces.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/structures/struct_interfaces.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="112">
+                  <caret line="7" column="4" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+                  <folding>
+                    <element signature="e#20#41#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="config.json" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/config.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="368">
+                  <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="struct_websocket.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/structures/struct_websocket.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="576">
+                  <caret line="111" column="23" lean-forward="false" selection-start-line="111" selection-start-column="23" selection-end-line="111" selection-end-column="23" />
+                  <folding>
+                    <element signature="e#20#145#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="server.go" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/server/server.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-3536">
+                  <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="webservfunctable.go" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/webserver/webservfunctable.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="454">
-                  <caret line="413" column="108" lean-forward="false" selection-start-line="413" selection-start-column="108" selection-end-line="413" selection-end-column="108" />
-                  <folding>
-                    <element signature="e#19#202#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="structures.go" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/structures/structures.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="303">
-                  <caret line="167" column="5" lean-forward="false" selection-start-line="167" selection-start-column="5" selection-end-line="167" selection-end-column="5" />
-                  <folding>
-                    <element signature="e#20#86#0" expanded="true" />
-                    <marker date="1496134902895" expanded="true" signature="3139:4037" ph="{...}" />
-                  </folding>
+                <state relative-caret-position="352">
+                  <caret line="246" column="78" lean-forward="false" selection-start-line="246" selection-start-column="78" selection-end-line="246" selection-end-column="78" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -287,10 +233,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ValueNumberCountChangeEmployeeID</find>
-      <find>func order\(id int\) error \{\n\n\	TimeDelivery\, _ \:\= time\.Parse\(\&quot;2006\-01\-02T15\:04\:05\.000000\&quot;\, \&quot;2016\-11\-10T14\:58\:04\.095037\&quot;\)\n\	DatePreOrderCook\, _ \:\= time\.Parse\(\&quot;2006\-01\-02T15\:04\:05\.000000\&quot;\, \&quot;2016\-11\-10T14\:58\:04\.095037\&quot;\)\n\	\/\/TimeDeliveredBy\,_\:\=time\.Parse\(\&quot;2006\-01\-02T15\:04\:05\.000000\&quot;\, \&quot;2016\-11\-10T14\:58\:04\.095037\&quot;\)\n\	or \:\= structures\.Order\{ID\: ID\,\n\	\	SideOrder\:         2\,\n\	\	TimeDelivery\:      TimeDelivery\,\n\	\	DatePreOrderCook\:  DatePreOrderCook\,\n\	\	CountPerson\:       1\,\n\	\	Division\:          \&quot;sdlkjjfh283768\&quot;\,\n\	\	OrgHash\:           \&quot;kjsadfui82378723sdhj\&quot;\,\n\	\	Note\:              \&quot;Курочка ряба снясла яичко под чистую\&quot;\,\n\	\	DiscountName\:      \&quot;За три полоски на штанах\&quot;\,\n\	\	DiscountPercent\:   10\,\n\	\	Bonus\:             12\,\n\	\	Type\:              \&quot;12\&quot;\,\n\	\	Price\:             323654\,\n\	\	PriceWithDiscount\: 6546\,\n\	\	PriceCurrency\:     \&quot;деревянные\&quot;\,\n\	\}\n\	qm \:\= structures\.QueryMessage\{Table\:\&quot;Order\&quot;\}\n\n\	switch id \{\n\	case 0\:\n\	\	\/\/\-\-\-\-PING\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\n\	\	println\(\&quot;\-\-\-\-\-\-\-\-\-\-\-\-\-\- PING \-\-\-\-\-\-\-\-\-\-\-\-\-\-\&quot;\)\n\	\	message \:\= \&quot;PING\&quot;\n\	\	_\, err \:\= send\(string\(message\)\)\n\	\	if err \!\= nil \{\n\	\	\	return err\n\	\	\}\n\	case 1\:\n\	\	\/\/\-\-\-\-CREATE\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\n\	\	println\(\&quot;\-\-\-\-\-\-\-\-\-\-\-\-\- CREATE \-\-\-\-\-\-\-\-\-\-\-\-\-\&quot;\)\n\	\	println\(ID\)\n\	\	qm\.Query \= \&quot;Create\&quot;\n\	\	qm\.TypeParameter \= \&quot;GetID\&quot;\n\n\	\	qmM\, err \:\= json\.Marshal\(qm\)\n\	\	if err \!\= nil \{\n\	\	\	println\(err\.Error\(\)\)\n\	\	\	return err\n\	\	\}</find>
-      <find>GetFileAttributesEx</find>
-      <find>ChangeEmployee</find>
       <find>Cash</find>
       <find>raise_exception</find>
       <find>CheckInfo</find>
@@ -311,12 +253,16 @@
       <find>controller.Stream</find>
       <find>TLS_serv_org</find>
       <find>The length of the parameter type does not satisfy the requirements of</find>
-      <find>Rows are closed</find>
       <find>TimersCook</find>
       <find>TypePa</find>
       <find>TypePaym</find>
-      <find>TypePayment</find>
       <find>getpoi</find>
+      <find>RangeForCook</find>
+      <find>Rows are closed</find>
+      <find>127.0.0.1:5432</find>
+      <find>:5432</find>
+      <find>5432</find>
+      <find>TypePayment</find>
     </findStrings>
     <replaceStrings>
       <replace>postgres.Requests</replace>
@@ -334,36 +280,40 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/tests/queryORDER/statusSQL.sql" />
-        <option value="$PROJECT_DIR$/webserver/webserver.go" />
         <option value="$PROJECT_DIR$/webserver/templates/den.txt" />
-        <option value="$PROJECT_DIR$/structures/struct_websocket.go" />
         <option value="$PROJECT_DIR$/order.json" />
         <option value="$PROJECT_DIR$/log/2017-05-15.log" />
         <option value="$PROJECT_DIR$/tests/queryORDER/orders.sql" />
         <option value="$PROJECT_DIR$/webserver/templates/public/cook/js/conf.js" />
-        <option value="$PROJECT_DIR$/client/client.go" />
         <option value="$PROJECT_DIR$/tests/queryORDER/functions.sql" />
         <option value="$PROJECT_DIR$/tests/tchan/tchan.go" />
         <option value="$PROJECT_DIR$/tests/queryORDER/preorder.sql" />
         <option value="$PROJECT_DIR$/tests/queryORDER/order_personalSQL.sql" />
         <option value="$PROJECT_DIR$/tests/queryORDER/order_listSQL.sql" />
-        <option value="$PROJECT_DIR$/webserver/websockets.go" />
         <option value="$PROJECT_DIR$/tests/trazaction/tranzaction.go" />
         <option value="$PROJECT_DIR$/log/2017-05-29.log" />
-        <option value="$PROJECT_DIR$/config.json" />
         <option value="$PROJECT_DIR$/controller/controller.go" />
         <option value="$PROJECT_DIR$/postgres/controller.go" />
         <option value="$PROJECT_DIR$/postgres/transaction.go" />
-        <option value="$PROJECT_DIR$/conf/conf.go" />
-        <option value="$PROJECT_DIR$/server/server.go" />
-        <option value="$PROJECT_DIR$/structures/structures.go" />
         <option value="$PROJECT_DIR$/webserver/templates/query.txt" />
-        <option value="$PROJECT_DIR$/server/serverfunctiontable.go" />
-        <option value="$PROJECT_DIR$/postgres/postgres.go" />
         <option value="$PROJECT_DIR$/structures/struct_interfaces.go" />
-        <option value="$PROJECT_DIR$/structures/struct_transaction.go" />
         <option value="$PROJECT_DIR$/structures/struct_function.go" />
+        <option value="$PROJECT_DIR$/structures/serverclient.go" />
+        <option value="$PROJECT_DIR$/structures/structures.go" />
+        <option value="$PROJECT_DIR$/client/client_order_personal.go" />
+        <option value="$PROJECT_DIR$/client/config.json" />
+        <option value="$PROJECT_DIR$/server/serverfunctiontable.go" />
+        <option value="$PROJECT_DIR$/webserver/webserver.go" />
+        <option value="$PROJECT_DIR$/postgres/postgres.go" />
+        <option value="$PROJECT_DIR$/tests/sw/sw.go" />
+        <option value="$PROJECT_DIR$/client/client.go" />
         <option value="$PROJECT_DIR$/webserver/webservfunctable.go" />
+        <option value="$PROJECT_DIR$/conf/conf.go" />
+        <option value="$PROJECT_DIR$/config.json" />
+        <option value="$PROJECT_DIR$/structures/struct_transaction.go" />
+        <option value="$PROJECT_DIR$/webserver/websockets.go" />
+        <option value="$PROJECT_DIR$/structures/struct_websocket.go" />
+        <option value="$PROJECT_DIR$/server/server.go" />
       </list>
     </option>
   </component>
@@ -394,7 +344,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -451,6 +400,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="orders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="orders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sw" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -540,6 +507,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -548,6 +516,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client" />
       <recent name="D:\win\documents\projects\gopath\src\project\orders" />
     </key>
   </component>
@@ -626,22 +595,22 @@
     <frame x="-1" y="25" width="1922" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10032017" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.101387404" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -656,35 +625,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/webserver/templates/query.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3978">
-          <caret line="234" column="0" lean-forward="false" selection-start-line="234" selection-start-column="0" selection-end-line="235" selection-end-column="169" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/structures/structures.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2363">
-          <caret line="143" column="12" lean-forward="false" selection-start-line="143" selection-start-column="5" selection-end-line="143" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/controller.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2091">
-          <caret line="128" column="20" lean-forward="false" selection-start-line="128" selection-start-column="20" selection-end-line="128" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/structures/struct_function.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1394">
-          <caret line="94" column="82" lean-forward="false" selection-start-line="94" selection-start-column="82" selection-end-line="94" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/queryORDER/statusSQL.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1292">
@@ -719,72 +659,72 @@
           <caret line="318" column="49" lean-forward="false" selection-start-line="318" selection-start-column="41" selection-end-line="318" selection-end-column="49" />
           <folding>
             <element signature="e#18#115#0" expanded="true" />
-            <marker date="1496141097320" expanded="true" signature="1995:2097" ph="UPDATE \&quot;ord... " />
-            <marker date="1496141097320" expanded="true" signature="2240:2331" ph="UPDATE \&quot;ord... " />
-            <marker date="1496141097320" expanded="true" signature="2455:2543" ph="UPDATE \&quot;ord... " />
-            <marker date="1496141097320" expanded="true" signature="2666:2728" ph="UPDATE \&quot;ord... " />
-            <marker date="1496141097320" expanded="true" signature="3385:3425" ph="SELECT type order" />
-            <marker date="1496141097320" expanded="true" signature="3556:3600" ph="SELECT org_h... order" />
-            <marker date="1496141097320" expanded="true" signature="3732:3776" ph="SELECT paid_... order" />
-            <marker date="1496141097320" expanded="true" signature="3899:4097" ph="select org_h... order" />
-            <marker date="1496141097320" expanded="true" signature="3945:4011" ph="SELECT order... order_customer" />
-            <marker date="1496141097320" expanded="true" signature="4231:4261" ph="SELECT count... order" />
-            <marker date="1496141097320" expanded="true" signature="8890:8925" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="9284:9482" ph="INSERT INTO order_customer... " />
-            <marker date="1496141097320" expanded="true" signature="9723:9906" ph="UPDATE order... " />
-            <marker date="1496141097320" expanded="true" signature="10146:10302" ph="SELECT order... order_customer" />
-            <marker date="1496141097320" expanded="true" signature="10435:10486" ph="SELECT note order_customer" />
-            <marker date="1496141097320" expanded="true" signature="10629:10834" ph="SELECT DISTI... order_customer" />
-            <marker date="1496141097320" expanded="true" signature="10971:11175" ph="SELECT DISTI... order_customer" />
-            <marker date="1496141097320" expanded="true" signature="11856:12036" ph="SELECT order... order_customer" />
-            <marker date="1496141097320" expanded="true" signature="12274:12318" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="15844:15875" ph="SELECT count... order_list" />
-            <marker date="1496141097320" expanded="true" signature="16012:16104" ph="SELECT count... order_list" />
-            <marker date="1496141097320" expanded="true" signature="16233:16298" ph="select count... order_list" />
-            <marker date="1496141097320" expanded="true" signature="16416:16486" ph="select id_pa... order_list" />
-            <marker date="1496141097320" expanded="true" signature="16627:16676" ph="SELECT count... order_list" />
-            <marker date="1496141097320" expanded="true" signature="25628:25683" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="25793:25833" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="26683:26853" ph="SELECT order... order_personal" />
-            <marker date="1496141097320" expanded="true" signature="27602:27814" ph="SELECT order... order_personal" />
-            <marker date="1496141097320" expanded="true" signature="27944:28144" ph="SELECT order... order_personal" />
-            <marker date="1496141097320" expanded="true" signature="28285:28418" ph="SELECT order... order_personal" />
-            <marker date="1496141097320" expanded="true" signature="28662:28723" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="28849:28893" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="36069:36191" ph="SELECT id, o... order_status" />
-            <marker date="1496141097320" expanded="true" signature="36331:36486" ph="SELECT id, o... order_status" />
-            <marker date="1496141097320" expanded="true" signature="36667:36767" ph="select \&quot;tim... order_status" />
-            <marker date="1496141097320" expanded="true" signature="36923:37001" ph="SELECT user_... order_status" />
-            <marker date="1496141097320" expanded="true" signature="37480:37661" ph="SELECT id, o... order_status" />
-            <marker date="1496141097320" expanded="true" signature="37808:37965" ph="SELECT id, o... order_status" />
-            <marker date="1496141097320" expanded="true" signature="38122:38222" ph="SELECT statu... order_status" />
-            <marker date="1496141097320" expanded="true" signature="38360:38529" ph="SELECT id, o... order_status" />
-            <marker date="1496141097320" expanded="true" signature="38770:38888" ph="WITH s AS(DE... " />
-            <marker date="1496141097320" expanded="true" signature="39058:39181" ph="WITH s AS(DE... " />
-            <marker date="1496141097320" expanded="true" signature="39321:39423" ph="WITH s AS(DE... " />
-            <marker date="1496141097320" expanded="true" signature="41272:41313" ph="UPDATE cashb... " />
-            <marker date="1496141097320" expanded="true" signature="41547:41743" ph="SELECT id, o... cashbox" />
-            <marker date="1496141097320" expanded="true" signature="41882:41932" ph="SELECT SUM(d... cashbox" />
-            <marker date="1496141097320" expanded="true" signature="44473:44758" ph="SELECT id, o... cashbox" />
-            <marker date="1496141097320" expanded="true" signature="44892:45115" ph="SELECT id, o... cashbox" />
-            <marker date="1496141097320" expanded="true" signature="45252:45452" ph="SELECT id, o... cashbox" />
-            <marker date="1496141097320" expanded="true" signature="46104:46252" ph="select case " />
-            <marker date="1496141097320" expanded="true" signature="46122:46173" ph="SELECT SUM(d... cashbox" />
-            <marker date="1496141097320" expanded="true" signature="46196:46247" ph="SELECT SUM(d... cashbox" />
-            <marker date="1496141097320" expanded="true" signature="46484:46515" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="46859:46908" ph="INSERT INTO status... " />
-            <marker date="1496141097320" expanded="true" signature="47141:47178" ph="UPDATE statu... " />
-            <marker date="1496141097320" expanded="true" signature="47411:47453" ph="SELECT id, n... status" />
-            <marker date="1496141097320" expanded="true" signature="47576:47603" ph="SELECT id, n... status" />
-            <marker date="1496141097320" expanded="true" signature="47834:47864" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="48220:48275" ph="INSERT INTO type_payment... " />
-            <marker date="1496141097320" expanded="true" signature="48513:48556" ph="UPDATE type_... " />
-            <marker date="1496141097320" expanded="true" signature="48794:48842" ph="SELECT id, n... type_payment" />
-            <marker date="1496141097320" expanded="true" signature="48970:49003" ph="SELECT id, n... type_payment" />
-            <marker date="1496141097320" expanded="true" signature="49239:49275" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="55811:55957" ph="SELECT id, u... сhange_employee" />
-            <marker date="1496141097320" expanded="true" signature="56106:56338" ph="SELECT id, u... сhange_employee" />
-            <marker date="1496141097320" expanded="true" signature="56479:56692" ph="SELECT id, u... сhange_employee" />
+            <marker date="1496309289167" expanded="true" signature="1995:2097" ph="UPDATE \&quot;ord... " />
+            <marker date="1496309289167" expanded="true" signature="2240:2331" ph="UPDATE \&quot;ord... " />
+            <marker date="1496309289167" expanded="true" signature="2455:2543" ph="UPDATE \&quot;ord... " />
+            <marker date="1496309289167" expanded="true" signature="2666:2728" ph="UPDATE \&quot;ord... " />
+            <marker date="1496309289167" expanded="true" signature="3385:3425" ph="SELECT type order" />
+            <marker date="1496309289167" expanded="true" signature="3556:3600" ph="SELECT org_h... order" />
+            <marker date="1496309289167" expanded="true" signature="3732:3776" ph="SELECT paid_... order" />
+            <marker date="1496309289167" expanded="true" signature="3899:4097" ph="select org_h... order" />
+            <marker date="1496309289167" expanded="true" signature="3945:4011" ph="SELECT order... order_customer" />
+            <marker date="1496309289167" expanded="true" signature="4231:4261" ph="SELECT count... order" />
+            <marker date="1496309289167" expanded="true" signature="8890:8925" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="9284:9482" ph="INSERT INTO order_customer... " />
+            <marker date="1496309289167" expanded="true" signature="9723:9906" ph="UPDATE order... " />
+            <marker date="1496309289167" expanded="true" signature="10146:10302" ph="SELECT order... order_customer" />
+            <marker date="1496309289167" expanded="true" signature="10435:10486" ph="SELECT note order_customer" />
+            <marker date="1496309289167" expanded="true" signature="10629:10834" ph="SELECT DISTI... order_customer" />
+            <marker date="1496309289167" expanded="true" signature="10971:11175" ph="SELECT DISTI... order_customer" />
+            <marker date="1496309289167" expanded="true" signature="11856:12036" ph="SELECT order... order_customer" />
+            <marker date="1496309289167" expanded="true" signature="12274:12318" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="16680:16711" ph="SELECT count... order_list" />
+            <marker date="1496309289167" expanded="true" signature="16848:16940" ph="SELECT count... order_list" />
+            <marker date="1496309289167" expanded="true" signature="17069:17134" ph="select count... order_list" />
+            <marker date="1496309289167" expanded="true" signature="17252:17322" ph="select id_pa... order_list" />
+            <marker date="1496309289167" expanded="true" signature="17463:17512" ph="SELECT count... order_list" />
+            <marker date="1496309289167" expanded="true" signature="26464:26519" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="26629:26669" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="27519:27689" ph="SELECT order... order_personal" />
+            <marker date="1496309289167" expanded="true" signature="28438:28650" ph="SELECT order... order_personal" />
+            <marker date="1496309289167" expanded="true" signature="28780:28980" ph="SELECT order... order_personal" />
+            <marker date="1496309289167" expanded="true" signature="29121:29254" ph="SELECT order... order_personal" />
+            <marker date="1496309289167" expanded="true" signature="29498:29559" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="29685:29729" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="36905:37027" ph="SELECT id, o... order_status" />
+            <marker date="1496309289167" expanded="true" signature="37167:37322" ph="SELECT id, o... order_status" />
+            <marker date="1496309289167" expanded="true" signature="37503:37603" ph="select \&quot;tim... order_status" />
+            <marker date="1496309289167" expanded="true" signature="37759:37837" ph="SELECT user_... order_status" />
+            <marker date="1496309289167" expanded="true" signature="38316:38497" ph="SELECT id, o... order_status" />
+            <marker date="1496309289167" expanded="true" signature="38644:38801" ph="SELECT id, o... order_status" />
+            <marker date="1496309289167" expanded="true" signature="38958:39058" ph="SELECT statu... order_status" />
+            <marker date="1496309289167" expanded="true" signature="39196:39365" ph="SELECT id, o... order_status" />
+            <marker date="1496309289167" expanded="true" signature="39606:39724" ph="WITH s AS(DE... " />
+            <marker date="1496309289167" expanded="true" signature="39894:40017" ph="WITH s AS(DE... " />
+            <marker date="1496309289167" expanded="true" signature="40157:40259" ph="WITH s AS(DE... " />
+            <marker date="1496309289167" expanded="true" signature="42116:42157" ph="UPDATE cashb... " />
+            <marker date="1496309289167" expanded="true" signature="42391:42587" ph="SELECT id, o... cashbox" />
+            <marker date="1496309289167" expanded="true" signature="42726:42776" ph="SELECT SUM(d... cashbox" />
+            <marker date="1496309289167" expanded="true" signature="45317:45602" ph="SELECT id, o... cashbox" />
+            <marker date="1496309289167" expanded="true" signature="45736:45959" ph="SELECT id, o... cashbox" />
+            <marker date="1496309289167" expanded="true" signature="46096:46296" ph="SELECT id, o... cashbox" />
+            <marker date="1496309289167" expanded="true" signature="46948:47096" ph="select case " />
+            <marker date="1496309289167" expanded="true" signature="46966:47017" ph="SELECT SUM(d... cashbox" />
+            <marker date="1496309289167" expanded="true" signature="47040:47091" ph="SELECT SUM(d... cashbox" />
+            <marker date="1496309289167" expanded="true" signature="47328:47359" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="47703:47752" ph="INSERT INTO status... " />
+            <marker date="1496309289167" expanded="true" signature="47985:48022" ph="UPDATE statu... " />
+            <marker date="1496309289167" expanded="true" signature="48255:48297" ph="SELECT id, n... status" />
+            <marker date="1496309289167" expanded="true" signature="48420:48447" ph="SELECT id, n... status" />
+            <marker date="1496309289167" expanded="true" signature="48678:48708" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="49064:49119" ph="INSERT INTO type_payment... " />
+            <marker date="1496309289167" expanded="true" signature="49357:49400" ph="UPDATE type_... " />
+            <marker date="1496309289167" expanded="true" signature="49638:49686" ph="SELECT id, n... type_payment" />
+            <marker date="1496309289167" expanded="true" signature="49814:49847" ph="SELECT id, n... type_payment" />
+            <marker date="1496309289167" expanded="true" signature="50083:50119" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="56655:56801" ph="SELECT id, u... сhange_employee" />
+            <marker date="1496309289167" expanded="true" signature="56950:57182" ph="SELECT id, u... сhange_employee" />
+            <marker date="1496309289167" expanded="true" signature="57323:57536" ph="SELECT id, u... сhange_employee" />
           </folding>
         </state>
       </provider>
@@ -828,13 +768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/client.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="11" lean-forward="false" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -868,7 +801,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16">
           <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -876,7 +808,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3728">
           <caret line="233" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -884,7 +815,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="18" lean-forward="false" selection-start-line="0" selection-start-column="18" selection-end-line="0" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -892,7 +822,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
           <caret line="4" column="49" lean-forward="true" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -900,7 +829,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="624">
           <caret line="39" column="2" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="79" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -908,7 +836,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="800">
           <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -916,36 +843,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="32">
           <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-          <folding>
-            <element signature="e#20#104#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller/controller.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="14" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webserver/webserver.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="878">
-          <caret line="63" column="28" lean-forward="false" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webserver/websockets.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1136">
-          <caret line="79" column="13" lean-forward="false" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/controller.go" />
     <entry file="file://$PROJECT_DIR$/../../../../go/src/builtin/builtin.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="766">
@@ -954,133 +855,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/conf/conf.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="110" column="33" lean-forward="false" selection-start-line="110" selection-start-column="33" selection-end-line="110" selection-end-column="33" />
-          <folding>
-            <element signature="e#16#223#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="20" column="15" lean-forward="false" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webserver/templates/query.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="606">
           <caret line="278" column="56" lean-forward="false" selection-start-line="278" selection-start-column="56" selection-end-line="278" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/structures/struct_websocket.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="878">
-          <caret line="90" column="42" lean-forward="false" selection-start-line="90" selection-start-column="34" selection-end-line="90" selection-end-column="42" />
-          <folding>
-            <element signature="e#20#145#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/structures/serverclient.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="878">
-          <caret line="76" column="8" lean-forward="false" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="8" />
-          <folding>
-            <element signature="e#20#139#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/postgres/postgres.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="1223" column="4" lean-forward="true" selection-start-line="1223" selection-start-column="4" selection-end-line="1226" selection-end-column="5" />
-          <folding>
-            <element signature="e#18#115#0" expanded="true" />
-            <marker date="1496141097320" expanded="true" signature="1995:2097" ph="UPDATE \&quot;ord... " />
-            <marker date="1496141097320" expanded="true" signature="2240:2331" ph="UPDATE \&quot;ord... " />
-            <marker date="1496141097320" expanded="true" signature="2455:2543" ph="UPDATE \&quot;ord... " />
-            <marker date="1496141097320" expanded="true" signature="2666:2728" ph="UPDATE \&quot;ord... " />
-            <marker date="1496141097320" expanded="true" signature="3385:3425" ph="SELECT type order" />
-            <marker date="1496141097320" expanded="true" signature="3556:3600" ph="SELECT org_h... order" />
-            <marker date="1496141097320" expanded="true" signature="3732:3776" ph="SELECT paid_... order" />
-            <marker date="1496141097320" expanded="true" signature="3899:4097" ph="select org_h... order" />
-            <marker date="1496141097320" expanded="true" signature="3945:4011" ph="SELECT order... order_customer" />
-            <marker date="1496141097320" expanded="true" signature="4231:4261" ph="SELECT count... order" />
-            <marker date="1496141097320" expanded="true" signature="8890:8925" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="9284:9482" ph="INSERT INTO order_customer... " />
-            <marker date="1496141097320" expanded="true" signature="9723:9906" ph="UPDATE order... " />
-            <marker date="1496141097320" expanded="true" signature="10146:10302" ph="SELECT order... order_customer" />
-            <marker date="1496141097320" expanded="true" signature="10435:10486" ph="SELECT note order_customer" />
-            <marker date="1496141097320" expanded="true" signature="10629:10834" ph="SELECT DISTI... order_customer" />
-            <marker date="1496141097320" expanded="true" signature="10971:11175" ph="SELECT DISTI... order_customer" />
-            <marker date="1496141097320" expanded="true" signature="11856:12036" ph="SELECT order... order_customer" />
-            <marker date="1496141097320" expanded="true" signature="12274:12318" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="15844:15875" ph="SELECT count... order_list" />
-            <marker date="1496141097320" expanded="true" signature="16012:16104" ph="SELECT count... order_list" />
-            <marker date="1496141097320" expanded="true" signature="16233:16298" ph="select count... order_list" />
-            <marker date="1496141097320" expanded="true" signature="16416:16486" ph="select id_pa... order_list" />
-            <marker date="1496141097320" expanded="true" signature="16627:16676" ph="SELECT count... order_list" />
-            <marker date="1496141097320" expanded="true" signature="25628:25683" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="25793:25833" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="26683:26853" ph="SELECT order... order_personal" />
-            <marker date="1496141097320" expanded="true" signature="27602:27814" ph="SELECT order... order_personal" />
-            <marker date="1496141097320" expanded="true" signature="27944:28144" ph="SELECT order... order_personal" />
-            <marker date="1496141097320" expanded="true" signature="28285:28418" ph="SELECT order... order_personal" />
-            <marker date="1496141097320" expanded="true" signature="28662:28723" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="28849:28893" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="36069:36191" ph="SELECT id, o... order_status" />
-            <marker date="1496141097320" expanded="true" signature="36331:36486" ph="SELECT id, o... order_status" />
-            <marker date="1496141097320" expanded="true" signature="36667:36767" ph="select \&quot;tim... order_status" />
-            <marker date="1496141097320" expanded="true" signature="36923:37001" ph="SELECT user_... order_status" />
-            <marker date="1496141097320" expanded="true" signature="37480:37661" ph="SELECT id, o... order_status" />
-            <marker date="1496141097320" expanded="true" signature="37808:37965" ph="SELECT id, o... order_status" />
-            <marker date="1496141097320" expanded="true" signature="38122:38222" ph="SELECT statu... order_status" />
-            <marker date="1496141097320" expanded="true" signature="38360:38529" ph="SELECT id, o... order_status" />
-            <marker date="1496141097320" expanded="true" signature="38770:38888" ph="WITH s AS(DE... " />
-            <marker date="1496141097320" expanded="true" signature="39058:39181" ph="WITH s AS(DE... " />
-            <marker date="1496141097320" expanded="true" signature="39321:39423" ph="WITH s AS(DE... " />
-            <marker date="1496141097320" expanded="true" signature="41272:41313" ph="UPDATE cashb... " />
-            <marker date="1496141097320" expanded="true" signature="41547:41743" ph="SELECT id, o... cashbox" />
-            <marker date="1496141097320" expanded="true" signature="41882:41932" ph="SELECT SUM(d... cashbox" />
-            <marker date="1496141097320" expanded="true" signature="44473:44758" ph="SELECT id, o... cashbox" />
-            <marker date="1496141097320" expanded="true" signature="44892:45115" ph="SELECT id, o... cashbox" />
-            <marker date="1496141097320" expanded="true" signature="45252:45452" ph="SELECT id, o... cashbox" />
-            <marker date="1496141097320" expanded="true" signature="46104:46252" ph="select case " />
-            <marker date="1496141097320" expanded="true" signature="46122:46173" ph="SELECT SUM(d... cashbox" />
-            <marker date="1496141097320" expanded="true" signature="46196:46247" ph="SELECT SUM(d... cashbox" />
-            <marker date="1496141097320" expanded="true" signature="46484:46515" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="46859:46908" ph="INSERT INTO status... " />
-            <marker date="1496141097320" expanded="true" signature="47141:47178" ph="UPDATE statu... " />
-            <marker date="1496141097320" expanded="true" signature="47411:47453" ph="SELECT id, n... status" />
-            <marker date="1496141097320" expanded="true" signature="47576:47603" ph="SELECT id, n... status" />
-            <marker date="1496141097320" expanded="true" signature="47834:47864" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="48220:48275" ph="INSERT INTO type_payment... " />
-            <marker date="1496141097320" expanded="true" signature="48513:48556" ph="UPDATE type_... " />
-            <marker date="1496141097320" expanded="true" signature="48794:48842" ph="SELECT id, n... type_payment" />
-            <marker date="1496141097320" expanded="true" signature="48970:49003" ph="SELECT id, n... type_payment" />
-            <marker date="1496141097320" expanded="true" signature="49239:49275" ph="DELETE FROM " />
-            <marker date="1496141097320" expanded="true" signature="55811:55957" ph="SELECT id, u... сhange_employee" />
-            <marker date="1496141097320" expanded="true" signature="56106:56338" ph="SELECT id, u... сhange_employee" />
-            <marker date="1496141097320" expanded="true" signature="56479:56692" ph="SELECT id, u... сhange_employee" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1092,82 +870,252 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/serverfunctiontable.go">
+    <entry file="file://$PROJECT_DIR$/postgres/transaction.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="639">
-          <caret line="110" column="39" lean-forward="true" selection-start-line="110" selection-start-column="39" selection-end-line="110" selection-end-column="39" />
-          <folding>
-            <element signature="e#16#134#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-130">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="88" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/postgres/transaction.go">
+    <entry file="file://$PROJECT_DIR$/client/client_order_personal.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="88" selection-end-column="3" />
+        <state relative-caret-position="431">
+          <caret line="106" column="36" lean-forward="false" selection-start-line="106" selection-start-column="36" selection-end-line="106" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/structures/struct_interfaces.go">
+    <entry file="file://$PROJECT_DIR$/../../../../go/src/net/net.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="31" />
-          <folding>
-            <element signature="e#20#41#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1888">
+          <caret line="125" column="4" lean-forward="false" selection-start-line="125" selection-start-column="4" selection-end-line="125" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/structures/structures.go">
+    <entry file="file://$PROJECT_DIR$/webserver/webserver.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="167" column="5" lean-forward="false" selection-start-line="167" selection-start-column="5" selection-end-line="167" selection-end-column="5" />
-          <folding>
-            <element signature="e#20#86#0" expanded="true" />
-            <marker date="1496134902895" expanded="true" signature="3139:4037" ph="{...}" />
-          </folding>
+        <state relative-caret-position="192">
+          <caret line="72" column="6" lean-forward="true" selection-start-line="72" selection-start-column="6" selection-end-line="72" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/structures/struct_transaction.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding>
-            <element signature="e#20#92#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/postgres/controller.go">
+    <entry file="file://$PROJECT_DIR$/tests/sw/sw.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
-          <caret line="37" column="19" lean-forward="true" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
-          <folding>
-            <element signature="e#18#69#0" expanded="true" />
-          </folding>
+          <caret line="22" column="11" lean-forward="true" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/structures/struct_function.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
-          <caret line="1061" column="44" lean-forward="false" selection-start-line="1061" selection-start-column="44" selection-end-line="1061" selection-end-column="44" />
+        <state relative-caret-position="16">
+          <caret line="472" column="0" lean-forward="false" selection-start-line="472" selection-start-column="0" selection-end-line="473" selection-end-column="69" />
           <folding>
             <element signature="e#20#178#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/serverfunctiontable.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
+          <folding>
+            <element signature="e#16#111#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/structures/serverclient.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="145" column="4" lean-forward="true" selection-start-line="145" selection-start-column="4" selection-end-line="160" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/client.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="181" column="16" lean-forward="false" selection-start-line="181" selection-start-column="16" selection-end-line="181" selection-end-column="16" />
+          <folding>
+            <element signature="e#14#205#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/conf.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="29" column="29" lean-forward="false" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/webserver/webservfunctable.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="413" column="108" lean-forward="false" selection-start-line="413" selection-start-column="108" selection-end-line="413" selection-end-column="108" />
+        <state relative-caret-position="352">
+          <caret line="246" column="78" lean-forward="false" selection-start-line="246" selection-start-column="78" selection-end-line="246" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/postgres/controller.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="101" column="14" lean-forward="true" selection-start-line="101" selection-start-column="14" selection-end-line="101" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/structures/struct_interfaces.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" column="4" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
           <folding>
-            <element signature="e#19#202#0" expanded="true" />
+            <element signature="e#20#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/structures/structures.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding>
+            <marker date="1496224611749" expanded="true" signature="3169:4067" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/postgres/postgres.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="1287" column="63" lean-forward="true" selection-start-line="1287" selection-start-column="63" selection-end-line="1287" selection-end-column="63" />
+          <folding>
+            <element signature="e#18#115#0" expanded="true" />
+            <marker date="1496309289167" expanded="true" signature="1995:2097" ph="UPDATE \&quot;ord... " />
+            <marker date="1496309289167" expanded="true" signature="2240:2331" ph="UPDATE \&quot;ord... " />
+            <marker date="1496309289167" expanded="true" signature="2455:2543" ph="UPDATE \&quot;ord... " />
+            <marker date="1496309289167" expanded="true" signature="2666:2728" ph="UPDATE \&quot;ord... " />
+            <marker date="1496309289167" expanded="true" signature="3385:3425" ph="SELECT type order" />
+            <marker date="1496309289167" expanded="true" signature="3556:3600" ph="SELECT org_h... order" />
+            <marker date="1496309289167" expanded="true" signature="3732:3776" ph="SELECT paid_... order" />
+            <marker date="1496309289167" expanded="true" signature="3899:4097" ph="select org_h... order" />
+            <marker date="1496309289167" expanded="true" signature="3945:4011" ph="SELECT order... order_customer" />
+            <marker date="1496309289167" expanded="true" signature="4231:4261" ph="SELECT count... order" />
+            <marker date="1496309289167" expanded="true" signature="8890:8925" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="9284:9482" ph="INSERT INTO order_customer... " />
+            <marker date="1496309289167" expanded="true" signature="9723:9906" ph="UPDATE order... " />
+            <marker date="1496309289167" expanded="true" signature="10146:10302" ph="SELECT order... order_customer" />
+            <marker date="1496309289167" expanded="true" signature="10435:10486" ph="SELECT note order_customer" />
+            <marker date="1496309289167" expanded="true" signature="10629:10834" ph="SELECT DISTI... order_customer" />
+            <marker date="1496309289167" expanded="true" signature="10971:11175" ph="SELECT DISTI... order_customer" />
+            <marker date="1496309289167" expanded="true" signature="11856:12036" ph="SELECT order... order_customer" />
+            <marker date="1496309289167" expanded="true" signature="12274:12318" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="16680:16711" ph="SELECT count... order_list" />
+            <marker date="1496309289167" expanded="true" signature="16848:16940" ph="SELECT count... order_list" />
+            <marker date="1496309289167" expanded="true" signature="17069:17134" ph="select count... order_list" />
+            <marker date="1496309289167" expanded="true" signature="17252:17322" ph="select id_pa... order_list" />
+            <marker date="1496309289167" expanded="true" signature="17463:17512" ph="SELECT count... order_list" />
+            <marker date="1496309289167" expanded="true" signature="26464:26519" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="26629:26669" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="27519:27689" ph="SELECT order... order_personal" />
+            <marker date="1496309289167" expanded="true" signature="28438:28650" ph="SELECT order... order_personal" />
+            <marker date="1496309289167" expanded="true" signature="28780:28980" ph="SELECT order... order_personal" />
+            <marker date="1496309289167" expanded="true" signature="29121:29254" ph="SELECT order... order_personal" />
+            <marker date="1496309289167" expanded="true" signature="29498:29559" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="29685:29729" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="36905:37027" ph="SELECT id, o... order_status" />
+            <marker date="1496309289167" expanded="true" signature="37167:37322" ph="SELECT id, o... order_status" />
+            <marker date="1496309289167" expanded="true" signature="37503:37603" ph="select \&quot;tim... order_status" />
+            <marker date="1496309289167" expanded="true" signature="37759:37837" ph="SELECT user_... order_status" />
+            <marker date="1496309289167" expanded="true" signature="38316:38497" ph="SELECT id, o... order_status" />
+            <marker date="1496309289167" expanded="true" signature="38644:38801" ph="SELECT id, o... order_status" />
+            <marker date="1496309289167" expanded="true" signature="38958:39058" ph="SELECT statu... order_status" />
+            <marker date="1496309289167" expanded="true" signature="39196:39365" ph="SELECT id, o... order_status" />
+            <marker date="1496309289167" expanded="true" signature="39606:39724" ph="WITH s AS(DE... " />
+            <marker date="1496309289167" expanded="true" signature="39894:40017" ph="WITH s AS(DE... " />
+            <marker date="1496309289167" expanded="true" signature="40157:40259" ph="WITH s AS(DE... " />
+            <marker date="1496309289167" expanded="true" signature="42116:42157" ph="UPDATE cashb... " />
+            <marker date="1496309289167" expanded="true" signature="42391:42587" ph="SELECT id, o... cashbox" />
+            <marker date="1496309289167" expanded="true" signature="42726:42776" ph="SELECT SUM(d... cashbox" />
+            <marker date="1496309289167" expanded="true" signature="45317:45602" ph="SELECT id, o... cashbox" />
+            <marker date="1496309289167" expanded="true" signature="45736:45959" ph="SELECT id, o... cashbox" />
+            <marker date="1496309289167" expanded="true" signature="46096:46296" ph="SELECT id, o... cashbox" />
+            <marker date="1496309289167" expanded="true" signature="46948:47096" ph="select case " />
+            <marker date="1496309289167" expanded="true" signature="46966:47017" ph="SELECT SUM(d... cashbox" />
+            <marker date="1496309289167" expanded="true" signature="47040:47091" ph="SELECT SUM(d... cashbox" />
+            <marker date="1496309289167" expanded="true" signature="47328:47359" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="47703:47752" ph="INSERT INTO status... " />
+            <marker date="1496309289167" expanded="true" signature="47985:48022" ph="UPDATE statu... " />
+            <marker date="1496309289167" expanded="true" signature="48255:48297" ph="SELECT id, n... status" />
+            <marker date="1496309289167" expanded="true" signature="48420:48447" ph="SELECT id, n... status" />
+            <marker date="1496309289167" expanded="true" signature="48678:48708" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="49064:49119" ph="INSERT INTO type_payment... " />
+            <marker date="1496309289167" expanded="true" signature="49357:49400" ph="UPDATE type_... " />
+            <marker date="1496309289167" expanded="true" signature="49638:49686" ph="SELECT id, n... type_payment" />
+            <marker date="1496309289167" expanded="true" signature="49814:49847" ph="SELECT id, n... type_payment" />
+            <marker date="1496309289167" expanded="true" signature="50083:50119" ph="DELETE FROM " />
+            <marker date="1496309289167" expanded="true" signature="56655:56801" ph="SELECT id, u... сhange_employee" />
+            <marker date="1496309289167" expanded="true" signature="56950:57182" ph="SELECT id, u... сhange_employee" />
+            <marker date="1496309289167" expanded="true" signature="57323:57536" ph="SELECT id, u... сhange_employee" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webserver/websockets.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="54" column="99" lean-forward="false" selection-start-line="54" selection-start-column="99" selection-end-line="54" selection-end-column="99" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/structures/struct_websocket.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="111" column="23" lean-forward="false" selection-start-line="111" selection-start-column="23" selection-end-line="111" selection-end-column="23" />
+          <folding>
+            <element signature="e#20#145#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/structures/struct_transaction.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3216">
+          <caret line="201" column="40" lean-forward="false" selection-start-line="201" selection-start-column="31" selection-end-line="201" selection-end-column="40" />
+          <folding>
+            <element signature="e#20#115#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3536">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

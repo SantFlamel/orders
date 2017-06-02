@@ -1,0 +1,874 @@
+2017-06-01 10:02:50 - 
+2017-06-01 10:02:50 - _______NEW_START_OF_SERVER_______
+2017-06-01 10:02:50 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 10:02:50 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 10:02:50 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 10:02:50 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 10:02:50 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 10:02:50 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 10:02:50 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 10:02:50 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 10:02:50 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 10:02:50 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 10:02:50 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 10:02:50 - [GIN-debug] Listening and serving HTTP on :80
+2017-06-01 10:02:52 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:02:52 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:02:53 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:02:53 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:03:09 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:03:10 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:03:10 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:03:34 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:03:34 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:04:05 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:04:06 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:04:06 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:04:07 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:04:07 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:27:46 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 10:27:49 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 10:27:56 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 10:27:59 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 10:27:59 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 10:28:02 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 10:28:33 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:28:33 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:28:34 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:28:34 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:28:42 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:28:42 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:28:48 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:28:48 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:28:50 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:28:50 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:28:55 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:28:55 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:28:56 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:30:32 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:30:32 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:32:08 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 10:32:11 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 10:32:23 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:32:23 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:34:02 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:34:02 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:34:03 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:34:03 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:34:03 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:34:03 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:34:03 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:34:04 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:34:04 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:34:17 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:34:17 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:34:30 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:34:30 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:34:42 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:34:42 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:35:01 - 
+2017-06-01 10:35:01 - _______NEW_START_OF_SERVER_______
+2017-06-01 10:35:01 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 10:35:01 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 10:35:01 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 10:35:01 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 10:35:01 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 10:35:01 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 10:35:01 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 10:35:01 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 10:35:01 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 10:35:01 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 10:35:01 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 10:35:01 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 10:35:38 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:35:38 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:37:14 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:37:14 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:37:16 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:37:16 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:38:19 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:38:19 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:38:19 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:38:20 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:38:20 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:38:21 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:38:21 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:38:21 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:38:21 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:39:23 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:39:23 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:39:24 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:39:24 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 10:39:24 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 12:24:21 - 
+2017-06-01 12:24:21 - _______NEW_START_OF_SERVER_______
+2017-06-01 12:24:21 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 12:24:21 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 12:24:21 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 12:24:21 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 12:24:21 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 12:24:21 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 12:24:21 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 12:24:21 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 12:24:21 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 12:24:21 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 12:24:21 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 12:24:21 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 12:32:03 - 
+2017-06-01 12:32:03 - _______NEW_START_OF_SERVER_______
+2017-06-01 12:33:56 - 
+2017-06-01 12:33:56 - _______NEW_START_OF_SERVER_______
+2017-06-01 12:33:56 - [GIN-debug] Loaded HTML Templates (4): 
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+
+2017-06-01 12:33:56 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 12:33:56 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 12:33:56 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 12:33:56 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 12:33:56 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 12:33:56 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 12:33:56 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 12:33:56 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 12:33:56 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 12:33:56 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 12:33:56 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 12:35:21 - 
+2017-06-01 12:35:21 - _______NEW_START_OF_SERVER_______
+2017-06-01 12:35:21 - [GIN-debug] Loaded HTML Templates (4): 
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+
+2017-06-01 12:35:21 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 12:35:21 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 12:35:21 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 12:35:21 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 12:35:21 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 12:35:21 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 12:35:21 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 12:35:21 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 12:35:21 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 12:35:21 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 12:35:21 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 12:35:36 - client:  dial tcp 192.168.0.132:442: getsockopt: connection refused
+2017-06-01 12:51:35 - 00:x10018{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 12:51:36 - 00:x10023{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 12:51:39 - 00:x10028{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 12:51:45 - 00:x10033{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 12:51:51 - 00:x10038{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 12:51:53 - 00:x10043{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 12:52:31 - ERROR get message 192.168.0.132:483 : [48 48 58 67 114 101 97 116 101 32 67 108 105 101 110 116 79 114 100 101 114 115 65 100 100 114 101 115 115 58 112 113 58 32 208 189 209 131 208 187 208 181 208 178 208 190 208 181 32 208 183 208 189 208 176 209 135 208 181 208 189 208 184 208 181 32 208 178 32 209 129 209 130 208 190 208 187 208 177 209 134 208 181 32 34 67 108 105 101 110 116 72 97 115 104 34 32 208 189 208 176 209 128 209 131 209 136 208 176 208 181 209 130 32 208 190 208 179 209 128 208 176 208 189 208 184 209 135 208 181 208 189 208 184 208 181 32 78 79 84 32 78 85 76 76]
+2017-06-01 12:54:32 - 00:x10018{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 12:57:30 - 00:x10019{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 12:57:32 - 00:x10024{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 12:57:46 - 00:x10029{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 12:58:23 - 00:x10034{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 12:58:51 - 00:x10039{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 13:00:48 - 
+2017-06-01 13:00:48 - _______NEW_START_OF_SERVER_______
+2017-06-01 13:00:48 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 13:00:48 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 13:00:48 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 13:00:48 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 13:00:48 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 13:00:48 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 13:00:48 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 13:00:48 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 13:00:48 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 13:00:48 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 13:00:48 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 13:00:48 - [GIN-debug] Listening and serving HTTP on :80
+2017-06-01 13:15:52 - 
+2017-06-01 13:15:52 - _______NEW_START_OF_SERVER_______
+2017-06-01 13:17:16 - 
+2017-06-01 13:17:16 - _______NEW_START_OF_SERVER_______
+2017-06-01 13:17:16 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 13:17:16 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 13:17:16 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 13:17:16 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 13:17:16 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 13:17:16 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 13:17:16 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 13:17:16 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 13:17:16 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 13:17:16 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 13:17:16 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 13:17:16 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 13:18:05 - ERROR get message 192.168.0.132:483 : [48 48 58 82 101 97 100 32 67 108 105 101 110 116 73 110 102 111 58 115 113 108 58 32 110 111 32 114 111 119 115 32 105 110 32 114 101 115 117 108 116 32 115 101 116]
+2017-06-01 13:18:07 - 
+2017-06-01 13:18:07 - _______NEW_START_OF_SERVER_______
+2017-06-01 13:18:07 - [GIN-debug] Loaded HTML Templates (4): 
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+
+2017-06-01 13:18:07 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 13:18:07 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 13:18:07 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 13:18:07 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 13:18:07 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 13:18:07 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 13:18:07 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 13:18:07 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 13:18:07 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 13:18:07 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 13:18:07 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 13:20:31 - client:  dial tcp 82.146.49.30:7730: getsockopt: connection timed out
+2017-06-01 13:37:46 - 00:x10020{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 13:37:57 - 00:x10027{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 13:38:11 - 00:x10034{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 13:39:36 - 
+2017-06-01 13:39:36 - _______NEW_START_OF_SERVER_______
+2017-06-01 13:39:36 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-06-01 13:39:36 - [GIN-debug] Loaded HTML Templates (4): 
+	- index.html
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+
+2017-06-01 13:39:36 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 13:39:36 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 13:39:36 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 13:39:36 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 13:39:36 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 13:39:36 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 13:39:36 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 13:39:36 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 13:39:36 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 13:39:36 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 13:39:36 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 13:40:52 - 
+2017-06-01 13:40:52 - _______NEW_START_OF_SERVER_______
+2017-06-01 13:40:52 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 13:40:52 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 13:40:52 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 13:40:52 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 13:40:52 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 13:40:52 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 13:40:52 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 13:40:52 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 13:40:52 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 13:40:52 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 13:40:52 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 13:40:52 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 13:43:35 - 
+2017-06-01 13:43:35 - _______NEW_START_OF_SERVER_______
+2017-06-01 13:43:35 - [GIN-debug] Loaded HTML Templates (4): 
+	- index.html
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+
+2017-06-01 13:43:35 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 13:43:35 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 13:43:35 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 13:43:35 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 13:43:35 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 13:43:35 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 13:43:35 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 13:43:35 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 13:43:35 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 13:43:35 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 13:43:35 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 13:47:31 - 00:x10012{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 13:49:15 - 00:x10076{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 13:50:56 - 
+2017-06-01 13:50:56 - _______NEW_START_OF_SERVER_______
+2017-06-01 13:52:36 - 00:x10044{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 13:53:28 - 
+2017-06-01 13:53:28 - _______NEW_START_OF_SERVER_______
+2017-06-01 13:53:28 - [GIN-debug] Loaded HTML Templates (4): 
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+
+2017-06-01 13:53:28 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 13:53:28 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 13:53:28 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 13:53:28 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 13:53:28 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 13:53:28 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 13:53:28 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 13:53:28 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 13:53:28 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 13:53:28 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 13:53:28 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 13:54:42 - 00:x10078{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 13:56:12 - 00:x10028{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 13:59:08 - 00:x10012{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 13:59:28 - 00:x10027{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 13:59:30 - 00:x10043{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 13:59:42 - 00:x10073{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 14:02:04 - 
+2017-06-01 14:02:04 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:02:41 - 00:x10121{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 14:07:14 - 
+2017-06-01 14:07:14 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:08:05 - 
+2017-06-01 14:08:05 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:08:05 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 14:08:05 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 14:08:05 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 14:08:05 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 14:08:05 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 14:08:05 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 14:08:05 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 14:08:05 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 14:08:05 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 14:08:05 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:08:05 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:08:05 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 14:08:58 - 
+2017-06-01 14:08:58 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:16:25 - 
+2017-06-01 14:16:25 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:16:25 - [GIN-debug] Loaded HTML Templates (4): 
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+	- cassir.html
+
+2017-06-01 14:16:25 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 14:16:25 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 14:16:25 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 14:16:25 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 14:16:25 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 14:16:25 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 14:16:25 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 14:16:25 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 14:16:25 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:16:25 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:16:25 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 14:17:36 - 
+2017-06-01 14:17:36 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:17:36 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 14:17:36 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 14:17:36 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 14:17:36 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 14:17:36 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 14:17:36 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 14:17:36 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 14:17:36 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 14:17:36 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 14:17:36 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:17:36 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:17:36 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 14:18:12 - 
+2017-06-01 14:18:12 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:18:12 - [GIN-debug] Loaded HTML Templates (4): 
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+
+2017-06-01 14:18:12 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 14:18:12 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 14:18:12 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 14:18:12 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 14:18:12 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 14:18:12 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 14:18:12 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 14:18:12 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 14:18:12 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:18:12 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:18:12 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 14:19:29 - 
+2017-06-01 14:19:29 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:21:18 - 
+2017-06-01 14:21:18 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:22:08 - 
+2017-06-01 14:22:08 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:22:08 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 14:22:08 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 14:22:08 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 14:22:08 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 14:22:08 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 14:22:08 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 14:22:08 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 14:22:08 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 14:22:08 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 14:22:08 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:22:08 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:22:08 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 14:22:49 - 
+2017-06-01 14:22:49 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:22:49 - [GIN-debug] Loaded HTML Templates (4): 
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+
+2017-06-01 14:22:49 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 14:22:49 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 14:22:49 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 14:22:49 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 14:22:49 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 14:22:49 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 14:22:49 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 14:22:49 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 14:22:49 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:22:49 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:22:49 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 14:23:04 - 
+2017-06-01 14:23:04 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:23:04 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 14:23:04 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 14:23:04 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 14:23:04 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 14:23:04 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 14:23:04 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 14:23:04 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 14:23:04 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 14:23:04 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 14:23:04 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:23:04 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:23:04 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 14:23:30 - 
+2017-06-01 14:23:30 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:23:30 - [GIN-debug] Loaded HTML Templates (4): 
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+
+2017-06-01 14:23:30 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 14:23:30 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 14:23:30 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 14:23:30 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 14:23:30 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 14:23:30 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 14:23:30 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 14:23:30 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 14:23:30 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:23:30 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:23:30 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 14:25:14 - 
+2017-06-01 14:25:14 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:25:14 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 14:25:14 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 14:25:14 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 14:25:14 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 14:25:14 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 14:25:14 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 14:25:14 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 14:25:14 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 14:25:14 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 14:25:14 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:25:14 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:25:14 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 14:28:15 - 
+2017-06-01 14:28:15 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:28:15 - [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+2017-06-01 14:28:15 - [GIN-debug] Loaded HTML Templates (4): 
+	- index.html
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+
+2017-06-01 14:28:15 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 14:28:15 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 14:28:15 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 14:28:15 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 14:28:15 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 14:28:15 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 14:28:15 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 14:28:15 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 14:28:15 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:28:15 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:28:15 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 14:46:26 - 
+2017-06-01 14:46:26 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:46:26 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 14:46:26 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 14:46:26 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 14:46:26 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 14:46:26 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 14:46:26 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 14:46:26 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 14:46:26 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 14:46:26 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 14:46:26 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:46:26 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:46:26 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 14:49:02 - 
+2017-06-01 14:49:02 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:51:52 - 
+2017-06-01 14:51:52 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:51:52 - [GIN-debug] Loaded HTML Templates (4): 
+	- index.html
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+
+2017-06-01 14:51:52 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 14:51:52 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 14:51:52 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 14:51:52 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 14:51:52 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 14:51:52 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 14:51:52 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 14:51:52 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 14:51:52 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:51:52 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:51:52 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 14:53:14 - 
+2017-06-01 14:53:14 - _______NEW_START_OF_SERVER_______
+2017-06-01 14:53:14 - [GIN-debug] Loaded HTML Templates (4): 
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+
+2017-06-01 14:53:14 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 14:53:14 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 14:53:14 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 14:53:14 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 14:53:14 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 14:53:14 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 14:53:14 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 14:53:14 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 14:53:14 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:53:14 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 14:53:14 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 14:53:19 - ERROR :  Mismatch request Insert for table:'Order' and type parameter:'GetIDa'
+2017-06-01 15:01:04 - 
+2017-06-01 15:01:04 - _______NEW_START_OF_SERVER_______
+2017-06-01 15:01:04 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 15:01:04 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 15:01:04 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 15:01:04 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 15:01:04 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 15:01:04 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 15:01:04 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 15:01:04 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 15:01:04 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 15:01:04 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 15:01:04 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 15:01:04 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 15:01:10 - {"Tables":null,"Query":"","Error":{"Code":0,"Type":"","Description":"Mismatch request Insert for table:'Order' and type parameter:'GetIDa'"}}
+2017-06-01 15:04:00 - {"Tables":null,"Query":"","Error":{"Code":0,"Type":"","Description":"Mismatch request Insert for table:'Order' and type parameter:'GetIDa'"}}
+2017-06-01 15:14:08 - 
+2017-06-01 15:14:08 - _______NEW_START_OF_SERVER_______
+2017-06-01 15:14:08 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 15:14:08 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 15:14:08 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 15:14:08 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 15:14:08 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 15:14:08 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 15:14:08 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 15:14:08 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 15:14:08 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 15:14:08 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 15:14:08 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 15:14:08 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 15:14:17 - ERROR :  Mismatch request Insert for table:'Order' and type parameter:'GetIDa'
+2017-06-01 15:17:54 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-01 15:19:25 - ERROR :  Mismatch request Insert for table:'Order' and type parameter:'GetIDa'
+2017-06-01 15:32:41 - 
+2017-06-01 15:32:41 - _______NEW_START_OF_SERVER_______
+2017-06-01 15:32:41 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 15:32:41 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 15:32:41 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 15:32:41 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 15:32:41 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 15:32:41 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 15:32:41 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 15:32:41 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 15:32:41 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 15:32:41 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 15:32:41 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 15:32:41 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 15:32:45 - ERROR :  Mismatch request Insert for table:'Order' and type parameter:'GetIDa'
+2017-06-01 15:35:30 - 
+2017-06-01 15:35:30 - _______NEW_START_OF_SERVER_______
+2017-06-01 15:35:30 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 15:35:30 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 15:35:30 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 15:35:30 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 15:35:30 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 15:35:30 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 15:35:30 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 15:35:30 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 15:35:30 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 15:35:30 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 15:35:30 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 15:35:30 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 15:35:38 - ERROR :  Mismatch request Insert for table:'Order' and type parameter:'GetIDa'
+2017-06-01 15:45:44 - 00:x10027{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 15:46:06 - 00:x10184{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 15:46:07 - 00:x10199{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 15:46:09 - 00:x10214{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 15:46:10 - 00:x10229{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 15:46:12 - 00:x10244{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 15:46:13 - 00:x10259{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 15:46:15 - 00:x10274{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 15:46:16 - 00:x10288{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 15:46:18 - 00:x10301{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 15:46:19 - 00:x10313{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 15:46:20 - 00:x10324{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 15:46:22 - 00:x10334{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 15:47:56 - 
+2017-06-01 15:47:56 - _______NEW_START_OF_SERVER_______
+2017-06-01 15:47:56 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 15:47:56 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 15:47:56 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 15:47:56 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 15:47:56 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 15:47:56 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 15:47:56 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 15:47:56 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 15:47:56 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 15:47:56 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 15:47:56 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 15:47:56 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 15:48:01 - ERROR :  Mismatch request Insert for table:'Order' and type parameter:'GetIDa'
+2017-06-01 15:48:25 - ERROR :  ERROR NOT IDENTIFICATION TYPE TABLE
+2017-06-01 15:49:55 - 
+2017-06-01 15:49:55 - _______NEW_START_OF_SERVER_______
+2017-06-01 15:49:55 - [GIN-debug] Loaded HTML Templates (4): 
+	- operator.html
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+
+2017-06-01 15:49:55 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 15:49:55 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 15:49:55 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 15:49:55 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 15:49:55 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 15:49:55 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 15:49:55 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 15:49:55 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 15:49:55 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 15:49:55 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 15:49:55 - [GIN-debug] Listening and serving HTTP on :806
+2017-06-01 15:50:08 - ERROR :  ERROR NOT IDENTIFICATION TABLE: Orders
+2017-06-01 16:13:54 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-01 16:38:08 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:38:11 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:38:11 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:38:14 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:38:14 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:38:17 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:39:19 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:39:19 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:40:13 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:40:13 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:40:29 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:40:29 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:40:31 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:40:31 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:40:31 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:18 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:18 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:19 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:19 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:20 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:20 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:20 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:21 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:21 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:21 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:31 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:31 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:31 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:32 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:32 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:32 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:33 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:41:33 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:42:11 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:42:11 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:43:20 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:43:23 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:43:23 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:43:26 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:43:29 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:43:29 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:43:32 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:43:35 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:46:01 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:46:04 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:48:06 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:48:09 - client:  dial tcp 192.168.0.132:441: getsockopt: no route to host
+2017-06-01 16:48:56 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:48:56 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:48:57 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:48:57 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:52:18 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:52:20 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:52:20 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:52:21 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:52:21 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:52:22 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:52:22 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:52:22 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:52:22 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:52:23 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 16:52:23 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-01 17:13:58 - client:  dial tcp 82.146.49.30:7730: getsockopt: connection timed out
+2017-06-01 17:14:09 - client:  dial tcp 82.146.49.30:7730: getsockopt: connection timed out
+2017-06-01 17:14:13 - client:  dial tcp 82.146.49.30:7730: getsockopt: connection timed out
+2017-06-01 17:15:47 - 00:x10007{GroupUser ERROR Read, TYPE PARAMETERS "Group_idDate" VALUES: [1 2017-06-01]: ERROR NOT IDENTIFICATION TYPE TABLE
+2017-06-01 17:30:16 - 00:x10007{GroupUser ERROR Read, TYPE PARAMETERS "Group_idDate" VALUES: [1 2017-06-01]: ERROR NOT IDENTIFICATION TYPE TABLE
+2017-06-01 17:30:18 - 00:x10008{GroupUser ERROR Read, TYPE PARAMETERS "Group_idDate" VALUES: [1 2017-06-01]: ERROR NOT IDENTIFICATION TYPE TABLE
+2017-06-01 17:32:40 - 00:x10012{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 17:32:46 - 00:x10021{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-01 17:34:56 - 00:x10032{GroupUser ERROR Read, TYPE PARAMETERS "Group_idDate" VALUES: [1 2017-06-01]: ERROR NOT IDENTIFICATION TYPE TABLE
+2017-06-01 17:34:59 - 00:x10007{GroupUser ERROR Read, TYPE PARAMETERS "Group_idDate" VALUES: [1 2017-06-01]: ERROR NOT IDENTIFICATION TYPE TABLE
+2017-06-01 17:45:21 - 
+2017-06-01 17:45:21 - _______NEW_START_OF_SERVER_______
+2017-06-01 17:50:33 - 
+2017-06-01 17:50:33 - _______NEW_START_OF_SERVER_______
+2017-06-01 17:50:33 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-01 17:50:33 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-01 17:50:33 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-01 17:50:33 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-01 17:50:33 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-01 17:50:33 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-01 17:50:33 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-01 17:50:33 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-01 17:50:33 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-01 17:50:33 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 17:50:33 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-01 17:50:33 - [GIN-debug] Listening and serving HTTP on :80
+2017-06-02 09:14:50 - 00:x10009{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:15:06 - 00:x10018{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:15:09 - 00:x10027{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:31:34 - 00:x10013{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:31:36 - 00:x10026{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:32:08 - 00:x10057{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:32:09 - 00:x10070{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:32:11 - 00:x10083{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:32:15 - 00:x10096{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:32:17 - 00:x10109{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:32:18 - 00:x10123{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:32:20 - 00:x10138{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:32:21 - 00:x10154{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:32:23 - 00:x10169{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:32:24 - 00:x10183{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:32:26 - 00:x10195{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:32:27 - 00:x10205{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:32:29 - 00:x10213{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:32:47 - 00:x10236{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:32:49 - 00:x10250{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:32:51 - 00:x10262{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:32:53 - 00:x10272{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 09:37:17 - client:  dial tcp 82.146.49.30:7730: getsockopt: connection timed out
+2017-06-02 10:38:56 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:38:56 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:38:57 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:38:57 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:39:27 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:39:27 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:39:27 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:39:27 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:40:19 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:40:28 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:40:29 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:44:28 - 00:x10012{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 10:44:37 - 00:x10027{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 10:44:44 - 00:x10042{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 10:44:48 - 00:x10057{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"

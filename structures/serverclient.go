@@ -10,7 +10,13 @@ import (
 	"io"
 	"log"
     "errors"
+	"sync"
 )
+var GuardClientTLS *sync.RWMutex
+
+func init()  {
+	GuardClientTLS = &sync.RWMutex{}
+}
 
 type ClientOrder struct {
 	Conn    net.Conn
@@ -22,6 +28,7 @@ type ClientOrder struct {
 }
 
 func (co *ClientOrder) ClientSend(serv string) (error) {
+	GuardClientTLS.Lock()
 
 	////----READ_PEM_FILE_CERTIFICATES
 	//cert_b, err := ioutil.ReadFile(conf.Config.TLS_pem)
@@ -62,15 +69,18 @@ func (co *ClientOrder) ClientSend(serv string) (error) {
 
 	cert2_b, err := ioutil.ReadFile(conf.Config.TLS_pem)
 	if err != nil {
-		panic(err)
+		log.Println("MSG CLIEN TLS:", err.Error())
+		return errors.New("MSG CLIEN TLS: "+err.Error())
 	}
 	priv2_b, err := ioutil.ReadFile(conf.Config.TLS_key)
 	if err != nil {
-		panic(err)
+		log.Println("MSG CLIEN TLS:", err.Error())
+		return errors.New("MSG CLIEN TLS: "+err.Error())
 	}
 	priv2, err := x509.ParsePKCS1PrivateKey(priv2_b)
 	if err != nil {
-		panic(err)
+		log.Println("MSG CLIEN TLS:", err.Error())
+		return errors.New("MSG CLIEN TLS: "+err.Error())
 	}
 
 	cert := tls.Certificate{
@@ -82,7 +92,7 @@ func (co *ClientOrder) ClientSend(serv string) (error) {
 		Certificates: []tls.Certificate{cert},
 		InsecureSkipVerify: true,
 	}
-
+	GuardClientTLS.Unlock()
 	//----CREATE_CONNECTION
 	conn, err := tls.Dial("tcp", serv, config)
 	if err != nil {

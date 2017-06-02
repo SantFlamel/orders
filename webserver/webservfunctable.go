@@ -242,6 +242,17 @@ func (st *structure) SelectTables(msg []byte) error {
 
 		return err
 
+	case "GroupUser"://GlobalParameters
+
+		co := structures.ClientOrder{IP: conf.Config.TLS_serv_GlobalParameters}
+		co.MSG,err = json.Marshal(st.qm)
+        if err == nil {
+            co.MSG = append(co.MSG, []byte(msg[imsg+1:])...)
+        }
+
+		go st.getDateWithServicesRangeRead(co)
+		return err
+
 	case "ClientInfo":
 		co := structures.ClientOrder{IP: conf.Config.TLS_serv_ClientInfo}
 		switch st.qm.TypeParameter {

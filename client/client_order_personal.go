@@ -74,7 +74,6 @@ func order_personal(id int)error  {
 func order_payments (id int) error{
     orPay := structures.OrderPayments{
         Order_id:ID,
-        Name:"Card",
         Price:123123.23,
         Time:time.Now(),
     }
@@ -97,7 +96,7 @@ func order_payments (id int) error{
         }
     case 2:
         qm.Query = "Update"
-        qm.Values = []interface{}{ID,orPay.Name,123.24,time.Now()}
+        qm.Values = []interface{}{ID,123.24,time.Now()}
         qmM, err := json.Marshal(qm)
         if err == nil {
             _, err = send(string(qmM))
@@ -105,7 +104,7 @@ func order_payments (id int) error{
     case 3:
         qm.Query = "Read"
         qm.TypeParameter="Value"
-        qm.Values = []interface{}{ID,orPay.Name}
+        qm.Values = []interface{}{ID}
         qmM, err := json.Marshal(qm)
         if err == nil {
             _, err = send(string(qmM))

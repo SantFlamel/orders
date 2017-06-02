@@ -1,43 +1,44 @@
 package server
 
 import (
-	"database/sql"
 	"encoding/json"
 	"errors"
-	"net"
-	"project/orders/structures"
-	"strings"
-	"strconv"
 	"log"
+	"project/orders/structures"
+	"strconv"
+	"strings"
 )
 
 //----------------------------------------------------------------------------------------------------------------------
 /*----INTERFACE_STRUCT----*/
-type structure struct {
-	conn   net.Conn
-	qm     structures.QueryMessage
-	//stream *postgres.Stream
-	row    *sql.Row
-	orders structures.Orders
-	//Reads  structures.Read
-	Structures  structures.Structures
-	ID     int64
-}
-
-
+//type structure struct {
+//	conn       net.Conn
+//	qm         structures.QueryMessage
+//	row        *sql.Row
+//	orders     structures.Orders
+//	message    structures.Message
+//	Structures structures.Structures
+//	ID         int64
+//	Send       *chan []byte
+//	//Reads  structures.Read
+//	//stream *postgres.Stream
+//}
 
 //-----------------------------------------------------------------------------
-func (st *structure) SelectTables(msg []byte) error {
+func (st *ClientTLS) SelectTables(msg []byte) error {
+
+	var err error
 	imsg := strings.Index(string(msg), "}")
-	err := json.Unmarshal([]byte(msg[:imsg+1]), &st.qm)
+	err = json.Unmarshal([]byte(msg[:imsg+1]), &st.qm)
 	if err != nil {
 		return errors.New("ERROR MARSHAL_STRUCT_TABLE")
 	}
+
 	if len(st.qm.TypeParameter) < 5 && st.qm.Query == "Read" {
 		return errors.New("Length type parameter does not satisfy the requirement")
 	}
 
-    st.Structures.QM =  &st.qm
+	st.Structures.QM = &st.qm
 
 	if len(msg) < imsg+2 {
 
@@ -57,8 +58,8 @@ func (st *structure) SelectTables(msg []byte) error {
 		}
 
 		//for _, item := range conf.Config.TLS_serv_reader {
-         //   ClientOrder := structures.ClientOrder{IP:item,MSG:msg}
-         //   go ClientOrder.Write()
+		//   ClientOrder := structures.ClientOrder{IP:item,MSG:msg}
+		//   go ClientOrder.Write()
 		//}
 
 		if err != nil {
@@ -122,8 +123,7 @@ func (st *structure) SelectTables(msg []byte) error {
 	default:
 		return errors.New("ERROR NOT IDENTIFICATION TYPE TABLE")
 	}
-    st.Structures.Orders = st.orders
-
+	st.Structures.Orders = st.orders
 
 	switch st.qm.Query {
 	case "Create":
@@ -152,10 +152,9 @@ func (st *structure) SelectTables(msg []byte) error {
 		switch st.qm.TypeParameter[:5] {
 		case "Value":
 			err = st.Structures.Read()
-            if err == nil {
-                st.send(st.Structures.Buf, err)
-            }
-
+			if err == nil {
+				st.send(st.Structures.Buf, err)
+			}
 
 			//if st.qm.TypeParameter == "Value" {
 			//	err = st.orders.ReadRow(st.stream.Row)
@@ -168,20 +167,19 @@ func (st *structure) SelectTables(msg []byte) error {
 			//} else {
 			//	err = st.Read()
 			//}
-            break
+			break
 		case "Range":
-			b:=true
+			b := true
 
-            for b{
-                b, err = st.Structures.ReadRows()
-                if err == nil && b == true{
-                    st.send(st.Structures.Buf, err)
-                }else{
-                    break
-                }
-            }
-            st.send([]byte("EOF"), nil)
-
+			for b {
+				b, err = st.Structures.ReadRows()
+				if err == nil && b == true {
+					st.send(st.Structures.Buf, err)
+				} else {
+					break
+				}
+			}
+			st.send([]byte("EOF"), nil)
 
 			//if st.stream.Rows == nil {
 			//	st.send([]byte("EOF"), nil)
@@ -197,10 +195,10 @@ func (st *structure) SelectTables(msg []byte) error {
 			//		}
 			//	}
 			//}
-            //
+			//
 			//st.send([]byte("EOF"), nil)
 			//go st.stream.Rows.Close()
-            break
+			break
 		default:
 			return errors.New("NOT IDENTIFICATION TYPE READ")
 		}
@@ -210,11 +208,11 @@ func (st *structure) SelectTables(msg []byte) error {
 	return err
 }
 
-func(s *structure) messageToWebSoc(msg []byte) {
+func (s *ClientTLS) messageToWebSoc(msg []byte) {
 	cl := structures.ClientList
-	msg=append([]byte("02:{"),msg...)
+	msg = append([]byte("02:{"), msg...)
 	var err error
-	for _,c := range cl{
+	for _, c := range cl {
 		c.Send <- msg
 		//if c.conn !=nil{
 		//	err = c.conn.WriteMessage(1,msg)
@@ -222,6 +220,6 @@ func(s *structure) messageToWebSoc(msg []byte) {
 	}
 
 	if err != nil {
-        log.Println(err.Error())
+		log.Println(err.Error())
 	}
 }

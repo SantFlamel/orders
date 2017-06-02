@@ -37,6 +37,7 @@ func (c *ClientConn) SetConn(co *websocket.Conn) {
 }
 
 func (c *ClientConn) WritePump() {
+	var err error
     ticker := time.NewTicker(pingPeriod)
     defer func() {
         ticker.Stop()
@@ -47,34 +48,19 @@ func (c *ClientConn) WritePump() {
         case message, ok := <-c.Send:
             c.conn.SetWriteDeadline(time.Now().Add(writeWait))
             if !ok {
-                //The hub closed the channel.
-                //c.conn.WriteMessage(websocket.CloseMessage, []byte{})
-                //return
                 continue
             }
 
-            //w, err := c.conn.NextWriter(websocket.TextMessage)
-            //if err != nil {
-            //    return
-            //}
-            //w.Write(message)
-            //
-            // Add queued chat messages to the current websocket message.
             if c.conn == nil{return }
             c.conn.WriteMessage(1,message)
             n := len(c.Send)
             for i := 0; i < n; i++ {
-                //w.Write(<-c.Send)
                 if c.conn == nil{return }
 				c.conn.WriteMessage(1,<-c.Send)
             }
-
-            //if err := w.Close(); err != nil {
-            //    return
-            //}
         case <-ticker.C:
             c.conn.SetWriteDeadline(time.Now().Add(writeWait))
-            if err := c.conn.WriteMessage(websocket.PingMessage, []byte{}); err != nil {
+            if err = c.conn.WriteMessage(websocket.PingMessage, []byte{}); err != nil {
                 return
             }
         }
@@ -91,11 +77,12 @@ func AddClient(cc ClientConn) error {
 		if _, ok := ClientList[cc.HashAuth]; !ok {
 			ClientList[cc.HashAuth] = cc
 		} else {
-			return errors.New("Already authorized " + cc.HashAuth)
+			ClientList[cc.HashAuth].conn.Close()
+			ClientList[cc.HashAuth] = cc
 		}
 	} else {
 		if err != nil {
-			return errors.New(err.Error())
+			return err
 		} else {
 			return errors.New("You are not authorized in the system")
 		}
@@ -122,7 +109,7 @@ func checkSession(session_hash string) (bool, error) {
 		//if err!=nil{}
 		//listen = make([]byte, n)
 		//_,err = io.ReadFull(co.Conn,listen)
-
+		co.Conn.Close()
 		if string(listen[:n]) == "01:true" && err == nil {
 			return true, err
 		}

@@ -10,46 +10,85 @@
     <title>Панель управления</title>
 </head>
 
-<!--<body onload="downTimer1()">-->
+
 <body >
 <div id="warning"></div>
 
 
     <div class="container-fluid" style="height: 100%">
-       
+
         <header class="row page_header">
-            <div class="col-xs-4 col-sm-4 text-left">
+            <div class="col-xs-4 col-sm-2 text-left">
                 <img src="../../public/cook/image/cloud.png" alt=""> YAPOKI IS
             </div>
-            <div class="col-xs-8 col-sm-4 text-right font_blue pull-right">
+            <div class="  buttons pull-right">
                 <!--<select class="dropdown-toggle user_role styler" name="user_role">-->
                     <!--<option>Сушимейкер</option>-->
                     <!--<option>Раскатка</option>-->
                     <!--<option>Начинение</option>-->
                     <!--<option>Упаковка</option>-->
                 <!--</select>-->
-                <select  class="dropdown-toggle user_role" name="user_role">
+                <select  class="btn btn-dropdown dropdown-toggle user_role" name="user_role">
                     <option disabled>Сушимейкер</option>
                     <option>Раскатка</option>
                     <option>Начинение</option>
                     <option>Упаковка</option>
                 </select>
-                <button id="logout" type="submit" class="btn btn-link font_blue" name="btnExit">Выйти
+                <button id="logout" type="submit" class="btn  font_blue btn-logout" name="btnExit">Выйти
                 </button>
 
             </div>
-            <div class="col-xs-12 col-sm-4 text-center">
+            <div class="col-xs-9 col-sm-4 text-center">
                 <span id="doc_time" class="font_blue"></span>
                 <span id="doc_date"></span>
             </div>
+            <div class="col-sm-2 buttons">
+                <button type="button" class="btn btn-connection" id="change_employee" data-toggle="modal" data-target="#connection">Присоединиться</button>
+
+                <!-- Single button -->
+                    <div class="btn-group">
+                          <button type="button" class="btn btn-dropdown dropdown-toggle idgroup" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Нет гурппы <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu users_list">
+
+                          </ul>
+                    </div>
+            </div>
+
         </header>
 
-        <!--Основная панель-->
 
+
+        <!--Форма авторизациидля работников-->
+        <div class="modal fade" id="connection" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div id="name_user">  </div>
+                        <div class="form-group">
+                            <label for="usr" >Логин:</label>
+                            <input type="text" tag="" class="form-control" id="usr">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Пароль:</label>
+                            <input type="password" class="form-control" id="pwd">
+                        </div>
+                    </div>
+                    <div class="modal-buttons">
+                        <button type="button" data-dismiss="modal" id="ok_day_cashier" class="send_auth_data" >ОК</button>
+                        <button type="button" style="background-color: #fe8600" id="close_day_cashier" data-dismiss="modal">Отмена</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--Основная панель-->
         <div class="row page_main  order_table font_blue" accept-charset="UTF-8">
 
         </div>
-
         <div class="row page_main order_item" accept-charset="UTF-8">
             <div class="col-xs-12 col-sm-4 styleDivOrder late">
                 <input class="startTimeOrder" hidden value="23:10:00">
@@ -85,9 +124,6 @@
                 </div>
             </div>
         </div>
-
-
-
         <div class="modal fade" id="confirmCancel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -145,6 +181,9 @@
                 </div>
             </div>
         </div>
+
+
+
         <footer>
 			<!-- Навигация -->
 <nav class="row navbar navbar-fixed-bottom page_footer" role="navigation">
@@ -227,10 +266,6 @@
         </footer>
         
     </div>
-
-
-
-
 
     <div id="sound">
     </div>

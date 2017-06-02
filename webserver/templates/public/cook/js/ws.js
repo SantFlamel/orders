@@ -8,12 +8,10 @@ var trackers = {
 };
 var tracker = $.cookie( 'tracker' ) || 1;
 $( '.dropdown-toggle.user_role' ).prop( 'selectedIndex', tracker - 1 );
-
-var timeout_get_data = 500; //время ожидания завершения передачи данных (ждём кгда придут ордеры, статусы, таймеры)
+var timeout_get_data = 700; //время ожидания завершения передачи данных (ждём кгда придут ордеры, статусы, таймеры)
 var SYSTIME = "00:00:00";
 var SESSION_INFO = {};
 var OrderL = {}, activeOrder = {};
-
 var user_stat = {
     WorkHours: 0,             //Часы с нач.мес.: 148
     MakeToday: 0,               //Сегодня изделий: 63
@@ -23,7 +21,6 @@ var user_stat = {
     BalansMinus: 0,          //Списания: 3 552
     Balans: 0               //Баланс: 15 451
 };
-
 var Status = {
     1: { "ID": 1, "Name": "Предзаказ" },
     2: { "ID": 2, "Name": "Принят" },
@@ -43,16 +40,38 @@ var Status = {
     16: { "ID": 16, "Name": "Отменен без списания" }//12 -15
 };//2 3 4 5 6 7 8 9 10 12 13 14 - активные
 //11 15 16 - завершенные
-
-
-
 var OrderStatusArray = [];
 var timer_int;
+var opened_item_form = false; //открыто окно готовки элемента заказа
+
+//для групп пользователей
+var idGroup = 0;// идентификатор текущей группы (которая активна на планшете)
+var Users = []; //пользователи в группе, их мы получаем в function updateList(data)
 
 
 
 
+
+
+
+
+
+
+
+
+//начинаем хайпить
 webSocket();
+
+
+
+
+
+
+
+
+var timer_update_flag = false;
+
+
 
 
 
@@ -61,28 +80,69 @@ webSocket();
 MSG.update = function (data) {
     console.group('MSG.update');
     var ID = data.Values[0];
-    //if (data.ID_msg !== Cashier.OrganizationHash && data.ID_msg !== '') { // фильтр по организации
-       // console.groupEnd();
-       // return;
-    //}
     console.log('data.Table', data.Table);
+    //пришла обнова, надо проверить относится ли она к нам
 
-    switch (data.Table) {
-        case "Order":
-            MSG.request.positionForTracer();
-            break;
-        case "OrderCustomer":
-            break;
-        case "OrderList":
-            break;
-        case "Cashbox":
-            break;
-        case "OrderPersonal":
-            break;
-        case "OrderStatus":
-            MSG.request.positionForTracer();
-            break;
-    }
+    if(opened_item_form == false) //если окно закрыто , от обрабатываем апдейты, иначе нет смысла их читать
+    {
+        //если у нас полный трекер заказов, то игнорим все обновы, которые не касаются имеющихся в трекере
+        var new_Order_id  = data.Values[0];// id заказа
+
+        switch (data.Table) {
+            case "Order": //пришел новый заказ
+                break;
+            case "OrderCustomer":
+                break;
+            case "OrderList":
+                if(OrderL.count==6)//если трекер полный
+                {
+                    //игнорим, поскольку нам не нужны новые заказы
+                }
+
+                else if(OrderL.count < 6) //если трекер не полный или даже пустой, то
+                {
+                    //отложенный запуск обновления
+                    if(timer_update_flag != true) //если таймер не запущен, то запустим
+                    {
+                        timer_update_flag = true;
+                        setTimeout(function () { timer_update_flag = false; MSG.request.positionForTracer();},700);
+                    }
+                }
+                break;
+            case "Cashbox":
+                break;
+            case "OrderPersonal":
+                break;
+            case "OrderStatus":
+                var new_element_id  = data.Values[1];// id элемента
+                for(var i = 1 ; i <= OrderL.count; i++)
+                {// просматриваем все элементы в трекере
+                    if(new_Order_id == OrderL[i].Order_id && new_element_id == OrderL[i].ID_item )
+                    {// обновление относится к нашему элементу заказа!
+                        var status = data.Values[2];
+                        if(status == 15 || status == 16)
+                        {//если заказ отменен, то вызов обновления списка немедленно
+                            MSG.request.positionForTracer();
+                            break;
+                        }
+                        else
+                        {//отложим на 1 секунду обновление
+                            if(timer_update_flag != true)
+                            {
+                                timer_update_flag = true;
+                                setTimeout(function () { timer_update_flag = false; MSG.request.positionForTracer();},500);
+                                break;
+                            }
+                        }
+
+                    }
+                }
+
+                break;
+        }//switch (data.Table)
+
+    }//if(opened_item_form == false)
+    else {console.groupEnd(); return;}
     console.groupEnd();
 };
 /// заполнение полей повара
@@ -106,6 +166,10 @@ function setupSessionInfo(data) {
     $("#rating").html(user_stat.Rating);
     $("#award").html(user_stat.BalansMinus);
     $("#balance").html(user_stat.Balans);
+    idGroup = SESSION_INFO.SessionData;
+
+    $( ".idgroup" ).html("Группа: " + idGroup);
+
 
     if (SESSION_INFO.RoleHash == sushist) {
         if ($.cookie('tracker') != 1) {
@@ -115,20 +179,27 @@ function setupSessionInfo(data) {
         $(".dropdown-toggle.user_role").hide();
     }
     if (SESSION_INFO.RoleHash == pizza) {
-        if ($.cookie('tracker') == 1) {
+        if ($.cookie('tracker') < 2) {
             $.cookie('tracker', 2);
             tracker = 2;
         }
     }
 
+    $( '.dropdown-toggle.user_role' ).prop( 'selectedIndex', tracker - 1 );
+
+
+
+
+
+    //запрашиваем заказы:
     MSG.request.positionForTracer();
 }
 // запрос списка елементов для готовки
 MSG.request.positionForTracer = function () {  //получить элементы заказа 6 штук
     OrderStatusArray = []; //отчистка спискадля временного хранения заказов, нужно для того, чтобы не запрашивать статус заказа много раз
-    $(document).ready(function () {
+    //$(document).ready(function () {
         $(".order_table").empty();
-    });
+    //});
 
     if (tracker == 2) {
         MSG.request.positionForTracerWithStatus(5);
@@ -161,7 +232,7 @@ MSG.request.positionForTracer = function () {  //получить элемент
 MSG.request.positionForTracerWithStatus = function (stat) {
 
     var hashorg = SESSION_INFO.OrganizationHash,
-        time = getTimeOnNow(), //TODO --------что это такое
+        time = getTimeOnNow(),
         userhash = SESSION_INFO.UserHash,
         limit = 6;
     clearOrderL();
@@ -271,7 +342,7 @@ function redoneActive( n1, n3 ) {
         MSG.set.Status( id, idi, 3 );
         $( '.button_cancel' ).click();
     }   //в трекер
-
+    MSG.request.positionForTracer();
 
 }
 
@@ -340,8 +411,8 @@ MSG.get.StatusLast = function( data, ID , norows) {
         if (data.Status_id < 4) {//если статус не выше, чем "в работе", то
             {
                 MSG.set.Status(ID[0], ID[1], 4);// в работе
-                //if ($(".font_main_time").attr("data-timer-stat") == "0001-01-01T00:00:00Z")// то что поля в нулях не значит, что нет таймера
-                // MSG.set.createTimer(ID[0], ID[1]);
+                if ($(".font_main_time").attr("data-timer-stat") == "0001-01-01T00:00:00Z")// то что поля в нулях не значит, что нет таймера
+                 MSG.set.createTimer(ID[0], ID[1]);
                 console.log("статус для заказа" + ID[0] + "" + ID[1] + "Установлен: " + 4);
             }
         }
@@ -410,6 +481,8 @@ MSG.get.setsystime = function( time ) {
 
 
 
+
+
 //Visual
 var redone = '', apply = 1, timerr = '';
 function addOrderToTable( arrOrder ) {
@@ -465,6 +538,7 @@ function timeVal( text ) {
 };
 //копирование информации заказа в активный заказ при клике
 $( '.order_table' ).on( 'click', '.col-sm-4.styleDiv', function () {
+    opened_item_form = true;
     //if ($( this ).find( ".font_main_time").attr("data-timer-stat") == "0001-01-01T00:00:00Z")
       //  return;
     $( ".order_table" ).hide();
@@ -509,6 +583,7 @@ $( '.order_table' ).on( 'click', '.col-sm-4.styleDiv', function () {
     }, 1000 );
     // else {  }
     $( ".order_item" ).show();
+    $(".order_table").empty();
 } );
 //изменение трекера в зависимости от селекта
 $( ".dropdown-toggle.user_role" ).change( function () {
@@ -542,7 +617,7 @@ $( '.button_ok' ).click( function () {
     }  //если была  "Запекание", то заканчиваем заказ
     activeOrder = {};
     clearInterval( timer_int );
-
+    opened_item_form = false;
 } );
 $( ".order_item" ).hide();
 $( ".button_cancel" ).hide();
@@ -554,6 +629,125 @@ $( '.button_cancel' ).click( function () {
     //     MSG.set.Status( id, idi, 3 );
     activeOrder = {};
     // MSG.request.positionForTracer();
+} );
+
+
+
+
+var exec_user = false; //чувак хочет выйти
+function onclick_exit_button(fio,login,id) { //клик выхода у пользователя
+    $( "#name_user" ).html(fio);
+    $( "#usr" ).val(login);
+    $( "#usr" ).attr('tag',id);
+    exec_user = true;
+}
+function addUserToList(user_hash,ID){ //обновить список пользователей в выпадающем списке
+    $( document ).ready( function () {
+        var strOrderHTML = "";//HTML код - список работников
+                var person = {}; //Создаём работника для группы
+
+                //тут надо запросить логин юзера
+                person['id'] = ID;
+                person['hash_session_for_user'] = user_hash;
+                person['login'] = "";
+                person['name1'] = "Тестин";
+                person['name2'] = "Петя";
+                person['name3'] = "Петрович";
+                Users[ person['id'] ] = person;
+
+
+                var fio = person['name1'] + " " +   person['name2']+ " "+ person['name3'];
+
+                strOrderHTML+=  "<li>" + fio + "&nbsp;"; //Добавляем ФИО
+                strOrderHTML+=  "<button  type='button' id = "+ID+"    tag = "+person['login']+" class='btn btn-dropdown-user' data-toggle='modal' data-target='#connection' onclick='onclick_exit_button(\""+fio+"\" , \""+person['login']+"\", \""+ID+"\")'>Выход</button></li>"; //добавляем кнопку
+                strOrderHTML+=  "<li role='separator' class='divider'></li>"; //Добавляем разделитель
+
+        $( '.users_list' ).append( strOrderHTML );//отрисовываем в html
+    });
+
+}// конец функции: function updateList()
+
+
+MSG.request.GroupUser = function (  ) {
+    var date = new Date();
+    var formated_date = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+    MSG.send( {structure: {"Table":"GroupUser","Query":"Read","TypeParameter":"Group_idDate","Values":[idGroup,formated_date],"Limit":9999999,"Offset":0}, handler:MSG.get.updateListUsers, mHandlers: true} );
+};
+MSG.get.updateListUsers = function (data) {
+    //Чистим список;
+    addUserToList(data.UserHash,data.ID); //тут остановился
+};
+
+
+
+
+
+$( '#ok_day_cashier' ).click( function (event) { //кнопка ok
+    var login = $( "#usr" ).val();
+    var id_user = $( "#usr" ).attr('tag');
+    var password = $( "#pwd" ).val();
+    var URL_SignIn = "";
+
+    if(exec_user)
+    {
+        URL_SignIn = "http://192.168.0.130:7070/out";
+        exec_user = false;
+    }
+    else
+    {
+        //чел хочет залогиниться
+        URL_SignIn = "http://192.168.0.130:7070/in";
+    }
+
+    //отправляем авторизашку
+    $.ajax({
+        type: "POST",
+        cache: false,
+        async: false,
+        data: ({
+            login: login,
+            password: password,
+            group: idGroup,
+            id: id_user,
+        }),
+        // contentType: 'text/javascript',
+        //
+        // xhrFields: {
+        // },
+        //
+        // headers: {
+        // },
+
+            url: URL_SignIn,
+        success: function(res) {
+            if (String(res["Error"]) != "null") {
+                warning(res["Error"] , 'i', 10000 );
+                return false;
+            };
+           // $.removeCookie("hash_session_for_user", Cookie.cookieOptions);
+           // $.cookie("hash_session_for_user",res["hash"], Cookie.cookieOptions);
+            //window.location.href = res["link"];
+
+
+        },
+        complete: function() {},
+        error: function()
+        {
+            alert("ERROR AJAX!");
+        }
+    });
+
+
+    $( "#name_user" ).html("");
+    $( "#usr" ).val("");
+    $("#connection").modal('hide');
+
+    return false;
+} );
+$( '#close_day_cashier' ).click( function (event) { //кнопка отмена
+    $( "#name_user" ).html("");
+    $( "#usr" ).val("");
+    exec_user = false;
 } );
 
 

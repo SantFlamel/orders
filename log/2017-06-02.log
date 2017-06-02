@@ -1,0 +1,259 @@
+2017-06-02 10:45:57 - 
+2017-06-02 10:45:57 - _______NEW_START_OF_SERVER_______
+2017-06-02 10:46:38 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:47:01 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:47:01 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:47:01 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:47:02 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:47:02 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:47:03 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:47:03 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:47:03 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:47:04 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:47:04 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:47:18 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:47:53 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:48:22 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:48:28 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:49:23 - 
+2017-06-02 10:49:23 - _______NEW_START_OF_SERVER_______
+2017-06-02 10:49:23 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-02 10:49:23 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-02 10:49:23 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-02 10:49:23 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-02 10:49:23 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-02 10:49:23 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-02 10:49:23 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-02 10:49:23 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-02 10:49:23 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-02 10:49:23 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-02 10:49:23 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-02 10:49:23 - [GIN-debug] Listening and serving HTTP on :80
+2017-06-02 10:50:33 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:50:42 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:50:50 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:50:51 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:51:00 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:51:01 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:51:03 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:51:04 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:51:06 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:51:07 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:51:08 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:51:08 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:51:09 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:51:09 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:51:11 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:51:11 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:51:12 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:51:12 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:51:13 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:51:13 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:51:15 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:51:15 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:51:17 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:51:17 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:52:42 - websocket: close 1001 (going away)
+2017-06-02 10:52:42 - websocket: close 1001 (going away)
+2017-06-02 10:52:42 - websocket: close 1001 (going away)
+2017-06-02 10:52:42 - websocket: close 1001 (going away)
+2017-06-02 10:52:42 - websocket: close 1001 (going away)
+2017-06-02 10:52:42 - websocket: close 1001 (going away)
+2017-06-02 10:52:42 - websocket: close 1001 (going away)
+2017-06-02 10:52:42 - websocket: close 1001 (going away)
+2017-06-02 10:52:47 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:52:52 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:55:37 - websocket: close 1001 (going away)
+2017-06-02 10:55:45 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:55:45 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:55:46 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:55:46 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:55:48 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:55:49 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:55:49 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:55:50 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:55:51 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:55:51 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:55:51 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:55:51 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:55:51 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:55:55 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:55:55 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:56:01 - 
+2017-06-02 10:56:01 - _______NEW_START_OF_SERVER_______
+2017-06-02 10:56:01 - [GIN-debug] Loaded HTML Templates (4): 
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+	- cassir.html
+
+2017-06-02 10:56:01 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-02 10:56:01 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-02 10:56:01 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-02 10:56:01 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-02 10:56:01 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-02 10:56:01 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-02 10:56:01 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-02 10:56:01 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-02 10:56:01 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-02 10:56:01 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-02 10:56:01 - [GIN-debug] Listening and serving HTTP on :80
+2017-06-02 10:56:01 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:56:02 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:56:04 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:56:05 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:56:08 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:56:11 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:57:33 - 
+2017-06-02 10:57:33 - _______NEW_START_OF_SERVER_______
+2017-06-02 10:57:33 - [GIN-debug] Loaded HTML Templates (4): 
+	- cassir.html
+	- sushimaker-list.html
+	- index.html
+	- operator.html
+
+2017-06-02 10:57:33 - [GIN-debug] GET    /ws                       --> project/orders/webserver.RegisterRoutes.func1 (3 handlers)
+2017-06-02 10:57:33 - [GIN-debug] GET    /                         --> project/orders/webserver.RegisterRoutes.func2 (3 handlers)
+2017-06-02 10:57:33 - [GIN-debug] GET    /cook.sheldon/            --> project/orders/webserver.RegisterRoutes.func3 (3 handlers)
+2017-06-02 10:57:33 - [GIN-debug] GET    /cassir/                  --> project/orders/webserver.RegisterRoutes.func4 (3 handlers)
+2017-06-02 10:57:33 - [GIN-debug] GET    /operator/                --> project/orders/webserver.RegisterRoutes.func5 (3 handlers)
+2017-06-02 10:57:33 - [GIN-debug] GET    /cook/                    --> project/orders/webserver.RegisterRoutes.func6 (3 handlers)
+2017-06-02 10:57:33 - [GIN-debug] POST   /poststruct/              --> project/orders/webserver.RegisterRoutes.func7 (3 handlers)
+2017-06-02 10:57:33 - [GIN-debug] POST   /                         --> project/orders/webserver.RegisterRoutes.func8 (3 handlers)
+2017-06-02 10:57:33 - [GIN-debug] GET    /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-02 10:57:33 - [GIN-debug] HEAD   /public/*filepath         --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2017-06-02 10:57:33 - [GIN-debug] Listening and serving HTTP on :80
+2017-06-02 10:58:14 - websocket: close 1001 (going away)
+2017-06-02 10:58:14 - websocket: close 1001 (going away)
+2017-06-02 10:58:14 - websocket: close 1001 (going away)
+2017-06-02 10:58:14 - websocket: close 1001 (going away)
+2017-06-02 10:58:14 - websocket: close 1001 (going away)
+2017-06-02 10:58:14 - websocket: close 1001 (going away)
+2017-06-02 10:58:18 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:19 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:20 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:21 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:22 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:23 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:24 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:25 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:26 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:27 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:28 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:29 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:31 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:33 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:36 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:39 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:42 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:44 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:51 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:53 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:58:58 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:01 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:04 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:05 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:06 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:07 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:08 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:09 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:09 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:10 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:10 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:11 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:12 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:12 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:12 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:13 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:13 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:14 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:14 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:14 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 10:59:22 - 
+2017-06-02 10:59:22 - _______NEW_START_OF_SERVER_______
+2017-06-02 10:59:22 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:59:22 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:59:22 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:59:22 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:59:22 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:59:22 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:59:22 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:59:22 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 10:59:41 - websocket: close 1001 (going away)
+2017-06-02 10:59:41 - websocket: close 1001 (going away)
+2017-06-02 10:59:41 - websocket: close 1001 (going away)
+2017-06-02 10:59:41 - websocket: close 1001 (going away)
+2017-06-02 10:59:41 - websocket: close 1001 (going away)
+2017-06-02 10:59:41 - websocket: close 1001 (going away)
+2017-06-02 10:59:41 - websocket: close 1001 (going away)
+2017-06-02 10:59:41 - websocket: close 1001 (going away)
+2017-06-02 10:59:41 - websocket: close 1001 (going away)
+2017-06-02 10:59:41 - websocket: close 1001 (going away)
+2017-06-02 10:59:41 - websocket: close 1001 (going away)
+2017-06-02 10:59:41 - websocket: close 1001 (going away)
+2017-06-02 10:59:46 - 00:{ ERROR , TYPE PARAMETERS "" VALUES: []: ERROR MARSHAL_STRUCT_TABLE
+2017-06-02 11:03:45 - 00:x10047{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 11:04:04 - 00:x10041{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 11:04:08 - 00:x10050{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 11:04:10 - 00:x10058{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 11:04:17 - 00:x10069{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 11:04:19 - 00:x10080{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 11:04:22 - 00:x10090{OrderPersonal ERROR Create, TYPE PARAMETERS "" VALUES: []: pq: duplicate key value violates unique constraint "order_personal_order_id_order_id_item_user_hash_key"
+2017-06-02 11:11:58 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:11:58 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:11:58 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:12:01 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:12:01 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:12:02 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:12:02 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:12:03 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:12:03 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:12:11 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:12:12 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:12:12 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:12:32 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:12:33 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:12:33 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:12:42 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:12:42 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:12:57 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:12:57 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:13 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:14 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:14 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:18 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:18 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:22 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:22 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:24 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:24 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:26 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:26 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:28 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:29 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:29 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:32 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:32 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:34 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:34 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:34 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:34 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:35 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:35 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:35 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:35 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:42 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:42 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:42 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:42 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:44 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:44 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:45 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:45 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:46 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused
+2017-06-02 11:13:46 - client:  dial tcp 192.168.0.132:441: getsockopt: connection refused

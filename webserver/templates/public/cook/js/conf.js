@@ -19,7 +19,6 @@ var role_test_debug = false;
 // var Auth_redirect =true;
 
 
-
 var WS_TIMEOUT = 500 // таймаут переподключения.
     , WS_ERROR_TIMEOUT = 7000 // время за которое должен прийти ответ на сообщение, иначе выдаётся предупреждение
     , COUN_RE_SEND = 5 // коллиество попыток повторной отпарвки
@@ -67,24 +66,24 @@ var NO_NAME = 'Без имени'
 
 if ( ~window.location.href.indexOf( 'http://localhost:63342' ) ) {
     WS_URL = 'ws://192.168.0.73:80/ws';
-    SESSION_HASH = "87ef4897c3ca69fbd6cb46f9b6e0787e4c5a7bc1facab824aae9d4f297e24dff" ;
+    SESSION_HASH = "87ef4897c3ca69fbd6cb46f9b6e0787e4c5a7bc1facab824aae9d4f297e24dff";
 
     addressWS = 'ws://192.168.0.73:80/ws';
     auth_page = 'http://192.168.0.73:7070';
     var minimal_cook_time = "00:00:15";  //минимальное время после которого повар сможет нажать готово
 }
+
 //WS_URL = 'ws://192.168.0.73:80/ws';
- // SESSION_HASH = "3a3bfd2be7a79b1898ebfb1155cfefa31a7b497e81a018bc3beb18f5e075f887" ; //суши
- SESSION_HASH = "ddbbe7c9eba234945733c103f8bcd4fdcf6885533a3c0881f5853d64d82ebd1e" ; //пицца
 
 if ( WS_URL == 'ws://192.168.0.73:80/ws' ) {
+    SESSION_HASH = "99e92e74645ca0059b71dcb2f4bf262c4725560ad5027da2bbe27c0126233d85"; //суши
+    // SESSION_HASH = "03d40c49b4c045627e2ffc00eaeb8791a2fc809d213ee2d4c57ee8fca06bb217" ; //пицца
     povar_hash = "8746fffb4f2e033aabefa8103e7e4f4d183f0098f1e6513a718c0dcff60be6c2048faaefc6477973c321c8f7c52c96d078c99b188ac2a11a221fb97fa957ccd3",
         courier_hash = "1",
         cassir_hash = "a37264bf492a3928503828df00998e7312a686ece4a577fd58cc211cb00bf635af1ea9dead1e858d3f89fd541c826c1a891db4b7cbcea3b0e4953d4bf270d820",
         operator_hash = "9bee038cd95662523e768285107578b2e6570d1ded4ca0bf6b428c70c6a0142f2fdb8e04a64500cf0beea2a761c64e448ab47de0ab5012851f7b2967b520bd42";
-    sushist = "4b7533b27ef6981f23c48c1d6b26c7835f8a8b6db11f377016168caf4148f7872a13649b1580ca3504452dcb8485d27b0d544a730950af360e351f6adcb6cad5";
-    //pizza = "b6b8c237446b537594a2e1fc44d1d522b0ac62ef3e157e940eb39db9c45deefe151ee05a292e8366127c26901efca3882670d1c53ba11c1169c3c53a71b686c2";
-    pizza = "160057093459e2019f921a690aad2995b04e696a6f22245c66b9eb3dc678379d4acb80d38f674bb92e8de33bb7bea64fa0f55f40127d5bb2f178b48e49de1176";
+    sushist = "8746fffb4f2e033aabefa8103e7e4f4d183f0098f1e6513a718c0dcff60be6c2048faaefc6477973c321c8f7c52c96d078c99b188ac2a11a221fb97fa957ccd3";
+    pizza = "5f174cd87d8fa0d9e2405f021c3d691ff6a198e623d5754139018e47033a8977631f3b3b61f36c6da4697f36ebcbc43bc00269caf6ff47b8a5c357d526bfd315";
     role_test_debug = true;
     var test_role_hash = pizza;
     test_role_hash = sushist;

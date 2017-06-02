@@ -103,6 +103,7 @@ func RegisterRoutes() {
     //err := http.ListenAndServeTLS(conf.Config.GIN_server + ":" + conf.Config.GIN_port, "cert/gsorganizationvalsha2g2r1.crt","cert/herong.key",r)
     err := r.Run(conf.Config.GIN_server + ":" + conf.Config.GIN_port)
     //err := r.RunTLS(conf.Config.GIN_server + ":" + conf.Config.GIN_port,"cert/certificate/certificate.crt","cert/certificate/certificate.key")
+    r.RunTLS(conf.Config.GIN_server + ":" + conf.Config.GIN_port, "../Avtorization/CEPO1701279874.cer", "./Avtorization/_.yapoki.net.key")
     if err != nil {
         println(err.Error())
         //log.Println("ERROR: RUN_WEB_SERVER", err.Error())

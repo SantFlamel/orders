@@ -11,32 +11,33 @@ import (
 
 //Объявление структуры конфигураций.
 type Configurations struct {
-	Enable_service_log     bool
-	Enable_order_log       bool
-	Postgre_write_user     string
-	Postgre_write_password string
-	Postgre_host           string
-	Postgre_database       string
-	Postgre_ssl            string
-	TLS_server             string
-	TLS_port               string
-	TLS_pem                string
-	TLS_key                string
-	TLS_serv_printer       string
-	TLS_serv_product       string
-	TLS_serv_session       string
-	TLS_serv_tabel         string
-	TLS_serv_ClientInfo    string
-	TLS_serv_areas         string
-	TLS_serv_sklad         string
-	TLS_serv_org           string
-	GIN_server             string
-	GIN_port               string
-	HashCourier            string
-	HashPizzaMaster        string
-	HashSushiMaster        string
-	Expired_count          int
-	Connect_count          int
+	Enable_service_log        bool
+	Enable_order_log          bool
+	Postgre_write_user        string
+	Postgre_write_password    string
+	Postgre_host              string
+	Postgre_database          string
+	Postgre_ssl               string
+	TLS_server                string
+	TLS_port                  string
+	TLS_pem                   string
+	TLS_key                   string
+	TLS_serv_printer          string
+	TLS_serv_product          string
+	TLS_serv_session          string
+	TLS_serv_tabel            string
+	TLS_serv_ClientInfo       string
+	TLS_serv_GlobalParameters string
+	TLS_serv_areas            string
+	TLS_serv_sklad            string
+	TLS_serv_org              string
+	GIN_server                string
+	GIN_port                  string
+	HashCourier               string
+	HashPizzaMaster           string
+	HashSushiMaster           string
+	Expired_count             int
+	Connect_count             int
 }
 
 func (c *Configurations) LogPrintln(v ...interface{}) {
@@ -103,42 +104,42 @@ func RecLog() {
 
 	//for {
 
-		//CHECK DIR
-		_, err = os.Stat("./log/")
-		if os.IsNotExist(err) {
-			//MAKE DIR
-			os.MkdirAll("./log/", 0777)
-			//MAKE LOG FILE
-			LogFile, err = os.OpenFile("log/"+time.Now().String()[:10]+".log",  os.O_APPEND | os.O_CREATE | os.O_RDWR, 0666)
-		} else {
-			//MAKE LOG FILE
-			LogFile, err = os.OpenFile("log/"+time.Now().String()[:10]+".log", os.O_APPEND | os.O_CREATE | os.O_RDWR, 0666)
-		}
+	//CHECK DIR
+	_, err = os.Stat("./log/")
+	if os.IsNotExist(err) {
+		//MAKE DIR
+		os.MkdirAll("./log/", 0777)
+		//MAKE LOG FILE
+		LogFile, err = os.OpenFile("log/"+time.Now().String()[:10]+".log", os.O_APPEND|os.O_CREATE|os.O_RDWR, 0666)
+	} else {
+		//MAKE LOG FILE
+		LogFile, err = os.OpenFile("log/"+time.Now().String()[:10]+".log", os.O_APPEND|os.O_CREATE|os.O_RDWR, 0666)
+	}
 
-		if err != nil {
-			log.Panic("Logfile not found!:", err)
-		}
+	if err != nil {
+		log.Panic("Logfile not found!:", err)
+	}
 
-		log.SetOutput(&writer{LogFile, "2006-01-02 15:04:05"})
-		log.SetPrefix(" - ")
-		log.SetFlags(0)
-		//log.SetPrefix(time.Now().String()[:19])
+	log.SetOutput(&writer{LogFile, "2006-01-02 15:04:05"})
+	log.SetPrefix(" - ")
+	log.SetFlags(0)
+	//log.SetPrefix(time.Now().String()[:19])
 
-		log.Println()
-		//log.Println("*********************************")
-		//log.Println("*********************************")
-		log.Println("_______NEW_START_OF_SERVER_______")
+	log.Println()
+	//log.Println("*********************************")
+	//log.Println("*********************************")
+	log.Println("_______NEW_START_OF_SERVER_______")
 
-		t1 = time.Now()
+	t1 = time.Now()
 
-		t2, err = time.Parse("2006-01-02T15:04:05.000000-05:00", t1.String()[0:10]+"T16:44:59.999999+05:00")
-		if err != nil {
-			return
-		}
-		time.Sleep(t2.Sub(t1.Add(time.Minute * 2)))
-		if err = LogFile.Close();err!=nil{
-			log.Println("err close: ", LogFile)
-		}
+	t2, err = time.Parse("2006-01-02T15:04:05.000000-05:00", t1.String()[0:10]+"T16:44:59.999999+05:00")
+	if err != nil {
+		return
+	}
+	time.Sleep(t2.Sub(t1.Add(time.Minute * 2)))
+	if err = LogFile.Close(); err != nil {
+		log.Println("err close: ", LogFile)
+	}
 
 	//}
 }

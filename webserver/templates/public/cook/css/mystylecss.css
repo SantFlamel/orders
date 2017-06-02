@@ -124,7 +124,7 @@ img {
     min-height: 50px;
 }
 .page_header>div {
-    padding-bottom: 15px;
+
     white-space: nowrap;
 }
 .page_header img {
@@ -138,13 +138,13 @@ img {
 .user_role li:hover {
     color:#333;
 }
-.page_header button {
+.btn-logout {
     padding: 0px 25px 1px 12px;
     background: url(../image/user.png) no-repeat right center;
     background-size: contain;
     border: 0;
 }
-.page_header button:hover, .page_header button:focus {
+.btn-logout:hover, .btn-logout:focus {
     text-decoration: none;
     outline: none;
     background: url(../image/user-hover.png) no-repeat right center;
@@ -160,6 +160,136 @@ img {
     margin: -3px 15px;
     border: 1px solid #0079fe;
     color: #0079fe;
+}
+
+
+.buttons {
+    margin-top: -7px;
+}
+
+.btn-connection {
+    margin-right: 15px;
+}
+
+.btn-dropdown-user {
+  width: 85px;
+}
+
+.btn-connection, .btn-dropdown, .btn-dropdown-user {
+    background-color: #0079fe;
+    color: white;
+}
+
+.btn-connection:hover,
+.btn-connection:visited,
+.btn-dropdown:hover,
+.btn-dropdown:visited,
+.btn-dropdown-user:hover,
+.btn-dropdown-user:visited {
+    background-color: #286090;
+    color: white;
+}
+
+.dropdown-menu li {
+    height: 28px;
+    margin-left: 7px;
+    outline: 0px solid red;
+    font-size: 15px;
+}
+
+.dropdown-menu button {
+    float: right;
+    margin-right: 7px;
+    outline: 0px solid red;
+
+}
+
+
+.navbar-brand, .navbar-nav > li > a {
+    line-height: 100px;
+    height: 75px;
+    padding-top: 0px;
+}
+
+
+/*Модальные окна*/
+
+#connection {
+    background: rgba(142, 142, 147, 0.5);
+}
+
+#connection .modal-dialog {
+    margin-top: 30vh;
+}
+
+
+.modal-dialog {
+    /*max-width: 300px;*/
+    margin-top: 30vh;
+}
+
+.modal-content {
+    box-shadow: none;
+    border-color: transparent;
+    border: 1px solid #c8c7cc;
+}
+
+.modal-content p {
+    font-size: 30px;
+}
+
+.modal-content label {
+    float: left;
+}
+
+.modal-content input {
+    height: 50px;
+    font-size: 30px;
+}
+
+
+.modal-body {
+    text-align: center;
+    line-height: 24px;
+}
+
+.modal-buttons {
+    padding: 0;
+    border-top: 0;
+}
+
+.modal-buttons button {
+    width: 50%;
+    border: 0px;
+    background-image: none;
+    background-color: #0040fe;
+    font-size: 24px;
+    padding: 8px;
+    line-height: 16px;
+    border-top: 1px solid #c8c7cc;
+    color: white;
+    border-radius: 4px;
+    height: 50px;
+}
+
+.modal-buttons button:last-child {
+    border-left: 3px solid white;
+    margin-left: -5.2px;
+}
+
+.modal-buttons button:hover,
+.modal-buttons button:visited {
+    background-color: #286090;
+    color: white;
+}
+
+.text-center {
+    padding-right: 210px;
+    outline: 0px solid red;
+}
+
+.buttons {
+        outline: 0px solid red;
 }
 
 /* Содержание страницы */
