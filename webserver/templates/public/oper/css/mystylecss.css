@@ -1775,13 +1775,3 @@ a.disabled {
 #promotion {
     padding: 0px;
 }
-
-#load_promo {
-    font-size: 13px;
-    padding-right: calc(100% - 50px);
-    color: #007aff;
-    cursor: pointer;
-    background-image: url("../image/p.png");
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: contain;

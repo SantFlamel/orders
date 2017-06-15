@@ -48,8 +48,8 @@ func WSHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    if strings.TrimSpace(auth.HashAuth) == "" {
-        conn.WriteMessage(1,[]byte("00:Auth{EMPTY HASH AUTH"))
+    if strings.TrimSpace(auth.HashAuth) == "" && auth.HashAuth=="undefined" {
+        conn.WriteMessage(1,[]byte("00:Auth{NOT CORRECT HASH AUTH: '"+auth.HashAuth+"'"))
         conn.Close()
         return
     }

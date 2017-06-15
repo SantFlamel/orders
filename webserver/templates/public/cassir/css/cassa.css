@@ -1,6 +1,7 @@
 /* Начало стилей (Интерфейс кассира - касса)*/
 @charset "UTF-8";
 /* Подгрузка шрифтов */
+
 @font-face {
     font-family: 'San Francisco';
     src: url("../fonts/SF-UI-Text-Regular.ttf") format("truetype");
@@ -200,7 +201,7 @@ body {
 .table-cashbox {
     background-color: #fff;
     width: 100%;
-    font-size: 22px;
+    font-size: 18px;
     border-collapse: collapse;
 }
 
@@ -224,6 +225,7 @@ body {
     padding-left: 15px;
     padding-right: 15px;
     border-left: 1px solid #c8c7cc;
+    height: 974px;
 }
 
 .link-home {
@@ -272,8 +274,8 @@ body {
 
 .info-shift__table {
     max-width: 440px;
-    font-size: 22px;
-    overflow:auto;
+    font-size: 18px;
+    overflow: auto;
 }
 
 .info-shift__table-value {
@@ -292,7 +294,7 @@ body {
 .btn-re-check,
 .btn-return-check {
     width: 100%;
-    height: 80px;
+    height: 59px;
     font-size: 20px;
     font-weight: bold;
     background-color: #f1f2f6;
@@ -389,40 +391,6 @@ body {
 .modal-footer button:last-child {
     border-left: 1px solid #c8c7cc;
     margin-left: -6px;
-}
-
-
-
-@media (max-width: 1300px) {
-    .table-cashbox-wrapper {
-        width: 1300px;
-    }
-
-    .table-cashbox-wrapper {
-        width: 1300px;
-    }
-
-    .info-shift {
-    max-width: 1300px;
-
-}
-
-    .info-shift__table {
-    max-width: 1300px;
-
-}
-
-    .info-shift__table-value {
-    color: #007aff;
-    float: right;
-}
-
-.info-shift__table-value {
-    color: #007aff;
-    float: right;
-}
-
-
 }
 
 /* Конец стилей (Интерфейс кассира - касса)*/
@@ -970,6 +938,15 @@ input:focus {
     width: 100%;
 }
 
+.border-fix {
+    background-color: #0079fe;
+}
+
+.align-left {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
 .nav-tabs > li {
     margin-bottom: 0;
     display: table-cell;
@@ -1443,7 +1420,7 @@ i {
     border: 0;
     font-size: 12px;
     padding: 10px 0;
-    border-right: 2px solid #c8c7cc;
+    border-right: 1px solid #c8c7cc;
 }
 
 .cassir_header .col-sm-2 img {
@@ -1660,10 +1637,11 @@ button.logout:hover, button.logout:focus {
 }
 
 .set_number {
-    padding-left: 0;
-    max-width: 75%;
+    padding-left: 2.3%;
+    max-width: 55%;
     margin: 0 auto;
     height: 300px;
+    outline: 0px solid red;
 }
 
 .set_number li {
@@ -1672,6 +1650,8 @@ button.logout:hover, button.logout:focus {
     float: left;
     width: 32%;
     line-height: 18px;
+    margin-bottom: 2%;
+    outline: 0px solid red;
 }
 
 .set_number li a {
@@ -1683,7 +1663,7 @@ button.logout:hover, button.logout:focus {
     margin: 0 auto 10%;
     border-radius: 100%;
     border: 1px solid #0079fe;
-    padding-top: 1.5vh;
+    padding-top: 1.8vh;
     color: #0079fe;
 }
 
@@ -1699,7 +1679,7 @@ button.logout:hover, button.logout:focus {
     line-height: 6vh;
     padding-top: 0;
     background-color: #4cd964;
-    border: 1px sold #4cd964;
+    border: none;
 }
 
 .set_number li:nth-child(13) a i {
@@ -1717,11 +1697,15 @@ button.logout:hover, button.logout:focus {
     color: #fff;
     background-color: #0079fe;
 }
+
 .dark .set_number li a:hover {
     color: #0079fe;
     background-color: #fff;
 }
 
+.green_tube {
+    margin-top: 11%;
+}
 
 .cassir-footer .fa-toggle-on, .cassir-footer .fa-toggle-off { /**/
     margin: 0 10px;
@@ -1732,6 +1716,7 @@ button.logout:hover, button.logout:focus {
 
 .dialed {
     text-align: center;
+    margin-bottom: 6.5%;
 }
 
 .dialed .add_number {
@@ -2199,7 +2184,7 @@ button.logout:hover, button.logout:focus {
 
 .operator .set_number li a {
     font-size: 24px;
-    padding-top: 0px;
+
     line-height: 50px;
 }
 
@@ -2220,8 +2205,8 @@ button.logout:hover, button.logout:focus {
     background: url(../img/finish_call.png) no-repeat center center;
     background-size: contain;
     display: inline-block;
-    height: 45px;
-    width: 25px;
+    height: 57px;
+    width: 57px;
 }
 
 .operator .set_number li:last-child a {
@@ -2316,8 +2301,8 @@ label[for=product_search]:before {
 }
 
 .product_group li {
-    height: 72px;
-    line-height: 20px;
+    height: 70px;
+    line-height: 15px;
     border: 1px solid #92a6bd;
     border-radius: 8px;
     margin-bottom: 8px;
@@ -2360,6 +2345,7 @@ label[for=product_search]:before {
     font-size: 12px;
     background-color: #fff;
     height: calc(100% - 200px);
+    overflow-y: auto;
 }
 
 .order-list .count {
@@ -2398,9 +2384,10 @@ label[for=product_search]:before {
 .operator-cart .finish_buttons a, .operator-cart .finish_buttons input {
     font-size: 12px;
     padding: 12px 15px;
-    width: 48%;
+    width: 46.2%;
     display: inline-block;
     margin-top: 0;
+    cursor: pointer;
 }
 
 .operator-cart .finish_buttons a:hover {
@@ -2464,8 +2451,17 @@ label[for=product_search]:before {
     background: url(../img/finish_call.png) no-repeat center center;
     background-size: contain;
     display: inline-block;
-    height: 45px;
-    width: 25px;
+    height: 57px;
+    width: 57px;
+    outline: 0px solid black;
+}
+
+.sidebar.dark .finish_call:hover {
+    background: url(../img/finish_call_red.png) no-repeat center center;
+    background-size: contain;
+    display: inline-block;
+    height: 57px;
+    width: 57px;
 }
 
 .sidebar.dark .set_number li:last-child a {
@@ -2484,6 +2480,7 @@ label[for=product_search]:before {
 
 .sidebar.dark .set_number li a:hover {
     background-color: #fff;
+    border-color: white;
 }
 
 .sidebar.dark .dialed .name {
@@ -2527,9 +2524,51 @@ label[for=product_search]:before {
     bottom: 60px;
 }
 
+@media (max-width: 1919px) {
+    .sidebar.dark .finish_call {
+        height: 50px;
+        width: 50px;
+    }
+
+    .sidebar.dark .finish_call:hover {
+        height: 50px;
+        width: 50px;
+    }
+}
+
+@media (max-width: 1500px) {
+    .set_number {
+        padding-left: 2.3%;
+        max-width: 69%;
+        margin: 0 auto;
+        height: 300px;
+        outline: 0px solid red;
+    }
+}
+
+@media (max-width: 1200px) {
+    .set_number {
+        padding-left: 2.3%;
+        max-width: 87%;
+        margin: 0 auto;
+        height: 300px;
+        outline: 0px solid red;
+    }
+}
+
 @media (min-width: 992px) {
     .cassir-footer .navbar-nav li:last-child {
         width: 25%;
+    }
+}
+
+@media (max-width: 965px) {
+    .set_number {
+        padding-left: 2.3%;
+        max-width: 100%;
+        margin: 0 auto;
+        height: 300px;
+        outline: 0px solid red;
     }
 }
 
@@ -2663,10 +2702,4 @@ label[for=product_search]:before {
     }
 }
 
-@media (max-width: 640px) {
-
-}
-
 /* стили кассира - конец. Роман */
-
-

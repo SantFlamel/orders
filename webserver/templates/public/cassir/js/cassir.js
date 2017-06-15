@@ -2,7 +2,7 @@
 // TODO: поиск по тлелефону заказов
 // TODO: сделать постраничную навигацию без привязки к колличеству елементов на странице
 
-// TODO: убрать waitProp( function () {   из   .addStatus
+// TODO: при обновлении страницы открывать туже страницу
 function Cassir() {
 }
 Cassir.elem = {
@@ -12,25 +12,18 @@ Cassir.elem = {
 };
 
 
-Cassir.flippIndex = 0; // переменная листалка
-Cassir.FlippingFunc = {
-    next: function () {
-        Cassir.flippIndex += 20;
-        $( '.orders_li:hidden:lt(' + Cassir.flippIndex + ')' ).css( 'display', '' );
-        $( '.orders_li:visible:lt(' + Cassir.flippIndex + ')' ).css( 'display', 'none' );
-    }, prev: function () {
-        var index1 = Cassir.flippIndex - 21;
-        $( '.orders_li' ).css( 'display', 'none' );
-        // если должны отобразится первые 20, то gt() не используется. - (index1 > 0 ? ':gt(' + index1 + ')' : '')
-        $( '.orders_li:lt(' + Cassir.flippIndex + ')' + (index1 > 0 ? ':gt(' + index1 + ')' : '') )
-            .css( 'display', '' );
-        Cassir.flippIndex -= 20;
-    }
-};
 var ELEM_ON_PAGE = 20
-    // $( '.orders_li' )
+    , e_changeOrdersPage = new Events( { timeOut: 100 } )
     , $btn = $( '.orders_li.btn' )
-    ;
+;
+observer.subscribe( e_changeOrdersPage, function () {
+    $( '.orders_li.empty' ).remove();
+    $( '.orders_li.btn' ).remove();
+    Cassir.showBtnFlipping();
+    Cassir.showEmptyElem();
+    Cassir.showPage();
+} );
+
 Cassir.flippPage = 0;
 Cassir.showBtnFlipping = function ( po, recursion ) {
     po = po || (ELEM_ON_PAGE - 1);
@@ -57,10 +50,9 @@ Cassir.showPage = function () {
         , gt = eq === 0 ? eq : eq - 1
         , lt = eq === 0 ? ELEM_ON_PAGE - 1 : ELEM_ON_PAGE
         , sel = '.orders_li:eq(' + eq + '), .orders_li:gt(' + gt + '):lt(' + (lt) + ')';
-    console.log( 'Sel', sel );
     $( sel ).css( 'display', '' );
 };
-$( 'body' ).off( 'click', '.next_page' ).off( 'click', '.prev_page' ).on( 'click', '.next_page', function () {
+$( 'body' ).on( 'click', '.next_page', function () {
     Cassir.flippPage++;
     Cassir.showPage();
 } ).on( 'click', '.prev_page', function () {
@@ -69,29 +61,10 @@ $( 'body' ).off( 'click', '.next_page' ).off( 'click', '.prev_page' ).on( 'click
 } );
 // делаем все елементы видимыми -> скрываем не нужные
 // -> делаем листалки игнорируя скрытые -> оставляем только первые 20 елементов
-// Cassir.sortedOrders = [];
-// Cassir.sortOrders = function () {
-//     // console.group( 'sortOrders' );
-//     function com( el, el1 ) {
-//         var time = Order.list[el].time, time1 = Order.list[el1].time;
-//         time = new Date( time[0], time[1], time[2], time[3], time[4], time[5] );
-//         time1 = new Date( time1[0], time1[1], time1[2], time1[3], time1[4], time1[5] );
-//         // console.log( time, time1 );
-//         return time - time1;
-//     }
-//
-//     Cassir.sortedOrders = [];
-//     for ( var i in Order.list ) {
-//         Cassir.sortedOrders.push( +i );
-//     }
-//     Cassir.sortedOrders.sort( com );
-//     // console.groupEnd();
-// };
 
 // : V сделать отображение даты начала готовки.
 // : V время заказа
 function Order( data ) {
-    // console.group( 'ORDER', data );
     var d, t;
     if ( typeof data === 'object' ) {
         for ( var i in data ) {
@@ -115,18 +88,17 @@ function Order( data ) {
         this.state.push( 'to_workers' )
     }
     Order.list[this.ID] = this;
-    // this.appendInPage();
 
-    MSG.request.customer( this.ID );
-    // console.groupEnd();
+    setTimeout( MSG.request.customer, 1000, this.ID, function ( data ) {
+        if ( Order.list[data["Order_id"]] ) {
+            Order.list[data.Order_id].addNameCustomer( data );
+        }
+    } );
 }
 Order.$orderFeeld = $( '#order_block' );
 Order.list = {};
 Order.prototype.addStatus = function ( data ) {
-    // console.group( 'addStatus' );
-    // console.log( 'this, data', this, data );
     if ( data.Order_id_item === 0 ) { // для всего заказа
-        // console.log( '1  data.Status_id , STATUS[(data.Status_id || 2)].Name', data.Status_id, STATUS[(data.Status_id || 2)].Name );
         this.status = data.Status_id || 2;
         this.statusT = STATUS[this.status].Name;
         if ( this.status == 4 ) {
@@ -137,24 +109,20 @@ Order.prototype.addStatus = function ( data ) {
         }
         this.showOrder();
     } else { // для елемента заказа
-        var d = data, self = this;
-        console.log( '2  d.Status_id, STATUS[d.Status_id][\"Name\"]', d.Status_id, STATUS[d.Status_id].Name );
-        waitProp( function () {
-            if ( self.OrderList[d.Order_id_item].CookingTracker === 0 && d.Status_id < 9 ) {
+        var d = data;
+        if ( this.OrderList && this.OrderList[d.Order_id_item] ) {
+            if ( this.OrderList[d.Order_id_item].CookingTracker === 0 && d.Status_id < 9 ) {
                 d.Status_id = 8;
                 d.Finished = true;
             }
-            self.OrderList[d.Order_id_item].status = d.Status_id;
-            self.OrderList[d.Order_id_item].statusT = STATUS[d.Status_id].Name;
+            this.OrderList[d.Order_id_item].status = d.Status_id;
+            this.OrderList[d.Order_id_item].statusT = STATUS[d.Status_id].Name;
             try {
-                self.updateStatusForDescription();
+                this.updateStatusForDescription();
             } catch ( e ) {
             }
-        }, function () {
-            return self.OrderList
-        }, 300, 10 )
+        }
     }
-    // console.groupEnd();
 };
 
 Order.prototype.showOrder = function () {
@@ -166,22 +134,15 @@ Order.prototype.showOrder = function () {
         || this.status === 13))   /*Заказ не забрали*/
         || ((state === 999) && !( this.status === 11 || this.status === 15 || this.status === 16 /* доставлен, отменён, отменён */)) ) {
         this.deleteOrder( true );
-        wait( 'Order.updateView', Order.updateView, 100 );
+        e_changeOrdersPage.rise();
         return;
     }
     if ( this.status !== state && !(state === 0 || state === 999) ) {
         this.deleteOrder( true );
-        wait( 'Order.updateView', Order.updateView, 100 );
+        e_changeOrdersPage.rise();
         return;
     }
     this.addOrder();
-};
-Order.updateView = function () {
-    $( '.orders_li.empty' ).remove();
-    $( '.orders_li.btn' ).remove();
-    Cassir.showBtnFlipping();
-    Cassir.showEmptyElem();
-    Cassir.showPage();
 };
 Order.prototype.addOrder = function () {
     var elem = document.querySelectorAll( '.orders_li.ord' )
@@ -209,7 +170,7 @@ Order.prototype.addOrder = function () {
             }
         }
         this.setupTimer();
-        wait( 'Order.updateView', Order.updateView, 100 );
+        e_changeOrdersPage.rise();
     }
 };
 
@@ -236,8 +197,6 @@ Order.prototype.addNameCustomer = function ( data ) {
 };
 
 Order.prototype.setupTimer = function () {
-    // console.assert( this.ID !== 3, "заказ #3" );
-    // console.assert( this.ID !== 4, "заказ #4" );
     if ( this.timerWorck ) {
         clearInterval( this.timerWorck )
     }
@@ -256,7 +215,6 @@ Order.prototype.setupTimer = function () {
     now.setFullYear( t[0], +t[1] - 1, t[2] ); // выставляем дату
     now.setHours( t[3], t[4], t[5] ); // выставляем время заказа
 
-    // console.assert( self.ID != 10, 'timerSET2222222222222' );
     this.timer = function () {
         s = (new Date()) - now;
         s = division( s, 1000 );
@@ -303,16 +261,12 @@ Order.prototype.makeOrderElement = function () {
 };
 Order.prototype.deleteOrder = function ( full ) {
     // без full удаляется только елемент на странице.
-    // console.log( 'DELETE this.ID', this.ID );
     $( '#ord_' + this.ID ).remove();
     clearInterval( this.timerWorck );
     if ( !full ) { // если удалять много то данные действия можно пропустить. но выполнить их для всех.
-        // var index = Cassir.sortedOrders.indexOf( this.ID );
-        // Cassir.sortedOrders.splice( index, 1 ); // удаляем из сортированного списка
         delete Order.list[this.id];
         Cassir.showBtnFlipping();
         Cassir.showEmptyElem();
-        Cassir.updateDisplay(); // отображаем нужную страницу.
     }
 };
 Order.prototype.appendInPage = function () {
@@ -366,7 +320,7 @@ Order.find = function ( val ) {
         ii = Order.list[i];
         _id = ii.ID + '';
         if ( (~_id.indexOf( val ) || _id == val)
-            || ( ~ii.Custumer.Phone.indexOf( val ) || ii.Custumer.Phone == val ) ) {
+            || (ii.Custumer && (~ii.Custumer.Phone.indexOf( val ) || ii.Custumer.Phone == val)) ) {
             result.push( i );
         }
     }
@@ -402,9 +356,13 @@ $( document ).on( 'keyup', '#search-input', function () {
     for ( i in result ) {
         ii = result[i];
         ord = Order.list[ii];
-        tel = ord.Custumer.Phone == ' ' ? '' : ord.Custumer.Phone;
+        if ( ord.Custumer ) {
+            tel = ord.Custumer.Phone === ' ' ? '' : ord.Custumer.Phone;
+        } else {
+            tel = '';
+        }
         ad = ord.address();
-        ad = ad == '' ? '' : '<div class="blue_txt address">' + ad + '</div>';
+        ad = ad === '' ? '' : '<div class="blue_txt address">' + ad + '</div>';
         elem += '<div data-id="' + ii + '" class="result-search">#<span>' + ii + '</span> тел:<span class="telephone">'
             + ord.Custumer.Phone + '</span>'
             + ad + '</div>';
@@ -450,3 +408,54 @@ $( document ).on( 'click', '#mode_tel', function () {
     }
 } );
 
+Order.logS = function ( ID ) {
+    var l = {}, i;
+    // запрашиваем статусы
+    MSG.request.allStatusOrder( ID, function ( data ) {
+        data.status = STATUS[data.Status_id].Name;
+        data.Time = Page.timeReplace( data.Time ).slice( 5, 19 );
+        if ( data.UserHash === "system" ) {
+            data.SurName = 'system'
+        }
+        l[data.ID] = data;
+    }, function () {
+        // по окончании запрашиваем персонал
+        MSG.request.personalByOrder( ID, function ( data ) {
+            for ( i in l ) {
+                if ( l[i].UserHash === data.UserHash ) {
+                    l[i].RoleName = data.RoleName;
+                    l[i].SurName = data.SurName;
+                    l[i].FirstName = data.FirstName;
+                }
+            }
+        }, function () {  // после запрашиваем состав заказа
+            MSG.request.orderList( ID, function ( data ) {
+                for ( i in l ) {
+                    if ( l[i].Order_id_item === data.ID_item ) {
+                        l[i].product = data.PriceName;
+                    }
+                }
+            }, function () {
+                console.group( '-----------Order #' + ID );
+                console.table( l, ['Order_id_item', 'product', 'RoleName', 'SurName', 'FirstName', "status", "Time"] );
+                console.groupEnd();
+            } )
+        } );
+    } );
+};
+// Order.logS( 935 );
+
+// Order.logO = function () {
+//     var l = {}, i;
+//     MSG.request.orderByDate( Page.timeBeginDay(), Page.time(),9999, function ( data ) {
+//         data.Order_time = Page.timeReplace( data.Order_time ).slice( 5, 19 );
+//         data.SideOrder = [data.SideOrder];
+//         l[data.ID] = data;
+//         MSG.request.orderStatus(data.ID, 0, function ( data ) {
+//             l[data.ID].status = STATUS[data.Status_id]
+//         })
+//     }, function () {
+//         console.table(l, ['NameStorage', 'SideOrder', 'PriceWithDiscount' , 'Type', 'status', 'Order_time'])
+//     } )
+// };
+// Order.logO();

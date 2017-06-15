@@ -74,9 +74,10 @@ func (st *structure) SelectTables(msg []byte) error {
 		return errors.New("ERROR MARSHAL_STRUCT_TABLE")
 	}
 
-	if len(st.qm.TypeParameter) < 5 && st.qm.Query == "Read" {
-		return errors.New("Length type parameter does not satisfy the requirement")
-	}
+	//if len(st.qm.TypeParameter) < 5 && st.qm.Query == "Read" {
+	//	return errors.New("Length type parameter does not satisfy the requirement")
+	//}
+
 
 	st.Structures.QM =  &st.qm
 
@@ -301,83 +302,28 @@ func (st *structure) SelectTables(msg []byte) error {
 		return err
 
 	case "Session":
-		/*
-			S := structures.Session{}
-			Q := structures.QueryMessage{
-				Table: "Session",
-				Query: "Read",
-				TypeParameter: "Hash"}
-			Q.Values = append(Q.Values, "eryrdtdytry")
+        co := structures.ClientOrder{IP: conf.Config.TLS_serv_session}
+        co.MSG,err = json.Marshal(st.qm)
+        if err != nil {return err}
+        co.MSG = append(co.MSG, []byte(msg[imsg+1:])...)
 
-			//--------------------------------------------------------------
-			func (s *requestSession) Abort(hash string) error {
-				reply, Q := make([]byte, 10000), structTls.QueryMessage{
-					Table: "Session",
-					Query: "Abort",
-					TypeParameter: "Hash"
-				}
-				Q.Values = append(Q.Values, hash)
-				Bytes1, err := json.Marshal(Q)
-				if err != nil {
-					return err
-				}
-				if err := Send([]byte(string(Bytes1)), ConnPr.ConnSession); err != nil {
-					return err
-				}
-				n, err := Read(&reply, ConnPr.ConnSession) //ожидание ответа
-				if err != nil {
-					return err
-				}
-				if string(reply[0:2]) == "00" {
-					fmt.Println("no Abort sessions Error:", string(reply[3:n]))
-				}
-				return nil
-			}
-		*/
+        go st.getDateWithServicesValueRead(co)
 
-		co := structures.ClientOrder{IP: conf.Config.TLS_serv_session}
-		switch st.qm.TypeParameter {
-		case "Read":
-			co.MSG = []byte("{\"Table\":\"Session\",\"Query\":\"Read\"," +
-				"\"TypeParameter\":\"Hash\"," +
-				"\"Values\":[\"" + st.Client.HashAuth + "\"]}")
-			break
+        return nil
 
-		case "ReadNotRights":
-			co.MSG = []byte("{\"Table\":\"SessionInfo\",\"Query\":\"Read\"," +
-				"\"TypeParameter\":\"Hash\"," +
-				"\"Values\":[\"" + st.Client.HashAuth + "\"]}")
-			break
+    case "SessionInfo":
+        co := structures.ClientOrder{IP: conf.Config.TLS_serv_session}
+        co.MSG,err = json.Marshal(st.qm)
+        if err != nil {return err}
+        co.MSG = append(co.MSG, []byte(msg[imsg+1:])...)
 
-		case "ReadHashNotRights":
-			co.MSG = []byte("{\"Table\":\"SessionInfo\",\"Query\":\"Read\"," +
-				"\"TypeParameter\":\"OnOrganizationHashRoleHash\"," +
-				"\"Values\":[\"" + fmt.Sprintf("%v", st.qm.Values[0]) + "\",\"" + fmt.Sprintf("%v", st.qm.Values[1]) + "\"],\"Limit\":999}")
+        if st.qm.TypeParameter =="OnOrganizationHashRoleHash"{
+            go st.getDateWithServicesRangeRead(co)
+        }else{
+            go st.getDateWithServicesValueRead(co)
+        }
 
-			//err = st.getDateWithServicesRangeRead(co)
-			go st.getDateWithServicesRangeRead(co)
-			return err
-
-		case "Check":
-			co.MSG = []byte("{\"Table\":\"Session\"," +
-				"\"Query\":\"Check\"," +
-				"\"TypeParameter\":\"SessionHash\"," +
-				"\"Values\":[\"" + st.Client.HashAuth + "\"]}")
-			break
-
-		case "Abort":
-			co.MSG = []byte("{\"Table\":\"Session\"," +
-				"\"Query\":\"Abort\"," +
-				"\"TypeParameter\":\"Hash\"," +
-				"\"Values\":[\"" + st.Client.HashAuth + "\"]}")
-			break
-		default:
-			return errors.New("I do not know this type of parameter")
-		}
-
-		//err = st.getDateWithServicesValueRead(co)
-		go st.getDateWithServicesValueRead(co)
-		return err
+        return nil
 
 	case "Tabel":
 		co := structures.ClientOrder{IP: conf.Config.TLS_serv_tabel}
@@ -436,6 +382,9 @@ func (st *structure) SelectTables(msg []byte) error {
 	}
 	st.Structures.Orders = st.orders
 
+    if len(st.qm.TypeParameter) < 5 && st.qm.Query == "Read" {
+        return errors.New("Length name type parameter does not satisfy the requirement")
+    }
 
 	switch st.qm.Query {
 	case "Create":

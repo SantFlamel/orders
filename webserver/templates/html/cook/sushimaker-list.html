@@ -7,21 +7,19 @@
     <link rel="stylesheet" href="../../public/cook/css/bootstrap.css">
     <link rel="stylesheet" href="../../public/cook/css/mystylecss.css">
     <link rel="stylesheet" href="../../public/cook/css/media.css">
-    <title>Панель управления</title>
+    <title>Повар || </title>
 </head>
 
 
 <body >
 <div id="warning"></div>
 
-
     <div class="container-fluid" style="height: 100%">
-
         <header class="row page_header">
             <div class="col-xs-4 col-sm-2 text-left">
                 <img src="../../public/cook/image/cloud.png" alt=""> YAPOKI IS
             </div>
-            <div class="  buttons pull-right">
+            <div class="buttons pull-right">
                 <!--<select class="dropdown-toggle user_role styler" name="user_role">-->
                     <!--<option>Сушимейкер</option>-->
                     <!--<option>Раскатка</option>-->
@@ -43,42 +41,42 @@
                 <span id="doc_date"></span>
             </div>
             <div class="col-sm-2 buttons">
-                <button type="button" class="btn btn-connection" id="change_employee" data-toggle="modal" data-target="#connection">Присоединиться</button>
+                <button type="button"  class="btn btn-connection conn_btn" disabled = "true"  id="change_employee" data-toggle="modal" data-target="#connection">Присоединиться</button>
 
                 <!-- Single button -->
                     <div class="btn-group">
                           <button type="button" class="btn btn-dropdown dropdown-toggle idgroup" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Нет гурппы <span class="caret"></span>
+                            Нет группы <span class="caret"></span>
                           </button>
                           <ul class="dropdown-menu users_list">
 
                           </ul>
                     </div>
             </div>
-
         </header>
-
-
 
         <!--Форма авторизациидля работников-->
         <div class="modal fade" id="connection" tabindex="-1" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-body">
-                        <div id="name_user">  </div>
-                        <div class="form-group">
-                            <label for="usr" >Логин:</label>
-                            <input type="text" tag="" class="form-control" id="usr">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Пароль:</label>
-                            <input type="password" class="form-control" id="pwd">
-                        </div>
-                    </div>
-                    <div class="modal-buttons">
-                        <button type="button" data-dismiss="modal" id="ok_day_cashier" class="send_auth_data" >ОК</button>
-                        <button type="button" style="background-color: #fe8600" id="close_day_cashier" data-dismiss="modal">Отмена</button>
-                    </div>
+                     <form >
+                         <div class="modal-body">
+                             <div id="name_user">  </div>
+
+                             <div class="form-group">
+                                 <label for="usr" >Логин:</label>
+                                 <input type="text" tag="" class="form-control" id="usr">
+                             </div>
+                             <div class="form-group">
+                                 <label for="pwd">Пароль:</label>
+                                 <input type="password" class="form-control" id="pwd">
+                             </div>
+                         </div>
+                         <div class="modal-buttons">
+                             <button type="submit" data-dismiss="modal" id="ok_day_cashier" class="send_auth_data" >ОК</button>
+                             <button type="button" style="background-color: #fe8600" id="close_day_cashier" data-dismiss="modal">Отмена</button>
+                         </div>
+                     </form>
                 </div>
             </div>
         </div>
@@ -143,7 +141,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <h3><b>Переделать заказ</b><h3>
+                        <h3><b>Переделать заказ</b></h3>
 
                         <div class="row">
                             <div class="btn-group" data-toggle="buttons">
@@ -156,7 +154,7 @@
                             </div>
                         </div>
                         <br>
-                        <h3><b>Причина переделки</b><h3>
+                        <h3><b>Причина переделки</b></h3>
                         <div class="row">
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-default redone_button">
@@ -196,7 +194,7 @@
             </button>
             <p class="visible-xs">
                 <span id="name_role">Сушимейкер: </span>
-                <span class="font_blue" id="fio">Порсев Алексей</span>
+                <span class="font_blue" id="fio">Нет данных</span>
             </p>
         </div>
 
@@ -254,10 +252,11 @@
             <script src="../../public/cook/js/jquery.formstyler.js" type="text/javascript"></script>
 
 
-            <script src="../../public/cook/js/conf.js" type="text/javascript"></script>
+            <script src="../../public/cook/js/conf.js"   type="text/javascript"></script>
             <script src="../../public/cook/js/new_ws.js" type="text/javascript"></script>
-            <script src="../../public/cook/js/ws.js" type="text/javascript"></script>
-            <script src="../../public/cook/js/time.js" type="text/javascript"></script>
+            <script src="../../public/cook/js/moment.js" type=text/javascript ></script>
+            <script src="../../public/cook/js/time.js"   type="text/javascript"></script>
+            <script src="../../public/cook/js/ws.js"     type="text/javascript"></script>
 
 
             <script src="../../public/cook/js/bootstrap.js" type="text/javascript"></script>

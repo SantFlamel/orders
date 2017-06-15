@@ -7,13 +7,25 @@
 // : V сумма за смену сумма оплат по заказам
 // : V сумма за смену сумма оплат по заказам
 ////////--------| Cashbox |----------------------------------------------------------
+// : V не считается количество заказов.
+// : V поправить ширину
+var WITHDRAWAL = 'Изъятие' // изятие
+    , DEPOSIT = 'Внесение' // внесение
+    , PAYMENT = 'Оплата' // оплата
+    , RETURN = 'Возврат'
+    ;
 
-// TODO:  не считается количество заказов.
-// TODO: поправить ширину
 CashBox = { ChangeEmployee: [] };
 CashBox.count = {
     canceled: function () {
-        return '-';
+        var count = 0, i, ii;
+        for ( i in Order.list ) {
+            ii = Order.list[i];
+            if ( ii.status === 15 || ii.status === 16 ) {
+                count++;
+            }
+        }
+        return count;
     }, return: function () {
         var sum = 0, i, ii;
         for ( i in Operation.list ) {
@@ -61,12 +73,12 @@ CashBox.count = {
      return sum;
      }*/
     , cashInCashBox: function () {
-        return this.adding() + this.ejecting() + this.return();
+        return this.adding() + this.ejecting() + this.return() + CashBox.InCachBox;
     }, cashOnDay: function () {
         var sum = 0, i, ii;
         for ( i in Operation.list ) {
             ii = Operation.list[i];
-            if ( ii.TypePayments === 1 && ii.Deposit > 0 && ii.Order_id ) {
+            if ( ii.Order_id ) {
                 sum += ii.Deposit
             }
         }
@@ -76,19 +88,17 @@ CashBox.count = {
 
 CashBox.update = function () {
     var i, shift = {
-        countOrders: length( Order.list ), countCanceled: CashBox.count.canceled(),
-        countDeposit: CashBox.count.adding(), countEjecting: CashBox.count.ejecting(),
-        cashFromCards: CashBox.count.card(), cashOnDay: CashBox.count.cashOnDay()
+        countOrders: length( Order.list ), countCanceled: CashBox.count.canceled()
+        , countDeposit: CashBox.count.adding(), countEjecting: CashBox.count.ejecting()
+        , cashFromCards: CashBox.count.card(), cashOnDay: CashBox.count.cashOnDay()
+        , cashInCashBox: CashBox.count.cashInCashBox()
     };
-    shift.cashInCashBox = shift.countDeposit + shift.countEjecting + CashBox.count.return() + CashBox.InCachBox /*CashBox.count.cashInCashBox()*/;
     for ( i in shift ) {
         document.getElementById( i ).innerHTML = shift[i] || 0;
     }
 };
 //-----------------------------------------------------------------------
 
-
-// TODO: повторная печать чека
 ////////--------| СМЕНЫ КАССИРА |----------------------------------------------------------
 CashBox.getSumInCashbox = function () {
     MSG.request.ChangeEmployeeByOrgHashUserHash( true, 1, function ( data ) {
@@ -105,14 +115,14 @@ CashBox.closeChangeEmployee = function () {
     var sum_in_cashbox = document.getElementById( 'cashInCashBox' ).innerHTML
         , non_cash_end_day = document.getElementById( 'cashFromCards' ).innerHTML
         , cash_end_day = document.getElementById( 'countDeposit' ).innerHTML
-        ;
+    ;
     MSG.close.ChangeEmployee( +sum_in_cashbox, +non_cash_end_day, +cash_end_day );
     MSG.request.dayOverPrintCheck();
-    delete Cashier.ChangeEmployee;
+    delete SESSION_INFO.ChangeEmployee;
     CashBox.reset();
     wait( 'CashBox.closeChangeEmployee', function () {
         CashBox.getSumInCashbox();
-    }, 300 )
+    }, 300 );
 };
 CashBox.checkChangeEmployee = function () {
     if ( CashBox.ChangeEmployee.length === 0 ) {
@@ -123,10 +133,10 @@ CashBox.checkChangeEmployee = function () {
         document.getElementById( 'shiftNumber' ).innerHTML = '-';
         document.querySelector( '#close-shift p' ).innerHTML = 'Вы действительно хотите открыть смену?';
     } else {
-        Cashier.ChangeEmployee = CashBox.ChangeEmployee.pop();
+        SESSION_INFO.ChangeEmployee = CashBox.ChangeEmployee.pop();
         document.getElementById( 'change_employee' ).innerHTML = CLOSE_CHANGE_EMPLOYEE;
-        document.getElementById( 'shiftNumber' ).innerHTML = Cashier.ChangeEmployee.ID;
-        document.getElementById( 'openedTime' ).innerHTML = Page.timeReplace( Cashier.ChangeEmployee.Date_begin ).slice( 0, 16 );
+        document.getElementById( 'shiftNumber' ).innerHTML = SESSION_INFO.ChangeEmployee.ID;
+        document.getElementById( 'openedTime' ).innerHTML = Page.timeReplace( SESSION_INFO.ChangeEmployee.Date_begin ).slice( 0, 16 );
         document.getElementById( 'close_day_cashier' ).onclick = function () {
             CashBox.closeChangeEmployee();
         };
@@ -140,22 +150,8 @@ CashBox.reset = function () {
 };
 //--------------\ СМЕНЫ КАССИРА |----------------------------------------------------------
 
-Operation.prototype.identical = function () {
-    var i, ii, k, ident;
-    for ( i in Operation.list ) {
-        ii = Operation.list[i];
-        ident = true;
-        for ( k in ii ) if ( ii.hasOwnProperty( k ) ) {
-            if ( this[k] != ii[k] ) {
-                ident = false;
-            }
-        }
-        if ( ident ) {
-            return true;
-        }
-    }
-    return false;
-};
+
+// TODO: повторная печать чека
 // убранно множественная загрузка из куков
 function Operation( TypePayments, Deposit, Cause, /*name,*/ Order_id, ShortChange ) {
     if ( typeof TypePayments == "object" ) {
@@ -166,21 +162,18 @@ function Operation( TypePayments, Deposit, Cause, /*name,*/ Order_id, ShortChang
         for ( i in TypePayments ) {
             this[i] = TypePayments[i];
         }
-        if ( this.identical() ) {
+        Operation.list[TypePayments.ID] = this;
+        if ( TypePayments.Deposit === 0 ) {
             return;
         }
-        Operation.list[TypePayments.ID] = this;
         this.showOperation();
         wait( 'CashBox.update', CashBox.update );
     } else {
-        if ( !Cashier.ChangeEmployee ) {
-            warning( 'Кассовая смена закрыта' );
-            return;
-        }
-        this.Change_employee_id = Cashier.ChangeEmployee.ID;
-        this.RoleName = Cashier.RoleName;
+        CashBox.checkChange();
+        this.Change_employee_id = SESSION_INFO.ChangeEmployee.ID;
+        this.RoleName = SESSION_INFO.RoleName;
         this.Deposit = Deposit; //
-        this.First_sure_name = Cashier.FirstName + ' ' + Cashier.SurName;
+        this.First_sure_name = SESSION_INFO.FirstName + ' ' + SESSION_INFO.SurName;
         this.TypeOperation = +this.Deposit > 0; // оплата payment, внесение deposit, изятие withdrawal.
         this.TypePayments = +TypePayments; // картой, наличными.
         this.Cause = Cause || ''; //
@@ -202,7 +195,7 @@ Operation.prototype.makeElement = function () {
     // console.log( 'MAKE OPERATION this', this );
     var cl, type
         , time = Page.timeReplace( this.TimeOperation )
-        ;
+    ;
     if ( this.Deposit > 0 ) {
         if ( this.Order_id ) {
             cl = list.payment;
@@ -256,13 +249,10 @@ CashBox.action = function ( self, action ) {
     if ( action === 'оплата' ) {
         TypePayments = document.querySelector( '.active.Type_pay' ).dataset.pay_met;
         call = self.dataset.call;
-        console.log( 'ОПЛТА' );
-        // console.log( 'self', call );
         // определяем оплата заказа или нет!!!
         if ( (call !== 'cashbox') ) {
             ord = Order.list[call];
             Cause = "Оплата заказа #" + call;
-            // ShortChange = Deposit - price;
             price = ord.PriceWithDiscount;
         } else {
             price = document.getElementById( 'price_p_c_input' ).value || 0;
@@ -270,14 +260,11 @@ CashBox.action = function ( self, action ) {
 
         switch ( TypePayments.toLowerCase() ) {
             case ('cash'):
-                console.log( 'НАЛИЧНЫЕ' );
                 input = document.getElementById( 'cash_input_modal' );
                 if ( price > +input.value ) {
-                    console.log( 'price, input.value', price, input.value );
                     ShortChange = 0;
                     Deposit = +input.value;
                 } else {
-                    console.log( 'price, input.value 2', price, input.value );
                     Deposit = +price;
                     ShortChange = +input.value - price;
                 }
@@ -285,7 +272,6 @@ CashBox.action = function ( self, action ) {
                 TypePayments = 1;
                 break;
             case ('card'):
-                console.log( 'КАРТА' );
                 input = document.getElementById( 'card_input_modal' );
                 Deposit = +input.value;
                 TypeOperation = PAYMENT;
@@ -293,19 +279,17 @@ CashBox.action = function ( self, action ) {
                 break;
         }
     } else if ( action === DEPOSIT ) {
-        console.log( DEPOSIT );
         input = document.getElementById( 'cash_deposit' );
         Deposit = +input.value;
         TypePayments = 1;
         Cause = document.getElementById( 'note_deposit' ).value
     } else if ( action === WITHDRAWAL ) {
-        console.log( WITHDRAWAL );
         input = document.getElementById( 'cash_withdrawal' );
         Deposit = +input.value * -1;
         TypePayments = 1;
         Cause = document.getElementById( 'note_withdrawal' ).value
     }
-    if ( isNaN( Deposit ) /*|| Deposit === 0*/ /*|| Deposit < price*/ ) {
+    if ( isNaN( Deposit ) ) {
         input.value = '';
         input.placeholder = 'Введите сумму';
         return;
@@ -377,6 +361,7 @@ $( ".table-cashbox" ).on( "click", ".table-cashbox__payment:not(.printed_check.p
 ////////--------| Обработка_модалек |----------------------------------------------------------
 //  ////////--------| Вызов_модалек |----------------------------------------------------------
 $( document ).on( 'click', '#btn_deposit', function () { // "Внесение" кнопка в кассе
+    CashBox.checkChange();
     $( '#nal-block input' ).val( 0 );
     document.getElementById( 'btn_pay' ).dataset.call = 'cashbox';
     document.getElementById( 'pay_check' ).innerHTML =
@@ -393,10 +378,12 @@ $( document ).on( 'click', '#btn_deposit', function () { // "Внесение" �
     }, 50 )
 } );
 $( document ).on( 'click', '#btn_withdrawal', function () { // "Изъятие" кнопка изятие
+    CashBox.checkChange();
     CashBox.updateModalWithdrawal( this );
     document.getElementById( 'cash_withdrawal' ).value = ''
 } );
 $( document ).on( 'click', '#pay_order', function () { // "Оплата" в описании заказа
+    CashBox.checkChange();
     document.getElementById( 'btn_pay' ).dataset.call = this.dataset.id_order;
     document.getElementById( 'pay_check' ).innerHTML = 'К оплате: <span id="price_p_c">-</span> руб.';
     CashBox.updateModalPaymentCash( this );
@@ -410,9 +397,11 @@ $( document ).on( 'click', '#pay_order', function () { // "Оплата" в оп
 
 //  ////////--------| кнопки в модалке |----------------------------------------------------------
 $( document ).on( 'click', '#withdraw', function () { // "изъять"
+    CashBox.checkChange();
     CashBox.action( this, WITHDRAWAL );
 } );
 $( document ).on( 'click', '#modal_btn_deposit', function () { // "внести"
+    CashBox.checkChange();
     CashBox.action( this, DEPOSIT );
 } );
 //  //--------------\ кнопки в модалке |----------------------------------------------------------
@@ -441,8 +430,8 @@ CashBox.updateModalDeposit = function ( self ) { // внесение
 };
 CashBox.updateModalPaymentCash = function () { // оплата наличными
     var self = document.getElementById( 'cash_input_modal' );
-    console.log( 'pay order' );
-    var now = CashBox.count.cashInCashBox(), price, ShortChange, call = document.getElementById( 'btn_pay' ).dataset.call;
+    var now = CashBox.count.cashInCashBox(), price, ShortChange,
+        call = document.getElementById( 'btn_pay' ).dataset.call;
     if ( call !== 'cashbox' ) {
         price = Order.list[document.title.split( '#' )[1]].notPayment;
         document.getElementById( 'price_p_c' ).innerHTML = price;
@@ -465,7 +454,6 @@ CashBox.updateModalPaymentCash = function () { // оплата наличным�
         document.getElementById( 'change_p_c' ).classList.remove( 'red_txt' )
     }
     document.getElementById( 'change_p_c' ).innerHTML = ShortChange || 0;
-    console.log( 'self.value, now', self.value, now );
     document.getElementById( 'in_cashbox_after_p_c' ).innerHTML = (now + +self.value) - ShortChange || now; // в кассе после
 };
 CashBox.updateModalPaymentCard = function ( self ) { // оплата картой
@@ -504,6 +492,13 @@ CashBox.updateModalPaymentCard = function ( self ) { // оплата карто�
 // };
 //  //--------------\ отображение_информации |----------------------------------------------------------
 
+CashBox.checkChange = function () {
+    if ( !SESSION_INFO.ChangeEmployee ) {
+        warning( 'Кассовая смена закрыта' );
+        $( '.modal' ).modal( 'hide' );
+        throw new Error( 'Кассовая смена закрыта.' );
+    }
+};
 
 //  ////////--------| для_инпутов |----------------------------------------------------------
 $( document ).on( 'keyup', '#cash_withdrawal', function () { // изъятие
@@ -667,6 +662,106 @@ document.getElementById( "delivery_tab" ).addEventListener( "click", function ()
  "Изъятие" - изъятие из кассы наличных, например на хоз расходы, размен и т.д.
  //--------------\ DESCRIPTION |----------------------------------------------------------*/
 
+Operation.log = function () {
+    console.table( Operation.list, ['RoleName', 'First_sure_name', 'TypePayments', 'Deposit', 'Cause', 'TimeOperation'] );
+};
+Operation.log();
 
+Operation.logAll = function () {
+    var listChange = {}, listOperation = {}, i, countChangeNoName = 0;
+    var getChange = function ( data ) {
+        countChangeNoName++;
+        data.Date_begin = Page.timeReplace( data.Date_begin ).slice( 5, 19 );
+        data.Date_end = Page.timeReplace( data.Date_end ).slice( 5, 19 );
+        data.over = 0;
+        listChange[data.ID] = data
+    };
+    var getOperation = function ( data ) {
+        if ( countChangeNoName !== 0 ) {
+            for ( i in listChange ) {
+                if ( listChange[i].UserHash === data.UserHash ) {
+                    countChangeNoName--;
+                    listChange[i].name = data.First_sure_name;
+                }
+            }
+        }
+        if ( data.Deposit !== 0 ) {
+            data.TimeOperation = Page.timeReplace( data.TimeOperation ).slice( 5, 19 );
+            data.TypePayments = TYPE_PAYMENTS[data.TypePayments];
+            if ( data.TypePayments === 1 )
+                listChange[data.Change_employee_id].over += data.Deposit;
+            listOperation[data.ID] = data;
+        }
+    };
+    MSG.request.ChangeEmployeeByOrgHash( true, getChange, function () { // зпрашиваем все смены
+        MSG.request.ChangeEmployeeByOrgHash( false, getChange, function () { // зпрашиваем все смены
+            for ( i in listChange ) {
+                MSG.request.cashBoxOperationByChangeEmployee( i, getOperation )
+            }
+            setTimeout( MSG.request.cashBoxOperationByChangeEmployee, 500
+                , i, getOperation, function () {
+                    console.group( '-----------СМЕНЫ' );
+                    console.table( listChange, ['name', 'over', 'Sum_in_cashbox', "NonCash_end_day", "Cash_end_day", 'Close', 'Date_begin', 'Date_end'] );
+                    console.groupEnd();
+                    var sum = 0;
+                    for ( i in listOperation ) if ( listOperation[i].TypePayments === 1 ) {
+                        sum += listOperation[i].Deposit
+                    }
+                    console.group( '-----------ОПЕРАЦИИ', sum );
+                    console.table( listOperation, ['Change_employee_id', 'Order_id', 'First_sure_name', 'Deposit', 'TypePayments', 'Cause', 'TimeOperation'] );
+                    console.groupEnd();
+                } )
+        } );
+    } );
+};
+// Operation.logAll();
 
+Operation.logAll = function () {
+    var listChange = {}, listOperation = {}, i, countChangeNoName = 0;
+    var getChange = function ( data ) {
+        countChangeNoName++;
+        data.Date_begin = Page.timeReplace( data.Date_begin ).slice( 5, 19 );
+        data.Date_end = Page.timeReplace( data.Date_end ).slice( 5, 19 );
+        data.over = 0;
+        listChange[data.ID] = data
+    };
+    var getOperation = function ( data ) {
+        if ( countChangeNoName !== 0 ) {
+            for ( i in listChange ) {
+                if ( listChange[i].UserHash === data.UserHash ) {
+                    countChangeNoName--;
+                    listChange[i].name = data.First_sure_name;
+                }
+            }
+        }
+        if ( data.Deposit !== 0 ) {
+            data.TimeOperation = Page.timeReplace( data.TimeOperation ).slice( 5, 19 );
+            data.TypePaymentsT = TYPE_PAYMENTS[data.TypePayments];
+            if ( data.TypePayments === 1 )
+                listChange[data.Change_employee_id].over += data.Deposit;
+            listOperation[data.ID] = data;
+        }
+    };
+    MSG.request.ChangeEmployeeByOrgHash( true, getChange, function () { // зпрашиваем все смены
+        MSG.request.ChangeEmployeeByOrgHash( false, getChange, function () { // зпрашиваем все смены
+            for ( i in listChange ) {
+                MSG.request.cashBoxOperationByChangeEmployee( i, getOperation )
+            }
+            setTimeout( MSG.request.cashBoxOperationByChangeEmployee, 500
+                , i, getOperation, function () {
+                    console.group( '-----------СМЕНЫ' );
+                    console.table( listChange, ['name', 'over', 'Sum_in_cashbox', "NonCash_end_day", "Cash_end_day", 'Close', 'Date_begin', 'Date_end'] );
+                    console.groupEnd();
+                    var sum = 0;
+                    for ( i in listOperation ) if ( listOperation[i].TypePayments === 1 ) {
+                        sum += listOperation[i].Deposit
+                    }
 
+                    console.group( '-----------ОПЕРАЦИИ', sum );
+                    console.table( listOperation, ['Change_employee_id', 'Order_id', 'First_sure_name', 'Deposit', 'TypePaymentsT', 'Cause', 'TimeOperation'] );
+                    console.groupEnd();
+                } )
+        } );
+    } );
+};
+// Operation.logAll();

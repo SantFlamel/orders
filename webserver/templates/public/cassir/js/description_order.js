@@ -1,13 +1,14 @@
 // : V не блокируется кнопка собрать после сборки
 // : V отображение информации о назначенном курьере.
-// TODO: отображать время к которому доставить
-// TODO: сделать отображение курьера назначенного на заказ,
-// TODO: при сборке запроса печать чек
+// : V отображать время к которому доставить
+// : V сделать отображение курьера назначенного на заказ,
+// TODO: нужна печать чека при сборке заказа
+// TODO: убрать из подтверждения коробки
 
 // {"Table":"OrderPersonal","Query":"Create","TypeParameter":"","Values":[40,0,"1","1"]
 // ,"Limit":0,"Offset":0,"ID_msg":"1854b653819e6cdd44feb00321e54cf398cba9672e78ec9ba9ad1c6b92de8b47e8d97f5788450778d89d646a054e451e341946a8f87e57edc8681a27e0e065d0"}
 Order.check = function () {
-    console.group( 'Order.check' );
+    // console.group( 'Order.check' );
     var ord = Order.list[document.title.split( '#' )[1]]
         , i, ii, j, jj
         ;
@@ -59,13 +60,13 @@ Order.check = function () {
                 for ( j in ii.child ) {
                     jj = ii.child[j];
                     if ( jj.status != 9 ) {
-                        console.log( 'jj.status', jj.status );
+                        // console.log( 'jj.status', jj.status );
                         return false;
                     }
                 }
             } else {
                 if ( ii.status != 9 ) {
-                    console.log( 'ii.status', ii.status );
+                    // console.log( 'ii.status', ii.status );
                     return false;
                 }
             }
@@ -88,8 +89,8 @@ Order.check = function () {
             }
         }();
     } else if ( checkDelivery() ) {
-        MSG.request.orderPersonal( ord.ID, DELYVERYMAN_HASH, function () {
-            document.getElementById( 'order_type' ).innerHTML = DELIVERY + ' V';
+        MSG.request.orderPersonal( ord.ID, HASH_DELIVERYMAN, function ( data ) {
+            document.getElementById( 'order_type' ).innerHTML = DELIVERY + ' ' + data.SurName + ' ' + data.FirstName;
             $( '#ready_order' ).attr( 'disabled', true ).addClass( 'btn-order-ready__disabled' ).attr( 'data-id', '' );
             document.getElementById( 'ready_order' ).innerHTML = 'Готово';
         } );
@@ -115,7 +116,7 @@ Order.check = function () {
                 }
             }();
         } else {
-            console.groupEnd();
+            // console.groupEnd();
             return;
         }
         $( '#ready_order' ).attr( 'disabled', false ).removeClass( 'btn-order-ready__disabled' ).attr( 'data-id', ord.ID );
@@ -123,10 +124,9 @@ Order.check = function () {
         $( '#ready_order' ).attr( 'disabled', true ).addClass( 'btn-order-ready__disabled' ).attr( 'data-id', '' );
         document.getElementById( 'ready_order' ).innerHTML = 'Готово';
     }
-    console.groupEnd();
+    // console.groupEnd();
     //--------------\ ready |----------------------------------------------------------
 };
-
 
 ///  Ометить готовность наименования
 $( document ).on( 'click', '.status-ready + .table-order__spoiler-content tr:not(.row-highlight), tr:not(.row-highlight).table-order__no-spoiler.status-ready', function () {
@@ -138,31 +138,30 @@ $( document ).on( 'click', '.status-ready + .table-order__spoiler-content tr:not
     Order.check();
 } );
 
+
 ////////--------| Доставка |----------------------------------------------------------
 Order.setDeliveryMan = function () {
-    MSG.request.personal( Cashier.OrganizationHash, DELYVERYMAN_HASH, MSG.get.personal, Order.setDeliveryManShow );
+    MSG.request.personal( SESSION_INFO.OrganizationHash, HASH_DELIVERYMAN, MSG.get.personal, Order.setDeliveryManShow );
 };
 Order.setDeliveryManShow = function () {
-    console.group( 'Order.setDeliveryManShow' );
-    console.log( 'MSG.get._personal', MSG.get._personal );
+    // console.group( 'Order.setDeliveryManShow' );
+    // console.log( 'MSG.get._personal', MSG.get._personal );
     var el = 'Курьеры: </br>', i, ii;
     $( '#deliveryman' ).modal( 'show' );
     for ( i in MSG.get._personal ) {
         ii = MSG.get._personal[i];
-        console.log( 'MSG.get._personal[i]', MSG.get._personal[i] );
+        // console.log( 'MSG.get._personal[i]', MSG.get._personal[i] );
         if ( $( 'input [value="' + ii.UserHash + '"]' ).length == 0 && ii.SessionData.split( '|' )[2] == 'true' ) {
             el += '<label><input type="radio" name="deliveryman" value="' + ii.UserHash + '"/> ' + ii.SurName + ' ' +
                 ii.FirstName + ' ' + ii.SecondName + '</label>';
         }
     }
-    console.log( 'el', el );
+    // console.log( 'el', el );
     if ( el ) {
         document.getElementById( 'txt_deliveryman' ).innerHTML = el;
     }
-    console.groupEnd();
+    // console.groupEnd();
 };
-
-
 Order.prototype.setReady = function ( Price_id1, Price_id2 ) {
     if ( Price_id1 == Price_id2 ) {
         this.countedElements[Price_id1].ready = true;
@@ -172,7 +171,6 @@ Order.prototype.setReady = function ( Price_id1, Price_id2 ) {
         this.countedElements[Price_id2].child[Price_id1].ready = true;
     }
 };
-
 $( document ).on( 'click', '#btn_deliveryman', function () {
     if ( document.querySelectorAll( 'input[name="deliveryman"]:checked' ).length != 0 ) {
         var hash = document.querySelector( 'input[name="deliveryman"]:checked' ).value;
@@ -183,15 +181,16 @@ $( document ).on( 'click', '#btn_deliveryman', function () {
 } );
 //--------------\ Доставка |----------------------------------------------------------
 
+
 Order.prototype.setStatus = function ( st, ol ) {
     var i, ii;
     if ( this.status < st && !ol ) {
-        MSG.set.status( this.ID, 0, st );
+        MSG.set.orderStatus( this.ID, 0, st );
     }
     for ( i in this.OrderList ) {
         ii = this.OrderList[i];
         if ( ii.status < st ) {
-            MSG.set.status( this.ID, ii.ID_item, st );
+            MSG.set.orderStatus( this.ID, ii.ID_item, st );
         }
     }
 };
@@ -270,17 +269,15 @@ Order.prototype.countedGrouped = function () {
     var i, el = this.countedElements, ii, j, jj, el2 = {};
     for ( i in el ) {
         ii = el[i];
-        if ( !Order.except( i.Price_id ) ) {
-            if ( !el2.hasOwnProperty( ii.Price_id ) ) {
-                el2[ii.Price_id] = ii
-            } else {
-                el2[ii.Price_id].count += ii.count;
-                el2[ii.Price_id].ID_items = el2[ii.Price_id].ID_items.concat( ii.ID_items );
-                for ( j in el2[ii.Price_id].child ) {
-                    jj = el2[ii.Price_id].child[j];
-                    jj.count += ii.child[j].count;
-                    jj.ID_items = jj.ID_items.concat( ii.child[j].ID_items );
-                }
+        if ( !el2.hasOwnProperty( ii.Price_id ) ) {
+            el2[ii.Price_id] = ii
+        } else {
+            el2[ii.Price_id].count += ii.count;
+            el2[ii.Price_id].ID_items = el2[ii.Price_id].ID_items.concat( ii.ID_items );
+            for ( j in el2[ii.Price_id].child ) {
+                jj = el2[ii.Price_id].child[j];
+                jj.count += ii.child[j].count;
+                jj.ID_items = jj.ID_items.concat( ii.child[j].ID_items );
             }
         }
     }
@@ -384,8 +381,6 @@ Order.prototype.statusCounted = function () {
             }
             //--------------\ parent |----------------------------------------------------------
             //--------------\ for set |----------------------------------------------------------
-        } else if ( Order.except( ii.Price_id ) ) {
-            ii.status = 8;
         } else {
             ////////--------| parent |----------------------------------------------------------
             z = [];
@@ -411,17 +406,6 @@ Order.prototype.statusCounted = function () {
     } // конец основного цикла.
 };
 //------------------------------------------------------------------------------
-Order.except = function ( id ) {
-    var i, priceID = {
-        '679': 'Вилки', '680': 'Палочки для роллов', '682': 'Коробка', '681': "Салфетка бумажная"
-    };
-    for ( i in priceID ) {
-        if ( +i === +id ) {
-            return true;
-        }
-    }
-    return false;
-};
 
 Order.prototype.updateStatusForDescription = function () {
     var i, ii, j, jj, btn, img, select
@@ -442,9 +426,9 @@ Order.prototype.updateStatusForDescription = function () {
     for ( i in this.countedElements ) {
         ii = this.countedElements[i];
         if ( ii.hasOwnProperty( 'child' ) ) {
-            document.querySelector( '[data-id="' + this.ID + '"][data-price_id="' + ii.Price_id + '"] ' ).className = ('table-order__spoiler ' + cl( ii ));
+            $( '[data-id="' + this.ID + '"][data-price_id="' + ii.Price_id + '"] ' ).removeClass().addClass( 'table-order__spoiler ' + cl( ii ) );
             // ставим текст состояния заголовка
-            document.querySelector( '[data-id="' + this.ID + '"][data-price_id="' + ii.Price_id + '"] .table-order__status-trekking' ).innerHTML = ii.statusT;
+            $( '[data-id="' + this.ID + '"][data-price_id="' + ii.Price_id + '"]:not([data-id_parent]) .table-order__status-trekking' ).html( ii.statusT );
 
             for ( j in ii.child ) {
                 jj = ii.child[j];
@@ -535,7 +519,7 @@ Order.prototype.makeDescriptionElement = function () {
     this.updateStatusForDescription();
 };
 
-
+/** считаем оплату заказа */
 Order.prototype.calcPayment = function () {
     // console.group( 'calcPayment' );
     var i, ii, valueCard = 0, valueCash = 0, valueBonus = 0, payment, motPayment;
@@ -573,25 +557,26 @@ Order.prototype.calcPayment = function () {
     document.getElementById( 'cashs' ).innerHTML = valueCash;
     document.getElementById( 'bonuses' ).innerHTML = valueBonus;
     document.getElementById( 'price_with_discount' ).innerHTML = motPayment;
-    document.getElementById( 'payment_met' ).innerHTML = (this.TypePayments == 1 ? CASH : CARD);
-
-    // console.log( 'pay', payment, motPayment, valueCard, valueCash, valueBonus );
-    // console.groupEnd();
+    document.getElementById( 'payment_met' ).innerHTML = TYPE_PAYMENTS[ this.TypePayments ];
 };
+
+/** получаем адрес в виде текста */
 Order.prototype.address = function () {
     var address =
-            ( this.Custumer.Street === ' ' ? '' : 'ул. ' + this.Custumer.Street)
-            + (this.Custumer.House === 0 ? '' : ' д.' + this.Custumer.House )
-            + (this.Custumer.Building === ' ' ? '' : ' ст.' + this.Custumer.Building )
-            + (this.Custumer.Apartment === 0 ? '' : ' кв.' + this.Custumer.Apartment )
-            + (this.Custumer.Entrance === 0 ? '' : ' п.' + this.Custumer.Entrance )
-            + (this.Custumer.Floor === 0 ? '' : ' эт.' + this.Custumer.Floor )
-            + (this.Custumer.DoorphoneCode === ' ' || this.Custumer.DoorphoneCode === '0' ? '' : ' домофон:' + this.Custumer.DoorphoneCode )
+            (this.Custumer.City === ' ' ? '' : 'н.п. ' + this.Custumer.City)
+            + (this.Custumer.Street === ' ' ? '' : ' ул. ' + this.Custumer.Street)
+            + (this.Custumer.House === 0 ? '' : ' д.' + this.Custumer.House)
+            + (this.Custumer.Building === ' ' ? '' : ' ст.' + this.Custumer.Building)
+            + (this.Custumer.Apartment === 0 ? '' : ' кв.' + this.Custumer.Apartment)
+            + (this.Custumer.Entrance === 0 ? '' : ' п.' + this.Custumer.Entrance)
+            + (this.Custumer.Floor === 0 ? '' : ' эт.' + this.Custumer.Floor)
+            + (this.Custumer.DoorphoneCode === ' ' || this.Custumer.DoorphoneCode === '0' ? '' : ' домофон:' + this.Custumer.DoorphoneCode)
         ;
     return address;
 };
 
-Order.prototype.showDescription = function () { // для отображения нужно вызывать MSG.request.orderLists(ID)
+/** запускается из MSG.request.orderList(ID)*/
+Order.prototype.showDescription = function () {
     document.title = "Заказ #" + this.ID;
     $( '#ready_order' ).attr( 'disabled', true ).addClass( 'btn-order-ready__disabled' );
     document.getElementById( 'pay_order' ).dataset.id_order = this.ID;
@@ -613,9 +598,13 @@ Order.prototype.showDescription = function () { // для отображения
     note += 'Количество персон: ' + this.CountPerson + '<br>' + this.Note;
     document.getElementById( 'note' ).innerHTML = note || '--';
     this.calcPayment();
-    var ad = this.address();
-    document.getElementById( 'address' ).innerHTML = (ad == '' ? '' : ad + ' <br> ')
-        + (this.Custumer.Phone === '' ? '' : 'Тел.' + this.Custumer.Phone );
+    var ad = '';
+    if ( this.Custumer ) {
+        ad = this.address();
+        ad = (ad == '' ? '' : ad + ' <br> ')
+            + (this.Custumer.Phone === '' ? '' : 'Тел.' + this.Custumer.Phone );
+    }
+    document.getElementById( 'address' ).innerHTML = ad;
     Order.check();
 };
 
@@ -623,15 +612,16 @@ Order.prototype.showDescription = function () { // для отображения
 
 
 ////////--------| REMAKE |----------------------------------------------------------
-$( document ).on( 'click', '[data-target="#remake"]', function () {
+$( document ).on( 'click', '.btn-refresh', function () {
     var elem = $( this ).parent().parent()
         , ID_items = elem.attr( 'data-id_items' )
         , ID = elem.attr( 'data-id' )
         ;
-    console.log( 'ID, ID_items, elem', ID, ID_items, elem );
+    // console.log( 'ID, ID_items, elem', ID, ID_items, elem );
     document.getElementById( 'modal_price_name' ).innerHTML = Order.list[ID].OrderList[ID_items[0]].PriceName;
     document.getElementById( 'btn_remake' ).dataset.id_items = ID_items;
     document.getElementById( 'btn_remake' ).dataset.id = ID;
+    return false;
 } );
 $( document ).on( 'click', '#btn_remake', function () {
     var count = +document.getElementById( 'element_remake_count' ).value
@@ -639,22 +629,28 @@ $( document ).on( 'click', '#btn_remake', function () {
         , ID = document.getElementById( 'btn_remake' ).dataset.id
         , i
         ;
-    console.log( 'count, ID_items, ID', count, ID_items, ID );
+    // console.log( 'count, ID_items, ID', count, ID_items, ID );
     if ( count < 1 ) {
         return
     }
     for ( i = 0; i < count; i++ ) {
-        MSG.set.status( ID, ID_items[i], 14 );
+        MSG.set.orderStatus( ID, ID_items[i], 14 );
     }
 } );
 //--------------\ REMAKE |----------------------------------------------------------
+
+/** отображение картинок */
+$( document ).on( 'click', '.btn-switch-img', function () {
+    document.getElementById( 'img' ).src = this.dataset.image;
+    return false;
+} );
 
 ////////--------| CANCEL ORDER |----------------------------------------------------------
 // !!! для всего заказа ставим отменён без списания.
 $( document ).on( 'click', '#btn_cancel_order', function () {
     var ord = Order.list[document.getElementById( 'span_cancel_order' ).innerHTML];
-    if ( ord.status < 11 || !ord.status ) {
-        MSG.set.status( ord.ID, 0, 16 );
+    if ( ord.status !== 11 || !ord.status ) {
+        MSG.set.orderStatus( ord.ID, 0, 16 );
     }
 } );
 $( document ).on( 'click', '#cancel_order', function () {
@@ -669,4 +665,13 @@ $( document ).on( 'click', '#home_description_order', function () {
     document.getElementById( 'description_order' ).style.display = 'none';
     document.getElementById( 'cassir' ).style.display = '';
     document.title = 'Заказы';
+} );
+
+
+$( document ).on( 'click', '.orders_li.ord, .result-search', function () {
+    var ID = this.dataset.id;
+    MSG.request.orderList( ID, MSG.get.orderList, function () {
+        Order.list[ID].showDescription();
+    } );
+    MSG.request.payment( ID );
 } );

@@ -63,13 +63,6 @@
     /*text-align: center;*/
 }
 
-.order-list { /* боковая панель в козне*/
-    font-size: 12px;
-    background-color: #fff;
-    height: calc(100% - 250px);
-    overflow: scroll;
-}
-
 .printed_check {
     color: #ff3b30 !important;
 }
@@ -189,7 +182,6 @@
     max-height: 150px;
     overflow: auto;
     cursor: pointer;
-
 }
 
 .tt-selectable:hover {
@@ -384,16 +376,16 @@ button:disabled { /* Кнопка оплатить */
     padding: 0px;
 }
 
-#load_promo {
-    font-size: 13px;
-    padding-right: calc(100% - 50px);
-    color: #007aff;
-    cursor: pointer;
-    background-image: url("../img/p.png");
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: contain;
-}
+/*#load_promo {*/
+    /*font-size: 13px;*/
+    /*padding-right: calc(100% - 50px);*/
+    /*color: #007aff;*/
+    /*cursor: pointer;*/
+    /*background-image: url("../img/p.png");*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: right;*/
+    /*background-size: contain;*/
+/*}*/
 
 /*end promotion*/
 

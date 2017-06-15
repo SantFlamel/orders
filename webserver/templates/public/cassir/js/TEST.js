@@ -1,16 +1,16 @@
 var TEST = false;
 ////////--------| setup test |----------------------------------------------------------
 if ( ~window.location.href.indexOf( 'http://localhost:63342' ) ) {
-    AUTH_URL = '';
+    AUTH_URL = '#';
     WS_URL = 'ws://192.168.0.73:80/ws';
-    DELYVERYMAN_HASH = '1';
-    SESSION_HASH = 'df440369a999fb0c73f0249276b5e015bf5d1c2d4d1410e46ad60338a5129adc';
+    HASH_DELIVERYMAN = '1';
+    SESSION_HASH = '55';
 
 
     // для приготовления елементов заказа
     setReadyElement = function ( ID, id_item ) {
         if ( id_item ) {
-            MSG.set.status( ID, id_item, 8 );
+            MSG.set.orderStatus( ID, id_item, 8 );
             MSG.set.finished( ID, id_item, true );
         } else {
             var i;
@@ -30,14 +30,14 @@ function TESTScript( src ) {
     document.body.appendChild( script );
 }
 // cookie.set('hash', 'ea556e1c50d1a08a4b8ce683cb5ab4d9b16a913af83d7fe9c8718c52c11fe3bc')
-TESTScript( '../../public/cassir/js/promotion.js' );
-if ( cookie.get( 'TEST' ) === 'true' ) {
+TESTScript( '../../public/js/promotion.js' );
+if ( $.cookie( 'TEST' ) === 'true' ) {
 // cookie.set( 'TEST', true );
     console.log( 'TEST' );
     TEST = true;
-    // TESTScript( '../../public/cassir/js/test_promotion.js' );
+    // TESTScript( '../../public/js/test_promotion.js' );
     warning( 'TEST' );
-    // TESTScript( '../../public/cassir/js/promotion.js' );
+    // TESTScript( '../../public/js/promotion.js' );
     BEGIN_TIME_FOR_ORDER = Page.time( new Date( 1900, 1, 1, 0, 0, 0, 0 ) ); // время с которого запрашиваются заказы
     ////////--------| address |----------------------------------------------------------
     document.getElementById( 'client_name' ).value = 'Ден';

@@ -18,7 +18,7 @@ body {
 .table-order tr {
   border-bottom: 1px solid #c8c7cc;
   border-collapse: collapse;
-  height: 90px;
+  height: 75px;
 }
 
 .table-order__spoiler-content {
@@ -110,7 +110,7 @@ body {
 .sidebar-order__order-status-order,
 .sidebar-order__payment-method {
   margin-top: 25px;
-  font-size: 30px;
+  font-size: 20px;
   line-height: 30px;
   color: #007aff;
 }
@@ -126,23 +126,26 @@ body {
 
 .sidebar-order__left-column {
   float: left;
-  font-size: 30px;
+  font-size: 20px;
   line-height: 35px;
   color: #666666;
 }
 
 .sidebar-order__right-column {
   float: right;
-  font-size: 30px;
+  font-size: 20px;
   line-height: 35px;
   color: #007aff;
 }
 
 .sidebar-order__comments {
   margin-top: 25px;
-  font-size: 30px;
+  font-size: 20px;
   color: #666666;
+  outline: 0px solid blue;
 }
+
+
 
 .sidebar-order__text-comments {
   font-size: 20px;
@@ -259,7 +262,7 @@ body {
 .btn-cancel-order,
 .btn-order-ready {
   width: 49%;
-  height: 79px;
+  height: 59px;
   font-size: 18px;
   font-weight: bold;
   outline: none;

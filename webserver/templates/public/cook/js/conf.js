@@ -1,22 +1,26 @@
+
 var sideOrder = { 1: "телефон", 2: "кассир", 3: "почта", 4: "приложение" },
     povar_hash = "8746fffb4f2e033aabefa8103e7e4f4d183f0098f1e6513a718c0dcff60be6c2048faaefc6477973c321c8f7c52c96d078c99b188ac2a11a221fb97fa957ccd3",
     courier_hash = "34876c15cf8bcdd3261aa10c29c84d9df529d5f784e1dc39ef84240fac8e54c3366dd6b9420023ded5fa4965f1392f16aa1687fde41fd7825d1e11a1686abe9c",
     cassir_hash = "dcfb7d4d43418b73fba6be0d51ce988e1a84dacda379e3ba3e1f3bef932d4c92c074009d331af45875dabc4fcf6e161925b93d1e67336f13540dfe4af063b556",
     operator_hash = "30a88dcd705dda89507babfb30c44c2d0fd42e5ed7b4c453290a6b6e919937f7344bca0bbb8de040573254f728658869e1e069b50a70766a03a8a2be463ec5e6",
     sushist = "8746fffb4f2e033aabefa8103e7e4f4d183f0098f1e6513a718c0dcff60be6c2048faaefc6477973c321c8f7c52c96d078c99b188ac2a11a221fb97fa957ccd3",
-    pizza = "b6b8c237446b537594a2e1fc44d1d522b0ac62ef3e157e940eb39db9c45deefe151ee05a292e8366127c26901efca3882670d1c53ba11c1169c3c53a71b686c2";
+    pizza = "5f174cd87d8fa0d9e2405f021c3d691ff6a198e623d5754139018e47033a8977631f3b3b61f36c6da4697f36ebcbc43bc00269caf6ff47b8a5c357d526bfd315";
 
 //серверная версия
 var addressWS = 'ws://order.yapoki.net:8080/ws';
 var auth_page = 'http://yapoki.net:7070';
 //локальная версия
 
-
+var TEST = $.cookie('TEST') === 'true';
+var enable_log_msg =  $.cookie('disable_log_msg') === 'true';
+enable_log_msg = !enable_log_msg;
 //DEBUG
 
 var Auth_redirect = false;
 var role_test_debug = false;
 // var Auth_redirect =true;
+var minimal_cook_time = "0:00:05";  //минимальное время после которого повар сможет нажать готово
 
 
 var WS_TIMEOUT = 500 // таймаут переподключения.
@@ -65,9 +69,8 @@ var NO_NAME = 'Без имени'
     ;
 
 if ( ~window.location.href.indexOf( 'http://localhost:63342' ) ) {
-    WS_URL = 'ws://192.168.0.73:80/ws';
-    SESSION_HASH = "87ef4897c3ca69fbd6cb46f9b6e0787e4c5a7bc1facab824aae9d4f297e24dff";
 
+    WS_URL = 'ws://192.168.0.73:80/ws';
     addressWS = 'ws://192.168.0.73:80/ws';
     auth_page = 'http://192.168.0.73:7070';
     var minimal_cook_time = "00:00:15";  //минимальное время после которого повар сможет нажать готово
@@ -76,8 +79,9 @@ if ( ~window.location.href.indexOf( 'http://localhost:63342' ) ) {
 //WS_URL = 'ws://192.168.0.73:80/ws';
 
 if ( WS_URL == 'ws://192.168.0.73:80/ws' ) {
-    SESSION_HASH = "99e92e74645ca0059b71dcb2f4bf262c4725560ad5027da2bbe27c0126233d85"; //суши
-    // SESSION_HASH = "03d40c49b4c045627e2ffc00eaeb8791a2fc809d213ee2d4c57ee8fca06bb217" ; //пицца
+    SESSION_HASH = "22" ; //суши
+   // SESSION_HASH = "58dfd6c7b51136ecd2332e6fa80b73cabdf5aa3ffe05140e4ca4d720d2bb9d34" ; //пицца (планшет)
+
     povar_hash = "8746fffb4f2e033aabefa8103e7e4f4d183f0098f1e6513a718c0dcff60be6c2048faaefc6477973c321c8f7c52c96d078c99b188ac2a11a221fb97fa957ccd3",
         courier_hash = "1",
         cassir_hash = "a37264bf492a3928503828df00998e7312a686ece4a577fd58cc211cb00bf635af1ea9dead1e858d3f89fd541c826c1a891db4b7cbcea3b0e4953d4bf270d820",

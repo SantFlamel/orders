@@ -5,41 +5,34 @@ function procCollapse() {
 // Дата и время
 
 function getTime() {
-    var d = new Date();
-    var month_num = d.getMonth();
-    var day_num = d.getDay();
-    var day = d.getDate();
-    var hours = d.getHours();
-    var minutes = d.getMinutes();
+    var d = new Date(), month_num = d.getMonth()
+        , day_num = d.getDay(), day = d.getDate()
+        , hours = d.getHours(), minutes = d.getMinutes()
+        ,
+        month = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
+        , weekday = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
 
-    month = new Array( "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря" );
-    weekday = new Array( "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" );
-
-    if ( day <= 9 ) day = "0" + day;
-    if ( hours <= 9 ) hours = "0" + hours;
-    if ( minutes <= 9 ) minutes = "0" + minutes;
-
-    current_time = hours + ":" + minutes;
-    current_date = weekday[day_num] + ",  " + day + " " + month[month_num];
-    if ( document.layers ) {
-        document.layers.doc_time.document.write( current_time );
-        document.layers.doc_date.document.write( current_date );
-        document.layers.doc_time.document.close();
-        document.layers.doc_date.document.close();
-    } else {
-        document.getElementById( "doc_time" ).innerHTML = current_time;
-        document.getElementById( "doc_date" ).innerHTML = current_date;
-        document.getElementById( "doc_time_dark" ).innerHTML = current_time;
-        document.getElementById( "doc_date_dark" ).innerHTML = current_date;
+    if ( day <= 9 ) {
+        day = "0" + day;
     }
-    setTimeout( "getTime()", 30000 );
+    if ( hours <= 9 ) {
+        hours = "0" + hours;
+    }
+    if ( minutes <= 9 ) {
+        minutes = "0" + minutes;
+    }
+
+    var current_time = hours + ":" + minutes, current_date = weekday[day_num] + ",  " + day + " " + month[month_num];
+
+    $( 'span.doc_time' ).html( current_time ); //TEST
+    $( 'span.doc_date' ).html( current_date ); //TEST
+
+    setTimeout( getTime, 30000 );
 }
 
 getTime();
 
 // Таймер на увеличение 
-
-var clickNumber = 0;
 
 function startTimer() {
     var timers = $( "[data-role=timer]" );
@@ -112,20 +105,6 @@ function onOff() {
     }
 }
 
-// Набор номера
-
-function number_tel( num ) { // работает криво
-    var _input = $( '#tel_num' );
-    var _input_val = _input.val();
-    _input_val = _input_val ? _input_val : "8(___)___-__-__";
-    for ( var i in _input_val ) {
-        if ( _input_val[i] == '_' ) {
-            _input_val = _input_val.replace( '_', num );
-            _input.val( _input_val );
-            break;
-        }
-    }
-}
 
 // Переключение между активным звонком и набором номера
 
@@ -146,22 +125,6 @@ jQuery( function ( $ ) { // маска номера телефона
         }
     } );
 } );
-//
-function number_tel( num ) {
-    var _input = $( '#tel_num' );
-    var _input_val = _input.val();
-    _input_val = _input_val ? _input_val : "7(___)___-__-__";
-    if ( _input_val.indexOf( '_' ) ) {
-        _input_val = _input_val.replace( '_', num );
-        _input.val( _input_val );
-    }
-}
-
-function getNumber( id ) {
-    id = id || 'tel_num';
-    var t = document.getElementById( id ).value;
-    return t.replace( /[()-]/g, '' )
-};
 
 $( "#product_search" ).on( "click", function () {
     $( "#product_search" ).val( "" );
@@ -169,3 +132,29 @@ $( "#product_search" ).on( "click", function () {
     //$('.filters input').keyup();
 } );
 
+var Page = {
+    time: function ( _time, simple ) {
+        // "2016-11-10T14:58:04.09503701Z"
+        var now, time;
+        if ( _time ) {
+            now = _time
+        } else {
+            now = new Date()
+        }
+        var year = now.getFullYear(), month = now.getMonth() +
+            1, day = now.getDate(), hours = now.getHours(), minutes = now.getMinutes();
+
+        month = month < 10 ? '0' + month : month;
+        day = day < 10 ? '0' + day : day;
+        hours = hours < 10 ? '0' + hours : hours;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        if ( simple ) {
+            return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
+        } else {
+            var seconds = now.getSeconds(), milliseconds = now.getMilliseconds();
+
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            return year + '-' + month + '-' + day + 'T' + hours + ':' + minutes + ':' + seconds + '.' + milliseconds + 'Z';
+        }
+    }
+};

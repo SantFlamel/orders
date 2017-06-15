@@ -14,11 +14,10 @@ function Product( data ) {
     for ( i in data ) {
         this[i] = data[i];
     }
-    this.added = Order.except( data.Price_id );
     this.mass = this.Value + ' ' + this.Units;
 
     this.CookingTracker = data.CookingTracker || 0;
-    if ( data.Type_id == 12 || data.Type_id == 13 || data.Type_id == 14 || data.Type_id == 15 ) {
+    if ( data.Type_id === 12 || data.Type_id === 13 || data.Type_id === 14 || data.Type_id === 15 ) {
         this.addeds = [679, 680];
     }
     Product.list[this.Price_id] = this;
@@ -30,7 +29,7 @@ Product.prototype.makeCatalogElement = function () {
     this.catalogElement =
         '<li style="position: relative" data-id="' + this.Price_id + '" data-hash="' + this.ProductHash
         + '" onclick="console.log( \'LI\' );if ( !this.classList.contains(\'stop_list_product\') ) {Product.setCountCart(' + this.Price_id + ',' + this.Price_id + ', +1)}">' +
-        '<a><img onclick="if ( !this.parentNode.parentNode.classList.contains(\'stop_list_product\') ) {Product.list[' + this.Price_id + '].showDescription()} event.stopPropagation()" src="../../public/cassir/img/info.png" class="description_img" style="">' + this.PriceName + ' ' + this.Price + 'р.</a></li>'
+        '<a><img onclick="if ( !this.parentNode.parentNode.classList.contains(\'stop_list_product\') ) {Product.list[' + this.Price_id + '].showDescription()} event.stopPropagation()" src="../../public/img/info.png" class="description_img" style="">' + this.PriceName + ' ' + this.Price + 'р.</a></li>'
 };
 
 Product.prototype.showCatalogElements = function () {
@@ -129,9 +128,6 @@ Product.prototype.updateInputVal = function ( id, val, ad ) {
 Product.prototype.makeDescriptionElement = function () {
     // делаем описание >
     var x = '', _elem;
-    if ( ~FREE_SOUSES_FOR_PIZZA.indexOf( this.Price_id ) ) {
-        x = ' </br> <div style="margin-top: 15px"><input style="width: 12px" id="sous_for_pizza" type="checkbox"><label for="sous_for_pizza">Бесплатный соус к пицце</label></div>'
-    }
     _elem = '<div class="div'
         + this.Price_id + '"><p class="h3">'
         + this.PriceName + ', ' + this.mass + '.<span class="font_blue">'
@@ -483,10 +479,6 @@ if ( TEST ) {
         Cart.clean();
         $( '.product_in_cart' ).remove(); // очищаем боковую панель
         Cart.showPrice(); // сбрасыываем ценник
-        Page.show.Cassir();
-        if ( $( "#on_time" ).is( ":checked" ) ) {
-            $( '#on_time' ).click();
-        }
     };
 
 
@@ -521,8 +513,9 @@ if ( TEST ) {
         $( '#product_search' ).keyup( function ( e ) {
             var code = e.keyCode || e.which;
             if ( code == '9' ) return;
-            var $Items = $( ".tab-pane .product_group li a:not(.part)" ), $input = $( this ), inputContent = $input.val()
-                .toLowerCase();
+            var $Items = $( ".tab-pane .product_group li a:not(.part)" ), $input = $( this ),
+                inputContent = $input.val()
+                    .toLowerCase();
             var $filterItems = $Items.filter( function () {
                 var value = $( this ).text().toLowerCase();
                 if ( value.indexOf( inputContent ) === -1 ) return true;
@@ -535,6 +528,7 @@ if ( TEST ) {
 
     $( document ).on( 'click', '.cart_btn_cancel', function () {
         Cart.cancelOrder()
+        Page.show.Cassir();
     } );
 } else { //////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////
@@ -816,10 +810,6 @@ if ( TEST ) {
         Promotion.runAll();
         $( '.product_in_cart' ).remove(); // очищаем боковую панель
         Cart.showPrice(); // сбрасыываем ценник
-        Page.show.Cassir();
-        if ( $( "#on_time" ).is( ":checked" ) ) {
-            $( '#on_time' ).click();
-        }
     };
 
 
@@ -854,8 +844,9 @@ if ( TEST ) {
         $( '#product_search' ).keyup( function ( e ) {
             var code = e.keyCode || e.which;
             if ( code == '9' ) return;
-            var $Items = $( ".tab-pane .product_group li a:not(.part)" ), $input = $( this ), inputContent = $input.val()
-                .toLowerCase();
+            var $Items = $( ".tab-pane .product_group li a:not(.part)" ), $input = $( this ),
+                inputContent = $input.val()
+                    .toLowerCase();
             var $filterItems = $Items.filter( function () {
                 var value = $( this ).text().toLowerCase();
                 if ( value.indexOf( inputContent ) === -1 ) return true;
@@ -868,6 +859,7 @@ if ( TEST ) {
 
     $( document ).on( 'click', '.cart_btn_cancel', function () {
         Cart.cancelOrder()
+        Page.show.Cassir();
     } );
 
 }

@@ -3,8 +3,6 @@
  */
 //бывший myjs.js - start
 
-
-
 function procCollapse() {
     document.navbar.style.maxHeight = "auto";
 }
@@ -39,16 +37,7 @@ function getTime() {
 }
 getTime();
 // Стилизованный селект и трекер для перехода между режимами
-$( document ).ready( function () {
-    if ( window.location.pathname.indexOf( 'pizzamaker-raskat.html' ) + 1 ) {
-        $( "option[value='pizzamaker-raskat.html']" ).attr( 'selected', true );
-    } else if ( window.location.pathname.indexOf( 'pizzamaker-nachinka.html' ) + 1 ) {
-        $( "option[value='pizzamaker-nachinka.html']" ).attr( 'selected', true );
-    } else if ( window.location.pathname.indexOf( 'pizzamaker-upakovka.html' ) + 1 ) {
-        $( "option[value='pizzamaker-upakovka.html']" ).attr( 'selected', true );
-    }
-    $( '.change-traker' ).attr( 'href', $( '#treker' ).val() );
-} );
+
 $( function () {
 /////------------------------------------------------------------------------
     $( 'select.styler' ).styler( {
@@ -60,19 +49,40 @@ $( function () {
     } );
 
 } );
+
+var timers_now = {}; //массив текущих таймеров
+
 function startTimer() {
-    var timers = {};
-    timers = $( '.font_main_time' );
-
+    var timers = $( '.font_main_time' );
     $.each( timers, function ( key, up_timer ) {
-
         timer( up_timer );
-            if(up_timer.innerText == "00:00:00")//если время пустое, надо поппробовать ещё разок
-                setTimeout(startTimer,1000);
     } );
 
+    //Попытка не дулбиовать таймеры
+    //     $.each( timers, function ( key, up_timer ) {
+    //         if(timers_now[key])
+    //         {
+    //             //ничего не делать
+    //         }
+    //         else
+    //         {//
+    //             timers_now[key] = up_timer;
+    //             timer( up_timer );
+    //         }
+    //
+    //     } );//создали недостающие, надо удалить лишние
+    // $.each( timers_now, function ( key1, up_timer1 ) {
+    //     var del_elem = true; //натсроимся на удаление
+    //     $.each( timers, function ( key2, up_timer2 ) {
+    //         if(key1==key2) del_elem = false;//не удалять, он есть!
+    //     } );//
+    //     if (del_elem)
+    //         delete timers_now[key1];
+    // } );//
 
 }
+
+
 var timer = (function () {
     var listTimer = {};
     return function timer( block ) {
@@ -92,11 +102,10 @@ var timer = (function () {
                 as = d.getSeconds();
 
             var startTimeOrder = block.parentNode.firstElementChild.getAttribute( 'value' );
-            //while (startTimeOrder.indexOf(":")!= 3)
-            if ( startTimeOrder.length > 8 ) startTimeOrder = startTimeOrder.slice( 11, 19 ); //если время не в формате 00:00:00
-            //console.log(startTimeOrder);
 
-            //console.log(startTimeOrder);
+            if ( startTimeOrder.length > 8 )
+                startTimeOrder = startTimeOrder.slice( 11, 19 );
+
             var bt = startTimeOrder.split( ":" ),
                 bh = bt[0], bm = bt[1], bs = bt[2],
                 ch = ah - bh, cm = am - bm, cs = as - bs;
@@ -118,23 +127,29 @@ var timer = (function () {
 
 
             var time = ch + ":" + cm + ":" + cs;
-            time = timeMinus( time, SYSTIME );
+            //time = timeMinus( time, SYSTIME );
+            time = timeMinus2( time, SYSTIME );
+
             $( block ).text( time );
-            //var time = block.innerHTML;
 
             // Ограничение времени передаем сюда
             // var limitTime = block.parentNode.lastElementChild.getAttribute('value');
             var limitTime = block.nextElementSibling.getAttribute( 'value' );
+            if(time.split(':')[0].length == 1)
+                time = "0"+time;
             if ( time >= limitTime ) {
                 block.parentNode.setAttribute( 'class', 'col-xs-12 col-sm-4 styleDiv late' );
             }
+            //else block.parentNode.setAttribute( 'class', 'col-xs-12 col-sm-4 styleDiv' );
             //   setTimeout("timer(block)", 1000);
         }, 1000 );
     }
 })();
+
 function downTimer() {
     var my_timer = $( "#in_work" );
     var time = my_timer.text(); //
+
     if ( time[0] == "-" ) {
         downTimerMinus1( my_timer );
         return;
@@ -159,7 +174,33 @@ function downTimer() {
     else sd--;
     if ( sd < 10 ) sd = "0" + sd;
     my_timer.text( hd + ":" + md + ":" + sd );//тут записывается таймер in_work
+    $( "#in_work" ).attr( "data-timer-stat" ,hd + ":" + md + ":" + sd);
 }
+function downTimer3() {
+
+    var my_timer = $( "#in_work" );
+    var time = my_timer.text(); //
+    var nul = "00:00:00";
+
+    var arr = time.split(':');
+
+    var t1 = moment().hours(arr[0]).minutes(arr[1]).seconds(arr[2]);
+    var t2 = moment().hours(0).minutes(0).seconds(0);
+
+    if(moment(t2).isBefore(t1))
+        var t2 = timeMinus2( nul , time );
+    else var t2 = "-"+ timeMinus2( time , nul);
+
+    var time_in = timeMinus2( t1,t2 );
+
+
+    my_timer.text( hd + ":" + md + ":" + sd );//тут записывается таймер in_work
+    $( "#in_work" ).attr( "data-timer-stat" ,hd + ":" + md + ":" + sd);
+    if ( time<=nul ) {
+        console.log("Превышена норма времени");
+    }
+}
+
 
 function downTimerMinus1( my_timer ) {
     //  setInterval(function () {
@@ -179,7 +220,10 @@ function downTimerMinus1( my_timer ) {
     }
     else sd++;
     if ( sd < 10 ) sd = "0" + sd;
+
+
     my_timer.text( "-" + hd + ":" + md + ":" + sd );
+    $( "#in_work" ).attr( "data-timer-stat" ,hd + ":" + md + ":" + sd);
     // setTimeout(downTimerMinus1, 1000);
     //  }, 1000)
 }
@@ -231,7 +275,10 @@ function downTimer2( my_timer ) {
 
 //бывший time.js
 
-function timeMinus (a,b,c){
+//вычитание таймеров
+
+if(TEST)
+function timeMinus2 (a,b,c){
     //c==0 для минусового таймера возвращает минус значение
     //с==1 плюсует 24 часа при переходе через 0
     //c==2 возвращает разницу в секундах
@@ -245,6 +292,8 @@ if(a.indexOf('T')>0) a=a.slice(a.indexOf('T')+1,a.indexOf('T')+9);
     // if (c==2) return arr[2]+arr[1]*60 +arr[0]*60*24;
     // if (a.day < b.day) arr[0]= brr[0]+1
     // if (a.day > b.day) arr[1]+=24; переход через 24 часа
+
+
     if (arr[0][0]=="-"&&brr[0][0]=="-")return  timeMinus (b.slice(1),a.slice(1));
     if (arr[0][0]!="-"&&brr[0][0]=="-")return timePlus (a,b.slice(1));
     if (arr[0][0]=="-"&&brr[0][0]!="-")return "-"+ timePlus (a.slice(1),b);
@@ -252,6 +301,10 @@ if(a.indexOf('T')>0) a=a.slice(a.indexOf('T')+1,a.indexOf('T')+9);
     if (arr[0]<brr[0]&&c==0) return '-'+(timeMinus(b,a,c));
     else if (arr[1]<brr[1]&&arr[0]==brr[0]&&c==0)return '-'+(timeMinus(b,a,c));
     else if (arr[0]==brr[0]&&arr[1]==brr[1]&& arr[2]<=brr[2]&&c==0) return '-'+(timeMinus(b,a,c));
+
+
+
+
     if (arr[0]<brr[0]) arr[0]= +arr[0]+24; //переход через 24 часа
     for (var i=arr.length-1;i>=0;i--) {
         if (arr[i]>=brr[i]) arr[i]-=brr[i];
@@ -263,8 +316,71 @@ if(a.indexOf('T')>0) a=a.slice(a.indexOf('T')+1,a.indexOf('T')+9);
     }
     return arr[0] + ":"+ arr[1]+":"+ arr[2];
 }
+else
+function timeMinus2(a,b) {
+    if (!a||!b) return;
+    var result_string = "";
+    //console.log("a = " + a);
+    //console.log("b = " + b);
+    var a_minus = false;
+    var b_minus = false;
+    var minus = false;
+    if(a[0]=="-")
+    {
+        a=a.replace(/-/g,'');
+        a_minus = true;
+    }
+    if(b[0]=="-")
+    {
+        b=b.replace(/-/g,'');
+        b_minus = true;
+    }
+    try {
+        var arr = a.split(':'),
+            brr = b.split(':');
+    }
+    catch(err){
+            console.log("ошибка в function timeMinus2(a,b): "+err);
+        }
+
+    var t1 = moment().hours(arr[0]).minutes(arr[1]).seconds(arr[2]);
+    var t2 = moment().hours(brr[0]).minutes(brr[1]).seconds(brr[2]);
+
+    var result;
+
+
+
+    if(!a_minus && b_minus ) //то складываем
+    {
+        minus = false;
+        result  = t1.add(t2.hours(),'hours').add(t2.minutes(),'minutes').add(t2.seconds(),'seconds');
+    }
+
+    else if(a_minus && !b_minus)
+    {
+        if(moment(t1).isBefore(t2))
+            minus = true;
+        result  = t1.subtract(t2.hours(),'hours').subtract(t2.minutes(),'minutes').subtract(t2.seconds(),'seconds');
+    }
+    else  if(!a_minus && !b_minus  || a_minus && b_minus)
+    {
+        if(moment(t1).isBefore(t2))
+            minus = true;
+        result  = t1.subtract(t2.hours(),'hours').subtract(t2.minutes(),'minutes').subtract(t2.seconds(),'seconds');
+    }
+
+
+    if(minus)
+        result_string+="-";
+
+    result_string+=result.format('H:mm:ss');
+    //console.log("result_T = " + result_string);
+    return result_string;
+}
+
 function timePlus (a,b){
 //console.log("PLUSSSS"+a+" "+b);
+
     var arr = a.split(':');
     var brr = b.split(':');
     // if (a.day < b.day) arr[0]= brr[0]+1
@@ -275,7 +391,10 @@ function timePlus (a,b){
         else { arr[i]=+arr[i]+ +brr[i]-60; ++arr[i-1];}
         if(+arr[i]<=9) arr[i]= "0" + +arr[i];
     }
-    return arr[0] + ":"+ arr[1]+ ":"+ arr[2];
+    // if(minus == "-")
+    //     return "-"+arr[0] + ":"+ arr[1]+ ":"+ arr[2];
+
+     return arr[0] + ":"+ arr[1]+ ":"+ arr[2];
 }
 function time_second2 (a){
     //Эта функция преобразует время в формат 00:00:00
@@ -321,7 +440,16 @@ function getTimeOnNow(){
     //2016-11-10T14:58:04.095037Z
     return _date+"T"+_time+":"+(_secondes < 10 ? '0' + _secondes : _secondes)+"Z";
 }
+function sliceTime(a,digit) {
 
+    if (digit==1) {
+        if (a[2]==':') return a.slice(0, 5); //toTimeString();
+        if (a.length > 20) return a.slice(17, 22);//toUTCString()
+        return a.slice(11, 16); //golang
+    }
+    if (a.length > 20) return a.slice(17, 25);
+    return a.slice(11, 19);
+}
 
 
 
@@ -333,16 +461,7 @@ function getTimeOnNow(){
 //
 //
 //
-// function sliceTime(a,digit) {
-//
-//     if (digit==1) {
-//         if (a[2]==':') return a.slice(0, 5); //toTimeString();
-//         if (a.length > 20) return a.slice(17, 22);//toUTCString()
-//         return a.slice(11, 16); //golang
-//     }
-//     if (a.length > 20) return a.slice(17, 25);
-//     return a.slice(11, 19);
-// }
+
 // function getTimeOnTime(){
 //
 //     var date =$("#select_date").val(),

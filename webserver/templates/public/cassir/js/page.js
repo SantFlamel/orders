@@ -1,22 +1,9 @@
-function CashierGet( data ) {
-    var i;
-    for ( i in data ) {
-        Cashier[i] = data[i];
-    }
-    if ( Cashier.hasOwnProperty( 'FirstName' ) && Cashier.hasOwnProperty( 'SecondName' ) ) {
-        $( '.cashierFIO' ).html( Cashier.FirstName + " " + Cashier.SecondName );
-    }
-    if ( Cashier.hasOwnProperty( 'PlanTime' ) ) { // PlanTime отработанное время в часах
-
-    }
-}
-Cashier = {};
-//     document.getElementById( 'horse_m' ).innerHTML = cashier.hoursInMonth;
-//     document.getElementById( 'time_acceptance_order' ).innerHTML = cashier.averageDialog;
-//     document.getElementById( 'rating' ).innerHTML = cashier.rating;
-//     document.getElementById( 'award' ).innerHTML = cashier.award;
-//     document.getElementById( 'withheld' ).innerHTML = cashier.deAward;
-//     document.getElementById( 'balance' ).innerHTML = cashier.balance;
+//     document.getElementById( 'horse_m' ).innerHTML = SESSION_INFO.hoursInMonth;
+//     document.getElementById( 'time_acceptance_order' ).innerHTML = SESSION_INFO.averageDialog;
+//     document.getElementById( 'rating' ).innerHTML = SESSION_INFO.rating;
+//     document.getElementById( 'award' ).innerHTML = SESSION_INFO.award;
+//     document.getElementById( 'withheld' ).innerHTML = SESSION_INFO.deAward;
+//     document.getElementById( 'balance' ).innerHTML = SESSION_INFO.balance;
 //     $( '.cashierFIO' ).html( cashier.name );
 
 
@@ -95,15 +82,15 @@ Page.show = {
         Page.hide.all();
         document.getElementById( 'cash_box' ).style.display = '';
         waitProp( function () {
-            MSG.request.cashBoxOperationByChangeEmployee( Cashier.ChangeEmployee.ID );
+            MSG.request.cashBoxOperationByChangeEmployee( SESSION_INFO.ChangeEmployee.ID );
         }, function () {
-            return Cashier.ChangeEmployee;
+            return SESSION_INFO.ChangeEmployee;
         }, 500, 10 );
         waitProp( function () {
-                MSG.request.personal( Cashier.OrganizationHash, DELYVERYMAN_HASH, Deliveryman );
+                MSG.request.personal( SESSION_INFO.OrganizationHash, HASH_DELIVERYMAN, Deliveryman );
             }
             , function () {
-                return !!Cashier.OrganizationHash;
+                return !!SESSION_INFO.OrganizationHash;
             }, 500, 10 );
     }, Operator: function () {
         Page.hide.all();
@@ -123,13 +110,8 @@ Page.show = {
     }, makeOrder: function () {
         MSG.request.products();
         $( "#accordion1" ).empty().append( makeAddress( {}, 0 ) );
-        // MSG.requestOrganization()
-        $( '#sets .product_group, #rols .product_group, #zrols .product_group, #sushi .product_group\
-            , #sous .product_group, #salat .product_group, #drink .product_group, #pizza_small .product_group\
-            , #pizza_big_t .product_group, #pizza_big_tr .product_group, #other .product_group' ).empty();
-        $( '#pizza .product_group' ).empty().append( '<ul class="product_group"> ' +
-            '<li><a href="#pizza_big" data-toggle="tab">Большая</a></li>' +
-            '<li><a href="#pizza_small" data-toggle="tab">Маленькая</a></li>' );
+        bindTypeaheadAddress();
+        $( 'li[data-product]' ).remove();
         Cart.showCatalog();
         if ( !$( '.delivery_met' ).hasClass( 'active' ) ) {
             $( '.delivery_met:has([href="#take_away"])' ).addClass( 'active' );
@@ -185,54 +167,9 @@ $( document ).on( 'click', '.telephone.calls', function () {
 //--------------\ TELEPHONE |----------------------------------------------------------
 
 
-Page.updates = 0; // для обновления информации
-Page.update = function () { // обновление информаци
-    if ( Page.updates === 0 ) {
-        Page.updates = setTimeout( function () {
-            // console.profile('UPDATE');
-            Page.updates = 0;
-            if ( $( '#description_order:visible' ).length !== 0 ) {
-                Order.list[document.title.split( '#' )[1]].showDescription();
-            } else if ( $( '#cassir:visible' ).length !== 0 ) {
-                Order.showOrders();
-            } else if ( $( '#interfase_operator:visible' ).length !== 0 ) {
-                // Page.show.Operator();
-            } else {
-                // Page.show.Cassir()
-            }
-            // console.profileEnd('UPDATE');
-        }, TIMEOUT_UPDATE )
-    }
-};
-
-
-// if ( TEST ) {
-//     waitProp( function () {
-//         Page.show.makeOrder();
-//         Page.show.Carts();
-//     }, function () {
-//         return Cashier.OrganizationHash;
-//     } );
-// } else {
-Page.show.Cassir();
-// }
-// Page.show.DescriptionOrder();
-// Order.list[382].showDescription();
-// Cart.Products[12].showDescription(); //TEST
-// Page.update();
-// Page.show.CashBox();
-// Page.show.Operator();
-// Page.show.delivery();
-
 //////////////////////////////////////////////////////////////////////////////
 ////////--------|  |----------------------------------------------------------
 //////////////////////////////////////////////////////////////////////////////
-$( document ).on( 'click', '.orders_li.ord, .result-search', function () {
-    var ID = this.dataset.id;
-    MSG.request.orderLists( ID );
-    MSG.request.payment( ID );
-    // Order.list[this.dataset.id].showDescription()
-} );
 $( document ).on( 'click', '#cart_btn_apply', function () {
     Page.show.Operator();
 } );
@@ -251,28 +188,18 @@ jQuery( function ( $ ) { // маска номера телефона
         }
     } );
 } );
-function number_tel( num ) {
-    var _input = $( '#tel_num' ), _input_val = _input.val();
-    _input_val = _input_val ? _input_val : "+7(___)___-__-__";
-    if ( _input_val.indexOf( '_' ) ) {
-        _input.val( _input_val.replace( '_', num ) )
-    }
-}
-getPhone = function ( id ) {
-    id = id || 'client_phone';
-    var t = document.getElementById( id ).value;
-    return t.replace( /\D/g, '' )
-};
+// function number_tel( num ) {
+//     var _input = $( '#tel_num' ), _input_val = _input.val();
+//     _input_val = _input_val ? _input_val : "+7(___)___-__-__";
+//     if ( _input_val.indexOf( '_' ) ) {
+//         _input.val( _input_val.replace( '_', num ) )
+//     }
+// }
 
 // Фильтрация для input
 $( document ).on( 'keyup', 'input.number', function () {
     this.value = this.value.replace( /[^0-9.,]/g, '' ).replace( /,/g, '.' );
 } );
-// function LIMIT ( lim ) {
-//     return function () {
-//         if (+this.value > lim) {this.value = lim}
-//     }
-// }
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 //--------------\  |----------------------------------------------------------
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

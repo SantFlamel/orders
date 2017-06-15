@@ -1,113 +1,4 @@
 // TODO: поправка времени.
-checkUndefined = function () {
-    var i, ii, j, jj, len = arguments.length;
-    for ( i = 0; i < len; i++ ) {
-        ii = arguments[i];
-        if ( typeof ii === "object" ) {
-            for ( j in ii ) if ( ii.hasOwnProperty( j ) ) {
-                jj = ii[j];
-                if ( typeof jj == "object" ) {
-                    (arguments.callee)( jj ); // рекурсия
-                } else {
-                    console.assert( (jj != undefined && jj != "undefined"), 'KEY', j, jj, ii );
-                }
-            }
-        } else {
-            console.assert( (ii != undefined && ii != "undefined"), 'INDEX', i, ii );
-        }
-    }
-};
-cookie = {
-    set: function ( name, value, options ) {
-        var expires;
-
-        options = options || {};
-        expires = options.expires;
-
-        if ( typeof expires == "number" && expires ) {
-            var d = new Date();
-            d.setTime( d.getTime() + expires * 1000 );
-            expires = options.expires = d;
-        }
-        if ( expires && expires.toUTCString ) {
-            options.expires = expires.toUTCString();
-        }
-        if ( typeof value === "object" ) {
-            value = JSON.stringify( value );
-        }
-        value = encodeURIComponent( value );
-        var updatedCookie = name + "=" + value;
-
-        for ( var propName in options ) {
-            updatedCookie += "; " + propName;
-            var propValue = options[propName];
-            if ( propValue !== true ) {
-                updatedCookie += "=" + propValue;
-            }
-        }
-
-        document.cookie = updatedCookie;
-    }, get: function ( name, json ) {
-        var matches = document.cookie.match(
-            new RegExp( "(?:^|; )" + name.replace( /([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1' ) + "=([^;]*)" ) );
-        matches = matches ? decodeURIComponent( matches[1] ) : undefined;
-        if ( json && matches != undefined ) {
-            matches = JSON.parse( matches );
-        }
-        return matches;
-    }, delete: function ( name, option ) {
-        option = option || {};
-        option.expires = -1;
-        cookie.set( name, "", option )
-    }
-};
-////////--------| WARNINGS_MESSAGE |----------------------------------------------------------
-function warning( txt, alert, time, except, impot ) {
-    // txt - выводимый текст, alert - тип(null, 'info', 'alert' - разные по цветам)
-    // , time - время на которое показывается
-    // , except - id сообщения которое нужно удалить при появлении создаваемого
-    // возвращает id сообщения.
-    // impot - зафиксировать сообщение
-    var i, cl = '', id = Math.floor( Math.random() * 1000000 ), id_elem = 'id="' + id + '"'
-        , dublicate = $( 'button:contains(' + txt + ')' )
-        , disabled = '';
-    if ( alert ) {
-        cl = 'class="' + alert + '"';
-    }
-    if ( except ) {
-        if ( !Array.isArray( except ) ) {
-            warning.del( except );
-        } else {
-            for ( i in except ) {
-                warning.del( except[i] );
-            }
-        }
-    }
-    if ( time ) {
-        setTimeout( function () {
-            warning.del( id );
-        }, time );
-    }
-    if ( impot ) {
-        setTimeout( function () {
-            $( '#' + id ).removeAttr( 'disabled' )
-        }, FREEZE_IMPORTANT_ALERT );
-        disabled = 'disabled'
-    }
-    dublicate.remove();
-    document.getElementById( 'warning' ).innerHTML += '<div><button ' + id_elem + ' ' + cl + ' ' + disabled + ' >' + txt + '</button></div>';
-    return id;
-}
-var war = {};
-warning.del = function ( id ) {
-    $( '#' + id ).remove();
-};
-$( document ).on( 'click', '#warning button', function () {
-    $( this ).remove();
-} );
-//--------------\ WARNINGS_MESSAGE |----------------------------------------------------------
-
-
 ////////--------| AUDIO_ALERT |----------------------------------------------------------
 function warningAudio( alert ) {
     alert = alert || 's';
@@ -120,7 +11,6 @@ function warningAudio( alert ) {
 }
 warningAudio.timeOut = { s: false };
 //--------------\ AUDIO_ALERT |----------------------------------------------------------
-
 
 // 'asdfkja;lskj213421lk3j4;k}}}}}}}{{{l/\j;lkj;21"""""""""""""""\'\'\'\'\'\'\'\{}[][][][][][][][][][][][]kj3,,,,4lkj;l...kj;'.replace( /[}{'"]/g, '' )
 
@@ -170,15 +60,13 @@ Page.time = function ( _time, simple ) {
     day = day < 10 ? '0' + day : day;
     hours = hours < 10 ? '0' + hours : hours;
     minutes = minutes < 10 ? '0' + minutes : minutes;
-    if ( !simple ) {
+    if ( simple ) {
+        return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
+    } else {
         var seconds = now.getSeconds(), milliseconds = now.getMilliseconds();
 
         seconds = seconds < 10 ? '0' + seconds : seconds;
-        time = year + '-' + month + '-' + day + 'T' + hours + ':' + minutes + ':' + seconds + '.' + milliseconds + 'Z';
-        return time;
-    } else {
-        time = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
-        return time;
+        return year + '-' + month + '-' + day + 'T' + hours + ':' + minutes + ':' + seconds + '.' + milliseconds + 'Z';
     }
 };
 Page.timeToArray = function ( time ) {
@@ -231,61 +119,66 @@ function timeOutRe( txt, func, time ) {
     }
 }
 timeOutRe.list = [];
-length = function ( obj ) {
-    var len = 0, i;
-    for ( i in obj ) {
-        len++;
-    }
-    return len;
-};
-
-function counter( val ) {
-    var count = val || -1;
-    return function () {
-        return ++count;
-    };
-}
-
-function stackOfWaiting( time ) {
-    var functions = []
-        , exec = function () {
-        while ( functions.length ) {
-            (functions.shift())();
-        }
-        timeOut = false;
-    }
-        , timeOut;
-    return function ( func ) {
-        functions.push( func );
-        if ( !timeOut ) {
-            timeOut = setTimeout( exec, time );
-        }
-    }
-}
 
 
 function division( val, by ) { // для деления, возвращает целое число.
     return (val - val % by) / by;
 }
 
-// var x = [];
-// x.push( 1 );
-// console.log( '1', x );
-// x.push( 2 );
-// console.log( '2', x );
-// x.push( 3 );
-// console.log( '3', x );
-// x.push( 4 );
-// console.log( '4', x );
-// x.push( 5 );
-// console.log( '5', x );
-//
-//
-// console.log( x.shift(), x );
-// console.log( x.shift(), x );
-// console.log( x.shift(), x );
-// console.log( x.shift(), x );
-// console.log( x.shift(), x );
+function Observer() {
+    this.subscriberList = {};
+}
 
-// var x = 'ws.js:90 x10068{Cashbox ERROR Create, TYPE PARAMETERS "" VALUES: []: sql: statement expects 11 inputs; got 12';
-// /sql: statement expects 11 inputs; got 12/.test( x );
+Observer.prototype.subscribe = function ( events, functions ) {
+    if ( !this.subscriberList[events.id] ) {
+        this.subscriberList[events.id] = [];
+    }
+    if ( ~this.subscriberList[events.id].indexOf( functions ) ) {
+        return false;
+    } else {
+        this.subscriberList[events.id].push( functions );
+        return true;
+    }
+};
+Observer.prototype.unSubscribe = function ( events, functions ) {
+    var index = this.subscriberList[events.id].indexOf( functions );
+    if ( this.subscriberList[events.id] && ~index ) {
+        this.subscriberList[events.id].splice( index, 1 );
+        return true;
+    }
+    return false;
+};
+
+Observer.prototype.newEvent = function ( events, data ) {
+    var i;
+    for ( i in this.subscriberList[events.id] ) {
+        this.subscriberList[events.id][i]( data );
+    }
+};
+var observer = new Observer();
+
+
+function Events( options ) {
+    this.id = Events.getIDEvents();
+    if ( options ) {
+        this.options = true;
+        for ( var i in options ) {
+            this[i] = options[i]
+        }
+    }
+}
+Events.getIDEvents = counter();
+Events.prototype.rise = function ( data ) {
+    if ( this.options ) {
+        if ( this.timeOut && !this.wait ) {
+            var self = this;
+            this.wait = true;
+            setTimeout( function () {
+                self.wait = false;
+                observer.newEvent( self, data )
+            }, this.timeOut )
+        }
+    } else {
+        observer.newEvent( this, data )
+    }
+};

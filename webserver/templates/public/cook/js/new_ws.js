@@ -44,6 +44,7 @@ function counter( val ) {
  * возвращает id сообщения.
  * **/
 var countWarning = counter();
+var WaitAnswerServer = true;
 function warning( txt, alert, time, except, impot ) {
     var i, cl = '', id = 'warning-' + countWarning(), id_elem = 'id="' + id + '"'
         , dublicate = $( 'button:contains(' + txt + ')' )
@@ -84,6 +85,7 @@ $( document ).on( 'click', '#warning button', function () {
 //////--------| WEBSOCKET |----------------------------------------------------------
 var ws
     , STOP_WS = false
+    , SESSION_INFO = {}
     ;
 function webSocket() {
     if ( STOP_WS ) {
@@ -93,27 +95,34 @@ function webSocket() {
     war.con = warning( 'Подключение...', 'info', null, [war.clo, war.con1] );
     ws.onerror = function ( e ) {
         war.err = warning( 'Ошибка подключения.', null, null, [war.con, war.con1] );
-        console.error( 'WS ERROR::', e );
+        if(enable_log_msg) console.error( 'WS ERROR::', e );
     };
     ws.onclose = function () {
         war.clo = warning( "Подключение закрыто.", null, null, [war.con, war.con1] );
-        console.info( '%cWS CLOSE', 'color: #370300' );
+        if(enable_log_msg) console.info( '%cWS CLOSE', 'color: #370300' );
         setTimeout( webSocket, WS_TIMEOUT );
     };
     ws.onmessage = function ( msg ) {
-       //  console.info( 'ws.onmessage', msg );
+        //  if(enable_log_msg) console.info( 'ws.onmessage', msg );
+        //if(enable_log_msg) console.timeEnd('metka');
         var type = msg.data.slice( 0, 2 ), data = msg.data
             , IDMsg = msg.data.split( '{' )[0].split( ':' )[1];
         MSG._in( IDMsg, data.slice( data.indexOf( '{' ) + 1 ), type );
     };
     ws.onopen = function () {
         war.con1 = warning( 'Подключено.', 'info', ALERT_TIME, [war.con, war.err, war.clo] );
-        console.info( 'WS OPEN', new Date(), WS_URL );
+        if(enable_log_msg) console.info( 'WS OPEN', new Date(), WS_URL );
+        if ( !SESSION_HASH ) {
+            war.err = warning( 'Проблема с авторизацией!', null, null, [war.con], true );
+            STOP_WS = true;
+            ws.close();
+            return;
+        }
         MSG.send( { structure: { "HashAuth": SESSION_HASH } } ); // авторизация // в начале файла
-        MSG.request.sessionInfo();
+        MSG.request.sessionInfo( SESSION_HASH );
 
         //Для повара
-        MSG.request.SystemTime();
+        MSG.request.systemTime();
     };
 
     // зкарываем подключение через сокеты
@@ -143,10 +152,10 @@ MSG = {
     , EOFHandlersList: {}, check: {}
     , _in: function ( IDMsg, data, type ) { // input MSG
         if ( type === '02' ) { // обновление данных
-            console.group( '%cMSG UPDATE::::::%c' + IDMsg, 'color: #043700', 'color: #444100', 0 );
-            console.info( data );
+            if(enable_log_msg) console.group( '%cMSG UPDATE::::::%c' + IDMsg, 'color: #043700', 'color: #444100', 0 );
+            if(enable_log_msg) console.info( data );
             MSG.update( JSON.parse( data ) );
-            console.groupEnd();
+            if(enable_log_msg) console.groupEnd();
             return;
         } else if ( data === 'EOF' ) { // конец передаци.
             // удаляем обработчик, после прерываем функцию
@@ -156,12 +165,12 @@ MSG = {
             }
             delete MSG.multipleHandlers[IDMsg];
             delete MSG.errorHandlerList[IDMsg];
-            console.info( '%cEND:::::: ' + IDMsg, 'color: #444100' );
+            if(enable_log_msg) console.info( '%cEND:::::: ' + IDMsg, 'color: #444100' );
             return;
         } else if ( type === '00' ) { // ошибка
             // если есть то выполняем его
-            if (MSG.errorHandlerList[IDMsg]){
-                MSG.errorHandlerList[IDMsg](data);
+            if ( MSG.errorHandlerList[IDMsg] ) {
+                MSG.errorHandlerList[IDMsg]( data );
                 if ( !MSG.multipleHandlers[IDMsg] ) {
                     // если ответ доолжен бытьтолько один то удаляем обработчики
                     delete MSG.errorHandlerList[IDMsg];
@@ -170,15 +179,9 @@ MSG = {
                 return;
             }
             if ( ~data.indexOf( 'sql: no rows in result set' ) ) {
-                if ( ~data.indexOf( 'OrderStatus ERROR Read, TYPE PARAMETERS "ValueStructIDOrdIDit" VALUES: ' ) ) {
-                    var x = data.split( '[' )[1].split( ']' )[0].split( ' ' );
-                    if ( x[1] == 0 && Order.list.hasOwnProperty( x[0] ) ) {
-                        delete Order.list[x[0]];
-                    }
-                }
-                console.groupCollapsed( '%cMSG NO RESULT::><><%c' + IDMsg + ' %c-No result', 'color: red', 'color: #444100', 'color: #019500' );
-                console.warn( data );
-            }  else if ( IDMsg == 'Auth' || ~data.indexOf( 'NO CHECKED' ) ) { // ошибка авторизации
+                if(enable_log_msg) console.groupCollapsed( '%cMSG NO RESULT::><><%c' + IDMsg + ' %c-No result', 'color: red', 'color: #444100', 'color: #019500' );
+                if(enable_log_msg) console.warn( data );
+            } else if ( IDMsg == 'Auth' || ~data.indexOf( 'NO CHECKED' ) ) { // ошибка авторизации
                 console.group( '%cMSG NO CHECKED::><><', 'color: red' );
                 console.error( data );
                 MSG.close.session();
@@ -201,13 +204,13 @@ MSG = {
             }
             delete MSG.check[IDMsg];
         }
-        console.group( '%cMSG IN::::<<<<%c' + IDMsg, 'color: green', 'color: #444100' );
-        console.info( data );
+        if(enable_log_msg) console.group( '%cMSG IN::::<<<<%c' + IDMsg, 'color: green', 'color: #444100' );
+         if(enable_log_msg) console.info( data );
         try { // пытаеммся распарсить
             data = JSON.parse( data );
         } catch ( e ) {
             if ( !~data.indexOf( 'NO ERRORS Create, TYPE PARAMETERS:' ) ) {
-                console.warn( data );
+                if(enable_log_msg) console.warn( data );
             }
         }
         if ( MSG.handlersList[IDMsg] ) {
@@ -217,7 +220,7 @@ MSG = {
         } else if ( MSG.multipleHandlers[IDMsg] ) {
             MSG.multipleHandlers[IDMsg]( data, IDMsg );
         }
-        console.groupEnd();
+        if(enable_log_msg) console.groupEnd();
     }, send: function ( option ) { // send MSG
         var IDMsg = 'x' + getIDMsg(), struct = '', table;
 
@@ -247,14 +250,14 @@ MSG = {
         if ( option.EOFHandler ) {
             MSG.EOFHandlersList[IDMsg] = option.EOFHandler;
         }
-        console.group( "%cMSG SEND::::>>>>%c" + IDMsg, 'color: blue', 'color: #444100', (table || '') );
-        console.info( struct );
+        if(enable_log_msg) console.group( "%cMSG SEND::::>>>>%c" + IDMsg, 'color: blue', 'color: #444100', (table || '') );
+        if(enable_log_msg) console.info( struct );
         try {
             ws.send( struct );
         } catch ( error ) {
-            console.error( 'ОШИБКА', error.message );
+            if(enable_log_msg) console.error( 'ОШИБКА', error.message );
         }
-        console.groupEnd();
+        if(enable_log_msg) console.groupEnd();
         if ( option.handler ) {
             if ( option.mHandlers ) {
                 MSG.multipleHandlers[IDMsg] = option.handler;
@@ -262,73 +265,93 @@ MSG = {
                 MSG.handlersList[IDMsg] = option.handler;
             }
         }
-        if (option.errorHandler){
+        if ( option.errorHandler ) {
             MSG.errorHandlerList[IDMsg] = option.errorHandler;
         }
     }
 };
 //--------------\ MSG |----------------------------------------------------------
-MSG.updaateTimeOut = { de: 0 };
 
 ////////////////////////////SESSION
 MSG.close.session = function () {
-    console.trace("CLOSE");
     try {
-        // MSG.send( { structure: { "Table": "Session", "TypeParameter": "Abort" } } );
+         MSG.send( { structure: { "Table": "Session", "TypeParameter": "Abort" } } );
     } catch ( e ) {
     }
-    $.removeCookie( "hash", { domain: 'yapoki.net', path: "/" } );
-    $.removeCookie( "mysession", { domain: 'yapoki.net', path: "/" } );
     ws.stop();
-    // document.location.href = AUTH_URL;
+     document.location.href = AUTH_URL;
 };
-MSG.request.tabel = function (userHash) { // функция не существует
+MSG.request.tabel = function ( userHash ) { // функция не существует
     MSG.send( { structure: { "Table": "Tabel", "Values": [userHash] }, handler: MSG.get.tabel } );
 };
-MSG.request.sessionInfo = function () { // получение информации о сессии
-    MSG.send( { structure: { "Table": "Session", "TypeParameter": "ReadNotRights" }, handler: setupSessionInfo } );
-};
-MSG.request.Order = function ( ID, func ) {
-    var s = {
-        "Table": "Order", "Query": "Read", "TypeParameter": "Value", "Values": [ID], "Limit": 0, "Offset": 0
-    };
+MSG.request.sessionInfo = function ( hash ) { // получение информации о сессии
     MSG.send( {
-        structure: s, handler:func } );
+        structure: { "Table": "Session", "Query": "Read", "TypeParameter": "Hash", "Values": [hash] },
+        handler: setupSessionInfo
+    } );
 };
-MSG.request.OrderLists = function ( ID, func, func1  ) {
-    var s = {
-        "Table": "OrderList", "Query": "Read", "TypeParameter": "RangeOrderID", "Values": [ID]
-        , "Limit": 0, "Offset": 0
-    };
-    MSG.send( { structure: s, handler: func, mHandlers: true, EOFHandler: func1 } );
-};
+
+// MSG.request.sessionInfo = function () { // для глобалки
+//     MSG.send( { structure: { "Table": "Session", "TypeParameter": "ReadNotRights" }, handler: setupSessionInfo } );
+// };
+
 //установка статусов заказов
-MSG.set.Status = function ( ID, id_item, stat ,cause) {
+MSG.set.orderStatus = function ( ID, ID_item, stat, cause ) {
     MSG.send(
         {structure:
-            [{"Table":"OrderStatus","Query":"Create","TypeParameter":"","Values":null,"Limit":0,"Offset":0},
-                {"Order_id":  +ID  ,"Order_id_item":  +id_item  ,"Cause": cause || "" ,"Status_id": +stat ,"UserHash":SESSION_INFO.UserHash, "Time":getTimeOnNow() }] } );
+            [{"Table":"OrderStatus","Query":"Create","TypeParameter":"","Values":null,"Limit":0,"Offset":0}
+            , {"Order_id":  +ID  ,"Order_id_item":  +ID_item  ,"Cause": cause || ""
+                    ,"Status_id": +stat ,"UserHash": SESSION_INFO.UserHash, "Time":getTimeOnNow() }] } );
 };
 //----Сделать заказ прготовленым
-MSG.set.finished = function ( ID, id_item ) {
-    MSG.send(
-        {structure:
-            [{"Table":"OrderList","Query":"Update","TypeParameter":"Finished","Values":[ID,id_item,true],"Limit":0,"Offset":0} ]} );
+MSG.set.finished = function ( ID, id_item, fin ) {
+    MSG.send( {
+        structure: [{
+            "Table": "OrderList", "Query": "Update"
+            , "TypeParameter": "Finished", "Values": [ID, id_item, fin || true]
+            , "Limit": 0, "Offset": 0
+        }]
+    } );
 };
 
-$( "#logout" ).click( MSG.close.session );
+$( "#logout" ).on( 'dblclick', MSG.close.session );
 
 MSG.set.personal = function ( id, idi ) {
-    MSG.send(
-        {structure:
-            [{"Table":"OrderPersonal","Query":"Create","TypeParameter":"","Values":null,"Limit":0,"Offset":0},
-            {"Order_id":  +id  ,"Order_id_item":  +idi  ,"UserHash":SESSION_INFO.UserHash,
-            "FirstName": SESSION_INFO.FirstName ,"SecondName":SESSION_INFO.SecondName ,"SurName": SESSION_INFO.SurName ,
-            "RoleHash": SESSION_INFO.RoleHash ,"RoleName":SESSION_INFO.RoleName}] } );
+    MSG.send( {
+        structure: [{
+            "Table": "OrderPersonal", "Query": "Create",
+            "TypeParameter": "", "Values": null, "Limit": 0, "Offset": 0
+        }, {
+            "Order_id": +id, "Order_id_item": +idi, "UserHash": SESSION_INFO.UserHash,
+            "FirstName": SESSION_INFO.FirstName, "SecondName": SESSION_INFO.SecondName,
+            "SurName": SESSION_INFO.SurName, "RoleHash": SESSION_INFO.RoleHash,
+            "RoleName": SESSION_INFO.RoleName
+        }]
+    } );
 };
 
 
 //запрос времени сервера
-MSG.request.SystemTime = function() {
-    MSG.send( {structure: {"Table":"LocalTime","Limit":0,"Offset":0}, handler:MSG.get.setsystime } );
+MSG.request.systemTime = function () {
+    MSG.send( { structure: { "Table": "LocalTime", "Limit": 0, "Offset": 0 }, handler: MSG.get.setsystime } );
+};
+
+
+checkUndefined = function () {
+    var i, ii, j, jj, len = arguments.length;
+    for ( i = 0; i < len; i++ ) {
+        ii = arguments[i];
+        if ( typeof ii === "object" ) {
+            for ( j in ii ) if ( ii.hasOwnProperty( j ) ) {
+                jj = ii[j];
+                if ( typeof jj == "object" ) {
+                    (arguments.callee)( jj ); // рекурсия
+                } else {
+                    console.assert( (jj != undefined && jj != "undefined"), 'KEY', j, jj, ii );
+                }
+            }
+        } else {
+            console.assert( (ii != undefined && ii != "undefined"), 'INDEX', i, ii );
+        }
+    }
 };

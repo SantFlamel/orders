@@ -682,8 +682,7 @@ th {
 .glyphicon-circle-arrow-right:before {
   content: "\e131";
 }
-.glyphicon-circle-arrow-left:before {
-  content: "\e132";
+.glyphicon-circle-arrow-left:before {-j  content: "\e132";
 }
 .glyphicon-circle-arrow-up:before {
   content: "\e133";

