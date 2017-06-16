@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79ad0459-76ca-4641-b014-b4d71f7338e8" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/log/2017-05-29.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/log/2017-05-30.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/log/2017-05-31.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/log/2017-06-01.log" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log/2017-06-02.log" afterPath="$PROJECT_DIR$/log/2017-06-02.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/templates/public/cook/js/time.js" afterPath="$PROJECT_DIR$/webserver/templates/public/cook/js/time.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webserver/websockets.go" afterPath="$PROJECT_DIR$/webserver/websockets.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webserver/templates/query.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Go_SDK.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/servOrder" afterPath="$PROJECT_DIR$/servOrder" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/orders.iml" afterPath="$PROJECT_DIR$/.idea/orders.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.json" afterPath="$PROJECT_DIR$/config.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,10 +26,8 @@
             <entry file="file://$PROJECT_DIR$/structures/structures.go">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="176">
-                  <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-                  <folding>
-                    <marker date="1496224611749" expanded="true" signature="3169:4067" ph="{...}" />
-                  </folding>
+                  <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -37,76 +35,10 @@
           <file leaf-file-name="postgres.go" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/postgres/postgres.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="288">
-                  <caret line="1287" column="63" lean-forward="true" selection-start-line="1287" selection-start-column="63" selection-end-line="1287" selection-end-column="63" />
+                <state relative-caret-position="20480">
+                  <caret line="1287" column="63" lean-forward="false" selection-start-line="1287" selection-start-column="63" selection-end-line="1287" selection-end-column="63" />
                   <folding>
                     <element signature="e#18#115#0" expanded="true" />
-                    <marker date="1496309289167" expanded="true" signature="1995:2097" ph="UPDATE \&quot;ord... " />
-                    <marker date="1496309289167" expanded="true" signature="2240:2331" ph="UPDATE \&quot;ord... " />
-                    <marker date="1496309289167" expanded="true" signature="2455:2543" ph="UPDATE \&quot;ord... " />
-                    <marker date="1496309289167" expanded="true" signature="2666:2728" ph="UPDATE \&quot;ord... " />
-                    <marker date="1496309289167" expanded="true" signature="3385:3425" ph="SELECT type order" />
-                    <marker date="1496309289167" expanded="true" signature="3556:3600" ph="SELECT org_h... order" />
-                    <marker date="1496309289167" expanded="true" signature="3732:3776" ph="SELECT paid_... order" />
-                    <marker date="1496309289167" expanded="true" signature="3899:4097" ph="select org_h... order" />
-                    <marker date="1496309289167" expanded="true" signature="3945:4011" ph="SELECT order... order_customer" />
-                    <marker date="1496309289167" expanded="true" signature="4231:4261" ph="SELECT count... order" />
-                    <marker date="1496309289167" expanded="true" signature="8890:8925" ph="DELETE FROM " />
-                    <marker date="1496309289167" expanded="true" signature="9284:9482" ph="INSERT INTO order_customer... " />
-                    <marker date="1496309289167" expanded="true" signature="9723:9906" ph="UPDATE order... " />
-                    <marker date="1496309289167" expanded="true" signature="10146:10302" ph="SELECT order... order_customer" />
-                    <marker date="1496309289167" expanded="true" signature="10435:10486" ph="SELECT note order_customer" />
-                    <marker date="1496309289167" expanded="true" signature="10629:10834" ph="SELECT DISTI... order_customer" />
-                    <marker date="1496309289167" expanded="true" signature="10971:11175" ph="SELECT DISTI... order_customer" />
-                    <marker date="1496309289167" expanded="true" signature="11856:12036" ph="SELECT order... order_customer" />
-                    <marker date="1496309289167" expanded="true" signature="12274:12318" ph="DELETE FROM " />
-                    <marker date="1496309289167" expanded="true" signature="16680:16711" ph="SELECT count... order_list" />
-                    <marker date="1496309289167" expanded="true" signature="16848:16940" ph="SELECT count... order_list" />
-                    <marker date="1496309289167" expanded="true" signature="17069:17134" ph="select count... order_list" />
-                    <marker date="1496309289167" expanded="true" signature="17252:17322" ph="select id_pa... order_list" />
-                    <marker date="1496309289167" expanded="true" signature="17463:17512" ph="SELECT count... order_list" />
-                    <marker date="1496309289167" expanded="true" signature="26464:26519" ph="DELETE FROM " />
-                    <marker date="1496309289167" expanded="true" signature="26629:26669" ph="DELETE FROM " />
-                    <marker date="1496309289167" expanded="true" signature="27519:27689" ph="SELECT order... order_personal" />
-                    <marker date="1496309289167" expanded="true" signature="28438:28650" ph="SELECT order... order_personal" />
-                    <marker date="1496309289167" expanded="true" signature="28780:28980" ph="SELECT order... order_personal" />
-                    <marker date="1496309289167" expanded="true" signature="29121:29254" ph="SELECT order... order_personal" />
-                    <marker date="1496309289167" expanded="true" signature="29498:29559" ph="DELETE FROM " />
-                    <marker date="1496309289167" expanded="true" signature="29685:29729" ph="DELETE FROM " />
-                    <marker date="1496309289167" expanded="true" signature="36905:37027" ph="SELECT id, o... order_status" />
-                    <marker date="1496309289167" expanded="true" signature="37167:37322" ph="SELECT id, o... order_status" />
-                    <marker date="1496309289167" expanded="true" signature="37503:37603" ph="select \&quot;tim... order_status" />
-                    <marker date="1496309289167" expanded="true" signature="37759:37837" ph="SELECT user_... order_status" />
-                    <marker date="1496309289167" expanded="true" signature="38316:38497" ph="SELECT id, o... order_status" />
-                    <marker date="1496309289167" expanded="true" signature="38644:38801" ph="SELECT id, o... order_status" />
-                    <marker date="1496309289167" expanded="true" signature="38958:39058" ph="SELECT statu... order_status" />
-                    <marker date="1496309289167" expanded="true" signature="39196:39365" ph="SELECT id, o... order_status" />
-                    <marker date="1496309289167" expanded="true" signature="39606:39724" ph="WITH s AS(DE... " />
-                    <marker date="1496309289167" expanded="true" signature="39894:40017" ph="WITH s AS(DE... " />
-                    <marker date="1496309289167" expanded="true" signature="40157:40259" ph="WITH s AS(DE... " />
-                    <marker date="1496309289167" expanded="true" signature="42116:42157" ph="UPDATE cashb... " />
-                    <marker date="1496309289167" expanded="true" signature="42391:42587" ph="SELECT id, o... cashbox" />
-                    <marker date="1496309289167" expanded="true" signature="42726:42776" ph="SELECT SUM(d... cashbox" />
-                    <marker date="1496309289167" expanded="true" signature="45317:45602" ph="SELECT id, o... cashbox" />
-                    <marker date="1496309289167" expanded="true" signature="45736:45959" ph="SELECT id, o... cashbox" />
-                    <marker date="1496309289167" expanded="true" signature="46096:46296" ph="SELECT id, o... cashbox" />
-                    <marker date="1496309289167" expanded="true" signature="46948:47096" ph="select case " />
-                    <marker date="1496309289167" expanded="true" signature="46966:47017" ph="SELECT SUM(d... cashbox" />
-                    <marker date="1496309289167" expanded="true" signature="47040:47091" ph="SELECT SUM(d... cashbox" />
-                    <marker date="1496309289167" expanded="true" signature="47328:47359" ph="DELETE FROM " />
-                    <marker date="1496309289167" expanded="true" signature="47703:47752" ph="INSERT INTO status... " />
-                    <marker date="1496309289167" expanded="true" signature="47985:48022" ph="UPDATE statu... " />
-                    <marker date="1496309289167" expanded="true" signature="48255:48297" ph="SELECT id, n... status" />
-                    <marker date="1496309289167" expanded="true" signature="48420:48447" ph="SELECT id, n... status" />
-                    <marker date="1496309289167" expanded="true" signature="48678:48708" ph="DELETE FROM " />
-                    <marker date="1496309289167" expanded="true" signature="49064:49119" ph="INSERT INTO type_payment... " />
-                    <marker date="1496309289167" expanded="true" signature="49357:49400" ph="UPDATE type_... " />
-                    <marker date="1496309289167" expanded="true" signature="49638:49686" ph="SELECT id, n... type_payment" />
-                    <marker date="1496309289167" expanded="true" signature="49814:49847" ph="SELECT id, n... type_payment" />
-                    <marker date="1496309289167" expanded="true" signature="50083:50119" ph="DELETE FROM " />
-                    <marker date="1496309289167" expanded="true" signature="56655:56801" ph="SELECT id, u... сhange_employee" />
-                    <marker date="1496309289167" expanded="true" signature="56950:57182" ph="SELECT id, u... сhange_employee" />
-                    <marker date="1496309289167" expanded="true" signature="57323:57536" ph="SELECT id, u... сhange_employee" />
                   </folding>
                 </state>
               </provider>
@@ -116,7 +48,7 @@
             <entry file="file://$PROJECT_DIR$/client/config.json">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="496">
-                  <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+                  <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -125,8 +57,8 @@
           <file leaf-file-name="struct_websocket.go" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/structures/struct_websocket.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="384">
-                  <caret line="111" column="23" lean-forward="false" selection-start-line="111" selection-start-column="23" selection-end-line="111" selection-end-column="23" />
+                <state relative-caret-position="318">
+                  <caret line="138" column="49" lean-forward="false" selection-start-line="138" selection-start-column="49" selection-end-line="138" selection-end-column="49" />
                   <folding>
                     <element signature="e#20#145#0" expanded="true" />
                   </folding>
@@ -141,7 +73,7 @@
           <file leaf-file-name="struct_transaction.go" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/structures/struct_transaction.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3216">
+                <state relative-caret-position="1070">
                   <caret line="201" column="40" lean-forward="false" selection-start-line="201" selection-start-column="31" selection-end-line="201" selection-end-column="40" />
                   <folding>
                     <element signature="e#20#115#0" expanded="true" />
@@ -150,11 +82,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="websockets.go" pinned="false" current-in-tab="true">
+          <file leaf-file-name="websockets.go" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/webserver/websockets.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="336">
-                  <caret line="54" column="5" lean-forward="false" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
+                <state relative-caret-position="224">
+                  <caret line="68" column="47" lean-forward="false" selection-start-line="68" selection-start-column="47" selection-end-line="68" selection-end-column="47" />
                   <folding />
                 </state>
               </provider>
@@ -185,7 +117,7 @@
           <file leaf-file-name="server.go" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/server/server.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-560">
+                <state relative-caret-position="240">
                   <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
                   <folding />
                 </state>
@@ -195,9 +127,31 @@
           <file leaf-file-name="webservfunctable.go" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/webserver/webservfunctable.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="352">
-                  <caret line="246" column="78" lean-forward="false" selection-start-line="246" selection-start-column="78" selection-end-line="246" selection-end-column="78" />
+                <state relative-caret-position="224">
+                  <caret line="208" column="8" lean-forward="false" selection-start-line="208" selection-start-column="8" selection-end-line="238" selection-end-column="9" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="query.txt" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/webserver/templates/query.txt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="606">
+                  <caret line="278" column="56" lean-forward="false" selection-start-line="278" selection-start-column="56" selection-end-line="278" selection-end-column="56" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="query.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/webserver/templates/query.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="32">
+                  <caret line="2" column="2" lean-forward="false" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -210,6 +164,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Go File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -296,6 +251,8 @@
         <option value="$PROJECT_DIR$/structures/struct_websocket.go" />
         <option value="$PROJECT_DIR$/server/server.go" />
         <option value="$PROJECT_DIR$/webserver/websockets.go" />
+        <option value="$PROJECT_DIR$/webserver/query.js" />
+        <option value="$PROJECT_DIR$/webserver/templates/query.js" />
       </list>
     </option>
   </component>
@@ -497,6 +454,9 @@
     <property name="DefaultGoTemplateProperty" value="Go File" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/webserver/templates" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/client" />
       <recent name="D:\win\documents\projects\gopath\src\project\orders" />
@@ -574,10 +534,10 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="25" width="1922" height="1056" extended-state="0" />
+    <frame x="-1" y="25" width="1922" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.101387404" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10245464" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -607,13 +567,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tests/queryORDER/statusSQL.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1292">
-          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="79" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/queryORDER/orders.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3706">
@@ -641,72 +594,6 @@
           <caret line="318" column="49" lean-forward="false" selection-start-line="318" selection-start-column="41" selection-end-line="318" selection-end-column="49" />
           <folding>
             <element signature="e#18#115#0" expanded="true" />
-            <marker date="1496309289167" expanded="true" signature="1995:2097" ph="UPDATE \&quot;ord... " />
-            <marker date="1496309289167" expanded="true" signature="2240:2331" ph="UPDATE \&quot;ord... " />
-            <marker date="1496309289167" expanded="true" signature="2455:2543" ph="UPDATE \&quot;ord... " />
-            <marker date="1496309289167" expanded="true" signature="2666:2728" ph="UPDATE \&quot;ord... " />
-            <marker date="1496309289167" expanded="true" signature="3385:3425" ph="SELECT type order" />
-            <marker date="1496309289167" expanded="true" signature="3556:3600" ph="SELECT org_h... order" />
-            <marker date="1496309289167" expanded="true" signature="3732:3776" ph="SELECT paid_... order" />
-            <marker date="1496309289167" expanded="true" signature="3899:4097" ph="select org_h... order" />
-            <marker date="1496309289167" expanded="true" signature="3945:4011" ph="SELECT order... order_customer" />
-            <marker date="1496309289167" expanded="true" signature="4231:4261" ph="SELECT count... order" />
-            <marker date="1496309289167" expanded="true" signature="8890:8925" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="9284:9482" ph="INSERT INTO order_customer... " />
-            <marker date="1496309289167" expanded="true" signature="9723:9906" ph="UPDATE order... " />
-            <marker date="1496309289167" expanded="true" signature="10146:10302" ph="SELECT order... order_customer" />
-            <marker date="1496309289167" expanded="true" signature="10435:10486" ph="SELECT note order_customer" />
-            <marker date="1496309289167" expanded="true" signature="10629:10834" ph="SELECT DISTI... order_customer" />
-            <marker date="1496309289167" expanded="true" signature="10971:11175" ph="SELECT DISTI... order_customer" />
-            <marker date="1496309289167" expanded="true" signature="11856:12036" ph="SELECT order... order_customer" />
-            <marker date="1496309289167" expanded="true" signature="12274:12318" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="16680:16711" ph="SELECT count... order_list" />
-            <marker date="1496309289167" expanded="true" signature="16848:16940" ph="SELECT count... order_list" />
-            <marker date="1496309289167" expanded="true" signature="17069:17134" ph="select count... order_list" />
-            <marker date="1496309289167" expanded="true" signature="17252:17322" ph="select id_pa... order_list" />
-            <marker date="1496309289167" expanded="true" signature="17463:17512" ph="SELECT count... order_list" />
-            <marker date="1496309289167" expanded="true" signature="26464:26519" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="26629:26669" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="27519:27689" ph="SELECT order... order_personal" />
-            <marker date="1496309289167" expanded="true" signature="28438:28650" ph="SELECT order... order_personal" />
-            <marker date="1496309289167" expanded="true" signature="28780:28980" ph="SELECT order... order_personal" />
-            <marker date="1496309289167" expanded="true" signature="29121:29254" ph="SELECT order... order_personal" />
-            <marker date="1496309289167" expanded="true" signature="29498:29559" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="29685:29729" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="36905:37027" ph="SELECT id, o... order_status" />
-            <marker date="1496309289167" expanded="true" signature="37167:37322" ph="SELECT id, o... order_status" />
-            <marker date="1496309289167" expanded="true" signature="37503:37603" ph="select \&quot;tim... order_status" />
-            <marker date="1496309289167" expanded="true" signature="37759:37837" ph="SELECT user_... order_status" />
-            <marker date="1496309289167" expanded="true" signature="38316:38497" ph="SELECT id, o... order_status" />
-            <marker date="1496309289167" expanded="true" signature="38644:38801" ph="SELECT id, o... order_status" />
-            <marker date="1496309289167" expanded="true" signature="38958:39058" ph="SELECT statu... order_status" />
-            <marker date="1496309289167" expanded="true" signature="39196:39365" ph="SELECT id, o... order_status" />
-            <marker date="1496309289167" expanded="true" signature="39606:39724" ph="WITH s AS(DE... " />
-            <marker date="1496309289167" expanded="true" signature="39894:40017" ph="WITH s AS(DE... " />
-            <marker date="1496309289167" expanded="true" signature="40157:40259" ph="WITH s AS(DE... " />
-            <marker date="1496309289167" expanded="true" signature="42116:42157" ph="UPDATE cashb... " />
-            <marker date="1496309289167" expanded="true" signature="42391:42587" ph="SELECT id, o... cashbox" />
-            <marker date="1496309289167" expanded="true" signature="42726:42776" ph="SELECT SUM(d... cashbox" />
-            <marker date="1496309289167" expanded="true" signature="45317:45602" ph="SELECT id, o... cashbox" />
-            <marker date="1496309289167" expanded="true" signature="45736:45959" ph="SELECT id, o... cashbox" />
-            <marker date="1496309289167" expanded="true" signature="46096:46296" ph="SELECT id, o... cashbox" />
-            <marker date="1496309289167" expanded="true" signature="46948:47096" ph="select case " />
-            <marker date="1496309289167" expanded="true" signature="46966:47017" ph="SELECT SUM(d... cashbox" />
-            <marker date="1496309289167" expanded="true" signature="47040:47091" ph="SELECT SUM(d... cashbox" />
-            <marker date="1496309289167" expanded="true" signature="47328:47359" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="47703:47752" ph="INSERT INTO status... " />
-            <marker date="1496309289167" expanded="true" signature="47985:48022" ph="UPDATE statu... " />
-            <marker date="1496309289167" expanded="true" signature="48255:48297" ph="SELECT id, n... status" />
-            <marker date="1496309289167" expanded="true" signature="48420:48447" ph="SELECT id, n... status" />
-            <marker date="1496309289167" expanded="true" signature="48678:48708" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="49064:49119" ph="INSERT INTO type_payment... " />
-            <marker date="1496309289167" expanded="true" signature="49357:49400" ph="UPDATE type_... " />
-            <marker date="1496309289167" expanded="true" signature="49638:49686" ph="SELECT id, n... type_payment" />
-            <marker date="1496309289167" expanded="true" signature="49814:49847" ph="SELECT id, n... type_payment" />
-            <marker date="1496309289167" expanded="true" signature="50083:50119" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="56655:56801" ph="SELECT id, u... сhange_employee" />
-            <marker date="1496309289167" expanded="true" signature="56950:57182" ph="SELECT id, u... сhange_employee" />
-            <marker date="1496309289167" expanded="true" signature="57323:57536" ph="SELECT id, u... сhange_employee" />
           </folding>
         </state>
       </provider>
@@ -814,13 +701,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/log/2017-05-29.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="800">
-          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/log/2017-05-29.log" />
     <entry file="file://$PROJECT_DIR$/tests/trazaction/tranzaction.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="32">
@@ -837,18 +718,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webserver/templates/query.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="278" column="56" lean-forward="false" selection-start-line="278" selection-start-column="56" selection-end-line="278" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../../go/src/database/sql/sql.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="303">
           <caret line="2385" column="26" lean-forward="false" selection-start-line="2385" selection-start-column="26" selection-end-line="2385" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -863,7 +736,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="431">
           <caret line="106" column="36" lean-forward="false" selection-start-line="106" selection-start-column="36" selection-end-line="106" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -871,7 +743,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1888">
           <caret line="125" column="4" lean-forward="false" selection-start-line="125" selection-start-column="4" selection-end-line="125" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -887,7 +758,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
           <caret line="22" column="11" lean-forward="true" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -895,9 +765,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16">
           <caret line="472" column="0" lean-forward="false" selection-start-line="472" selection-start-column="0" selection-end-line="473" selection-end-column="69" />
-          <folding>
-            <element signature="e#20#178#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -905,9 +772,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16">
           <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
-          <folding>
-            <element signature="e#16#111#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -915,7 +779,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
           <caret line="145" column="4" lean-forward="true" selection-start-line="145" selection-start-column="4" selection-end-line="160" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -923,9 +786,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="591">
           <caret line="181" column="16" lean-forward="false" selection-start-line="181" selection-start-column="16" selection-end-line="181" selection-end-column="16" />
-          <folding>
-            <element signature="e#14#205#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -937,19 +797,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webserver/webservfunctable.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="246" column="78" lean-forward="false" selection-start-line="246" selection-start-column="78" selection-end-line="246" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/postgres/controller.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="101" column="14" lean-forward="true" selection-start-line="101" selection-start-column="14" selection-end-line="101" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -966,7 +817,7 @@
     <entry file="file://$PROJECT_DIR$/client/config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="496">
-          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -982,112 +833,24 @@
     <entry file="file://$PROJECT_DIR$/structures/structures.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
-          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-          <folding>
-            <marker date="1496224611749" expanded="true" signature="3169:4067" ph="{...}" />
-          </folding>
+          <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/postgres/postgres.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="1287" column="63" lean-forward="true" selection-start-line="1287" selection-start-column="63" selection-end-line="1287" selection-end-column="63" />
+        <state relative-caret-position="20480">
+          <caret line="1287" column="63" lean-forward="false" selection-start-line="1287" selection-start-column="63" selection-end-line="1287" selection-end-column="63" />
           <folding>
             <element signature="e#18#115#0" expanded="true" />
-            <marker date="1496309289167" expanded="true" signature="1995:2097" ph="UPDATE \&quot;ord... " />
-            <marker date="1496309289167" expanded="true" signature="2240:2331" ph="UPDATE \&quot;ord... " />
-            <marker date="1496309289167" expanded="true" signature="2455:2543" ph="UPDATE \&quot;ord... " />
-            <marker date="1496309289167" expanded="true" signature="2666:2728" ph="UPDATE \&quot;ord... " />
-            <marker date="1496309289167" expanded="true" signature="3385:3425" ph="SELECT type order" />
-            <marker date="1496309289167" expanded="true" signature="3556:3600" ph="SELECT org_h... order" />
-            <marker date="1496309289167" expanded="true" signature="3732:3776" ph="SELECT paid_... order" />
-            <marker date="1496309289167" expanded="true" signature="3899:4097" ph="select org_h... order" />
-            <marker date="1496309289167" expanded="true" signature="3945:4011" ph="SELECT order... order_customer" />
-            <marker date="1496309289167" expanded="true" signature="4231:4261" ph="SELECT count... order" />
-            <marker date="1496309289167" expanded="true" signature="8890:8925" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="9284:9482" ph="INSERT INTO order_customer... " />
-            <marker date="1496309289167" expanded="true" signature="9723:9906" ph="UPDATE order... " />
-            <marker date="1496309289167" expanded="true" signature="10146:10302" ph="SELECT order... order_customer" />
-            <marker date="1496309289167" expanded="true" signature="10435:10486" ph="SELECT note order_customer" />
-            <marker date="1496309289167" expanded="true" signature="10629:10834" ph="SELECT DISTI... order_customer" />
-            <marker date="1496309289167" expanded="true" signature="10971:11175" ph="SELECT DISTI... order_customer" />
-            <marker date="1496309289167" expanded="true" signature="11856:12036" ph="SELECT order... order_customer" />
-            <marker date="1496309289167" expanded="true" signature="12274:12318" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="16680:16711" ph="SELECT count... order_list" />
-            <marker date="1496309289167" expanded="true" signature="16848:16940" ph="SELECT count... order_list" />
-            <marker date="1496309289167" expanded="true" signature="17069:17134" ph="select count... order_list" />
-            <marker date="1496309289167" expanded="true" signature="17252:17322" ph="select id_pa... order_list" />
-            <marker date="1496309289167" expanded="true" signature="17463:17512" ph="SELECT count... order_list" />
-            <marker date="1496309289167" expanded="true" signature="26464:26519" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="26629:26669" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="27519:27689" ph="SELECT order... order_personal" />
-            <marker date="1496309289167" expanded="true" signature="28438:28650" ph="SELECT order... order_personal" />
-            <marker date="1496309289167" expanded="true" signature="28780:28980" ph="SELECT order... order_personal" />
-            <marker date="1496309289167" expanded="true" signature="29121:29254" ph="SELECT order... order_personal" />
-            <marker date="1496309289167" expanded="true" signature="29498:29559" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="29685:29729" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="36905:37027" ph="SELECT id, o... order_status" />
-            <marker date="1496309289167" expanded="true" signature="37167:37322" ph="SELECT id, o... order_status" />
-            <marker date="1496309289167" expanded="true" signature="37503:37603" ph="select \&quot;tim... order_status" />
-            <marker date="1496309289167" expanded="true" signature="37759:37837" ph="SELECT user_... order_status" />
-            <marker date="1496309289167" expanded="true" signature="38316:38497" ph="SELECT id, o... order_status" />
-            <marker date="1496309289167" expanded="true" signature="38644:38801" ph="SELECT id, o... order_status" />
-            <marker date="1496309289167" expanded="true" signature="38958:39058" ph="SELECT statu... order_status" />
-            <marker date="1496309289167" expanded="true" signature="39196:39365" ph="SELECT id, o... order_status" />
-            <marker date="1496309289167" expanded="true" signature="39606:39724" ph="WITH s AS(DE... " />
-            <marker date="1496309289167" expanded="true" signature="39894:40017" ph="WITH s AS(DE... " />
-            <marker date="1496309289167" expanded="true" signature="40157:40259" ph="WITH s AS(DE... " />
-            <marker date="1496309289167" expanded="true" signature="42116:42157" ph="UPDATE cashb... " />
-            <marker date="1496309289167" expanded="true" signature="42391:42587" ph="SELECT id, o... cashbox" />
-            <marker date="1496309289167" expanded="true" signature="42726:42776" ph="SELECT SUM(d... cashbox" />
-            <marker date="1496309289167" expanded="true" signature="45317:45602" ph="SELECT id, o... cashbox" />
-            <marker date="1496309289167" expanded="true" signature="45736:45959" ph="SELECT id, o... cashbox" />
-            <marker date="1496309289167" expanded="true" signature="46096:46296" ph="SELECT id, o... cashbox" />
-            <marker date="1496309289167" expanded="true" signature="46948:47096" ph="select case " />
-            <marker date="1496309289167" expanded="true" signature="46966:47017" ph="SELECT SUM(d... cashbox" />
-            <marker date="1496309289167" expanded="true" signature="47040:47091" ph="SELECT SUM(d... cashbox" />
-            <marker date="1496309289167" expanded="true" signature="47328:47359" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="47703:47752" ph="INSERT INTO status... " />
-            <marker date="1496309289167" expanded="true" signature="47985:48022" ph="UPDATE statu... " />
-            <marker date="1496309289167" expanded="true" signature="48255:48297" ph="SELECT id, n... status" />
-            <marker date="1496309289167" expanded="true" signature="48420:48447" ph="SELECT id, n... status" />
-            <marker date="1496309289167" expanded="true" signature="48678:48708" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="49064:49119" ph="INSERT INTO type_payment... " />
-            <marker date="1496309289167" expanded="true" signature="49357:49400" ph="UPDATE type_... " />
-            <marker date="1496309289167" expanded="true" signature="49638:49686" ph="SELECT id, n... type_payment" />
-            <marker date="1496309289167" expanded="true" signature="49814:49847" ph="SELECT id, n... type_payment" />
-            <marker date="1496309289167" expanded="true" signature="50083:50119" ph="DELETE FROM " />
-            <marker date="1496309289167" expanded="true" signature="56655:56801" ph="SELECT id, u... сhange_employee" />
-            <marker date="1496309289167" expanded="true" signature="56950:57182" ph="SELECT id, u... сhange_employee" />
-            <marker date="1496309289167" expanded="true" signature="57323:57536" ph="SELECT id, u... сhange_employee" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/structures/struct_transaction.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3216">
-          <caret line="201" column="40" lean-forward="false" selection-start-line="201" selection-start-column="31" selection-end-line="201" selection-end-column="40" />
-          <folding>
-            <element signature="e#20#115#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/structures/struct_websocket.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="111" column="23" lean-forward="false" selection-start-line="111" selection-start-column="23" selection-end-line="111" selection-end-column="23" />
-          <folding>
-            <element signature="e#20#145#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/server.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-560">
+        <state relative-caret-position="240">
           <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding />
         </state>
@@ -1095,9 +858,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webserver/websockets.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="54" column="5" lean-forward="false" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
+        <state relative-caret-position="224">
+          <caret line="68" column="47" lean-forward="false" selection-start-line="68" selection-start-column="47" selection-end-line="68" selection-end-column="47" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/structures/struct_transaction.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1070">
+          <caret line="201" column="40" lean-forward="false" selection-start-line="201" selection-start-column="31" selection-end-line="201" selection-end-column="40" />
+          <folding>
+            <element signature="e#20#115#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webserver/webservfunctable.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="208" column="8" lean-forward="false" selection-start-line="208" selection-start-column="8" selection-end-line="238" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webserver/templates/query.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="606">
+          <caret line="278" column="56" lean-forward="false" selection-start-line="278" selection-start-column="56" selection-end-line="278" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/structures/struct_websocket.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="138" column="49" lean-forward="false" selection-start-line="138" selection-start-column="49" selection-end-line="138" selection-end-column="49" />
+          <folding>
+            <element signature="e#20#145#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webserver/templates/query.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="2" lean-forward="false" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
